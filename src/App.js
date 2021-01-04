@@ -1,6 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
+import Search from './components/searchbar/Search';
 
 function App() {
   const location = useLocation();
@@ -9,6 +12,8 @@ function App() {
       <Navbar />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <Search />
+
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
