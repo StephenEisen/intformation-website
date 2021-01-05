@@ -1,16 +1,20 @@
 import React from 'react';
 import SelectSearch from 'react-select-search';
+import "./Search.css";
 
-const options = [
-    {name: 'Alencia', value: 'Alencia'},
-    {name: 'pp', value: 'en'},
-    {
-    },
-];
+const updateInfo = (event, props) =>{
+    props.onChange(props.options.findIndex(
+        (option) => option.value === event));
+}
 
-const Search = () => {
+
+const Search = (props) => {
     return(
-        <SelectSearch search options={options} placeholder="Choose Character" />
+        <SelectSearch
+            search
+            options={props.options} 
+            placeholder="Choose Character" 
+            onChange={(event) =>updateInfo(event, props)}/>
         )
 }
 
