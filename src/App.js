@@ -6,54 +6,34 @@ import Search from './components/searchbar/Search';
 import Footer from './components/footer/Footer';
 import Options from "./components/CharacterInfo.js"
 
-const selectedIndexes = [null, null, null];
+let selectedIndexes = [null, null, null];
 
 const changeList = (selectedIndex, state, currentIndex) => {
 
+  // Get the selected option indexes and enable all options for each list
   for (let i = 0; i < state.length; i++){
     if (i === currentIndex){
       selectedIndexes.splice(i, 1, selectedIndex);
     }
+
+    state[i].options.forEach((option) => option.disabled = false);
   }
 
+  // Get each selected index and disable it for the lists (except the dropdown it was chosen on).
   for (let i = 0; i < selectedIndexes.length; i++) {
     const index = selectedIndexes[i];
-  
+
     for (let j = 0; j < state.length; j++) {
       const stateOptions = state[j].options;
-      stateOptions.forEach((option) => option.disabled = false);
-  
-      if (j !== currentIndex && index) {
+
+      if (j !== currentIndex && index !== null) {
         const selectedOption = stateOptions[index];
         selectedOption.disabled = true;
       }
+
+      state[j].setOptions([...stateOptions]);
     }
   }
-  //const currentList = state[currentIndex].options;
-
-  /*for (let i = 0; i < state.length; i++){
-    const newOptions = state[i].options;
-
-    if (i !== currentIndex){
-      // Disable selection in other lists that dont equal listNum
-      newOptions[selectedIndex].disabled = true;
-      state[i].setOptions([...newOptions]);
-
-      // Disable the two options that are selected in the other lists in the current list
-      currentList[selectedIndex].disabled = true;
-    }
-    else{
-      console.log(selectedIndexes);
-      if (selectedIndexes[i] !== null && selectedIndexes[i] !== selectedIndex){
-        console.log(selectedIndexes[i]);
-        state[i].options[selectedIndex].disabled = false;
-      }
-      state[i].setOptions([...newOptions]);
-      selectedIndexes.splice(i, 1, selectedIndex);
-      console.log(selectedIndexes);
-    }
-  }
-  state[currentIndex].setOptions([...currentList]);*/
 }
 
 function App() {
