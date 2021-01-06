@@ -13,10 +13,8 @@ const Navbar = () => {
         </a>
       </div>
       <ul className="site-links">
-        <li><NavLink exact to="/" className="project-link">Meme1</NavLink></li>
-        <li><NavLink to="/" className="docs-link">Meme2</NavLink></li>
-        <li><NavLink to="/" className="blogs-link">Meme3</NavLink></li>
-        <li><NavLink to="/" className="about-link">Meme4</NavLink></li>
+        <li><NavLink exact to="/defence" className="defence-link">Guild Wars</NavLink></li>
+        <li><NavLink to="/intel" className="intel-link">Intel</NavLink></li>
       </ul>
     </nav>
   );

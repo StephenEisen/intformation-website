@@ -9,6 +9,7 @@ const Footer = () => {
           <div className="footer-section">
           <p>Special Thanks:</p>
             <h2 className="footer-name" style={{ color: '#00FECA' }}>AESOL</h2>
+            <h2 className="footer-name" style={{ color: '#00FECA' }}>AVOOZL</h2>
           </div>
 
         </div>

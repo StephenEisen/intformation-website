@@ -54,33 +54,19 @@
     padding: 10px;
     color: white;
   }
-  .site-links li a.project-link:hover{
+  .site-links li a.defence-link:hover{
     color: #FF85EA;
   }
-  .site-links li a.project-link.active{
+  .site-links li a.defence-link.active{
     color: #FF85EA;
     border-bottom: 5px solid #FF85EA;
   }
-  .site-links li a.docs-link:hover{
+  .site-links li a.intel-link:hover{
     color: #7B61F8;
   }
-  .site-links li a.docs-link.active{
+  .site-links li a.intel-link.active{
     color: #7B61F8;
     border-bottom: 5px solid #7B61F8;
-  }
-  .site-links li a.blogs-link:hover{
-    color: #61DAFB;
-  }
-  .site-links li a.blogs-link.active{
-    color: #61DAFB;
-    border-bottom: 5px solid #61DAFB;
-  }
-  .site-links li a.about-link:hover{
-    color: #FDF200;
-  }
-  .site-links li a.about-link.active{
-    color: #FDF200;
-    border-bottom: 5px solid #FDF200;
   }
   .social-links{
     display: flex;

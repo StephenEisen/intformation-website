@@ -2,9 +2,13 @@ footer{
     display: block;
     z-index: 1;
     margin: 0 auto;
-    padding: 25px;
+    padding: 25px 0 25px 0;
     text-align: center;
     background-color: #20232A;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
   }
   .footer-content{
     display: flex;
