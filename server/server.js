@@ -12,10 +12,6 @@ const towerData = [{
 io.on("connection", (socket) => {
   console.log(socket.id);
 
-  socket.on("test", (data) => {
-    io.sockets.emit("testOutput", data);
-  });
-
   socket.on("updateTower", (data) => {
     // Get data from database
     const towerDataFromDB = towerData.find((tower) => tower.name === data.name);
