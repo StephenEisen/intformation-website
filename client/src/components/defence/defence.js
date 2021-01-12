@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import Search from '../searchbar/Search.js';
-import Options from "../CharacterInfo.js"
-import "./Defence.css";
-import logo from '../../enott.png';
+import CharacterSelect from '../character-select/character-select.js';
+import Options from "../../constants/character-info.js"
+import "./defence.css";
+import logo from '../../assets/enott.png';
 
 let selectedIndexes = [null, null, null];
 
 const changeList = (selectedIndex, state, currentIndex) => {
-
   // Get the selected option indexes and enable all options for each list
   for (let i = 0; i < state.length; i++){
     if (i === currentIndex){
@@ -35,32 +34,31 @@ const changeList = (selectedIndex, state, currentIndex) => {
 }
 
 const Defence = () => {
-    console.log("mos pp");
     const [options1, setOptions1] = useState(Options);
     const [options2, setOptions2] = useState(Options);
     const [options3, setOptions3] = useState(Options);
+
     const state = [
       {options: options1, setOptions: setOptions1},
       {options: options2, setOptions: setOptions2},
-      {options: options3, setOptions: setOptions3}   
-    ]
+      {options: options3, setOptions: setOptions3}
+    ];
+
     return(
         <div className="defence-body">
-
             <img src={logo} className="App-logo" alt="logo" />
-
             <ul className="container-search">
-                <li>
-                    <Search options={state[0].options} onChange={(index) =>changeList(index, state, 0)}/>
+                <li key="0">
+                    <CharacterSelect options={state[0].options} onChange={(index) => changeList(index, state, 0)}/>
                 </li>
-                <li>
-                    <Search options={state[1].options} onChange={(index) =>changeList(index, state, 1)}/>
+                <li key="1">
+                    <CharacterSelect options={state[1].options} onChange={(index) => changeList(index, state, 1)}/>
                 </li>
-                <li>
-                    <Search options={state[2].options} onChange={(index) =>changeList(index, state, 2)}/>
+                <li key="2">
+                    <CharacterSelect options={state[2].options} onChange={(index) => changeList(index, state, 2)}/>
                 </li>
             </ul>
-            
+
             <p>
                 smol pp
             </p>

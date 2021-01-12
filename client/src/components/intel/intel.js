@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import plus from "../../plus.png";
-import AddTowerDialog from "./AddTowerDialog";
-import "./Intel.css";
+import plus from "../../assets/plus.png";
+import AddTowerDialog from "./add-tower-dialog/add-tower-dialog.js";
+import "./intel.css";
 
 const Intel = () => {
   const [isAddTowerDialogVisible, setAddTowerDialogVisiblity] = useState(false);
+
   return (
     <div>
       <AddTowerDialog

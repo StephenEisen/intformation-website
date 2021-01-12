@@ -1,6 +1,6 @@
 import React from "react";
-import "./AddTowerDialog.css";
-import SelectSearch from 'react-select-search';
+import "./add-tower-dialog.css";
+import SelectSearch from "react-select-search";
 
 const towerOptions = [
     {name: 'Bronze Fortress', value: 'Bronze Fortess'},
@@ -19,7 +19,7 @@ const AddTowerDialog = (props) => {
         <input></input>
         <SelectSearch
             search
-            options={towerOptions} 
+            options={towerOptions}
             placeholder="Choose Tower Location" />
         <button onClick={(e) => props.onClose()}>Add Tower</button>
       </div>

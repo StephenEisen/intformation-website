@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
-import Intel from './components/intel/Intel';
-import Navbar from './components/navbar/Navbar';
-import Footer from './components/footer/Footer';
-import Defence from './components/defence/Defence';
+import './app.css';
+import Intel from '../intel/intel';
+import Navbar from '../navbar/navbar';
+import Footer from '../footer/footer';
+import Defence from '../defence/defence';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 
