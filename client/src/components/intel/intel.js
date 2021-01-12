@@ -2,14 +2,32 @@ import React, { useState } from "react";
 import plus from "../../assets/plus.png";
 import AddTowerDialog from "./add-tower-dialog/add-tower-dialog.js";
 import "./intel.css";
+import socketIOClient from "socket.io-client";
+
+const socket = socketIOClient("http://localhost:8080");
+let socketTowerUpdateSuccess;
+let socketTowerUpdateError;
+
+const updateTowerData = (towerName, towerLocation) => {
+  socket.emit('updateTower', { name: towerName, location: towerLocation });
+}
 
 const Intel = () => {
   const [isAddTowerDialogVisible, setAddTowerDialogVisiblity] = useState(false);
+  const [guildData, setGuildData] = useState({ id: "", towers: [] });
+
+  if (socketTowerUpdateSuccess == null) {
+    socketTowerUpdateSuccess = socket.on('towerUpdateSuccess', (data) => console.log(data));
+  }
+
+  if (socketTowerUpdateError == null) {
+    socketTowerUpdateError = socket.on('towerUpdateError', (data) => console.log(data));
+  }
 
   return (
     <div>
       <AddTowerDialog
-        onClose={() => setAddTowerDialogVisiblity(false)}
+        onClose={(name, location) => updateTowerData(name, location)}
         visibility={isAddTowerDialogVisible}
       />
 
