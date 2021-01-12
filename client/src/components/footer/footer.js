@@ -6,16 +6,9 @@ const Footer = () => {
     <footer>
       <div className="footer-content">
         <div className="footer-content-left">
-          <div className="footer-section">
-          <p>Special Thanks:</p>
-            <h2 className="footer-name" style={{ color: '#00FECA' }}>AESOL</h2>
-            <h2 className="footer-name" style={{ color: '#00FECA' }}>AVOOZL</h2>
-          </div>
-
+          <div className="footer-section"></div>
         </div>
-        <div className="footer-content-right">
-        </div>
-
+        <div className="footer-content-right"></div>
       </div>
 
       <p>Developed by:</p>
@@ -23,8 +16,7 @@ const Footer = () => {
         <div className="logo-first">REGULAR</div>
         <div className="logo-last">STEVE</div>
       </a>
-
     </footer>
   );
-}
+};
 export default Footer;

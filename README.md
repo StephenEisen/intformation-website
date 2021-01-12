@@ -1,3 +1,4 @@
 # INT Formation
 
-Hello world!
+Run client: `npm run start`
+Run server: `nodemon server.js`
