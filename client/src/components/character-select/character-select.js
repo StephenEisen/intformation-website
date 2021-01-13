@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SelectSearch from "react-select-search";
 import "./character-select.css";
 
@@ -25,7 +25,6 @@ function renderFriend(props, option, snapshot, className) {
     return text === option.value;
   });
   const imagePath = images[imageIndex];
-  console.log(imagePath);
 
   return (
     <button {...props} className={className} type="button">

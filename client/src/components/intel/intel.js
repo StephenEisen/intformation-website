@@ -14,7 +14,6 @@ const updateTowerData = (towerName, towerLocation) => {
 
 const Intel = () => {
   const [isAddTowerDialogVisible, setAddTowerDialogVisiblity] = useState(false);
-  const [guildData, setGuildData] = useState({ id: "", towers: [] });
 
   if (socketTowerUpdateSuccess == null) {
     socketTowerUpdateSuccess = socket.on('towerUpdateSuccess', (data) => console.log(data));
