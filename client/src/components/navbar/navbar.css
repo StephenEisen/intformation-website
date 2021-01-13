@@ -69,6 +69,14 @@ ul {
   color: #7b61f8;
   border-bottom: 5px solid #7b61f8;
 }
+.site-links li a.stats-link:hover{
+  color: #61DAFB;
+}
+.site-links li a.stats-link.active{
+  color: #61DAFB;
+  border-bottom: 5px solid #61DAFB;
+}
+
 .social-links {
   display: flex;
   padding-top: 20px;

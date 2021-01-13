@@ -14,6 +14,7 @@ const Navbar = () => {
       <ul className="site-links">
         <li><NavLink exact to="/defence" className="defence-link">Guild Wars</NavLink></li>
         <li><NavLink to="/intel" className="intel-link">Intel</NavLink></li>
+        <li><NavLink to="/statistics" className="stats-link">Statistics</NavLink></li>
       </ul>
     </nav>
   );

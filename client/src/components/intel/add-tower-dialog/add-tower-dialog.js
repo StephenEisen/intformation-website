@@ -23,14 +23,14 @@ const AddTowerDialog = (props) => {
   return (
     <div className="modal-container">
       <div id="modal" className="modal">
-        <input onBlur={(e) => (towerName = e.target.value)}></input>
+        <input placeholder="Input tower name." className="input-box" onBlur={(e) => (towerName = e.target.value)}></input>
         <SelectSearch
           search
           options={towerLocations}
           placeholder="Choose Tower Location"
           onChange={(e) => (towerLocation = e)}
         />
-        <button onClick={(e) => sendTowerData(props)}>Add Tower</button>
+        <button className="modal-button" onClick={(e) => sendTowerData(props)}>Add Tower</button>
       </div>
     </div>
   );
