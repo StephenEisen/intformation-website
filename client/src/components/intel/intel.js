@@ -3,33 +3,46 @@ import plus from "../../assets/plus.png";
 import AddTowerDialog from "./add-tower-dialog/add-tower-dialog.js";
 import "./intel.css";
 import socketIOClient from "socket.io-client";
+import TowerInfo from "./tower-info/tower-info.js";
 
 const socket = socketIOClient("http://localhost:8080");
 let socketTowerUpdateSuccess;
 let socketTowerUpdateError;
 
-const updateTowerData = (towerName, towerLocation) => {
-  socket.emit('updateTower', { name: towerName, location: towerLocation });
-}
+const updateTowerData = (id, towerName, towerLocation) => {
+  socket.emit("updateTower", {
+    pageId: id,
+    name: towerName,
+    location: towerLocation,
+  });
+};
 
 const Intel = () => {
   const [isAddTowerDialogVisible, setAddTowerDialogVisiblity] = useState(false);
+  const [isTowerInfoVisible, setTowerInfoVisibility] = useState(false);
 
   if (socketTowerUpdateSuccess == null) {
-    socketTowerUpdateSuccess = socket.on('towerUpdateSuccess', (data) => console.log(data));
+    socketTowerUpdateSuccess = socket.on("towerUpdateSuccess", (data) => {
+      setTowerInfoVisibility(true);
+    });
   }
 
   if (socketTowerUpdateError == null) {
-    socketTowerUpdateError = socket.on('towerUpdateError', (data) => console.log(data));
+    socketTowerUpdateError = socket.on("towerUpdateError", (data) =>
+      console.log(data)
+    );
   }
 
   return (
     <div>
       <AddTowerDialog
-        onClose={(name, location) => updateTowerData(name, location)}
+        onClose={(id, name, location) => {
+          updateTowerData(id, name, location);
+          setAddTowerDialogVisiblity(false);
+        }}
         visibility={isAddTowerDialogVisible}
       />
-
+      <TowerInfo visibility={isTowerInfoVisible}/>
       <button onClick={() => setAddTowerDialogVisiblity(true)}>
         <img
           src={plus}

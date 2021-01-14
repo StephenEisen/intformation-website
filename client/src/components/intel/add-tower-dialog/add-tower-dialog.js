@@ -13,7 +13,7 @@ const towerLocations = [
 ];
 
 const sendTowerData = (props) => {
-  props.onClose(towerName, towerLocation);
+  props.onClose(Math.random().toString(36).slice(2) ,towerName, towerLocation);
 };
 
 const AddTowerDialog = (props) => {

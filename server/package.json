@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "mocha": "^8.2.1",
+    "mongoose": "^5.11.11",
     "socket.io": "^3.0.5"
   },
   "devDependencies": {
