@@ -6,11 +6,15 @@ import TowerInfo from "./tower-info/tower-info.js";
 import IntelTowerDialog from "./intel-creation-dialog/intel-tower-dialog";
 import { socket, getPageId } from "globals/socket.js";
 
+let towerList = [];
+
 let pageId = "";
 let socketCreateNewGuildDataSuccess;
 
-let socketTowerUpdateSuccess;
-let socketTowerUpdateError;
+let socketFindNewGuildDataSuccess;
+
+let socketTowerCreateSuccess;
+let socketTowerCreateError;
 
 const updateTowerData = (id, towerName, towerLocation) => {
   socket.emit("createTowerData", {
@@ -32,21 +36,23 @@ const Intel = (props) => {
 
   pageId = getPageId();
 
-  if (socketTowerUpdateSuccess == null) {
-    socketTowerUpdateSuccess = socket.on("createTowerDataSuccess", (data) => {
+  if (socketTowerCreateSuccess == null) {
+    socketTowerCreateSuccess = socket.on("createTowerDataSuccess", (data) => {
       setTowerInfoVisibility(true);
     });
   }
 
-  if (socketTowerUpdateError == null) {
-    socketTowerUpdateError = socket.on("createTowerDataError", (data) =>
+  if (socketTowerCreateError == null) {
+    socketTowerCreateError = socket.on("createTowerDataError", (data) =>
       console.log(data)
     );
   }
 
-  // socket.on('findExistingGuildDataSuccess', (data) => {
-    
-  // })
+  if (socketFindNewGuildDataSuccess == null){
+    socketFindNewGuildDataSuccess = socket.on('findExistingGuildDataSuccess', (data) => {
+      towerList = data;
+    })
+  }
 
   if (socketCreateNewGuildDataSuccess == null) {
     socketCreateNewGuildDataSuccess = socket.on(
@@ -72,7 +78,12 @@ const Intel = (props) => {
         visibility={isAddTowerDialogVisible}
         pageId={pageId}
       />
-      <TowerInfo visibility={isTowerInfoVisible} />
+      {
+        towerList.length ? 
+        towerList.map((tower) => <TowerInfo visibility={isTowerInfoVisible} />) : null
+      }
+
+      
       <button onClick={() => setAddTowerDialogVisiblity(true)}>
         <img
           src={plus}
