@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import CharacterSelect from "components/character-select/character-select.js";
 import './tower-info.css';
-import socketIOClient from "socket.io-client";
-
-const socket = socketIOClient("http://localhost:8080");
+import { socket, getPageId } from "globals/socket.js";
 
 const characterOptions = require("constants/character-info.json");
 let selectedIndexes = [null, null, null];
@@ -64,7 +62,7 @@ const TowerInfo = (props) => {
             options={state[0].options}
             onChange={(index) => changeList(index, state, 0)}
           />
-          <input placeholder="hp" onBlur={(value) => socket.emit('updateCharacterHp', value)}></input>
+          <input placeholder="hp" onBlur={(e) => socket.emit('updateCharacterHp', {pageId: getPageId(), hp: e.target.value})}></input>
           <input placeholder="speed"></input>
           <input placeholder="additional notes"></input>
         </li>

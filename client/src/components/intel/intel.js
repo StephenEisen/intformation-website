@@ -2,47 +2,77 @@ import React, { useState } from "react";
 import plus from "../../assets/plus.png";
 import AddTowerDialog from "./add-tower-dialog/add-tower-dialog.js";
 import "./intel.css";
-import socketIOClient from "socket.io-client";
 import TowerInfo from "./tower-info/tower-info.js";
+import IntelTowerDialog from "./intel-creation-dialog/intel-tower-dialog";
+import { socket, getPageId } from "globals/socket.js";
 
-const socket = socketIOClient("http://localhost:8080");
+let pageId = "";
+let socketCreateNewGuildDataSuccess;
+
 let socketTowerUpdateSuccess;
 let socketTowerUpdateError;
 
 const updateTowerData = (id, towerName, towerLocation) => {
-  socket.emit("updateTower", {
+  socket.emit("createTowerData", {
     pageId: id,
     name: towerName,
     location: towerLocation,
   });
 };
 
-const Intel = () => {
+const Intel = (props) => {
   const [isAddTowerDialogVisible, setAddTowerDialogVisiblity] = useState(false);
   const [isTowerInfoVisible, setTowerInfoVisibility] = useState(false);
+  let [isIntelTowerDialogVisible, setIntelTowerDialogVisibility] = useState(false);
+  
+  // Dont fucking touch
+  if (pageId == null){
+    isIntelTowerDialogVisible = true;
+  }
+
+  pageId = getPageId();
 
   if (socketTowerUpdateSuccess == null) {
-    socketTowerUpdateSuccess = socket.on("towerUpdateSuccess", (data) => {
+    socketTowerUpdateSuccess = socket.on("createTowerDataSuccess", (data) => {
       setTowerInfoVisibility(true);
     });
   }
 
   if (socketTowerUpdateError == null) {
-    socketTowerUpdateError = socket.on("towerUpdateError", (data) =>
+    socketTowerUpdateError = socket.on("createTowerDataError", (data) =>
       console.log(data)
+    );
+  }
+
+  // socket.on('findExistingGuildDataSuccess', (data) => {
+    
+  // })
+
+  if (socketCreateNewGuildDataSuccess == null) {
+    socketCreateNewGuildDataSuccess = socket.on(
+      "createGuildDataSuccess",
+      (data) => {
+        props.history.push('/intel/' + data.pageId);
+        //window.history.replaceState(null, null, "/intel/" + data.pageId);
+        setIntelTowerDialogVisibility(false);
+      }
     );
   }
 
   return (
     <div>
+      {/* create new intel sheet or import existing sheet onClose */}
+      <IntelTowerDialog visibility={isIntelTowerDialogVisible} />
+
       <AddTowerDialog
         onClose={(id, name, location) => {
           updateTowerData(id, name, location);
           setAddTowerDialogVisiblity(false);
         }}
         visibility={isAddTowerDialogVisible}
+        pageId={pageId}
       />
-      <TowerInfo visibility={isTowerInfoVisible}/>
+      <TowerInfo visibility={isTowerInfoVisible} />
       <button onClick={() => setAddTowerDialogVisiblity(true)}>
         <img
           src={plus}

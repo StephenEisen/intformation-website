@@ -13,7 +13,7 @@ const towerLocations = [
 ];
 
 const sendTowerData = (props) => {
-  props.onClose(Math.random().toString(36).slice(2) ,towerName, towerLocation);
+  props.onClose(props.pageId ,towerName, towerLocation);
 };
 
 const AddTowerDialog = (props) => {
@@ -30,7 +30,7 @@ const AddTowerDialog = (props) => {
           placeholder="Choose Tower Location"
           onChange={(e) => (towerLocation = e)}
         />
-        <button className="modal-button" onClick={(e) => sendTowerData(props)}>Add Tower</button>
+        <button className="modal-button" onClick={() => sendTowerData(props)}>Add Tower</button>
       </div>
     </div>
   );
