@@ -3,7 +3,7 @@ import plus from "../../assets/plus.png";
 import AddTowerDialog from "./add-tower-dialog/add-tower-dialog.js";
 import "./intel.css";
 import TowerInfo from "./tower-info/tower-info.js";
-import IntelTowerDialog from "./intel-creation-dialog/intel-tower-dialog";
+import IntelConnect from "./intel-connect/intel-connect";
 import { socket, getPageId } from "globals/socket.js";
 
 let towerList = [];
@@ -28,7 +28,7 @@ const Intel = (props) => {
   const [isAddTowerDialogVisible, setAddTowerDialogVisiblity] = useState(false);
   const [isTowerInfoVisible, setTowerInfoVisibility] = useState(false);
   let [isIntelTowerDialogVisible, setIntelTowerDialogVisibility] = useState(false);
-  
+
   // Dont fucking touch
   if (pageId == null){
     isIntelTowerDialogVisible = true;
@@ -67,8 +67,7 @@ const Intel = (props) => {
 
   return (
     <div>
-      {/* create new intel sheet or import existing sheet onClose */}
-      <IntelTowerDialog visibility={isIntelTowerDialogVisible} />
+      <IntelConnect visibility={isIntelTowerDialogVisible} />
 
       <AddTowerDialog
         onClose={(id, name, location) => {
@@ -79,11 +78,11 @@ const Intel = (props) => {
         pageId={pageId}
       />
       {
-        towerList.length ? 
+        towerList.length ?
         towerList.map((tower) => <TowerInfo visibility={isTowerInfoVisible} />) : null
       }
 
-      
+
       <button onClick={() => setAddTowerDialogVisiblity(true)}>
         <img
           src={plus}
