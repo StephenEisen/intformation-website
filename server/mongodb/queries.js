@@ -1,16 +1,26 @@
 const GuildData = require("./guild-data.js");
 
 async function findById(id) {
-  return  GuildData.findOne({ pageId: id });
+  return GuildData.findOne({ pageId: id });
 }
 
-async function saveNewData(guildData) {
+async function createGuildData(guildData) {
   const newData = new GuildData({
     pageId: guildData.pageId,
-    data: [{ name: guildData.name, location: guildData.location }],
   });
-
-  return  newData.save();
+  return newData.save();
 }
 
-module.exports = { findById, saveNewData };
+async function createTowerData(towerData) {
+  // const newData = new GuildData({
+  //   pageId: towerData.pageId,
+  //   data: [{ name: towerData.name, location: towerData.location }],
+  // });
+
+  return GuildData.updateOne(
+    { pageId: towerData.pageId },
+    { $push: { data: { name: towerData.name, location: towerData.location } } }
+  );
+}
+
+module.exports = { findById, createTowerData, createGuildData };

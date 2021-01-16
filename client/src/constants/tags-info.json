@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Shield",
+        "description": "This character uses shields."
+    },
+    {
+        "name": "Passive",
+        "description": "This character has a passive."
+    },
+    {
+        "name": "Speed Contest",
+        "description": "This character can speed contest."
+    },
+    {
+        "name": "Cleanse",
+        "description": "This chracter can cleanse debuffs."
+    },
+    {
+        "name": "Revive",
+        "description": "This character can revive."
+    },
+    {
+        "name": "Extinct",
+        "description": "This character can extinct."
+    },
+    {
+        "name": "Counter",
+        "description": "This character can counter."
+    },
+    {
+        "name": "Stun",
+        "description": "This character can stun."
+    },
+    {
+        "name": "Healer",
+        "description": "This character is a healer."
+    },
+    {
+        "name": "Non-Attack Skill",
+        "description": "This character uses non-attacking skills."
+    },
+]
