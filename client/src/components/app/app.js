@@ -7,6 +7,9 @@ import Intel from "components/intel/intel";
 import Navbar from "components/navbar/navbar";
 import Defence from "components/defence/defence";
 import Footer from "components/footer/footer";
+import AboutUs from "components/about-us/about-us";
+import Statistics from "components/statistics/statistics";
+import Home from "components/home/home";
 
 function App() {
   const location = useLocation();
@@ -18,9 +21,12 @@ function App() {
         <TransitionGroup>
           <CSSTransition classNames="page" key={location.key} timeout={300} unmountOnExit>
             <Switch location={location}>
-              <Route exact path="/"><Redirect to={Routes.Defence} /></Route>
+              <Route exact path="/"><Redirect to={Routes.Home} /></Route>
+              <Route path={Routes.Home} component={Home} />
               <Route path={Routes.Defence} component={Defence} />
               <Route path={Routes.Intel} component={Intel} />
+              <Route path={Routes.Statistics} component={Statistics} />
+              <Route path={Routes.AboutUs} component={AboutUs} />
               <Route component={Error} />
             </Switch>
           </CSSTransition>
