@@ -1,96 +1,163 @@
+/* ========================
+ * Navbar general
+ * ===================== */
 .navbar {
-  justify-content: center;
-  display: flex;
-  position: sticky;
-  text-align: center;
+  height: 100%;
+  width: 350px;
+  position: fixed;
+  z-index: 20;
   top: 0;
-  z-index: 2;
-  width: 100%;
-  height: 7rem;
-  background-color: #20232a;
-  color: #fff;
-  border-bottom: #fdf200 1px solid;
-}
-a {
-  text-decoration: none;
-  color: #20232a;
-}
-ul {
-  padding: 0;
-  list-style: none;
-}
-.nav-logo {
-  text-align: center;
-  width: fit-content;
-  margin: auto;
-  font-size: 1.7rem;
-  font-weight: 800;
-}
-.logo-first {
-  color: #a992fa;
-}
-.logo-last {
-  color: #03dddc;
-}
-.logo-first:hover,
-.logo-last:hover {
-  color: #fdf200;
-}
-.site-links {
-  display: flex;
-  margin: 0 100px;
-  width: 40%;
-}
-.site-links li {
-  justify-content: center;
-  width: 150px;
-  margin: 7px;
-  border-radius: 5px;
-  text-align: center;
-  font-weight: 550;
-}
-.site-links li a {
-  font-size: 1.4rem;
-  line-height: 6rem;
-  padding: 10px;
-  color: white;
-}
-.site-links li a.defence-link:hover {
-  color: #ff85ea;
-}
-.site-links li a.defence-link.active {
-  color: #ff85ea;
-  border-bottom: 5px solid #ff85ea;
-}
-.site-links li a.intel-link:hover {
-  color: #7b61f8;
-}
-.site-links li a.intel-link.active {
-  color: #7b61f8;
-  border-bottom: 5px solid #7b61f8;
-}
-.site-links li a.stats-link:hover{
-  color: #61DAFB;
-}
-.site-links li a.stats-link.active{
-  color: #61DAFB;
-  border-bottom: 5px solid #61DAFB;
+  left: 0;
+  background-color: rgb(28, 16, 36);
+  overflow: hidden;
+  padding-top: 20px;
+  box-shadow: 1px 0 8px rgb(33, 19, 44);
 }
 
-.social-links {
-  display: flex;
-  padding-top: 20px;
-  width: 15%;
-  margin: 0 auto;
+.navbar a {
+  color: #fff;
+  text-decoration: none;
 }
-.social-link {
-  padding: 2px;
-  margin: 5px;
-  background-color: #00feca;
-  border: 2px #20232a solid;
-  border-radius: 5px;
+
+.navbar-menu {
+  display: none;
+  float: right;
+  width: 30px;
+  height: 24px;
+  margin-right: 50px;
+  margin-top: 30px;
+  cursor: pointer;
+  background: url("../../assets/menu.png");
+  background-size: cover;
 }
-.social-link:hover {
-  color: #00feca;
-  background-color: #20232a;
+
+.navbar-menu:hover {
+  background: url("../../assets/menu_hover.png");
+  background-size: cover;
+}
+
+/* ========================
+ * Logo and title
+ * ===================== */
+.navbar-logo {
+  margin-bottom: 80px;
+  margin-top: 20px;
+}
+
+.navbar-logo img {
+  height: 200px;
+}
+
+.navbar-logo a {
+  text-decoration: none;
+  color: #20232a;
+  font-size: 1.7rem;
+  font-weight: 800;
+  display: block;
+  margin-top: 20px;
+}
+
+.navbar-title-first {
+  color: #a992fa;
+  margin-right: 10px;
+}
+
+.navbar-title-second {
+  color: #03dddc;
+}
+
+.navbar-title-first:hover,
+.navbar-title-second:hover {
+  color: #fdf200;
+}
+
+/* ========================
+ * Navigation links
+ * ===================== */
+.navbar-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: Monaco;
+  font-size: 36px;
+  clear: both;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+}
+
+.navbar-links li {
+  margin: 10px;
+  padding: 10px;
+  margin-bottom: 0px;
+  position: relative;
+  right: 10px;
+  cursor: pointer;
+}
+
+.navbar-links li:hover {
+  background: #21132c;
+}
+
+.navbar-links li:hover a {
+  color: #ff85ea;
+}
+
+.navbar-link-active {
+  background: #21132c;
+}
+
+.navbar-link-active a {
+  color: #ff85ea;
+}
+
+/* ========================
+ * Mobile
+ * ===================== */
+@media only screen and (max-width: 400px) {
+  .navbar-logo a {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .navbar {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 1px 0px rgb(0, 0, 0);
+  }
+
+  .navbar-logo {
+    margin: 0;
+  }
+
+  .navbar-logo img {
+    height: 80px;
+    float: left;
+    margin-left: 50px;
+  }
+
+  .navbar-logo a {
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  .navbar-title-first {
+    display: inline;
+  }
+
+  .navbar-title-second {
+    display: inline;
+  }
+
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-menu {
+    display: block;
+  }
 }

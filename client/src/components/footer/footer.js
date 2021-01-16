@@ -5,18 +5,20 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-content">
-        <div className="footer-content-left">
-          <div className="footer-section"></div>
-        </div>
-        <div className="footer-content-right"></div>
+        <div className="footer-left">
+          &copy; Copyright 2021
       </div>
 
-      <p>Developed by:</p>
-      <a className="footer-logo" href="/">
-        <div className="logo-first">REGULAR</div>
-        <div className="logo-last">STEVE</div>
-      </a>
+        <div className="footer-right">
+          <span className="footer-subtext">Developed by </span>
+          <a href="/">
+            <span className="footer-name-first">REGULAR</span>
+            <span className="footer-name-second">STEVE</span>
+          </a>
+        </div>
+      </div>
     </footer>
   );
 };
+
 export default Footer;

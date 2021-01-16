@@ -1,58 +1,53 @@
-footer{
-    display: block;
-    z-index: 1;
-    margin: 0 auto;
-    padding: 25px 0 25px 0;
-    text-align: center;
-    background-color: #20232A;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-  }
-  .footer-content{
-    display: flex;
-    margin: 0;
-    height: 0;
-  }
+/* ========================
+ * Footer general
+ * ===================== */
+.footer-content {
+  position: fixed;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background: #100d12;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+  padding-top: 25px;
+  z-index: 21;
+}
 
-  .footer-name{
-    margin-top: 10px;
-  }
-  .footer-content-left{
-    display: flex;
-    justify-content: center;
-    width: 50%;
-    border-right: #FDF200 solid 1px;
-  }
-  .footer-content-right{
-    display: flex;
-    justify-content: center;
-    margin: 20px 0 40px 0;
-    width: 50%;
-    border-left: #FDF200 solid 1px;
-  }
-  .footer-section{
-    margin: 0;
-    width: 30%;
-  }
-  .footer-links{
-    list-style-type: none;
-    text-align: center;
-    padding: 0;
-  }
-  .footer-link{
-    display: block;
-    margin: 10px;
-  }
-  footer p{
-    margin: 0;
-    color: white;
-  }
-  .footer-logo{
-    display: block;
-    margin: 5px auto;
-    width: fit-content;
-    font-size: 1.7rem;
-    font-weight: 800;
-  }
+.footer-left {
+  float: left;
+  margin-left: 100px;
+  margin-top: 4px;
+}
+
+.footer-right {
+  float: right;
+  padding-right: 100px;
+}
+
+.footer-right a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.footer-subtext {
+  font-size: 14px;
+  position: relative;
+  top: -3px;
+  color: #fff;
+}
+
+.footer-name-first {
+  color: #a992fa;
+  margin-right: 5px;
+}
+
+.footer-name-second {
+  color: #03dddc;
+}
+
+.footer-name-first:hover,
+.footer-name-second:hover {
+  color: #fdf200;
+}
