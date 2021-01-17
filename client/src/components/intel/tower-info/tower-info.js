@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CharacterSelect from "components/character-select/character-select.js";
-import './tower-info.css';
+import "./tower-info.css";
 import { socket, getPageId } from "globals/socket.js";
 
 const characterOptions = require("constants/character-info.json");
@@ -34,7 +34,7 @@ const changeList = (selectedIndex, state, currentIndex) => {
 };
 
 const TowerInfo = (props) => {
-  
+
   const [options1, setOptions1] = useState(characterOptions);
   const [options2, setOptions2] = useState(characterOptions);
   const [options3, setOptions3] = useState(characterOptions);
@@ -56,13 +56,22 @@ const TowerInfo = (props) => {
   }
   return (
     <div className="tower-body">
+      <h1>tower name</h1>
       <ul className="container-search">
         <li key="0">
           <CharacterSelect
             options={state[0].options}
             onChange={(index) => changeList(index, state, 0)}
           />
-          <input placeholder="hp" onBlur={(e) => socket.emit('updateCharacterHp', {pageId: getPageId(), hp: e.target.value})}></input>
+          <input
+            placeholder="hp"
+            onBlur={(e) =>
+              socket.emit("updateCharacterHp", {
+                pageId: getPageId(),
+                hp: e.target.value,
+              })
+            }
+          ></input>
           <input placeholder="speed"></input>
           <input placeholder="additional notes"></input>
         </li>

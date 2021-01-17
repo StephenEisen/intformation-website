@@ -19,6 +19,7 @@ const joinExistingIntel = () => {
 };
 
 const IntelConnect = (props) => {
+  console.log(props);
   if (!props.visibility) {
     return null;
   }
@@ -41,8 +42,8 @@ const IntelConnect = (props) => {
           <div className="intel-connect-create">
             <a className="slide-btn" onClick={() => createNewIntel()}>
               <p>
-                <span class="bg"></span><span class="base"></span>
-                <span class="text">Create New Intel</span>
+                <span className="bg"></span><span className="base"></span>
+                <span className="text">Create New Intel</span>
               </p>
             </a>
           </div>
@@ -63,8 +64,8 @@ const IntelConnect = (props) => {
             <input className="intel-id-input" onBlur={(e) => (pageId = e.target.value)}></input>
             <a className="slide-btn" onClick={() => joinExistingIntel()}>
               <p>
-                <span class="bg"></span><span class="base"></span>
-                <span class="text">Join Existing Intel</span>
+                <span className="bg"></span><span className="base"></span>
+                <span className="text">Join Existing Intel</span>
               </p>
             </a>
           </div>

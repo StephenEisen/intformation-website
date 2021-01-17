@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import plus from "../../assets/plus.png";
 import AddTowerDialog from "./add-tower-dialog/add-tower-dialog.js";
 import "./intel.css";
@@ -7,6 +7,8 @@ import IntelConnect from "./intel-connect/intel-connect";
 import { socket, getPageId } from "globals/socket.js";
 
 let towerList = [];
+
+let towerCount = 0;
 
 let pageId = "";
 let socketCreateNewGuildDataSuccess;
@@ -22,68 +24,91 @@ const updateTowerData = (id, towerName, towerLocation) => {
     name: towerName,
     location: towerLocation,
   });
+  // towerList.unshift(towerName);
 };
 
-const Intel = (props) => {
-  const [isAddTowerDialogVisible, setAddTowerDialogVisiblity] = useState(false);
-  const [isTowerInfoVisible, setTowerInfoVisibility] = useState(false);
-  let [isIntelTowerDialogVisible, setIntelTowerDialogVisibility] = useState(false);
+const createIntelData = (props, data, setState) => {
+  props.history.push("/intel/" + data.pageId);
+  setState(prevState => { return {...prevState ,isIntelTowerDialogVisible: false }});
+}
 
-  // Dont fucking touch
-  if (pageId == null){
-    isIntelTowerDialogVisible = true;
-  }
+const Intel = (props) => {
+  const [state, setState] = useState({
+    isAddTowerDialogVisible: false,
+    isTowerInfoVisible: false,
+    isIntelTowerDialogVisible: true,
+    towerCount: 0,
+  });
+
+  useEffect(() => {
+    const handler = (data) => {createIntelData(props, data, setState)}
+    socket.on("createGuildDataSuccess", handler);
+    return () => {
+      socket.off("createGuildDataSuccess", handler);
+    };
+  }, []);
+
+  // // Dont fucking touch
+  // if (pageId == null){
+  //   state.isIntelTowerDialogVisible = true;
+  // }
 
   pageId = getPageId();
 
-  if (socketTowerCreateSuccess == null) {
-    socketTowerCreateSuccess = socket.on("createTowerDataSuccess", (data) => {
-      setTowerInfoVisibility(true);
-    });
-  }
+  // if (socketTowerCreateSuccess == null) {
+  //   socketTowerCreateSuccess = socket.on("createTowerDataSuccess", (data) => {
+  //     towerList = data;
+  //     setState({ ...state, towerCount: state.towerCount + 1 });
+  //   });
+  // }
 
-  if (socketTowerCreateError == null) {
-    socketTowerCreateError = socket.on("createTowerDataError", (data) =>
-      console.log(data)
-    );
-  }
+  // if (socketTowerCreateError == null) {
+  //   socketTowerCreateError = socket.on("createTowerDataError", (data) =>
+  //     console.log(data)
+  //   );
+  // }
 
-  if (socketFindNewGuildDataSuccess == null){
-    socketFindNewGuildDataSuccess = socket.on('findExistingGuildDataSuccess', (data) => {
-      towerList = data;
-    })
-  }
+  // if (socketFindNewGuildDataSuccess == null) {
+  //   socketFindNewGuildDataSuccess = socket.on(
+  //     "findExistingGuildDataSuccess",
+  //     (data) => {
+  //       towerList = data;
+  //     }
+  //   );
+  // }
 
-  if (socketCreateNewGuildDataSuccess == null) {
-    socketCreateNewGuildDataSuccess = socket.on(
-      "createGuildDataSuccess",
-      (data) => {
-        props.history.push('/intel/' + data.pageId);
-        //window.history.replaceState(null, null, "/intel/" + data.pageId);
-        setIntelTowerDialogVisibility(false);
-      }
-    );
-  }
+  // if (socketCreateNewGuildDataSuccess == null) {
+  //   socketCreateNewGuildDataSuccess = socket.on(
+  //     "createGuildDataSuccess",
+  //     (data) => {
+  //       props.history.push('/intel/' + data.pageId);
+  //       //window.history.replaceState(null, null, "/intel/" + data.pageId);
+  //       //setIntelTowerDialogVisibility(false);
+  //       setState({...state, isIntelTowerDialogVisible: false});
+  //     }
+  //   );
+  // }
 
   return (
     <div>
-      <IntelConnect visibility={isIntelTowerDialogVisible} />
+      <IntelConnect visibility={state.isIntelTowerDialogVisible} />
 
       <AddTowerDialog
         onClose={(id, name, location) => {
           updateTowerData(id, name, location);
-          setAddTowerDialogVisiblity(false);
+          setState({ ...state, isAddTowerDialogVisible: false });
         }}
-        visibility={isAddTowerDialogVisible}
+        visibility={state.isAddTowerDialogVisible}
         pageId={pageId}
       />
-      {
+      {/* {
         towerList.length ?
-        towerList.map((tower) => <TowerInfo visibility={isTowerInfoVisible} />) : null
-      }
+        towerList.map((tower) => <TowerInfo  towerName={tower.name} visibility={isTowerInfoVisible} />) : null
+      } */}
 
-
-      <button onClick={() => setAddTowerDialogVisiblity(true)}>
+      <button
+        onClick={() => setState({ ...state, isAddTowerDialogVisible: true })}
+      >
         <img
           src={plus}
           title="Add Tower"
