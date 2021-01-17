@@ -3,12 +3,12 @@ mongoose.set("debug", true);
 mongoose.Promise = global.Promise;
 
 function connect() {
-   mongoose.connect("mongodb://localhost/testdata", {
+  mongoose.connect("mongodb://localhost/testdata", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
   });
-  
+
   mongoose.connection
     .once("open", function () {
       console.log("Connection has been made.");
@@ -18,4 +18,4 @@ function connect() {
     });
 }
 
-module.exports = {connect};
+module.exports = { connect };

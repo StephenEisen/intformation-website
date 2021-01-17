@@ -42,15 +42,15 @@ const Defence = () => {
     { options: options2, setOptions: setOptions2 },
     { options: options3, setOptions: setOptions3 },
   ];
-  
+
   return (
     <div className="defence-body">
       <ul className="container-search">
         <li key="0">
-            <CharacterSelect
-              options={state[0].options}
-              onChange={(index) => changeList(index, state, 0)}
-            />
+          <CharacterSelect
+            options={state[0].options}
+            onChange={(index) => changeList(index, state, 0)}
+          />
         </li>
         <li key="1">
           <CharacterSelect

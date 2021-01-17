@@ -3,5 +3,5 @@ export const Routes = {
   Defence: "/defence",
   Intel: "/intel",
   Statistics: "/statistics",
-  AboutUs: "/about-us"
+  About: "/about"
 };

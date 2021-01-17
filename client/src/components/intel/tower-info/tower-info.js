@@ -51,7 +51,6 @@ const TowerInfo = (props) => {
     { options: options6, setOptions: setOptions6 },
   ];
 
-  console.log(props);
   return (
     <div className="tower-body">
       <h1>tower name</h1>

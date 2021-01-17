@@ -14,7 +14,7 @@ const towerLocations = [
 ];
 
 const sendTowerData = (props) => {
-  socket.emit("createTowerIntelData", {
+  socket.emit("createTower", {
     pageId: getPageId(),
     name: towerName,
     location: towerLocation,
@@ -23,9 +23,10 @@ const sendTowerData = (props) => {
 };
 
 const AddTowerDialog = (props) => {
-  if (props.visibility !== true) {
+  if (!props.visible) {
     return null;
   }
+
   return (
     <div className="modal-container">
       <div id="modal" className="modal">

@@ -1,13 +1,13 @@
 import React from "react";
+import "./app.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
-import "./app.css";
 import { Routes } from "globals/routes.js";
 import Intel from "components/intel/intel";
 import Navbar from "components/navbar/navbar";
 import Defence from "components/defence/defence";
 import Footer from "components/footer/footer";
-import AboutUs from "components/about-us/about-us";
+import About from "components/about/about";
 import Statistics from "components/statistics/statistics";
 import Home from "components/home/home";
 
@@ -26,7 +26,7 @@ function App() {
               <Route path={Routes.Defence} component={Defence} />
               <Route path={Routes.Intel} component={Intel} />
               <Route path={Routes.Statistics} component={Statistics} />
-              <Route path={Routes.AboutUs} component={AboutUs} />
+              <Route path={Routes.About} component={About} />
               <Route component={Error} />
             </Switch>
           </CSSTransition>

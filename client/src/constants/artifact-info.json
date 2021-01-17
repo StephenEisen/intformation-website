@@ -1,614 +1,614 @@
 [
-    {
-        "name": "A little Queen's Huge Crown",
-        "class": "Warrior"
-    },
-    {
-        "name": "A Song for Everybody",
-        "class": "Any"
-    },
-    {
-        "name": "A Symbol of Unity",
-        "class": "Any"
-    },
-    {
-        "name": "Abyssal Crown",
-        "class": "Mage"
-    },
-    {
-        "name": "Adamant Shield",
-        "class": "Knight"
-    },
-    {
-        "name": "Alabastron",
-        "class": "Theif"
-    },
-    {
-        "name": "Alencinox's Wrath",
-        "class": "Warrior"
-    },
-    {
-        "name": "Alexa's Basket",
-        "class": "Theif"
-    },
-    {
-        "name": "Alsacian Spear",
-        "class": "Any"
-    },
-    {
-        "name": "Ambrote",
-        "class": "Ranger"
-    },
-    {
-        "name": "Ancient Dragon's Legacy",
-        "class": "Knight"
-    },
-    {
-        "name": "Ancient Sheath",
-        "class": "Any"
-    },
-    {
-        "name": "Andre's Crossbow",
-        "class": "Ranger"
-    },
-    {
-        "name": "Aqua Rose",
-        "class": "Any"
-    },
-    {
-        "name": "Ascending Axe",
-        "class": "Any"
-    },
-    {
-        "name": "Atma's Portal",
-        "class": "Any"
-    },
-    {
-        "name": "Aurius",
-        "class": "Knight"
-    },
-    {
-        "name": "Barthez's Orbuculum",
-        "class": "Mage"
-    },
-    {
-        "name": "Bastion of Perlutia",
-        "class": "Knight"
-    },
-    {
-        "name": "Biting Wind Star",
-        "class": "Any"
-    },
-    {
-        "name": "Black Hand of the Goddess",
-        "class": "Mage"
-    },
-    {
-        "name": "Blessings of Camaraderie",
-        "class": "Any"
-    },
-    {
-        "name": "Bloodbead Dagger",
-        "class": "Any"
-    },
-    {
-        "name": "Bloodstone",
-        "class": "Ranger"
-    },
-    {
-        "name": "Bloody Rose",
-        "class": "Mage"
-    },
-    {
-        "name": "Border Coin",
-        "class": "Warrior"
-    },
-    {
-        "name": "Butterfly Mandolin",
-        "class": "Any"
-    },
-    {
-        "name": "Card of Small Miracles",
-        "class": "Any"
-    },
-    {
-        "name": "Celestine",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "Champion's Trophy",
-        "class": "Warrior"
-    },
-    {
-        "name": "Chatty",
-        "class": "Mage"
-    },
-    {
-        "name": "Circle Fantasia",
-        "class": "Warrior"
-    },
-    {
-        "name": "Cradle of Life",
-        "class": "Warrior"
-    },
-    {
-        "name": "Creation and Destruction",
-        "class": "Warrior"
-    },
-    {
-        "name": "Crimson Moon of Nightmares",
-        "class": "Mage"
-    },
-    {
-        "name": "Crimson Seed",
-        "class": "Warrior"
-    },
-    {
-        "name": "Crown of Glory",
-        "class": "Knight"
-    },
-    {
-        "name": "Cursed Compass",
-        "class": "Any"
-    },
-    {
-        "name": "Daydream Joker",
-        "class": "Any"
-    },
-    {
-        "name": "Days of Destiny",
-        "class": "Any"
-    },
-    {
-        "name": "Deadly Sword",
-        "class": "Any"
-    },
-    {
-        "name": "Demon's Pistol",
-        "class": "Any"
-    },
-    {
-        "name": "Devil's Brand",
-        "class": "Any"
-    },
-    {
-        "name": "Dignus Orb",
-        "class": "Mage"
-    },
-    {
-        "name": "Doctor's Bag",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "Double-Edged Decrescent",
-        "class": "Theif"
-    },
-    {
-        "name": "Draco Plate",
-        "class": "Warrior"
-    },
-    {
-        "name": "Dream Scroll",
-        "class": "Any"
-    },
-    {
-        "name": "Durandal",
-        "class": "Warrior"
-    },
-    {
-        "name": "Dust Devil",
-        "class": "Theif"
-    },
-    {
-        "name": "Dux Noctis",
-        "class": "Ranger"
-    },
-    {
-        "name": "Egg of Delusion",
-        "class": "Any"
-    },
-    {
-        "name": "El's Fist",
-        "class": "Warrior"
-    },
-    {
-        "name": "Elbris Ritual Sword",
-        "class": "Knight"
-    },
-    {
-        "name": "Elf's Bow",
-        "class": "Any"
-    },
-    {
-        "name": "Elyha's Knife",
-        "class": "Theif"
-    },
-    {
-        "name": "Enhanced Gauntlet",
-        "class": "Any"
-    },
-    {
-        "name": "Envoy's Pipe",
-        "class": "Any"
-    },
-    {
-        "name": "Eternus",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "Erica's Scepter",
-        "class": "Mage"
-    },
-    {
-        "name": "Exorcist's Tonfa",
-        "class": "Any"
-    },
-    {
-        "name": "Fairy Tale for a Nightmare",
-        "class": "Mage"
-    },
-    {
-        "name": "Fairy's Grimoire",
-        "class": "Any"
-    },
-    {
-        "name": "Firm Shield",
-        "class": "Any"
-    },
-    {
-        "name": "Flower Shower",
-        "class": "Warrior"
-    },
-    {
-        "name": "Forest Totem",
-        "class": "Any"
-    },
-    {
-        "name": "Goblin's Lamp",
-        "class": "Any"
-    },
-    {
-        "name": "Golden Cocoa Cookie",
-        "class": "Any"
-    },
-    {
-        "name": "Grail of Blood",
-        "class": "Any"
-    },
-    {
-        "name": "Guiding Light",
-        "class": "Ranger"
-    },
-    {
-        "name": "Hell Cutter",
-        "class": "Warrior"
-    },
-    {
-        "name": "Hilag Lance",
-        "class": "Knight"
-    },
-    {
-        "name": "Holy Sacrifice",
-        "class": "Knight"
-    },
-    {
-        "name": "Idol's Cheer",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "Iela Violin",
-        "class": "Mage"
-    },
-    {
-        "name": "Infinity Basket",
-        "class": "Ranger"
-    },
-    {
-        "name": "Iron Fan",
-        "class": "Ranger"
-    },
-    {
-        "name": "Junkyard Dog",
-        "class": "Warrior"
-    },
-    {
-        "name": "Justice for All",
-        "class": "Knight"
-    },
-    {
-        "name": "Kal'adra",
-        "class": "Mage"
-    },
-    {
-        "name": "Labyrinth Cube",
-        "class": "Any"
-    },
-    {
-        "name": "Last Teatime",
-        "class": "Mage"
-    },
-    {
-        "name": "Love Potion",
-        "class": "Any"
-    },
-    {
-        "name": "Magaraha's Tome",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "Manica of Control",
-        "class": "Thief"
-    },
-    {
-        "name": "Merciless Glutton",
-        "class": "Warrior"
-    },
-    {
-        "name": "Midnight Bloom",
-        "class": "Any"
-    },
-    {
-        "name": "Might Yaksha",
-        "class": "Any"
-    },
-    {
-        "name": "Moonlight Dreamblade",
-        "class": "Thief"
-    },
-    {
-        "name": "Moonlight's Vestige",
-        "class": "Any"
-    },
-    {
-        "name": "Ms. Confille",
-        "class": "Ranger"
-    },
-    {
-        "name": "Necro and Undine",
-        "class": "Mage"
-    },
-    {
-        "name": "New Year Cookies",
-        "class": "Any"
-    },
-    {
-        "name": "Noble Oath",
-        "class": "Knight"
-    },
-    {
-        "name": "Oath Key",
-        "class": "Any"
-    },
-    {
-        "name": "One Year Gratitude",
-        "class": "Any"
-    },
-    {
-        "name": "Otherworldly Machinery",
-        "class": "Ranger"
-    },
-    {
-        "name": "Portrait of the Saviors",
-        "class": "Any"
-    },
-    {
-        "name": "Proof of Valor",
-        "class": "Any"
-    },
-    {
-        "name": "Prophetic Candlestick",
-        "class": "Any"
-    },
-    {
-        "name": "Radiant Forever",
-        "class": "Mage"
-    },
-    {
-        "name": "Rainbow Scale",
-        "class": "Any"
-    },
-    {
-        "name": "Ranon's Memorandum",
-        "class": "Any"
-    },
-    {
-        "name": "Reingar's Special Drink",
-        "class": "Ranger"
-    },
-    {
-        "name": "Resolute Soldier Series",
-        "class": "Any"
-    },
-    {
-        "name": "Rhianna & Luciella",
-        "class": "Thief"
-    },
-    {
-        "name": "Rise of a Monarch",
-        "class": "Knight"
-    },
-    {
-        "name": "Rod of Amaryllis",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "Rosa Hargana",
-        "class": "Ranger"
-    },
-    {
-        "name": "Samsara Prayer Beads",
-        "class": "Warrior"
-    },
-    {
-        "name": "Santa Muerte",
-        "class": "Thief"
-    },
-    {
-        "name": "Sashe Ithanes",
-        "class": "Ranger"
-    },
-    {
-        "name": "Secret Art - Storm Sword",
-        "class": "Thief"
-    },
-    {
-        "name": "Sepulcrum",
-        "class": "Warrior"
-    },
-    {
-        "name": "Shepherd of the Hollow",
-        "class": "Thief"
-    },
-    {
-        "name": "Shepherds of Chaos",
-        "class": "Thief"
-    },
-    {
-        "name": "Shimadra Staff",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "Sigurd Scythe",
-        "class": "Warrior"
-    },
-    {
-        "name": "Silver Rain",
-        "class": "Thief"
-    },
-    {
-        "name": "Sira-Ren",
-        "class": "Mage"
-    },
-    {
-        "name": "Snow Crystal",
-        "class": "Warrior"
-    },
-    {
-        "name": "Song of Stars",
-        "class": "Ranger"
-    },
-    {
-        "name": "Spirit's Breath",
-        "class": "Mage"
-    },
-    {
-        "name": "Spooky Solayu Stories",
-        "class": "Any"
-    },
-    {
-        "name": "Staff of Wisdom",
-        "class": "Any"
-    },
-    {
-        "name": "Steadfast Gatekeeper",
-        "class": "Knight"
-    },
-    {
-        "name": "Stella Harpa",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "Strak Gauntlet",
-        "class": "Warrior"
-    },
-    {
-        "name": "Sword of Ezera",
-        "class": "Knight"
-    },
-    {
-        "name": "Sword of Judgment",
-        "class": "Ranger"
-    },
-    {
-        "name": "Sword of Summer Twilight",
-        "class": "Thief"
-    },
-    {
-        "name": "Sword of the Morning",
-        "class": "Any"
-    },
-    {
-        "name": "Sword of the Sun",
-        "class": "Any"
-    },
-    {
-        "name": "Tagehel's Ancient Book",
-        "class": "Mage"
-    },
-    {
-        "name": "Tear of the Desert",
-        "class": "Mage"
-    },
-    {
-        "name": "The Guardian Star's Blessing",
-        "class": "Any"
-    },
-    {
-        "name": "Time Matter",
-        "class": "Mage"
-    },
-    {
-        "name": "Timeless Anchor",
-        "class": "Any"
-    },
-    {
-        "name": "To a New World",
-        "class": "Any"
-    },
-    {
-        "name": "Torn Sleeve",
-        "class": "Thief"
-    },
-    {
-        "name": "Touch of Rekos",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "Uberius's Tooth",
-        "class": "Warrior"
-    },
-    {
-        "name": "Unfading Memories",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "Unseen Observer",
-        "class": "Ranger"
-    },
-    {
-        "name": "Venus Orb",
-        "class": "Any"
-    },
-    {
-        "name": "Victorious Flag",
-        "class": "Any"
-    },
-    {
-        "name": "Violet Talisman",
-        "class": "Thief"
-    },
-    {
-        "name": "Wall of Order",
-        "class": "Ranger"
-    },
-    {
-        "name": "Water's Origin",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "Wind Rider",
-        "class": "Thief"
-    },
-    {
-        "name": "Wondrous Potion Vial",
-        "class": "Soul Weaver"
-    },
-    {
-        "name": "XIII. Death",
-        "class": "Any"
-    },
-    {
-        "name": "XVI. The Tower",
-        "class": "XVIII. The Moon"
-    }
+  {
+    "name": "A little Queen's Huge Crown",
+    "class": "Warrior"
+  },
+  {
+    "name": "A Song for Everybody",
+    "class": "Any"
+  },
+  {
+    "name": "A Symbol of Unity",
+    "class": "Any"
+  },
+  {
+    "name": "Abyssal Crown",
+    "class": "Mage"
+  },
+  {
+    "name": "Adamant Shield",
+    "class": "Knight"
+  },
+  {
+    "name": "Alabastron",
+    "class": "Theif"
+  },
+  {
+    "name": "Alencinox's Wrath",
+    "class": "Warrior"
+  },
+  {
+    "name": "Alexa's Basket",
+    "class": "Theif"
+  },
+  {
+    "name": "Alsacian Spear",
+    "class": "Any"
+  },
+  {
+    "name": "Ambrote",
+    "class": "Ranger"
+  },
+  {
+    "name": "Ancient Dragon's Legacy",
+    "class": "Knight"
+  },
+  {
+    "name": "Ancient Sheath",
+    "class": "Any"
+  },
+  {
+    "name": "Andre's Crossbow",
+    "class": "Ranger"
+  },
+  {
+    "name": "Aqua Rose",
+    "class": "Any"
+  },
+  {
+    "name": "Ascending Axe",
+    "class": "Any"
+  },
+  {
+    "name": "Atma's Portal",
+    "class": "Any"
+  },
+  {
+    "name": "Aurius",
+    "class": "Knight"
+  },
+  {
+    "name": "Barthez's Orbuculum",
+    "class": "Mage"
+  },
+  {
+    "name": "Bastion of Perlutia",
+    "class": "Knight"
+  },
+  {
+    "name": "Biting Wind Star",
+    "class": "Any"
+  },
+  {
+    "name": "Black Hand of the Goddess",
+    "class": "Mage"
+  },
+  {
+    "name": "Blessings of Camaraderie",
+    "class": "Any"
+  },
+  {
+    "name": "Bloodbead Dagger",
+    "class": "Any"
+  },
+  {
+    "name": "Bloodstone",
+    "class": "Ranger"
+  },
+  {
+    "name": "Bloody Rose",
+    "class": "Mage"
+  },
+  {
+    "name": "Border Coin",
+    "class": "Warrior"
+  },
+  {
+    "name": "Butterfly Mandolin",
+    "class": "Any"
+  },
+  {
+    "name": "Card of Small Miracles",
+    "class": "Any"
+  },
+  {
+    "name": "Celestine",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "Champion's Trophy",
+    "class": "Warrior"
+  },
+  {
+    "name": "Chatty",
+    "class": "Mage"
+  },
+  {
+    "name": "Circle Fantasia",
+    "class": "Warrior"
+  },
+  {
+    "name": "Cradle of Life",
+    "class": "Warrior"
+  },
+  {
+    "name": "Creation and Destruction",
+    "class": "Warrior"
+  },
+  {
+    "name": "Crimson Moon of Nightmares",
+    "class": "Mage"
+  },
+  {
+    "name": "Crimson Seed",
+    "class": "Warrior"
+  },
+  {
+    "name": "Crown of Glory",
+    "class": "Knight"
+  },
+  {
+    "name": "Cursed Compass",
+    "class": "Any"
+  },
+  {
+    "name": "Daydream Joker",
+    "class": "Any"
+  },
+  {
+    "name": "Days of Destiny",
+    "class": "Any"
+  },
+  {
+    "name": "Deadly Sword",
+    "class": "Any"
+  },
+  {
+    "name": "Demon's Pistol",
+    "class": "Any"
+  },
+  {
+    "name": "Devil's Brand",
+    "class": "Any"
+  },
+  {
+    "name": "Dignus Orb",
+    "class": "Mage"
+  },
+  {
+    "name": "Doctor's Bag",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "Double-Edged Decrescent",
+    "class": "Theif"
+  },
+  {
+    "name": "Draco Plate",
+    "class": "Warrior"
+  },
+  {
+    "name": "Dream Scroll",
+    "class": "Any"
+  },
+  {
+    "name": "Durandal",
+    "class": "Warrior"
+  },
+  {
+    "name": "Dust Devil",
+    "class": "Theif"
+  },
+  {
+    "name": "Dux Noctis",
+    "class": "Ranger"
+  },
+  {
+    "name": "Egg of Delusion",
+    "class": "Any"
+  },
+  {
+    "name": "El's Fist",
+    "class": "Warrior"
+  },
+  {
+    "name": "Elbris Ritual Sword",
+    "class": "Knight"
+  },
+  {
+    "name": "Elf's Bow",
+    "class": "Any"
+  },
+  {
+    "name": "Elyha's Knife",
+    "class": "Theif"
+  },
+  {
+    "name": "Enhanced Gauntlet",
+    "class": "Any"
+  },
+  {
+    "name": "Envoy's Pipe",
+    "class": "Any"
+  },
+  {
+    "name": "Eternus",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "Erica's Scepter",
+    "class": "Mage"
+  },
+  {
+    "name": "Exorcist's Tonfa",
+    "class": "Any"
+  },
+  {
+    "name": "Fairy Tale for a Nightmare",
+    "class": "Mage"
+  },
+  {
+    "name": "Fairy's Grimoire",
+    "class": "Any"
+  },
+  {
+    "name": "Firm Shield",
+    "class": "Any"
+  },
+  {
+    "name": "Flower Shower",
+    "class": "Warrior"
+  },
+  {
+    "name": "Forest Totem",
+    "class": "Any"
+  },
+  {
+    "name": "Goblin's Lamp",
+    "class": "Any"
+  },
+  {
+    "name": "Golden Cocoa Cookie",
+    "class": "Any"
+  },
+  {
+    "name": "Grail of Blood",
+    "class": "Any"
+  },
+  {
+    "name": "Guiding Light",
+    "class": "Ranger"
+  },
+  {
+    "name": "Hell Cutter",
+    "class": "Warrior"
+  },
+  {
+    "name": "Hilag Lance",
+    "class": "Knight"
+  },
+  {
+    "name": "Holy Sacrifice",
+    "class": "Knight"
+  },
+  {
+    "name": "Idol's Cheer",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "Iela Violin",
+    "class": "Mage"
+  },
+  {
+    "name": "Infinity Basket",
+    "class": "Ranger"
+  },
+  {
+    "name": "Iron Fan",
+    "class": "Ranger"
+  },
+  {
+    "name": "Junkyard Dog",
+    "class": "Warrior"
+  },
+  {
+    "name": "Justice for All",
+    "class": "Knight"
+  },
+  {
+    "name": "Kal'adra",
+    "class": "Mage"
+  },
+  {
+    "name": "Labyrinth Cube",
+    "class": "Any"
+  },
+  {
+    "name": "Last Teatime",
+    "class": "Mage"
+  },
+  {
+    "name": "Love Potion",
+    "class": "Any"
+  },
+  {
+    "name": "Magaraha's Tome",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "Manica of Control",
+    "class": "Thief"
+  },
+  {
+    "name": "Merciless Glutton",
+    "class": "Warrior"
+  },
+  {
+    "name": "Midnight Bloom",
+    "class": "Any"
+  },
+  {
+    "name": "Might Yaksha",
+    "class": "Any"
+  },
+  {
+    "name": "Moonlight Dreamblade",
+    "class": "Thief"
+  },
+  {
+    "name": "Moonlight's Vestige",
+    "class": "Any"
+  },
+  {
+    "name": "Ms. Confille",
+    "class": "Ranger"
+  },
+  {
+    "name": "Necro and Undine",
+    "class": "Mage"
+  },
+  {
+    "name": "New Year Cookies",
+    "class": "Any"
+  },
+  {
+    "name": "Noble Oath",
+    "class": "Knight"
+  },
+  {
+    "name": "Oath Key",
+    "class": "Any"
+  },
+  {
+    "name": "One Year Gratitude",
+    "class": "Any"
+  },
+  {
+    "name": "Otherworldly Machinery",
+    "class": "Ranger"
+  },
+  {
+    "name": "Portrait of the Saviors",
+    "class": "Any"
+  },
+  {
+    "name": "Proof of Valor",
+    "class": "Any"
+  },
+  {
+    "name": "Prophetic Candlestick",
+    "class": "Any"
+  },
+  {
+    "name": "Radiant Forever",
+    "class": "Mage"
+  },
+  {
+    "name": "Rainbow Scale",
+    "class": "Any"
+  },
+  {
+    "name": "Ranon's Memorandum",
+    "class": "Any"
+  },
+  {
+    "name": "Reingar's Special Drink",
+    "class": "Ranger"
+  },
+  {
+    "name": "Resolute Soldier Series",
+    "class": "Any"
+  },
+  {
+    "name": "Rhianna & Luciella",
+    "class": "Thief"
+  },
+  {
+    "name": "Rise of a Monarch",
+    "class": "Knight"
+  },
+  {
+    "name": "Rod of Amaryllis",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "Rosa Hargana",
+    "class": "Ranger"
+  },
+  {
+    "name": "Samsara Prayer Beads",
+    "class": "Warrior"
+  },
+  {
+    "name": "Santa Muerte",
+    "class": "Thief"
+  },
+  {
+    "name": "Sashe Ithanes",
+    "class": "Ranger"
+  },
+  {
+    "name": "Secret Art - Storm Sword",
+    "class": "Thief"
+  },
+  {
+    "name": "Sepulcrum",
+    "class": "Warrior"
+  },
+  {
+    "name": "Shepherd of the Hollow",
+    "class": "Thief"
+  },
+  {
+    "name": "Shepherds of Chaos",
+    "class": "Thief"
+  },
+  {
+    "name": "Shimadra Staff",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "Sigurd Scythe",
+    "class": "Warrior"
+  },
+  {
+    "name": "Silver Rain",
+    "class": "Thief"
+  },
+  {
+    "name": "Sira-Ren",
+    "class": "Mage"
+  },
+  {
+    "name": "Snow Crystal",
+    "class": "Warrior"
+  },
+  {
+    "name": "Song of Stars",
+    "class": "Ranger"
+  },
+  {
+    "name": "Spirit's Breath",
+    "class": "Mage"
+  },
+  {
+    "name": "Spooky Solayu Stories",
+    "class": "Any"
+  },
+  {
+    "name": "Staff of Wisdom",
+    "class": "Any"
+  },
+  {
+    "name": "Steadfast Gatekeeper",
+    "class": "Knight"
+  },
+  {
+    "name": "Stella Harpa",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "Strak Gauntlet",
+    "class": "Warrior"
+  },
+  {
+    "name": "Sword of Ezera",
+    "class": "Knight"
+  },
+  {
+    "name": "Sword of Judgment",
+    "class": "Ranger"
+  },
+  {
+    "name": "Sword of Summer Twilight",
+    "class": "Thief"
+  },
+  {
+    "name": "Sword of the Morning",
+    "class": "Any"
+  },
+  {
+    "name": "Sword of the Sun",
+    "class": "Any"
+  },
+  {
+    "name": "Tagehel's Ancient Book",
+    "class": "Mage"
+  },
+  {
+    "name": "Tear of the Desert",
+    "class": "Mage"
+  },
+  {
+    "name": "The Guardian Star's Blessing",
+    "class": "Any"
+  },
+  {
+    "name": "Time Matter",
+    "class": "Mage"
+  },
+  {
+    "name": "Timeless Anchor",
+    "class": "Any"
+  },
+  {
+    "name": "To a New World",
+    "class": "Any"
+  },
+  {
+    "name": "Torn Sleeve",
+    "class": "Thief"
+  },
+  {
+    "name": "Touch of Rekos",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "Uberius's Tooth",
+    "class": "Warrior"
+  },
+  {
+    "name": "Unfading Memories",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "Unseen Observer",
+    "class": "Ranger"
+  },
+  {
+    "name": "Venus Orb",
+    "class": "Any"
+  },
+  {
+    "name": "Victorious Flag",
+    "class": "Any"
+  },
+  {
+    "name": "Violet Talisman",
+    "class": "Thief"
+  },
+  {
+    "name": "Wall of Order",
+    "class": "Ranger"
+  },
+  {
+    "name": "Water's Origin",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "Wind Rider",
+    "class": "Thief"
+  },
+  {
+    "name": "Wondrous Potion Vial",
+    "class": "Soul Weaver"
+  },
+  {
+    "name": "XIII. Death",
+    "class": "Any"
+  },
+  {
+    "name": "XVI. The Tower",
+    "class": "XVIII. The Moon"
+  }
 ]

@@ -10,54 +10,39 @@ io.on("connection", (socket) => {
   console.log(socket.id);
 
   //Creates new intel page, first checks to make sure the unique pageid is not already being used
-  socket.on("createGuildData", async (data) => {
-    const towerDataFromDB = await queries.findById(data.pageId);
-
-    if (towerDataFromDB == null) {
-      // Save new record into database
-      const newData = await queries.createGuildData(data);
-      socket.emit("createGuildDataSuccess", newData);
-      console.log(socket.id);
-    } else {
-      socket.emit("createGuildDataError", "GuildData already exists");
-    }
+  socket.on("createIntel", async () => {
+    // Save new record into database
+    const newIntel = await queries.createIntel();
+    socket.emit("createIntelSuccess", newIntel);
   });
 
   // Search database for existing intel
-  socket.on("findExistingGuildData", async (data) => {
-    const towerDataFromDB = await queries.findById(data.pageId);
+  socket.on("findIntel", async (pageId) => {
+    const exisitingIntel = await queries.findIntel(pageId);
 
-    if (towerDataFromDB != null) {
-      socket.emit("findExistingGuildDataSuccess", towerDataFromDB.data);
+    if (exisitingIntel != null) {
+      socket.emit("findIntelSuccess", exisitingIntel);
     } else {
-      socket.emit("findExistingGuildDataError", "Intel not found or does not exist");
+      socket.emit("findIntelError", "Intel not found or does not exist");
     }
   });
 
-  socket.on("createTowerData", async (data) => {
+  socket.on("createTower", async (data) => {
     // Get data from database
-    const towerDataFromDB = await queries.findById(data.pageId);
+    const exisitingIntel = await queries.findIntel(data.pageId);
 
     // Emit to everyone and create new tower
-    if(data.location === "Stronghold" && towerDataFromDB.data.filter((tower) => tower.location === "Stronghold").length < 1){
-      const newData = await queries.createTowerData(data);
-      io.sockets.emit("createTowerDataSuccess", newData);
+    if (data.location === "Stronghold" && exisitingIntel.data.filter((tower) => tower.location === "Stronghold").length < 1) {
+      const newTower = await queries.createTower(data);
+      io.sockets.emit("createTowerSuccess", newTower);
     }
-    else if(data.location !== "Stronghold" && towerDataFromDB.data.filter((tower) => tower.location === data.location).length < 9 && !towerDataFromDB.data.some((tower) => tower.name === data.name)){
-      const newData = await queries.createTowerData(data);
-      io.sockets.emit("createTowerDataSuccess", newData);
+    else if (data.location !== "Stronghold" && exisitingIntel.data.filter((tower) => tower.location === data.location).length < 9 && !exisitingIntel.data.some((tower) => tower.name === data.name)) {
+      const newTower = await queries.createTower(data);
+      io.sockets.emit("createTowerSuccess", newTower);
     }
     else {
-      socket.emit("createTowerDataError", "Tower already exists");
+      socket.emit("createTowerError", "Tower already exists");
     }
-  });
-
-  socket.on("updateCharacterHp", async (data) => {
-    const towerDataFromDb = await queries.findById(data.pageId);
-    const towerData = towerDataFromDb.data.find(
-      (towerData) => towerData.name === data.name
-    );
-    console.log(towerData);
   });
 });
 

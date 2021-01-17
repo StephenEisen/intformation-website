@@ -7,17 +7,18 @@ import map from 'assets/map.png';
 let pageId = "";
 
 const createNewIntel = () => {
-  socket.emit("createGuildData");
+  socket.emit("createIntel");
 };
 
 const joinExistingIntel = () => {
-  socket.emit("findExistingGuildData", pageId);
+  socket.emit("findIntel", pageId);
 };
 
 const IntelConnect = (props) => {
-  if (!props.visibility) {
+  if (!props.visible) {
     return null;
   }
+
   return (
     <section className="intel-connect">
       <div className="intel-connect-title">

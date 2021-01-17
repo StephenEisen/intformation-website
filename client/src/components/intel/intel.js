@@ -1,32 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { socket, getPageId } from "globals/socket.js";
+import "./intel.css";
 import plus from "../../assets/plus.png";
 import AddTowerDialog from "./add-tower-dialog/add-tower-dialog.js";
-import "./intel.css";
 import TowerInfo from "./tower-info/tower-info.js";
 import IntelConnect from "./intel-connect/intel-connect";
-import { socket, getPageId } from "globals/socket.js";
 
-const createIntelData = (data, setState) => {
+const createIntel = (data, setState) => {
   window.history.pushState(data.pageId, "", "/intel/" + data.pageId);
-  setState(prevState => ({...prevState ,isIntelConnectVisible: false }));
+  setState(prevState => ({ ...prevState, isIntelConnectVisible: false }));
 };
 
-const findIntelData = (data, setState) => {
-  console.log(data);
+const findIntel = (data, setState) => {
   window.history.pushState(data.pageId, "", "/intel/" + data.pageId);
   setState(prevState => ({
-    ...prevState ,
+    ...prevState,
     isIntelConnectVisible: false,
-    towerData: data.data 
+    towerData: data.data
   }));
 };
 
-const updateIntelData = (data, setState) => {
-  console.log(data);
-  setState(prevState => ({
-    ...prevState ,
-    towerData: data.data 
-  }));
+const updateIntel = (data, setState) => {
+  setState(prevState => ({ ...prevState, towerData: data.data }));
 }
 
 const Intel = () => {
@@ -37,56 +32,45 @@ const Intel = () => {
   });
 
   useEffect(() => {
-    if(getPageId() != null){
-      socket.emit("findExistingGuildData", getPageId());
+    if (getPageId() != null) {
+      socket.emit("findIntel", getPageId());
     }
 
-    const createIntelHandler = (data) => {createIntelData( data, setState)};
-    const findIntelHandler = (data) => {findIntelData(data, setState)};
-    const updateIntelDataHandler = (data) => {updateIntelData(data, setState)};
+    const createIntelHandler = (data) => { createIntel(data, setState) };
+    const findIntelHandler = (data) => { findIntel(data, setState) };
+    const updateIntelHandler = (data) => { updateIntel(data, setState) };
 
-    socket.on("createGuildDataSuccess", createIntelHandler);
-    socket.on("findExistingGuildDataSuccess", findIntelHandler);
-    socket.on("updateIntelDataSuccess", updateIntelDataHandler);
+    socket.on("createIntelSuccess", createIntelHandler);
+    socket.on("findIntelSuccess", findIntelHandler);
+    socket.on("createTowerSuccess", updateIntelHandler);
 
     return () => {
-      socket.off("createGuildDataSuccess", createIntelHandler);
-      socket.off("findExistingGuildDataSuccess", findIntelHandler);
-      socket.off("updateIntelDataSuccess", updateIntelDataHandler);
+      socket.off("createIntelSuccess", createIntelHandler);
+      socket.off("findIntelSuccess", findIntelHandler);
+      socket.off("createTowerSuccess", updateIntelHandler);
     };
   }, []);
 
   return (
     <div>
-      <IntelConnect visibility={state.isIntelConnectVisible} />
+      {/* CREATE OR JOIN INTEL */}
+      <IntelConnect visible={state.isIntelConnectVisible} />
 
-      {/* <TowerContext.Provider value={state.towerData}> */}
+      {/* ADD NEW TOWER */}
+      <AddTowerDialog
+        onClose={() => setState({ ...state, isAddTowerDialogVisible: false })}
+        visible={state.isAddTowerDialogVisible}
+      />
+      <button onClick={() => setState({ ...state, isAddTowerDialogVisible: true })}>
+        <img src={plus} title="Add Tower" alt="Add Tower" className="plus-button" />
+      </button>
+
+      {/* SHOW ALL TOWER INFO */}
       {
-        state.towerData.length 
-          ? state.towerData.map((tower) => <TowerInfo  key={tower.name} tower={tower} />) 
+        state.towerData.length
+          ? state.towerData.map((tower) => <TowerInfo key={tower.name} tower={tower} />)
           : null
       }
-      {/* </TowerContext.Provider> */}
-
-      <AddTowerDialog
-        onClose={() => {
-          setState({ ...state, isAddTowerDialogVisible: false });
-        }}
-        visibility={state.isAddTowerDialogVisible}
-      />
-      
-      
-
-      <button
-        onClick={() => setState({ ...state, isAddTowerDialogVisible: true })}
-      >
-        <img
-          src={plus}
-          title="Add Tower"
-          alt="Add Tower"
-          className="plus-button"
-        />
-      </button>
     </div>
   );
 };
