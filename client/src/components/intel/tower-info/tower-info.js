@@ -5,6 +5,7 @@ import { socket, getPageId } from "globals/socket.js";
 
 const characterOptions = require("constants/character-info.json");
 let selectedIndexes = [null, null, null];
+let towerName ="";
 
 const changeList = (selectedIndex, state, currentIndex) => {
   // Get the selected option indexes and enable all options for each list
@@ -35,6 +36,11 @@ const changeList = (selectedIndex, state, currentIndex) => {
 
 const TowerInfo = (props) => {
 
+  if( props != null){
+   towerName =props.tower.name;
+  }
+
+  
   const [options1, setOptions1] = useState(characterOptions);
   const [options2, setOptions2] = useState(characterOptions);
   const [options3, setOptions3] = useState(characterOptions);
@@ -53,7 +59,7 @@ const TowerInfo = (props) => {
 
   return (
     <div className="tower-body">
-      <h1>tower name</h1>
+      <h1 className="tower-name">{towerName}</h1>
       <ul className="container-search">
         <li key="0">
           <CharacterSelect
@@ -63,8 +69,9 @@ const TowerInfo = (props) => {
           <input
             placeholder="hp"
             onBlur={(e) =>
-              socket.emit("updateCharacterHp", {
+              socket.emit("updateTower", {
                 pageId: getPageId(),
+                name: towerName,
                 hp: e.target.value,
               })
             }
