@@ -1,10 +1,11 @@
 import React from "react";
 
 const Home = () => {
-
-    return(
-        <p>Home page</p>
-    );
+  return (
+    <div>
+      <p>Home page</p>
+    </div>
+  );
 };
 
 export default Home;

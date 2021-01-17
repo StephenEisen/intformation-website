@@ -51,9 +51,7 @@ const TowerInfo = (props) => {
     { options: options6, setOptions: setOptions6 },
   ];
 
-  if (props.visibility !== true) {
-    return null;
-  }
+  console.log(props);
   return (
     <div className="tower-body">
       <h1>tower name</h1>

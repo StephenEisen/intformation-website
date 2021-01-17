@@ -1,6 +1,7 @@
 import React from "react";
 import "./add-tower-dialog.css";
 import SelectSearch from "react-select-search";
+import { socket, getPageId } from "globals/socket";
 
 let towerName = "";
 let towerLocation = "";
@@ -13,7 +14,12 @@ const towerLocations = [
 ];
 
 const sendTowerData = (props) => {
-  props.onClose(props.pageId ,towerName, towerLocation);
+  socket.emit("createTowerIntelData", {
+    pageId: getPageId(),
+    name: towerName,
+    location: towerLocation,
+  });
+  props.onClose();
 };
 
 const AddTowerDialog = (props) => {

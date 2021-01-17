@@ -7,19 +7,14 @@ import map from 'assets/map.png';
 let pageId = "";
 
 const createNewIntel = () => {
-  socket.emit("createGuildData", {
-    pageId: Math.random().toString(36).slice(2),
-  });
+  socket.emit("createGuildData");
 };
 
 const joinExistingIntel = () => {
-  socket.emit("findExistingGuildData", {
-    pageId: pageId,
-  });
+  socket.emit("findExistingGuildData", pageId);
 };
 
 const IntelConnect = (props) => {
-  console.log(props);
   if (!props.visibility) {
     return null;
   }
