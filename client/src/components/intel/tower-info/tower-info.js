@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import CharacterSelect from "components/character-select/character-select.js";
+import ArtifactSelect from "components/artifact-select/artifact-select.js";
 import "./tower-info.css";
 import { socket, getPageId } from "globals/socket.js";
 
+const artifactOptions = require("constants/artifact-info.json");
 const characterOptions = require("constants/character-info.json");
 let selectedIndexes = [null, null, null];
-let towerName ="";
+let towerName = "";
 
 const changeList = (selectedIndex, state, currentIndex) => {
   // Get the selected option indexes and enable all options for each list
@@ -35,12 +37,10 @@ const changeList = (selectedIndex, state, currentIndex) => {
 };
 
 const TowerInfo = (props) => {
-
-  if( props != null){
-   towerName =props.tower.name;
+  if (props != null) {
+    towerName = props.tower.name;
   }
 
-  
   const [options1, setOptions1] = useState(characterOptions);
   const [options2, setOptions2] = useState(characterOptions);
   const [options3, setOptions3] = useState(characterOptions);
@@ -66,6 +66,9 @@ const TowerInfo = (props) => {
             options={state[0].options}
             onChange={(index) => changeList(index, state, 0)}
           />
+          <ArtifactSelect
+            options={artifactOptions}
+          />
           <input
             placeholder="hp"
             onBlur={(e) =>
@@ -76,7 +79,16 @@ const TowerInfo = (props) => {
               })
             }
           ></input>
-          <input placeholder="speed"></input>
+          <input
+            placeholder="speed"
+            onBlur={(e) =>
+              socket.emit("updateTower", {
+                pageId: getPageId(),
+                name: towerName,
+                speed: e.target.value,
+              })
+            }
+          ></input>
           <input placeholder="additional notes"></input>
         </li>
         <li key="1">
