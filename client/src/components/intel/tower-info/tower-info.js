@@ -60,9 +60,17 @@ const TowerInfo = (props) => {
         <li key="0">
           <CharacterSelect
             options={state[0].options}
-            onChange={(index) => changeList(index, state, 0)}
+            onChange={(index) => {
+              socket.emit("updateTower", {
+                pageId: getPageId(),
+                name: props.tower.name,
+                team1: {name: index.target.value}
+              });
+              changeList(index, state, 0);
+            }}
           />
-          <ArtifactSelect options={artifactOptions} />
+          <ArtifactSelect options={artifactOptions}
+          onChange={(index) => console.log(index)}/>
           <input
             placeholder="hp"
             onBlur={(e) =>
