@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CharacterSchema = new Schema({
+  team: Number,
   name: String,
   hp: Number,
   speed: Number,
@@ -12,8 +13,7 @@ const CharacterSchema = new Schema({
 const TowerSchema = new Schema({
   location: String,
   name: String,
-  team1: [CharacterSchema],
-  team2: [CharacterSchema],
+  characters: [CharacterSchema]
 });
 
 const GuildDataSchema = new Schema(

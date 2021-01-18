@@ -24,14 +24,19 @@ async function createTower(towerData) {
 }
 
 async function updateTower(towerData) {
+  const queryKey = `data.${towerData.towerIndex}.characters.${towerData.teamIndex}`;
 
-  return towerData;
-  // return GuildData.findOneAndUpdate(
-  //   { name: towerData.name},
-  //   { $push: {
-      
-  //   }}
-  // )
+  return GuildData.findOneAndUpdate(
+    { pageId: towerData.pageId, "data.name": towerData.towerName },
+    {
+      $set: {
+        [queryKey]: {
+          team: towerData.teamIndex, name: towerData.characterName
+        }
+      }
+    },
+    { new: true, upsert: true }
+  );
 };
 
 module.exports = { findIntel, createIntel, createTower, updateTower };

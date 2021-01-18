@@ -8,14 +8,14 @@ const artifactOptions = require("constants/artifact-info.json");
 const characterOptions = require("constants/character-info.json");
 let selectedIndexes = [null, null, null];
 
-const changeList = (selectedIndex, state, currentIndex) => {
+const changeList = (selectedIndex, state, setState, currentIndex) => {
   // Get the selected option indexes and enable all options for each list
   for (let i = 0; i < state.length; i++) {
     if (i === currentIndex) {
       selectedIndexes.splice(i, 1, selectedIndex);
     }
 
-    state[i].options.forEach((option) => (option.disabled = false));
+    state[i].forEach((option) => (option.disabled = false));
   }
 
   // Get each selected index and disable it for the lists (except the dropdown it was chosen on).
@@ -23,54 +23,67 @@ const changeList = (selectedIndex, state, currentIndex) => {
     const index = selectedIndexes[i];
 
     for (let j = 0; j < state.length; j++) {
-      const stateOptions = state[j].options;
+      const stateOptions = state[j];
 
       if (j !== currentIndex && index !== null) {
         const selectedOption = stateOptions[index];
         selectedOption.disabled = true;
       }
 
-      state[j].setOptions([...stateOptions]);
+      const newState = { ...state };
+      newState[j] = [...stateOptions];
+      setState({ newState });
     }
   }
 };
 
-const TowerInfo = (props) => {
-  const [options1, setOptions1] = useState(characterOptions);
-  const [options2, setOptions2] = useState(characterOptions);
-  const [options3, setOptions3] = useState(characterOptions);
-  const [options4, setOptions4] = useState(characterOptions);
-  const [options5, setOptions5] = useState(characterOptions);
-  const [options6, setOptions6] = useState(characterOptions);
+const updateCharacter = (index, props, teamIndex) => {
+  socket.emit("updateCharacter", {
+    pageId: getPageId(),
+    towerIndex: props.towerIndex,
+    towerName: props.tower.name,
+    teamIndex: teamIndex,
+    characterName: characterOptions[index].name
+  });
+}
 
-  const state = [
-    { options: options1, setOptions: setOptions1 },
-    { options: options2, setOptions: setOptions2 },
-    { options: options3, setOptions: setOptions3 },
-    { options: options4, setOptions: setOptions4 },
-    { options: options5, setOptions: setOptions5 },
-    { options: options6, setOptions: setOptions6 },
-  ];
+const TowerInfo = (props) => {
+  const [state, setState] = useState([
+    characterOptions, characterOptions, characterOptions,
+    characterOptions, characterOptions, characterOptions
+  ]);
+
+  const characterElements = [];
+
+  for (let i = 0; i < 6; i++) {
+    characterElements.push((
+      <li key={i}>
+        <CharacterSelect
+          options={state[i]}
+          onChange={(index) => {
+            updateCharacter(index, props, i);
+            changeList(index, state, setState, i);
+          }}
+        />
+      </li>
+    ));
+  }
 
   return (
     <div className="tower-body">
       <h1 className="tower-name">{props.tower.name}</h1>
       <ul className="container-search">
+        {characterElements}
+
         {/* put this shit in a loop */}
-        <li key="0">
+        {/* <li key="0">
           <CharacterSelect
             options={state[0].options}
             onChange={(index) => {
-              socket.emit("updateTower", {
-                pageId: getPageId(),
-                name: props.tower.name,
-                team1: {name: index.target.value}
-              });
+              updateTest(index, props, 0);
               changeList(index, state, 0);
             }}
           />
-          <ArtifactSelect options={artifactOptions}
-          onChange={(index) => console.log(index)}/>
           <input
             placeholder="hp"
             onBlur={(e) =>
@@ -105,7 +118,10 @@ const TowerInfo = (props) => {
         <li key="1">
           <CharacterSelect
             options={state[1].options}
-            onChange={(index) => changeList(index, state, 1)}
+            onChange={(index) => {
+              updateTest(index, props, 1);
+              changeList(index, state, 1);
+            }}
           />
           <input placeholder="hp"></input>
           <input placeholder="speed"></input>
@@ -146,7 +162,7 @@ const TowerInfo = (props) => {
           <input placeholder="hp"></input>
           <input placeholder="speed"></input>
           <input placeholder="additional notes"></input>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

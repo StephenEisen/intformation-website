@@ -43,11 +43,13 @@ const Intel = () => {
     socket.on("createIntelSuccess", createIntelHandler);
     socket.on("findIntelSuccess", findIntelHandler);
     socket.on("createTowerSuccess", updateIntelHandler);
+    socket.on("updateCharacterSuccess", updateIntelHandler);
 
     return () => {
       socket.off("createIntelSuccess", createIntelHandler);
       socket.off("findIntelSuccess", findIntelHandler);
       socket.off("createTowerSuccess", updateIntelHandler);
+      socket.on("updateCharacterSuccess", updateIntelHandler);
     };
   }, []);
 
@@ -68,7 +70,7 @@ const Intel = () => {
       {/* SHOW ALL TOWER INFO */}
       {
         state.towerData.length
-          ? state.towerData.map((tower) => <TowerInfo key={tower.name} tower={tower} />)
+          ? state.towerData.map((tower, index) => <TowerInfo key={tower.name} tower={tower} towerIndex={index} />)
           : null
       }
     </div>
