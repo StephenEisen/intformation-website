@@ -44,6 +44,20 @@ io.on("connection", (socket) => {
       socket.emit("createTowerError", "Tower already exists");
     }
   });
+
+  socket.on("updateTower", async (data) => {
+
+    console.log(data);
+    const existingIntel = await queries.findIntel(data.pageId);
+    const tower = existingIntel.data.filter((tower) => tower.name === data.name);
+
+    // update the database info
+    const updatedTower = await queries.updateTower(data);
+    io.sockets.emit("updateTowerSuccess", updatedTower);
+
+    console.log(tower);
+  });
+
 });
 
 server.listen(8080);

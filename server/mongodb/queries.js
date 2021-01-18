@@ -23,4 +23,15 @@ async function createTower(towerData) {
   );
 }
 
-module.exports = { findIntel, createIntel, createTower };
+async function updateTower(towerData) {
+
+  return towerData;
+  // return GuildData.findOneAndUpdate(
+  //   { name: towerData.name},
+  //   { $push: {
+      
+  //   }}
+  // )
+};
+
+module.exports = { findIntel, createIntel, createTower, updateTower };
