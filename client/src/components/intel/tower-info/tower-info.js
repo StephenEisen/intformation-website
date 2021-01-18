@@ -7,7 +7,6 @@ import { socket, getPageId } from "globals/socket.js";
 const artifactOptions = require("constants/artifact-info.json");
 const characterOptions = require("constants/character-info.json");
 let selectedIndexes = [null, null, null];
-let towerName = "";
 
 const changeList = (selectedIndex, state, currentIndex) => {
   // Get the selected option indexes and enable all options for each list
@@ -37,10 +36,6 @@ const changeList = (selectedIndex, state, currentIndex) => {
 };
 
 const TowerInfo = (props) => {
-  if (props != null) {
-    towerName = props.tower.name;
-  }
-
   const [options1, setOptions1] = useState(characterOptions);
   const [options2, setOptions2] = useState(characterOptions);
   const [options3, setOptions3] = useState(characterOptions);
@@ -59,22 +54,21 @@ const TowerInfo = (props) => {
 
   return (
     <div className="tower-body">
-      <h1 className="tower-name">{towerName}</h1>
+      <h1 className="tower-name">{props.tower.name}</h1>
       <ul className="container-search">
+        {/* put this shit in a loop */}
         <li key="0">
           <CharacterSelect
             options={state[0].options}
             onChange={(index) => changeList(index, state, 0)}
           />
-          <ArtifactSelect
-            options={artifactOptions}
-          />
+          <ArtifactSelect options={artifactOptions} />
           <input
             placeholder="hp"
             onBlur={(e) =>
               socket.emit("updateTower", {
                 pageId: getPageId(),
-                name: towerName,
+                name: props.tower.name,
                 hp: e.target.value,
               })
             }
@@ -84,12 +78,21 @@ const TowerInfo = (props) => {
             onBlur={(e) =>
               socket.emit("updateTower", {
                 pageId: getPageId(),
-                name: towerName,
+                name: props.tower.name,
                 speed: e.target.value,
               })
             }
           ></input>
-          <input placeholder="additional notes"></input>
+          <input
+            placeholder="additional notes"
+            onBlur={(e) =>
+              socket.emit("updateTower", {
+                pageId: getPageId(),
+                name: props.tower.name,
+                notes: e.target.value,
+              })
+            }
+          ></input>
         </li>
         <li key="1">
           <CharacterSelect
