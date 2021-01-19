@@ -1,16 +1,16 @@
 import React from "react";
 import "./add-tower-dialog.css";
-import SelectSearch from "react-select-search";
+import Select from "react-select"
 import { socket, getPageId } from "globals/socket";
 
 let towerName = "";
 let towerLocation = "";
 
 const towerLocations = [
-  { name: "Bronze Fortress", value: "Bronze Fortess" },
-  { name: "Dalberg Fortress", value: "Dalberg Fortress" },
-  { name: "Silver Fortress", value: "Silver Fortress" },
-  { name: "Stronghold", value: "Stronghold" },
+  { value: "Bronze Fortress", label: "Bronze Fortess" },
+  { value: "Dalberg Fortress", label: "Dalberg Fortress" },
+  { value: "Silver Fortress", label: "Silver Fortress" },
+  { value: "Stronghold", label: "Stronghold" },
 ];
 
 const sendTowerData = (props) => {
@@ -31,11 +31,11 @@ const AddTowerDialog = (props) => {
     <div className="modal-container">
       <div id="modal" className="modal">
         <input placeholder="Input tower name." className="input-box" onBlur={(e) => (towerName = e.target.value)}></input>
-        <SelectSearch
+        <Select
           search
           options={towerLocations}
           placeholder="Choose Tower Location"
-          onChange={(e) => (towerLocation = e)}
+          onChange={(e) => (towerLocation = e.value)}
         />
         <button className="modal-button" onClick={() => sendTowerData(props)}>Add Tower</button>
       </div>
