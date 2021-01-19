@@ -1,10 +1,8 @@
 /* ========================
- * Intel connect general
+ * General styles
  * ===================== */
-.intel-connect {
-  max-width: 800px;
-  margin: 0 auto;
-  padding-top: 50px;
+.intel-connect .container {
+  overflow: hidden;
 }
 
 /* ========================
@@ -27,18 +25,7 @@
 /* ========================
  * Intel connect container
  * ===================== */
-.intel-connect-container {
-  text-align: left;
-  overflow: hidden;
-  background: #120b18;
-  margin-bottom: 50px;
-  padding: 20px 25px 20px 25px;
-  font-family: Roboto;
-  font-size: 1.2rem;
-  box-shadow: 0px 1px 5px 0px rgb(0, 0, 0);
-}
-
-.intel-connect-container img {
+.intel-connect-container-left img {
   width: 50px;
   position: relative;
   top: 15px;
@@ -58,6 +45,10 @@
   margin-top: 50px;
 }
 
+.intel-connect-join {
+  text-align: left;
+}
+
 .intel-connect-join .slide-btn {
   margin-top: 50px;
 }
@@ -67,34 +58,26 @@
   top: 20px;
 }
 
+@media only screen and (max-width: 1000px) {
+  .intel-connect-container-left {
+    display: none;
+  }
+
+  .intel-connect-container-right {
+    float: right;
+    width: 100%;
+  }
+}
+
 /* ========================
  * Inputs
  * ===================== */
 .intel-id-input {
-  text-align: center;
-  font-size: 24px;
-  font-family: Roboto;
-  padding: 10px;
-  border: 1px solid #331746;
-  line-height: calc(63px - (48px - 2px));
-  color: #fff;
-  background-color: #22152c;
-  border: none;
-  border-radius: 0;
-  outline: 0;
-  cursor: text;
+  font-size: 24px !important;
   position: relative;
   top: 30px;
   height: 55px;
   width: 100%;
-  -webkit-appearance: none;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: border-color .2s ease-in-out;
-  -o-transition: border-color .2s ease-in-out;
-  transition: border-color .2s ease-in-out;
-  -webkit-filter: drop-shadow(0 3px 7px rgba(14, 8, 18, .44));
-  filter: drop-shadow(0 3px 7px rgba(14, 8, 18, .44));
 }
 
 /* ========================

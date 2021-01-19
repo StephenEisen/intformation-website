@@ -1,33 +1,18 @@
 import React from "react";
 import "./statistics.css";
-
-function importAll(r) {
-  return r.keys().map(r);
-}
-
-const images = importAll(
-  require.context("assets/characters", false, /\.(png|jpe?g|svg)$/)
-);
-
-function getImage(charName){
-  const imageIndex = images.findIndex(function (element) {
-    const text = element.split('/')[3].split('.')[0];
-    return text === charName;
-  });
-  return  images[imageIndex];
-}
+import { getCharacterImage } from 'globals/utils.js';
 
 const Statistics = () => {
   return (
     <div>
-      <h1>stats page</h1>
+      <h1>Stats page</h1>
 
       <p>
         Most Used Defence
       </p>
-      <img alt=""  width="62" height="62" src={getImage("Enott")} />
-      <img alt=""  width="62" height="62" src={getImage("Enott")} />
-      <img alt=""  width="62" height="62" src={getImage("Enott")} />
+      <img alt="" width="62" height="62" src={getCharacterImage("Enott")} />
+      <img alt="" width="62" height="62" src={getCharacterImage("Enott")} />
+      <img alt="" width="62" height="62" src={getCharacterImage("Enott")} />
 
       {/* pass in whatever the most commonly used units for that given time period are */}
       <h2>Most Commonly Used Stats On: {"Enott"}</h2>
@@ -56,9 +41,7 @@ const Statistics = () => {
       <p>
         MORE ENOTTT etc etc etc
       </p>
-
     </div>
-
   );
 };
 

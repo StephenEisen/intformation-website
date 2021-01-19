@@ -1,0 +1,39 @@
+/* ========================
+ * General styles
+ * ===================== */
+.character-info-container {
+  margin-top: 30px;
+  transition: 0.3s ease-out all;
+}
+
+.character-info-container[disabled] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.character-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.character-info label {
+  float: left;
+  width: 10%;
+  margin-right: 10px;
+}
+
+.character-info input {
+  float: right;
+  width: 90%;
+}
+
+/* ========================
+ * Image styles
+ * ===================== */
+.character-info img {
+  width: 30px;
+  vertical-align: middle;
+}

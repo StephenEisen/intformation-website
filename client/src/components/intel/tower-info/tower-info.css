@@ -1,7 +1,77 @@
-.tower-body {
-  background-color: white;
+/* ========================
+ * General styles
+ * ===================== */
+.tower-info {
+  border-bottom: 1px solid #fff;
+  margin-bottom: 50px;
+  display: flex;
+  font-size: 36px;
+  font-family: Monaco;
+  padding: 10px;
 }
 
 .tower-name {
-  color: black;
+  color: #fff;
+  flex: 1;
+  text-align: left;
+  font-weight: 800;
+}
+
+.tower-location {
+  flex: 1;
+  text-align: right;
+  font-weight: 800;
+}
+
+.tower-characters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tower-characters>.tower-character-data {
+  flex: 1 1 25%;
+}
+
+.tower-character-data {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+}
+
+.tower-team-title {
+  font-family: Monaco;
+  font-size: 36px;
+  color: #a992fa;
+  text-align: left;
+  padding-left: 20px;
+  line-height: 0;
+}
+
+/* ========================
+ * Image styles
+ * ===================== */
+.tower-arrow-down {
+  margin: 0 auto;
+  display: block;
+  width: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* ========================
+ * Dropdown styles
+ * ===================== */
+.select-dropdown {
+  text-align: left;
+  color: #000;
+  font-size: 16px;
+}
+
+/* ========================
+ * Mobile styles
+ * ===================== */
+@media only screen and (max-width: 1000px) {
+  .tower-characters {
+    flex-direction: column;
+  }
 }

@@ -25,7 +25,7 @@ const IntelConnect = (props) => {
         <h1>Create or Join Intel</h1>
       </div>
 
-      <div className="intel-connect-container">
+      <div className="container">
         <div className="intel-connect-container-left">
           <img src={castle} alt="Create New Intel" />
         </div>
@@ -46,7 +46,7 @@ const IntelConnect = (props) => {
         </div>
       </div>
 
-      <div className="intel-connect-container">
+      <div className="container">
         <div className="intel-connect-container-left">
           <img src={map} alt="Join Existing Intel" />
         </div>
@@ -57,7 +57,7 @@ const IntelConnect = (props) => {
           </p>
           <div className="intel-connect-join">
             <span>Enter Intel Id:</span>
-            <input className="intel-id-input" onBlur={(e) => (pageId = e.target.value)}></input>
+            <input className="intel-id-input" type="text" onBlur={(e) => (pageId = e.target.value)}></input>
             <a className="slide-btn" onClick={() => joinExistingIntel()}>
               <p>
                 <span className="bg"></span><span className="base"></span>
