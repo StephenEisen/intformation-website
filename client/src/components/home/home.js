@@ -1,8 +1,11 @@
 import React from "react";
+import Card from "../card/card.js";
 
 const Home = () => {
   return (
-    <p>Home page</p>
+    <div>
+    <Card />
+    </div>
   );
 };
 

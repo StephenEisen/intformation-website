@@ -129,6 +129,9 @@ const TowerInfo = (props) => {
         <div className="tower-characters">
           {characterElements.slice(3, 6)}
         </div>
+
+        {/* Lock data to prevent uninteded changes */}
+        <button>lock</button>
       </div>
     </div>
   );

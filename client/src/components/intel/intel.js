@@ -8,7 +8,7 @@ import IntelConnect from "./intel-connect/intel-connect";
 
 const createIntel = (data, setState) => {
   window.history.pushState(data.pageId, "", "/intel/" + data.pageId);
-  setState(prevState => ({ ...prevState, isIntelConnectVisible: false }));
+  setState(prevState => ({ ...prevState, isAddTowerButtonVisible: true, isIntelConnectVisible: false }));
 };
 
 const findIntel = (data, setState) => {
@@ -26,6 +26,7 @@ const updateIntel = (data, setState) => {
 
 const Intel = () => {
   const [state, setState] = useState({
+    isAddTowerButtonVisible: false,
     isAddTowerDialogVisible: false,
     isIntelConnectVisible: true,
     towerData: []
@@ -63,7 +64,8 @@ const Intel = () => {
         onClose={() => setState({ ...state, isAddTowerDialogVisible: false })}
         visible={state.isAddTowerDialogVisible}
       />
-      <button onClick={() => setState({ ...state, isAddTowerDialogVisible: true })}>
+
+      <button disabled={!state.isAddTowerButtonVisible} onClick={() => setState({ ...state, isAddTowerDialogVisible: true })}>
         <img src={plus} title="Add Tower" alt="Add Tower" className="plus-button" />
       </button>
 
