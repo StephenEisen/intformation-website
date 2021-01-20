@@ -16,7 +16,11 @@ async function createTower(towerData) {
     { pageId: towerData.pageId },
     {
       $push: {
-        data: { name: towerData.name, location: towerData.location }
+        data: {
+          name: towerData.name,
+          location: towerData.location,
+          characters: Array(6).fill({})
+        }
       }
     },
     { new: true }
@@ -31,7 +35,7 @@ async function updateTower(towerData) {
     {
       $set: {
         [queryKey]: {
-          team: towerData.towerIndex,
+          team: towerData.teamIndex,
           name: towerData.characterName
         }
       }

@@ -1,96 +1,112 @@
-import React, { useState } from "react";
-import { socket, getPageId } from "globals/socket.js";
-import "./tower-info.css";
+import React, { useEffect, useState } from "react";
 import Select from 'react-select'
+import "./tower-info.css";
+import { socket, getPageId } from "globals/socket.js";
+import { clone } from "globals/utils";
 import CharacterInfo from "../character-info/character-info";
-
 const characterOptions = require("constants/character-info.json");
-let selectedOptions = Array(6).fill(null);
 
-const changeList = (option, state, characterIndex) => {
-  // Add selection option
-  selectedOptions.splice(characterIndex, 1, option);
+/**
+ * Updates the character dropdowns and disables the selected options.
+ *
+ * @param {*} state
+ * @param {*} setState
+ * @param {*} selectedOption
+ * @param {*} characterIndex
+ */
+const changeList = (state, setState, selectedOption, characterIndex) => {
+  const selected = state.selected;
+  const options = state.options;
 
-  // Get the selected option indexes and enable all options for each list
-  for (let i = 0; i < state.length; i++) {
-    if (i !== characterIndex) {
-      state[i].options.forEach((option) => (option.isDisabled = false));
-    }
+  // Add the selected option to array and disable the necessary characters
+  if (selectedOption && characterIndex) {
+    selected.splice(characterIndex, 1, selectedOption);
   }
+  options.forEach((option) => option.isDisabled = selected.includes(option.value))
 
-  // Get each selected option and disable it for the lists (except the dropdown it was chosen on).
-  for (let i = 0; i < selectedOptions.length; i++) {
-    const selectedOption = selectedOptions[i];
+  // Update the state
+  setState({ options, selected });
+}
 
-    for (let j = 0; j < state.length; j++) {
-      const stateOptions = state[j].options;
-
-      if (j !== characterIndex && selectedOption !== null) {
-        const stateOption = stateOptions.find((item) => item.value === selectedOption);
-        stateOption.isDisabled = true;
-        state[j].setOptions([...stateOptions]);
-      }
-    }
-  }
-};
-
-const updateCharacter = (props, characterIndex, characterName) => {
+/**
+ * Emit socket event to update the character dropdown.
+ *
+ * @param {*} props
+ * @param {*} teamIndex
+ * @param {*} characterIndex
+ * @param {*} characterName
+ */
+const updateCharacter = (props, teamIndex, characterIndex, characterName) => {
   socket.emit("updateCharacter", {
     pageId: getPageId(),
     towerIndex: props.towerIndex,
     towerName: props.tower.name,
+    teamIndex: teamIndex,
     characterIndex: characterIndex,
     characterName: characterName
   });
 }
 
-const getCharacterList = (props, state) => {
-  const characterList = [];
+/**
+ * Builds and returns the HTML that will be rendered on the page.
+ *
+ * @param {*} props
+ * @param {*} state
+ * @param {*} setState
+ */
+const getCharacterElements = (props, state, setState) => {
+  const characterElements = [];
 
   for (let i = 0; i < 6; i++) {
-    characterList.push((
+    const teamIndex = i < 3 ? 0 : 1;
+    const savedCharacter = props.tower.characters[i].name;
+    const currentCharacter = characterOptions.find((character) => character.value === savedCharacter);
+
+    characterElements.push((
       <div className="tower-character-data" key={i}>
         <Select
           className="select-dropdown"
-          options={state[i].options}
+          placeholder="Select character..."
+          options={state.options}
+          defaultValue={currentCharacter}
           onChange={(e) => {
-            changeList(e.value, state, i);
-            updateCharacter(props, i, e.value);
+            changeList(state, setState, e.value, i);
+            updateCharacter(props, teamIndex, i, e.value);
           }}
         />
         <CharacterInfo
-          disabled={selectedOptions[i] === null}
+          disabled={state.selected[i] === null}
           towerName={props.tower}
           towerIndex={props.towerIndex}
-          teamIndex={i < 3 ? 0 : 1}
+          teamIndex={teamIndex}
         />
       </div>
     ));
   }
 
-  return characterList;
+  return characterElements;
 }
 
 const TowerInfo = (props) => {
-  // Define states
-  const [dropdown1, setOption1] = useState(characterOptions);
-  const [dropdown2, setOption2] = useState(characterOptions);
-  const [dropdown3, setOption3] = useState(characterOptions);
-  const [dropdown4, setOption4] = useState(characterOptions);
-  const [dropdown5, setOption5] = useState(characterOptions);
-  const [dropdown6, setOption6] = useState(characterOptions);
+  // Define state and create elements to render
+  const [state, setState] = useState({ options: clone(characterOptions), selected: Array(6).fill(null) });
+  const characterElements = getCharacterElements(props, state, setState);
 
-  const state = [
-    { options: dropdown1, setOptions: setOption1 },
-    { options: dropdown2, setOptions: setOption2 },
-    { options: dropdown3, setOptions: setOption3 },
-    { options: dropdown4, setOptions: setOption4 },
-    { options: dropdown5, setOptions: setOption5 },
-    { options: dropdown6, setOptions: setOption6 },
-  ];
+  // Update the dropdowns and after initial load (for when there is saved data)
+  useEffect(() => {
+    // Add the selected options retrieved from the database
+    const selected = state.selected;
+    for (let i = 0; i < props.tower.characters.length; i++) {
+      selected.splice(i, 1, props.tower.characters[i].name);
+    }
 
-  // Create elements
-  const characterList = getCharacterList(props, state);
+    // Update the state and disable what's necessary
+    setState((prevState) => ({ ...prevState, selected }));
+    changeList(state, setState);
+
+    // Need empty cleanup function to prevent memory leak (why tho?)
+    return () => { }
+  }, []);
 
   // Render tower info
   return (
@@ -104,13 +120,13 @@ const TowerInfo = (props) => {
         {/* TEAM 1 */}
         <h3 className="tower-team-title">Team 1</h3>
         <div className="tower-characters">
-          {characterList.slice(0, 3)}
+          {characterElements.slice(0, 3)}
         </div>
 
         {/* TEAM 2 */}
         <h3 className="tower-team-title">Team 2</h3>
         <div className="tower-characters">
-          {characterList.slice(3, 6)}
+          {characterElements.slice(3, 6)}
         </div>
       </div>
     </div>
