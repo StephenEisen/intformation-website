@@ -106,6 +106,7 @@ const TowerInfo = (props) => {
 
     // Need empty cleanup function to prevent memory leak (why tho?)
     return () => { }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Render tower info

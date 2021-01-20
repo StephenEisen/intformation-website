@@ -36,12 +36,9 @@ const IntelConnect = (props) => {
             Click the button below to get started.
           </p>
           <div className="intel-connect-create">
-            <a className="slide-btn" onClick={() => createNewIntel()}>
-              <p>
-                <span className="bg"></span><span className="base"></span>
-                <span className="text">Create New Intel</span>
-              </p>
-            </a>
+            <button className="slide-btn-horizontal" onClick={() => createNewIntel()}>
+              <span className="slide-btn-text">Create New Intel</span>
+            </button>
           </div>
         </div>
       </div>
@@ -56,14 +53,15 @@ const IntelConnect = (props) => {
             and update your on-going Guild War.
           </p>
           <div className="intel-connect-join">
-            <span>Enter Intel Id:</span>
-            <input className="intel-id-input" type="text" onBlur={(e) => (pageId = e.target.value)}></input>
-            <a className="slide-btn" onClick={() => joinExistingIntel()}>
-              <p>
-                <span className="bg"></span><span className="base"></span>
-                <span className="text">Join Existing Intel</span>
-              </p>
-            </a>
+            <input
+              className="intel-id-input"
+              type="text"
+              placeholder="Enter intel id..."
+              onBlur={(e) => (pageId = e.target.value)}>
+            </input>
+            <button className="slide-btn-horizontal" onClick={() => joinExistingIntel()}>
+              <span className="slide-btn-text">Join Existing Intel</span>
+            </button>
           </div>
         </div>
       </div>

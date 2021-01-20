@@ -1,6 +1,11 @@
 /* ========================
  * General styles
  * ===================== */
+.intel-connect {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .intel-connect .container {
   overflow: hidden;
 }
@@ -33,20 +38,22 @@
 
 .intel-connect-container-left {
   float: left;
-  width: 10%;
 }
 
 .intel-connect-container-right {
   float: right;
   width: 90%;
+  text-align: left;
 }
 
 .intel-connect-create {
   margin-top: 50px;
+  float: right;
 }
 
 .intel-connect-join {
-  text-align: left;
+  float: right;
+  margin-top: 50px;
 }
 
 .intel-connect-join .slide-btn {
@@ -58,109 +65,66 @@
   top: 20px;
 }
 
-@media only screen and (max-width: 1000px) {
-  .intel-connect-container-left {
-    display: none;
-  }
-
-  .intel-connect-container-right {
-    float: right;
-    width: 100%;
-  }
-}
-
 /* ========================
  * Inputs
  * ===================== */
 .intel-id-input {
   font-size: 24px !important;
+  display: inline;
+  margin-right: 20px;
+  padding: 64px;
+  padding: 21px !important;
   position: relative;
-  top: 30px;
-  height: 55px;
-  width: 100%;
+  top: 4px;
+  max-width: 100%;
 }
 
 /* ========================
- * Slide button
+ * Buttons
  * ===================== */
-.slide-btn {
-  display: block;
-  max-width: 100%;
-  font-size: 0.8rem;
-  font-weight: 900;
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration: none;
-  margin: 10px 0;
-  cursor: pointer;
+.intel-connect .slide-btn-horizontal {
+  font-family: Monaco;
+  font-size: 26px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
-.slide-btn:hover>p {
-  color: #ece8e1;
+.intel-connect-join .slide-btn-horizontal {
+  display: inline;
 }
 
-.slide-btn>p {
-  background: transparent;
-  color: #fff;
-}
+/* ========================
+ * Mobile styles
+ * ===================== */
+@media only screen and (max-width: 1200px) {
+  .intel-id-input {
+    font-size: 14px !important;
+    top: 0;
+    margin-right: 0;
+    margin-bottom: 20px;
+    width: 100%;
+  }
 
-.slide-btn>p span.base {
-  border: 1px solid transparent;
-}
+  .intel-connect .slide-btn-horizontal {
+    font-size: 18px;
+    width: 100%;
+  }
 
-.slide-btn p {
-  margin: 0;
-  height: 54px;
-  line-height: 54px;
-  box-sizing: border-box;
-  z-index: 1;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
+  .intel-connect-container-left {
+    display: none;
+  }
 
-.slide-btn p span.base {
-  box-sizing: border-box;
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  border: 1px solid #5821a9;
-}
+  .intel-connect-create,
+  .intel-connect-join {
+    float: none;
+  }
 
-.slide-btn p span.bg {
-  left: -5%;
-  position: absolute;
-  background: #5821a9;
-  width: 0;
-  height: 100%;
-  z-index: 3;
-  transition: 0.3s ease-out all;
-  transform: skewX(-10deg);
-}
+  .intel-connect-create {
+    text-align: -moz-right;
+  }
 
-.slide-btn p span.text {
-  z-index: 4;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.slide-btn p span.text:after {
-  content: "";
-  width: 4px;
-  height: 4px;
-  right: 0;
-  bottom: 0;
-  background: #0f1923;
-  position: absolute;
-  transition: 0.3s ease-out all;
-  z-index: 5;
-}
-
-.slide-btn:hover span.bg {
-  width: 110%;
+  .intel-connect-container-right {
+    float: none;
+    width: 100%;
+  }
 }

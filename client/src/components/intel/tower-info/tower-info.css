@@ -70,8 +70,17 @@
 /* ========================
  * Mobile styles
  * ===================== */
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
   .tower-characters {
     flex-direction: column;
+  }
+
+  .tower-info {
+    flex-direction: column;
+  }
+
+  .tower-name,
+  .tower-location {
+    text-align: center;
   }
 }
