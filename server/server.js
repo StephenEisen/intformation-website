@@ -45,6 +45,11 @@ io.on("connection", (socket) => {
     }
   });
 
+  socket.on("getStatistics", async () => {
+    const totalGuilds = await queries.countTotalGuilds();
+    sockets.emite("getStatisticsSuccess", totalGuilds);
+  });
+
   socket.on("updateCharacter", async (data) => {
     const updatedCharacter = await queries.updateTower(data);
     io.sockets.emit("updateCharacterSuccess", updatedCharacter);

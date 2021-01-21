@@ -8,7 +8,7 @@ import TowerInfo from "../tower-info/tower-info.js";
 
 const TowerDisplay = (props) => {
   const [state, setState] = useState({isAddTowerDialogVisible: false});
-
+  console.log(props);
   if (!props.visible) {
     return null;
   }

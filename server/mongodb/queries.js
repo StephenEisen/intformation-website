@@ -44,4 +44,12 @@ async function updateTower(towerData) {
   );
 };
 
-module.exports = { findIntel, createIntel, createTower, updateTower };
+async function countTotalGuilds(){
+  return GuildData.count({});
+};
+
+async function countMostUsedDefence(){
+
+};
+
+module.exports = { findIntel, createIntel, createTower, updateTower, countTotalGuilds };
