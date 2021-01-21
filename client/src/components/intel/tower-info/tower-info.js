@@ -75,7 +75,7 @@ const getCharacterElements = (props, state, setState) => {
           }}
         />
         <CharacterInfo
-          disabled={state.selected[i] === null}
+          disabled={state.selected[i] == null}
           towerName={props.tower}
           towerIndex={props.towerIndex}
           teamIndex={teamIndex}

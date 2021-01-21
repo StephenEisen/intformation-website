@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { socket, getPageId } from "globals/socket.js";
 import "./intel.css";
-import plus from "../../assets/plus.png";
-import AddTowerDialog from "./add-tower-dialog/add-tower-dialog.js";
-import TowerInfo from "./tower-info/tower-info.js";
+
 import IntelConnect from "./intel-connect/intel-connect";
+import TowerDisplay from "./tower-display/tower-display";
 
 const createIntel = (data, setState) => {
   window.history.pushState(data.pageId, "", "/intel/" + data.pageId);
-  setState(prevState => ({ ...prevState, isAddTowerButtonVisible: true, isIntelConnectVisible: false }));
+  setState(prevState => ({ ...prevState, isIntelConnectVisible: false }));
 };
 
 const findIntel = (data, setState) => {
@@ -21,13 +20,11 @@ const findIntel = (data, setState) => {
 };
 
 const updateIntel = (data, setState) => {
-  setState(prevState => ({ ...prevState, towerData: data.data }));
-}
+  setState((prevState) => ({ ...prevState, towerData: data.data }));
+};
 
 const Intel = () => {
   const [state, setState] = useState({
-    isAddTowerButtonVisible: false,
-    isAddTowerDialogVisible: false,
     isIntelConnectVisible: true,
     towerData: []
   });
@@ -57,24 +54,8 @@ const Intel = () => {
   return (
     <div>
       {/* CREATE OR JOIN INTEL */}
-      <IntelConnect visible={state.isIntelConnectVisible} />
-
-      {/* ADD NEW TOWER */}
-      <AddTowerDialog
-        onClose={() => setState({ ...state, isAddTowerDialogVisible: false })}
-        visible={state.isAddTowerDialogVisible}
-      />
-
-      <button disabled={!state.isAddTowerButtonVisible} onClick={() => setState({ ...state, isAddTowerDialogVisible: true })}>
-        <img src={plus} title="Add Tower" alt="Add Tower" className="plus-button" />
-      </button>
-
-      {/* SHOW ALL TOWER INFO */}
-      {
-        state.towerData.length
-          ? state.towerData.map((tower, index) => <TowerInfo key={tower.name} tower={tower} towerIndex={index} />)
-          : null
-      }
+      <IntelConnect visible={state.isIntelConnectVisible}/>
+      <TowerDisplay visible={!state.isIntelConnectVisible} towerData={state.towerData}/>
     </div>
   );
 };
