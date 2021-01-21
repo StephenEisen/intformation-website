@@ -43,7 +43,8 @@ const updateCharacter = (props, teamIndex, characterIndex, characterName) => {
     towerName: props.tower.name,
     teamIndex: teamIndex,
     characterIndex: characterIndex,
-    characterName: characterName
+    characterName: characterName,
+
   });
 }
 
@@ -68,7 +69,7 @@ const getCharacterElements = (props, state, setState) => {
           className="select-dropdown"
           placeholder="Select character..."
           options={state.options}
-          defaultValue={currentCharacter}
+          value={currentCharacter}
           onChange={(e) => {
             changeList(state, setState, e.value, i);
             updateCharacter(props, teamIndex, i, e.value);
@@ -79,6 +80,7 @@ const getCharacterElements = (props, state, setState) => {
           towerName={props.tower}
           towerIndex={props.towerIndex}
           teamIndex={teamIndex}
+          // updateStates={(stats) => updateCharacter()}
         />
       </div>
     ));
@@ -89,7 +91,11 @@ const getCharacterElements = (props, state, setState) => {
 
 const TowerInfo = (props) => {
   // Define state and create elements to render
-  const [state, setState] = useState({ options: clone(characterOptions), selected: Array(6).fill(null) });
+  const [state, setState] = useState({
+    options: clone(characterOptions),
+    selected: Array(6).fill(null),
+    character
+  });
   const characterElements = getCharacterElements(props, state, setState);
 
   // Update the dropdowns and after initial load (for when there is saved data)
@@ -107,7 +113,7 @@ const TowerInfo = (props) => {
     // Need empty cleanup function to prevent memory leak (why tho?)
     return () => { }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [props.tower.characters]);
 
   // Render tower info
   return (
