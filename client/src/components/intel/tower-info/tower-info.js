@@ -89,7 +89,11 @@ const getCharacterElements = (props, state, setState) => {
 
 const TowerInfo = (props) => {
   // Define state and create elements to render
-  const [state, setState] = useState({ options: clone(characterOptions), selected: Array(6).fill(null) });
+  const [state, setState] = useState(
+
+    // Mo is the big dumb
+    { options: clone(characterOptions), selected: Array(6).fill(null) }
+  );
   const characterElements = getCharacterElements(props, state, setState);
 
   // Update the dropdowns and after initial load (for when there is saved data)
