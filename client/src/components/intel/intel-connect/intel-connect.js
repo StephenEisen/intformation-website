@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { socket } from "globals/socket.js";
 import './intel-connect.css';
 import castle from 'assets/castle.png';
 import map from 'assets/map.png';
 
-let pageId = "";
-
-const createNewIntel = () => {
-  socket.emit("createIntel");
-};
-
-const joinExistingIntel = () => {
-  socket.emit("findIntel", pageId);
-};
-
 const IntelConnect = (props) => {
+  const [pageId, setPageId] = useState("");
+
+  const createNewIntel = () => {
+    socket.emit("createIntel");
+  };
+
+  const joinExistingIntel = () => {
+    socket.emit("findIntel", pageId);
+  };
+
   if (!props.visible) {
     return null;
   }
@@ -36,7 +36,7 @@ const IntelConnect = (props) => {
             Click the button below to get started.
           </p>
           <div className="intel-connect-create">
-            <button className="slide-btn-horizontal" onClick={() => createNewIntel()}>
+            <button className="slide-btn-horizontal" onClick={createNewIntel}>
               <span className="slide-btn-text">Create New Intel</span>
             </button>
           </div>
@@ -56,10 +56,15 @@ const IntelConnect = (props) => {
             <input
               className="intel-id-input"
               type="text"
-              placeholder="Enter intel id..."
-              onBlur={(e) => (pageId = e.target.value)}>
+              onChange={e => setPageId(e.target.value)}
+              onKeyPress={e => {
+                if (e.key === 'Enter') {
+                  joinExistingIntel()
+                }
+              }}
+              placeholder="Enter intel id...">
             </input>
-            <button className="slide-btn-horizontal" onClick={() => joinExistingIntel()}>
+            <button className="slide-btn-horizontal" onClick={joinExistingIntel}>
               <span className="slide-btn-text">Join Existing Intel</span>
             </button>
           </div>
