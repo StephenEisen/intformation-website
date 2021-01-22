@@ -22,11 +22,12 @@ function App() {
           <CSSTransition classNames="page" key={location.key} timeout={300} unmountOnExit>
             <Switch location={location}>
               <Route exact path="/"><Redirect to={Routes.Home} /></Route>
-              <Route path={Routes.Home} component={Home} />
-              <Route path={Routes.Defence} component={Defence} />
-              <Route path={Routes.Intel} component={Intel} />
-              <Route path={Routes.Statistics} component={Statistics} />
-              <Route path={Routes.About} component={About} />
+              <Route exact path={Routes.Home} component={Home} />
+              <Route exact path={Routes.Defence} component={Defence} />
+              <Route exact path={Routes.Intel} component={Intel} />
+              {/* <Route exact path={Routes.Intel + '/:id'} component={Home} /> */}
+              <Route exact path={Routes.Statistics} component={Statistics} />
+              <Route exact path={Routes.About} component={About} />
               <Route component={Error} />
             </Switch>
           </CSSTransition>

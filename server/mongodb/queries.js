@@ -27,20 +27,20 @@ async function createTower(towerData) {
   );
 }
 
-async function updateTower(towerData) {
-  const queryKey = 'data.' + towerData.towerIndex + '.characters.' + towerData.characterIndex;
+async function updateCharacter(characterData) {
+  const queryKey = 'data.' + characterData.towerIndex + '.characters.' + characterData.characterIndex;
 
   return GuildData.findOneAndUpdate(
-    { pageId: towerData.pageId },
+    { pageId: characterData.pageId },
     {
       $set: {
         [queryKey]: {
-          team: towerData.teamIndex,
-          name: towerData.characterName,
-          hp: towerData.hp,
-          speed: towerData.speed,
-          artifact: towerData.artifact,
-          notes: towerData.notes
+          team: characterData.team,
+          name: characterData.name,
+          hp: characterData.hp,
+          speed: characterData.speed,
+          artifact: characterData.artifact,
+          notes: characterData.notes
         }
       }
     },
@@ -48,12 +48,8 @@ async function updateTower(towerData) {
   );
 };
 
-async function updateStats(characterData) {
-
-}
-
 async function countTotalGuilds() {
   return GuildData.count({});
 };
 
-module.exports = { findIntel, createIntel, createTower, updateTower, countTotalGuilds };
+module.exports = { findIntel, createIntel, createTower, updateCharacter, countTotalGuilds };

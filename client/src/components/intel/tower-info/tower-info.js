@@ -1,155 +1,137 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Select from 'react-select'
 import "./tower-info.css";
-import { socket, getPageId } from "globals/socket.js";
 import { clone } from "globals/utils";
+import { socket, getPageId } from "globals/socket.js";
+import { CharacterData } from "models/character.model";
 import CharacterInfo from "../character-info/character-info";
 const characterOptions = require("constants/character-info.json");
 
-/**
- * Updates the character dropdowns and disables the selected options.
- *
- * @param {*} state
- * @param {*} setState
- * @param {*} selectedOption
- * @param {*} characterIndex
- */
-const changeList = (state, setState, selectedOption, characterIndex) => {
-  const selected = state.selected;
-  const options = state.options;
+class TowerInfo extends React.Component {
+  constructor(props) {
+    super(props);
 
-  // Add the selected option to array and disable the necessary characters
-  if (selectedOption && characterIndex) {
-    selected.splice(characterIndex, 1, selectedOption);
-  }
-  options.forEach((option) => option.isDisabled = selected.includes(option.value))
-
-  // Update the state
-  setState((prevState) => ({...prevState, options, selected }));
-}
-
-/**
- * Emit socket event to update the character dropdown.
- *
- * @param {*} props
- * @param {*} teamIndex
- * @param {*} characterIndex
- * @param {*} characterName
- */
-const updateCharacter = (props, teamIndex, characterIndex, characterName, state, setState) => {
-  const data = state.characterData;
-  data[characterIndex] = {
-    pageId: getPageId(),
-    towerIndex: props.towerIndex,
-    towerName: props.tower.name,
-    teamIndex: teamIndex,
-    characterIndex: characterIndex,
-    characterName: characterName,
-  };
-  socket.emit("updateCharacter", data[characterIndex]);
-  setState((prevState) => ({...prevState, characterData: data}));
-}
-
-/**
- * Builds and returns the HTML that will be rendered on the page.
- *
- * @param {*} props
- * @param {*} state
- * @param {*} setState
- */
-const getCharacterElements = (props, state, setState) => {
-  const characterElements = [];
-
-  for (let i = 0; i < 6; i++) {
-    const teamIndex = i < 3 ? 0 : 1;
-    const savedCharacter = props.tower.characters[i].name;
-    const currentCharacter = characterOptions.find((character) => character.value === savedCharacter);
-
-    characterElements.push((
-      <div className="tower-character-data" key={i}>
-        <Select
-          className="select-dropdown"
-          placeholder="Select character..."
-          options={state.options}
-          value={currentCharacter}
-          onChange={(e) => {
-            changeList(state, setState, e.value, i);
-            updateCharacter(props, teamIndex, i, e.value, state, setState);
-          }}
-        />
-        <CharacterInfo
-          disabled={state.selected[i] == null}
-          stats={props.tower.characters[i]}
-          characterData={state.characterData[i]}
-        />
-      </div>
-    ));
+    this.state = {
+      options: clone(characterOptions),
+      selected: Array(6).fill(null),
+      characterList: Array(6).fill({}),
+    };
   }
 
-  return characterElements;
-}
+  componentDidMount() {
+    const selected = this.state.selected;
+    const characterList = [];
 
-const TowerInfo = (props) => {
-  // Define state and create elements to render
-  const [state, setState] = useState({
-    options: clone(characterOptions),
-    selected: Array(6).fill(null),
-    characterData: Array(6).fill({}),
-  });
-  const characterElements = getCharacterElements(props, state, setState);
+    for (let i = 0; i < this.props.tower.characters.length; i++) {
+      const character = this.props.tower.characters[i];
 
-  // Update the dropdowns and after initial load (for when there is saved data)
-  useEffect(() => {
-    console.log(props.tower);
+      const characterData = new CharacterData({
+        towerIndex: this.props.towerIndex,
+        characterIndex: i,
+        team: character.team,
+        name: character.name,
+        hp: character.hp,
+        speed: character.speed,
+        artifact: character.artifact,
+        notes: character.notes
+      });
 
-    // Add the selected options retrieved from the database
-    const selected = state.selected;
-    const characterData = state.characterData;
-    for (let i = 0; i < props.tower.characters.length; i++) {
-      selected.splice(i, 1, props.tower.characters[i].name);
-      characterData.splice(i, 1, props.tower.characters[i]);
-      characterData[i].pageId = getPageId();
-      characterData[i].teamIndex = props.tower.characters[i].team;
-      characterData[i].towerIndex = props.towerIndex;
-      characterData[i].characterIndex = i;
-      characterData[i].characterName = props.tower.characters[i].name;
+      selected.splice(i, 1, characterData.name);
+      characterList.push(characterData);
     }
 
-    // Update the state and disable what's necessary
-    setState((prevState) => ({ ...prevState, selected, characterData }));
-    changeList(state, setState);
+    this.setState((prevState) => ({ ...prevState, selected, characterList }));
+    this.changeList();
+  }
 
-    // Need empty cleanup function to prevent memory leak (why tho?)
-    return () => { }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.tower.characters]);
+  changeList(selectedOption, characterIndex) {
+    const selected = this.state.selected;
+    const options = this.state.options;
 
-  // Render tower info
-  return (
-    <div className="container">
-      <div className="tower-info">
-        <span className="tower-name">{props.tower.name}</span>
-        <span className="tower-location">{props.tower.location}</span>
-      </div>
+    // Add the selected option to array and disable the necessary characters
+    if (selectedOption && characterIndex) {
+      selected.splice(characterIndex, 1, selectedOption);
+    }
+    options.forEach((option) => option.isDisabled = selected.includes(option.value))
 
-      <div className="tower-team">
-        {/* TEAM 1 */}
-        <h3 className="tower-team-title">Team 1</h3>
-        <div className="tower-characters">
-          {characterElements.slice(0, 3)}
+    // Update the state
+    this.setState((prevState) => ({ ...prevState, options, selected }));
+  }
+
+  updateCharacter(teamIndex, characterIndex, characterName) {
+    const data = this.state.characterList;
+    data[characterIndex] = {
+      pageId: getPageId(),
+      towerIndex: this.props.towerIndex,
+      characterIndex: characterIndex,
+      team: teamIndex,
+      name: characterName
+    };
+
+    socket.emit("updateCharacter", data[characterIndex]);
+    this.setState((prevState) => ({ ...prevState, characterData: data }));
+  }
+
+  getCharacterElements() {
+    const characterElements = [];
+
+    for (let i = 0; i < 6; i++) {
+      const teamIndex = i < 3 ? 0 : 1;
+      const savedCharacter = this.props.tower.characters[i].name;
+      const currentCharacter = characterOptions.find((character) => character.value === savedCharacter);
+
+      characterElements.push((
+        <div className="tower-character-data" key={i}>
+          <Select
+            className="select-dropdown"
+            placeholder="Select character..."
+            options={this.state.options}
+            value={currentCharacter}
+            onChange={(e) => {
+              this.changeList(e.value, i);
+              this.updateCharacter(teamIndex, i, e.value);
+            }}
+          />
+          <CharacterInfo
+            disabled={this.state.selected[i] == null}
+            characterData={this.state.characterList[i]}
+          />
+        </div>
+      ));
+    }
+
+    return characterElements;
+  }
+
+  render() {
+    const characterElements = this.getCharacterElements();
+
+    return (
+      <div className="container">
+        <div className="tower-info">
+          <span className="tower-name">{this.props.tower.name}</span>
+          <span className="tower-location">{this.props.tower.location}</span>
         </div>
 
-        {/* TEAM 2 */}
-        <h3 className="tower-team-title">Team 2</h3>
-        <div className="tower-characters">
-          {characterElements.slice(3, 6)}
-        </div>
+        <div className="tower-team">
+          {/* TEAM 1 */}
+          <h3 className="tower-team-title">Team 1</h3>
+          <div className="tower-characters">
+            {characterElements.slice(0, 3)}
+          </div>
 
-        {/* Lock data to prevent uninteded changes */}
-        <button>lock</button>
+          {/* TEAM 2 */}
+          <h3 className="tower-team-title">Team 2</h3>
+          <div className="tower-characters">
+            {characterElements.slice(3, 6)}
+          </div>
+
+          {/* Lock data to prevent uninteded changes */}
+          <button>lock</button>
+        </div>
       </div>
-    </div>
-  );
-};
+    )
+  }
+}
 
 export default TowerInfo;

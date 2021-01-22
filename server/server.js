@@ -52,9 +52,8 @@ io.on("connection", (socket) => {
     sockets.emite("getStatisticsSuccess", totalGuilds);
   });
 
-  socket.on("updateCharacter", async (data) => {
-    console.log(data);
-    const updatedCharacter = await queries.updateTower(data);
+  socket.on("updateCharacter", async (characterData) => {
+    const updatedCharacter = await queries.updateCharacter(characterData);
     io.sockets.emit("updateCharacterSuccess", updatedCharacter);
   });
 });

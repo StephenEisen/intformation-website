@@ -4,9 +4,8 @@ import AddTowerDialog from "components/intel/add-tower-dialog/add-tower-dialog.j
 import plus from "assets/plus.png";
 import TowerInfo from "../tower-info/tower-info.js";
 
-
 const TowerDisplay = (props) => {
-  const [state, setState] = useState({isAddTowerDialogVisible: false});
+  const [state, setState] = useState({ isAddTowerDialogVisible: false });
 
   if (!props.visible) {
     return null;
@@ -34,8 +33,8 @@ const TowerDisplay = (props) => {
       {/* SHOW ALL TOWER INFO */}
       {props.towerData.length
         ? props.towerData.map((tower, index) => (
-            <TowerInfo key={tower.name} tower={tower} towerIndex={index} />
-          ))
+          <TowerInfo key={tower.name} tower={tower} towerIndex={index} />
+        ))
         : null}
     </div>
   );

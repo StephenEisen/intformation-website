@@ -47,7 +47,7 @@ const Intel = () => {
       socket.off("createIntelSuccess", createIntelHandler);
       socket.off("findIntelSuccess", findIntelHandler);
       socket.off("createTowerSuccess", updateIntelHandler);
-      socket.on("updateCharacterSuccess", updateIntelHandler);
+      socket.off("updateCharacterSuccess", updateIntelHandler);
     };
   }, []);
 

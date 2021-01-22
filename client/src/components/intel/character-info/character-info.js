@@ -4,25 +4,25 @@ import hp from "assets/icons/hp.png";
 import speed from "assets/icons/speed.png";
 import notes from "assets/icons/notes.png";
 import artifact from "assets/icons/artifact.png";
-import { socket } from "globals/socket";
+import { getPageId, socket } from "globals/socket";
 
-const updateStat = (key, value, props, state, setState) => {
-  console.log(props);
-  socket.emit("updateCharacter", {
-    ...state,
-    ...props.characterData,
-    [key]: value
-  });
-  setState((prevState) => ({...prevState, [key]: value}));
-};
+
 
 const CharacterInfo = (props) => {
   const [state, setState] = useState({
-    hp: null,
-    speed: null,
-    artifact: null,
-    notes: null,
+    hp: props.characterData.hp || '',
+    speed: props.characterData.speed || '',
+    artifact: props.characterData.artifact || '',
+    notes: props.characterData.notes || '',
   });
+
+  const updateStat = () => {
+    socket.emit("updateCharacter", {
+      ...props.characterData,
+      ...state,
+      pageId: getPageId()
+    });
+  };
 
   return (
     <div className="character-info-container" disabled={props.disabled}>
@@ -33,10 +33,9 @@ const CharacterInfo = (props) => {
         <input
           type="number"
           placeholder="Health Points"
-          defaultValue={props.stats.hp}
-          onBlur={(e) => {
-            updateStat("hp", e.target.value, props, state, setState);
-          }}
+          value={state.hp}
+          onChange={(e) => setState({ ...state, hp: e.target.value })}
+          onBlur={(e) => updateStat()}
         ></input>
       </div>
 
