@@ -28,7 +28,7 @@ async function createTower(towerData) {
 }
 
 async function updateTower(towerData) {
-  const queryKey = `data.${towerData.towerIndex}.characters.${towerData.characterIndex}`;
+  const queryKey = 'data.' + towerData.towerIndex + '.characters.' + towerData.characterIndex;
 
   return GuildData.findOneAndUpdate(
     { pageId: towerData.pageId },
@@ -44,12 +44,8 @@ async function updateTower(towerData) {
   );
 };
 
-async function countTotalGuilds(){
+async function countTotalGuilds() {
   return GuildData.count({});
-};
-
-async function countMostUsedDefence(){
-
 };
 
 module.exports = { findIntel, createIntel, createTower, updateTower, countTotalGuilds };
