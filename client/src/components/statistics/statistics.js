@@ -1,18 +1,15 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect }  from "react";
 import "./statistics.css";
 import { socket } from "globals/socket.js";
 import { getCharacterImage } from 'globals/utils.js';
 
 const getStatistics = (data) => {
-  console.log(data);
+  return;
 };
 
 const Statistics = () => {
-
   useEffect(() => {
-
     const getStatisticsHandler = (data) => { getStatistics(data) };
-
     socket.on("getStatistics", getStatisticsHandler);
 
     return () => {

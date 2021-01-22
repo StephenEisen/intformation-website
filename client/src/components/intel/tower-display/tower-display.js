@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./tower-display.css";
-import { socket, getPageId } from "globals/socket.js";
 import AddTowerDialog from "components/intel/add-tower-dialog/add-tower-dialog.js";
 import plus from "assets/plus.png";
 import TowerInfo from "../tower-info/tower-info.js";
@@ -8,7 +7,7 @@ import TowerInfo from "../tower-info/tower-info.js";
 
 const TowerDisplay = (props) => {
   const [state, setState] = useState({isAddTowerDialogVisible: false});
-  console.log(props);
+
   if (!props.visible) {
     return null;
   }

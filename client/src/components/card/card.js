@@ -8,24 +8,24 @@ const Card = () => {
         <li>
           <div className="card">
             <iframe
+              title="politis"
               width="560"
               height="315"
               src="https://www.youtube.com/embed/TA8MJaK-ZnY"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              frameBorder="0"
+              allowFullScreen
             ></iframe>
             <h3>Title</h3>
           </div>
         </li>
         <li>
           <iframe
+            title="archdemon"
             width="560"
             height="315"
             src="https://www.youtube.com/embed/1sDEwr6qmS0"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            frameBorder="0"
+            allowFullScreen
           ></iframe>
         </li>
       </ul>

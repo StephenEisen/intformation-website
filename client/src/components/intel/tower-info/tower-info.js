@@ -44,7 +44,6 @@ const updateCharacter = (props, teamIndex, characterIndex, characterName) => {
     teamIndex: teamIndex,
     characterIndex: characterIndex,
     characterName: characterName,
-
   });
 }
 
@@ -80,7 +79,6 @@ const getCharacterElements = (props, state, setState) => {
           towerName={props.tower}
           towerIndex={props.towerIndex}
           teamIndex={teamIndex}
-          // updateStates={(stats) => updateCharacter()}
         />
       </div>
     ));
