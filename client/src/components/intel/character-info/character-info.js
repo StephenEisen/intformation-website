@@ -4,13 +4,16 @@ import hp from "assets/icons/hp.png";
 import speed from "assets/icons/speed.png";
 import notes from "assets/icons/notes.png";
 import artifact from "assets/icons/artifact.png";
+import { socket } from "globals/socket";
 
 const updateStat = (key, value, props, state, setState) => {
-  setState((prevState) => ({
-    ...prevState,
-    [key]: value,
-  }));
-  props.updateStats(state)
+  console.log(props);
+  socket.emit("updateCharacter", {
+    ...state,
+    ...props.characterData,
+    [key]: value
+  });
+  setState((prevState) => ({...prevState, [key]: value}));
 };
 
 const CharacterInfo = (props) => {
@@ -30,6 +33,7 @@ const CharacterInfo = (props) => {
         <input
           type="number"
           placeholder="Health Points"
+          defaultValue={props.stats.hp}
           onBlur={(e) => {
             updateStat("hp", e.target.value, props, state, setState);
           }}

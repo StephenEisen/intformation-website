@@ -25,7 +25,7 @@ const changeList = (state, setState, selectedOption, characterIndex) => {
   options.forEach((option) => option.isDisabled = selected.includes(option.value))
 
   // Update the state
-  setState({ options, selected });
+  setState((prevState) => ({...prevState, options, selected }));
 }
 
 /**
@@ -36,15 +36,18 @@ const changeList = (state, setState, selectedOption, characterIndex) => {
  * @param {*} characterIndex
  * @param {*} characterName
  */
-const updateCharacter = (props, teamIndex, characterIndex, characterName) => {
-  socket.emit("updateCharacter", {
+const updateCharacter = (props, teamIndex, characterIndex, characterName, state, setState) => {
+  const data = state.characterData;
+  data[characterIndex] = {
     pageId: getPageId(),
     towerIndex: props.towerIndex,
     towerName: props.tower.name,
     teamIndex: teamIndex,
     characterIndex: characterIndex,
     characterName: characterName,
-  });
+  };
+  socket.emit("updateCharacter", data[characterIndex]);
+  setState((prevState) => ({...prevState, characterData: data}));
 }
 
 /**
@@ -71,14 +74,13 @@ const getCharacterElements = (props, state, setState) => {
           value={currentCharacter}
           onChange={(e) => {
             changeList(state, setState, e.value, i);
-            updateCharacter(props, teamIndex, i, e.value);
+            updateCharacter(props, teamIndex, i, e.value, state, setState);
           }}
         />
         <CharacterInfo
           disabled={state.selected[i] == null}
-          towerName={props.tower}
-          towerIndex={props.towerIndex}
-          teamIndex={teamIndex}
+          stats={props.tower.characters[i]}
+          characterData={state.characterData[i]}
         />
       </div>
     ));
@@ -91,20 +93,30 @@ const TowerInfo = (props) => {
   // Define state and create elements to render
   const [state, setState] = useState({
     options: clone(characterOptions),
-    selected: Array(6).fill(null)
+    selected: Array(6).fill(null),
+    characterData: Array(6).fill({}),
   });
   const characterElements = getCharacterElements(props, state, setState);
 
   // Update the dropdowns and after initial load (for when there is saved data)
   useEffect(() => {
+    console.log(props.tower);
+
     // Add the selected options retrieved from the database
     const selected = state.selected;
+    const characterData = state.characterData;
     for (let i = 0; i < props.tower.characters.length; i++) {
       selected.splice(i, 1, props.tower.characters[i].name);
+      characterData.splice(i, 1, props.tower.characters[i]);
+      characterData[i].pageId = getPageId();
+      characterData[i].teamIndex = props.tower.characters[i].team;
+      characterData[i].towerIndex = props.towerIndex;
+      characterData[i].characterIndex = i;
+      characterData[i].characterName = props.tower.characters[i].name;
     }
 
     // Update the state and disable what's necessary
-    setState((prevState) => ({ ...prevState, selected }));
+    setState((prevState) => ({ ...prevState, selected, characterData }));
     changeList(state, setState);
 
     // Need empty cleanup function to prevent memory leak (why tho?)

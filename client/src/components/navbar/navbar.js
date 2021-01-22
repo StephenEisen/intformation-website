@@ -16,8 +16,8 @@ const Navbar = () => {
         <div className="navbar-logo">
           <img src={logo} alt="IntFormation" />
           <a href="/">
-            <div className="navbar-title-first">VCROX</div>
-            <div className="navbar-title-second">BODY PILLOW</div>
+            <div className="navbar-title-first">Epic7</div>
+            <div className="navbar-title-second">Real Time Intel</div>
           </a>
         </div>
 

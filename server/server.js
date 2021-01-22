@@ -1,5 +1,5 @@
 const server = require("http").createServer();
-const options = { cors: true, origins: ["http://epic7.gg"] };
+const options = { cors: true, origins: ["http://127.0.0.1:3000"] };
 const io = require("socket.io")(server, options);
 const mongodb = require("./mongodb/connection.js");
 const queries = require("./mongodb/queries.js");
@@ -53,6 +53,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("updateCharacter", async (data) => {
+    console.log(data);
     const updatedCharacter = await queries.updateTower(data);
     io.sockets.emit("updateCharacterSuccess", updatedCharacter);
   });

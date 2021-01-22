@@ -1,6 +1,6 @@
 import socketIOClient from "socket.io-client";
 
-export const socket = socketIOClient("http://epic7.gg:8080");
+export const socket = socketIOClient("http://localhost:8080");
 
 export function getPageId() {
   const windowHistory = window.history.state;

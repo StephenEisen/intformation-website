@@ -36,13 +36,21 @@ async function updateTower(towerData) {
       $set: {
         [queryKey]: {
           team: towerData.teamIndex,
-          name: towerData.characterName
+          name: towerData.characterName,
+          hp: towerData.hp,
+          speed: towerData.speed,
+          artifact: towerData.artifact,
+          notes: towerData.notes
         }
       }
     },
     { new: true, upsert: true }
   );
 };
+
+async function updateStats(characterData) {
+
+}
 
 async function countTotalGuilds() {
   return GuildData.count({});
