@@ -93,8 +93,7 @@ const TowerInfo = (props) => {
   // Define state and create elements to render
   const [state, setState] = useState({
     options: clone(characterOptions),
-    selected: Array(6).fill(null),
-    character
+    selected: Array(6).fill(null)
   });
   const characterElements = getCharacterElements(props, state, setState);
 
