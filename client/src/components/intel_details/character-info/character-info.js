@@ -4,11 +4,14 @@ import hp from "assets/icons/hp.png";
 import speed from "assets/icons/speed.png";
 import notes from "assets/icons/notes.png";
 import artifact from "assets/icons/artifact.png";
-import { getPageId, socket } from "globals/socket";
+import { socket } from "globals/socket";
+import { useParams } from "react-router-dom";
 
 
 
 const CharacterInfo = (props) => {
+  const { id } = useParams();
+
   const [state, setState] = useState({
     hp: props.characterData.hp || '',
     speed: props.characterData.speed || '',
@@ -20,7 +23,7 @@ const CharacterInfo = (props) => {
     socket.emit("updateCharacter", {
       ...props.characterData,
       ...state,
-      pageId: getPageId()
+      pageId: id
     });
   };
 
