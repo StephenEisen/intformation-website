@@ -12,12 +12,10 @@ const IntelDetails = props => {
   // We should consider changing create tower and find intel to api calls
   // It would allow us to avoid these socket.off calls
   const findIntelSuccess = data => {
-    console.log('1', data);
     setTowerData(data.data);
   }
 
   const createTowerSuccess = data => {
-    console.log('2', data);
     setTowerData(data.data);
   }
 
