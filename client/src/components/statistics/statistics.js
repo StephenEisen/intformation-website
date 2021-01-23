@@ -31,22 +31,22 @@ const Statistics = () => {
       {/* pass in whatever the most commonly used units for that given time period are */}
       <h2>Most Commonly Used Stats On: {"Enott"}</h2>
       <p>
-        Artifact: {"Big pp artifact"} <br></br>
-        Hp: {"6969"} <br></br>
+        Artifact: {"Artifact"} <br></br>
+        Hp: {"435345"} <br></br>
         Speed: {"1447"} <br></br>
         LifeSteal ? Counter ? | null
       </p>
       <h2>Most Commonly Used Stats On: {"Enott"}</h2>
       <p>
-        Artifact: {"Big pp artifact"} <br></br>
-        Hp: {"6969"} <br></br>
+        Artifact: {"Artifact"} <br></br>
+        Hp: {"435345"} <br></br>
         Speed: {"1447"} <br></br>
         LifeSteal ? Counter ? | null
       </p>
       <h2>Most Commonly Used Stats On: {"Enott"}</h2>
       <p>
-        Artifact: {"Big pp artifact"} <br></br>
-        Hp: {"6969"} <br></br>
+        Artifact: {"Artifact"} <br></br>
+        Hp: {"435345"} <br></br>
         Speed: {"1447"} <br></br>
         LifeSteal ? Counter ? | null
       </p>
