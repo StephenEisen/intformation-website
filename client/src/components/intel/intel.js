@@ -1,62 +1,80 @@
-import React, { useEffect, useState } from "react";
-import { socket, getPageId } from "globals/socket.js";
-import "./intel.css";
+import React, { useState } from "react";
+import { socket } from "globals/socket.js";
+import './intel.css';
+import castle from 'assets/castle.png';
+import map from 'assets/map.png';
+import { useHistory } from "react-router-dom";
 
-import IntelConnect from "./intel-connect/intel-connect";
-import TowerDisplay from "./tower-display/tower-display";
+const Intel = (props) => {
+  const history = useHistory();
+  const [intelID, setIntelID] = useState("");
 
-const createIntel = (data, setState) => {
-  window.history.pushState(data.pageId, "", "/intel/" + data.pageId);
-  setState(prevState => ({ ...prevState, isIntelConnectVisible: false }));
-};
+  const createNewIntelSuccessHandler = data => {
+    socket.off("createIntelSuccess", createNewIntelSuccessHandler);
+    history.push(`/intel/${data.pageId}`)
+  }
 
-const findIntel = (data, setState) => {
-  window.history.pushState(data.pageId, "", "/intel/" + data.pageId);
-  setState(prevState => ({
-    ...prevState,
-    isIntelConnectVisible: false,
-    towerData: data.data
-  }));
-};
+  const createNewIntel = () => {
+    socket.on("createIntelSuccess", createNewIntelSuccessHandler);
+    socket.emit("createIntel");
+  };
 
-const updateIntel = (data, setState) => {
-  setState((prevState) => ({ ...prevState, towerData: data.data }));
-};
-
-const Intel = () => {
-  const [state, setState] = useState({
-    isIntelConnectVisible: true,
-    towerData: []
-  });
-
-  useEffect(() => {
-    if (getPageId() != null) {
-      socket.emit("findIntel", getPageId());
-    }
-
-    const createIntelHandler = (data) => { createIntel(data, setState) };
-    const findIntelHandler = (data) => { findIntel(data, setState) };
-    const updateIntelHandler = (data) => { updateIntel(data, setState) };
-
-    socket.on("createIntelSuccess", createIntelHandler);
-    socket.on("findIntelSuccess", findIntelHandler);
-    socket.on("createTowerSuccess", updateIntelHandler);
-    socket.on("updateCharacterSuccess", updateIntelHandler);
-
-    return () => {
-      socket.off("createIntelSuccess", createIntelHandler);
-      socket.off("findIntelSuccess", findIntelHandler);
-      socket.off("createTowerSuccess", updateIntelHandler);
-      socket.off("updateCharacterSuccess", updateIntelHandler);
-    };
-  }, []);
+  const joinExistingIntel = () => {
+    history.push(`/intel/${intelID}`)
+  };
 
   return (
-    <div>
-      {/* CREATE OR JOIN INTEL */}
-      <IntelConnect visible={state.isIntelConnectVisible}/>
-      <TowerDisplay visible={!state.isIntelConnectVisible} towerData={state.towerData}/>
-    </div>
+    <section className="intel-connect">
+      <div className="intel-connect-title">
+        <h1>Create or Join Intel</h1>
+      </div>
+
+      <div className="container">
+        <div className="intel-connect-container-left">
+          <img src={castle} alt="Create New Intel" />
+        </div>
+        <div className="intel-connect-container-right">
+          <p>
+            Create a new intel id to share with your guild mates. All updates happen in real time and will remain saved
+            for up to three days. You may, however, always see your records on the Statistics page.
+            Click the button below to get started.
+          </p>
+          <div className="intel-connect-create">
+            <button className="slide-btn-horizontal" onClick={createNewIntel}>
+              <span className="slide-btn-text">Create New Intel</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+        <div className="intel-connect-container-left">
+          <img src={map} alt="Join Existing Intel" />
+        </div>
+        <div className="intel-connect-container-right">
+          <p>
+            Already have an intel id? Type it in the input box below and click the join button below to see
+            and update your on-going Guild War.
+          </p>
+          <div className="intel-connect-join">
+            <input
+              className="intel-id-input"
+              type="text"
+              onChange={e => setIntelID(e.target.value)}
+              onKeyPress={e => {
+                if (e.key === 'Enter') {
+                  joinExistingIntel()
+                }
+              }}
+              placeholder="Enter intel id...">
+            </input>
+            <button className="slide-btn-horizontal" onClick={joinExistingIntel}>
+              <span className="slide-btn-text">Join Existing Intel</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
