@@ -2,7 +2,7 @@ import React from "react";
 import Select from 'react-select'
 import "./tower-info.css";
 import { clone } from "globals/utils";
-import { socket, getPageId } from "globals/socket.js";
+import { socket } from "globals/socket.js";
 import { CharacterData } from "models/character.model";
 import CharacterInfo from "../character-info/character-info";
 const characterOptions = require("constants/character-info.json");
@@ -61,7 +61,7 @@ class TowerInfo extends React.Component {
   updateCharacter(teamIndex, characterIndex, characterName) {
     const data = this.state.characterList;
     data[characterIndex] = {
-      pageId: getPageId(),
+      pageId: this.props.match.params.id,
       towerIndex: this.props.towerIndex,
       characterIndex: characterIndex,
       team: teamIndex,
