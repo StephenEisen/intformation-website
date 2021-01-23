@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import "./tower-display.css";
-import AddTowerDialog from "components/intel/add-tower-dialog/add-tower-dialog.js";
+import AddTowerDialog from "../add-tower-dialog/add-tower-dialog.js";
 import plus from "assets/plus.png";
 import TowerInfo from "../tower-info/tower-info.js";
 
 const TowerDisplay = (props) => {
   const [state, setState] = useState({ isAddTowerDialogVisible: false });
-
-  if (!props.visible) {
-    return null;
-  }
 
   return (
     <div>
@@ -17,6 +13,7 @@ const TowerDisplay = (props) => {
       <AddTowerDialog
         onClose={() => setState({ ...state, isAddTowerDialogVisible: false })}
         visible={state.isAddTowerDialogVisible}
+        intelID={props.intelID}
       />
 
       <button
