@@ -3,1218 +3,1421 @@
     "class": "Soul Weaver",
     "element": "Fire",
     "value": "Achates",
-    "label": "Achates"
+    "label": "Achates",
+    "photo": "assets/characters/Achates.png"
   },
   {
     "class": "Mage",
     "element": "Earth",
     "value": "Adlay",
-    "label": "Adlay"
+    "label": "Adlay",
+    "photo": "assets/characters/Adlay.png"
   },
   {
     "class": "Knight",
     "element": "Fire",
     "value": "Adventurer Ras",
-    "label": "Adventurer Ras"
+    "label": "Adventurer Ras",
+    "photo": "assets/characters/Adventurer Ras.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Dark",
     "value": "Ainos",
-    "label": "Ainos"
+    "label": "Ainos",
+    "photo": "assets/characters/Ainos.png"
   },
   {
     "class": "Warrior",
     "element": "Earth",
     "value": "Ains",
-    "label": "Ains"
+    "label": "Ains",
+    "photo": "assets/characters/Ains.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Ice",
     "value": "Aither",
-    "label": "Aither"
+    "label": "Aither",
+    "photo": "assets/characters/Aither.png"
   },
   {
     "class": "Warrior",
     "element": "Earth",
     "value": "Alencia",
-    "label": "Alencia"
+    "label": "Alencia",
+    "photo": "assets/characters/Alencia.png"
   },
   {
     "class": "Thief",
     "element": "Ice",
     "value": "Alexa",
-    "label": "Alexa"
+    "label": "Alexa",
+    "photo": "assets/characters/Alexa.png"
   },
   {
     "class": "Ranger",
     "element": "Dark",
     "value": "All-Rounder Wanda",
-    "label": "All-Rounder Wanda"
+    "label": "All-Rounder Wanda",
+    "photo": "assets/characters/All-Rounder Wanda.png"
   },
   {
     "class": "Knight",
     "element": "Light",
     "value": "Ambitious Tywin",
-    "label": "Ambitious Tywin"
+    "label": "Ambitious Tywin",
+    "photo": "assets/characters/Ambitious Tywin.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Ice",
     "value": "Angelic Montmorancy",
-    "label": "Angelic Montmorancy"
+    "label": "Angelic Montmorancy",
+    "photo": "assets/characters/Angelic Montmorancy.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Ice",
     "value": "Angelica",
-    "label": "Angelica"
+    "label": "Angelica",
+    "photo": "assets/characters/Angelica.png"
   },
   {
     "class": "Warrior",
     "element": "Dark",
     "value": "Apocalypse Ravi",
-    "label": "Apocalypse Ravi"
+    "label": "Apocalypse Ravi",
+    "photo": "assets/characters/Apocalypse Ravi.png"
   },
   {
     "class": "Mage",
     "element": "Fire",
     "value": "Aramintha",
-    "label": "Aramintha"
+    "label": "Aramintha",
+    "photo": "assets/characters/Aramintha.png"
   },
   {
     "class": "Thief",
     "element": "Dark",
     "value": "Arbiter Vildred",
-    "label": "Arbiter Vildred"
+    "label": "Arbiter Vildred",
+    "photo": "assets/characters/Arbiter Vildred.png"
   },
   {
     "class": "Mage",
     "element": "Dark",
-    "value": "Archdemon\"s Shadow",
-    "label": "Archdemon\"s Shadow"
+    "value": "Archdemons Shadow",
+    "label": "Archdemons Shadow",
+    "photo": "assets/characters/Archdemons Shadow.png"
   },
   {
     "class": "Knight",
     "element": "Earth",
     "value": "Armin",
-    "label": "Armin"
+    "label": "Armin",
+    "photo": "assets/characters/Armin.png"
   },
   {
     "class": "Knight",
     "element": "Light",
     "value": "Arowell",
-    "label": "Arowell"
+    "label": "Arowell",
+    "photo": "assets/characters/Arowell.png"
   },
   {
     "class": "Warrior",
     "element": "Dark",
     "value": "Assassin Cartuja",
-    "label": "Assassin Cartuja"
+    "label": "Assassin Cartuja",
+    "photo": "assets/characters/Assassin Cartuja.png"
   },
   {
     "class": "Thief",
     "element": "Dark",
     "value": "Assassin Cidd",
-    "label": "Assassin Cidd"
+    "label": "Assassin Cidd",
+    "photo": "assets/characters/Assassin Cidd.png"
   },
   {
     "class": "Thief",
     "element": "Dark",
     "value": "Assassin Coli",
-    "label": "Assassin Coli"
+    "label": "Assassin Coli",
+    "photo": "assets/characters/Assassin Coli.png"
   },
   {
     "class": "Mage",
     "element": "Dark",
     "value": "Auxiliary Lots",
-    "label": "Auxiliary Lots"
+    "label": "Auxiliary Lots",
+    "photo": "assets/characters/Auxiliary Lots.png"
   },
   {
     "class": "Warrior",
     "element": "Fire",
     "value": "Azalea",
-    "label": "Azalea"
+    "label": "Azalea",
+    "photo": "assets/characters/Azalea.png"
   },
   {
     "class": "Mage",
     "element": "Fire",
     "value": "Baal and Sezan",
-    "label": "Baal and Sezan"
+    "label": "Baal and Sezan",
+    "photo": "assets/characters/Baal and Sezan.png"
   },
   {
     "class": "Thief",
     "element": "Earth",
     "value": "Baiken",
-    "label": "Baiken"
+    "label": "Baiken",
+    "photo": "assets/characters/Baiken.png"
   },
   {
     "class": "Mage",
     "element": "Earth",
     "value": "Basar",
-    "label": "Basar"
+    "label": "Basar",
+    "photo": "assets/characters/Basar.png"
   },
   {
     "class": "Knight",
     "element": "Ice",
     "value": "Bask",
-    "label": "Bask"
+    "label": "Bask",
+    "photo": "assets/characters/Bask.png"
   },
   {
     "class": "Warrior",
     "element": "Dark",
     "value": "Batisse",
-    "label": "Batisse"
+    "label": "Batisse",
+    "photo": "assets/characters/Batisse.png"
   },
   {
     "class": "Ranger",
     "element": "Earth",
     "value": "Bellona",
-    "label": "Bellona"
+    "label": "Bellona",
+    "photo": "assets/characters/Bellona.png"
   },
   {
     "class": "Mage",
     "element": "Light",
     "value": "Benevolent Romann",
-    "label": "Benevolent Romann"
+    "label": "Benevolent Romann",
+    "photo": "assets/characters/Benevolent Romann.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Light",
     "value": "Blaze Dingo",
-    "label": "Blaze Dingo"
+    "label": "Blaze Dingo",
+    "photo": "assets/characters/Blaze Dingo.png"
   },
   {
     "class": "Thief",
     "element": "Dark",
     "value": "Blood Blade Karin",
-    "label": "Blood Blade Karin"
+    "label": "Blood Blade Karin",
+    "photo": "assets/characters/Blood Blade Karin.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Dark",
     "value": "Blood Moon Haste",
-    "label": "Blood Moon Haste"
+    "label": "Blood Moon Haste",
+    "photo": "assets/characters/Blood Moon Haste.png"
   },
   {
     "class": "Ranger",
     "element": "Dark",
     "value": "Briar Witch Iseria",
-    "label": "Briar Witch Iseria"
+    "label": "Briar Witch Iseria",
+    "photo": "assets/characters/Briar Witch Iseria.png"
   },
   {
     "class": "Knight",
     "element": "Fire",
     "value": "Butcher Corps Inquisitor",
-    "label": "Butcher Corps Inquisitor"
+    "label": "Butcher Corps Inquisitor",
+    "photo": "assets/characters/Butcher Corps Inquisitor.png"
   },
   {
     "class": "Warrior",
     "element": "Light",
     "value": "Captain Rikoris",
-    "label": "Captain Rikoris"
+    "label": "Captain Rikoris",
+    "photo": "assets/characters/Captain Rikoris.png"
   },
   {
     "class": "Mage",
     "element": "Fire",
     "value": "Carmainerose",
-    "label": "Carmainerose"
+    "label": "Carmainerose",
+    "photo": "assets/characters/Carmainerose.png"
   },
   {
     "class": "Mage",
     "element": "Fire",
     "value": "Carrot",
-    "label": "Carrot"
+    "label": "Carrot",
+    "photo": "assets/characters/Carrot.png"
   },
   {
     "class": "Warrior",
     "element": "Earth",
     "value": "Cartuja",
-    "label": "Cartuja"
+    "label": "Cartuja",
+    "photo": "assets/characters/Cartuja.png"
   },
   {
     "class": "Knight",
     "element": "Fire",
     "value": "Cecilia",
-    "label": "Cecilia"
+    "label": "Cecilia",
+    "photo": "assets/characters/Cecilia.png"
   },
   {
     "class": "Ranger",
     "element": "Light",
     "value": "Celeste",
-    "label": "Celeste"
+    "label": "Celeste",
+    "photo": "assets/characters/Celeste.png"
   },
   {
     "class": "Mage",
     "element": "Dark",
     "value": "Celestial Mercedes",
-    "label": "Celestial Mercedes"
+    "label": "Celestial Mercedes",
+    "photo": "assets/characters/Celestial Mercedes.png"
   },
   {
     "class": "Thief",
     "element": "Earth",
     "value": "Celine",
-    "label": "Celine"
+    "label": "Celine",
+    "photo": "assets/characters/Celine.png"
   },
   {
     "class": "Ranger",
     "element": "Ice",
     "value": "Cerise",
-    "label": "Cerise"
+    "label": "Cerise",
+    "photo": "assets/characters/Cerise.png"
   },
   {
     "class": "Warrior",
     "element": "Fire",
     "value": "Cermia",
-    "label": "Cermia"
+    "label": "Cermia",
+    "photo": "assets/characters/Cermia.png"
   },
   {
     "class": "Mage",
     "element": "Dark",
     "value": "Challenger Dominiel",
-    "label": "Challenger Dominiel"
+    "label": "Challenger Dominiel",
+    "photo": "assets/characters/Challenger Dominiel.png"
   },
   {
     "class": "Mage",
     "element": "Dark",
     "value": "Champion Zerato",
-    "label": "Champion Zerato"
+    "label": "Champion Zerato",
+    "photo": "assets/characters/Champion Zerato.png"
   },
   {
     "class": "Knight",
     "element": "Fire",
     "value": "Chaos Inquisitor",
-    "label": "Chaos Inquisitor"
+    "label": "Chaos Inquisitor",
+    "photo": "assets/characters/Chaos Inquisitor.png"
   },
   {
     "class": "Warrior",
     "element": "Dark",
     "value": "Chaos Sect Axe",
-    "label": "Chaos Sect Axe"
+    "label": "Chaos Sect Axe",
+    "photo": "assets/characters/Chaos Sect Axe.png"
   },
   {
     "class": "Knight",
     "element": "Earth",
     "value": "Charles",
-    "label": "Charles"
+    "label": "Charles",
+    "photo": "assets/characters/Charles.png"
   },
   {
     "class": "Knight",
     "element": "Fire",
     "value": "Charlotte",
-    "label": "Charlotte"
+    "label": "Charlotte",
+    "photo": "assets/characters/Charlotte.png"
   },
   {
     "class": "Warrior",
     "element": "Ice",
     "value": "Chloe",
-    "label": "Chloe"
+    "label": "Chloe",
+    "photo": "assets/characters/Chloe.png"
   },
   {
     "class": "Warrior",
     "element": "Ice",
     "value": "Choux",
-    "label": "Choux"
+    "label": "Choux",
+    "photo": "assets/characters/Choux.png"
   },
   {
     "class": "Warrior",
     "element": "Dark",
     "value": "Church of Ilryos Axe",
-    "label": "Church of Ilryos Axe"
+    "label": "Church of Ilryos Axe",
+    "photo": "assets/characters/Church of Ilryos Axe.png"
   },
   {
     "class": "Thief",
     "element": "Earth",
     "value": "Cidd",
-    "label": "Cidd"
+    "label": "Cidd",
+    "photo": "assets/characters/Cidd.png"
   },
   {
     "class": "Warrior",
     "element": "Ice",
     "value": "Clarissa",
-    "label": "Clarissa"
+    "label": "Clarissa",
+    "photo": "assets/characters/Clarissa.png"
   },
   {
     "class": "Thief",
     "element": "Ice",
     "value": "Coli",
-    "label": "Coli"
+    "label": "Coli",
+    "photo": "assets/characters/Coli.png"
   },
   {
     "class": "Warrior",
     "element": "Dark",
     "value": "Commander Lorina",
-    "label": "Commander Lorina"
+    "label": "Commander Lorina",
+    "photo": "assets/characters/Commander Lorina.png"
   },
   {
     "class": "Warrior",
     "element": "Fire",
     "value": "Corvus",
-    "label": "Corvus"
+    "label": "Corvus",
+    "photo": "assets/characters/Corvus.png"
   },
   {
     "class": "Thief",
     "element": "Dark",
     "value": "Crescent Moon Rin",
-    "label": "Crescent Moon Rin"
+    "label": "Crescent Moon Rin",
+    "photo": "assets/characters/Crescent Moon Rin.png"
   },
   {
     "class": "Knight",
     "element": "Light",
     "value": "Crimson Armin",
-    "label": "Crimson Armin"
+    "label": "Crimson Armin",
+    "photo": "assets/characters/Crimson Armin.png"
   },
   {
     "class": "Knight",
     "element": "Ice",
     "value": "Crozet",
-    "label": "Crozet"
+    "label": "Crozet",
+    "photo": "assets/characters/Crozet.png"
   },
   {
     "class": "Warrior",
     "element": "Dark",
     "value": "Dark Corvus",
-    "label": "Dark Corvus"
+    "label": "Dark Corvus",
+    "photo": "assets/characters/Dark Corvus.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Light",
     "value": "Desert Jewel Basar",
-    "label": "Desert Jewel Basar"
+    "label": "Desert Jewel Basar",
+    "photo": "assets/characters/Desert Jewel Basar.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Earth",
     "value": "Destina",
-    "label": "Destina"
+    "label": "Destina",
+    "photo": "assets/characters/Destina.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Ice",
     "value": "Diene",
-    "label": "Diene"
+    "label": "Diene",
+    "photo": "assets/characters/Diene.png"
   },
   {
     "class": "Warrior",
     "element": "Fire",
     "value": "Dingo",
-    "label": "Dingo"
+    "label": "Dingo",
+    "photo": "assets/characters/Dingo.png"
   },
   {
     "class": "Mage",
     "element": "Ice",
     "value": "Dizzy",
-    "label": "Dizzy"
+    "label": "Dizzy",
+    "photo": "assets/characters/Dizzy.png"
   },
   {
     "class": "Mage",
     "element": "Earth",
     "value": "Doll Maker Pearlhorizon",
-    "label": "Doll Maker Pearlhorizon"
+    "label": "Doll Maker Pearlhorizon",
+    "photo": "assets/characters/Doll Maker Pearlhorizon.png"
   },
   {
     "class": "Mage",
     "element": "Ice",
     "value": "Dominiel",
-    "label": "Dominiel"
+    "label": "Dominiel",
+    "photo": "assets/characters/Dominiel.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Light",
     "value": "Doris",
-    "label": "Doris"
+    "label": "Doris",
+    "photo": "assets/characters/Doris.png"
   },
   {
     "class": "Knight",
     "element": "Light",
     "value": "Eaton",
-    "label": "Eaton"
+    "label": "Eaton",
+    "photo": "assets/characters/Eaton.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Ice",
     "value": "Elena",
-    "label": "Elena"
+    "label": "Elena",
+    "photo": "assets/characters/Elena.png"
   },
   {
     "class": "Ranger",
     "element": "Fire",
     "value": "Elphelt Valentine",
-    "label": "Elphelt Valentine"
+    "label": "Elphelt Valentine",
+    "photo": "assets/characters/Elphelt Valentine.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Light",
     "value": "Elson",
-    "label": "Elson"
+    "label": "Elson",
+    "photo": "assets/characters/Elson.png"
   },
   {
     "class": "Warrior",
     "element": "Ice",
     "value": "Enott",
-    "label": "Enott"
+    "label": "Enott",
+    "photo": "assets/characters/Enott.png"
   },
   {
     "class": "Thief",
     "element": "Earth",
     "value": "Ervalen",
-    "label": "Ervalen"
+    "label": "Ervalen",
+    "photo": "assets/characters/Ervalen.png"
   },
   {
     "class": "Mage",
     "element": "Ice",
     "value": "Fairytale Tenebria",
-    "label": "Fairytale Tenebria"
+    "label": "Fairytale Tenebria",
+    "photo": "assets/characters/Fairytale Tenebria.png"
   },
   {
     "class": "Ranger",
     "element": "Light",
     "value": "Faithless Lidica",
-    "label": "Faithless Lidica"
+    "label": "Faithless Lidica",
+    "photo": "assets/characters/Faithless Lidica.png"
   },
   {
     "class": "Knight",
     "element": "Earth",
     "value": "Falconer Kluri",
-    "label": "Falconer Kluri"
+    "label": "Falconer Kluri",
+    "photo": "assets/characters/Falconer Kluri.png"
   },
   {
     "class": "Knight",
     "element": "Dark",
     "value": "Fallen Cecilia",
-    "label": "Fallen Cecilia"
+    "label": "Fallen Cecilia",
+    "photo": "assets/characters/Fallen Cecilia.png"
   },
   {
     "class": "Knight",
     "element": "Light",
     "value": "Fighter Maya",
-    "label": "Fighter Maya"
+    "label": "Fighter Maya",
+    "photo": "assets/characters/Fighter Maya.png"
   },
   {
     "class": "Ranger",
     "element": "Ice",
     "value": "Flan",
-    "label": "Flan"
+    "label": "Flan",
+    "photo": "assets/characters/Flan.png"
   },
   {
     "class": "Warrior",
     "element": "Light",
     "value": "Free Spirit Tieria",
-    "label": "Free Spirit Tieria"
+    "label": "Free Spirit Tieria",
+    "photo": "assets/characters/Free Spirit Tieria.png"
   },
   {
     "class": "Ranger",
     "element": "Ice",
     "value": "Furious",
-    "label": "Furious"
+    "label": "Furious",
+    "photo": "assets/characters/Furious.png"
   },
   {
     "class": "Warrior",
     "element": "Light",
     "value": "General Purrgis",
-    "label": "General Purrgis"
+    "label": "General Purrgis",
+    "photo": "assets/characters/General Purrgis.png"
   },
   {
     "class": "Ranger",
     "element": "Earth",
     "value": "Glenn",
-    "label": "Glenn"
+    "label": "Glenn",
+    "photo": "assets/characters/Glenn.png"
   },
   {
     "class": "Mage",
     "element": "Light",
     "value": "Gloomyrain",
-    "label": "Gloomyrain"
+    "label": "Gloomyrain",
+    "photo": "assets/characters/Gloomyrain.png"
   },
   {
     "class": "Ranger",
     "element": "Fire",
     "value": "Godmother",
-    "label": "Godmother"
+    "label": "Godmother",
+    "photo": "assets/characters/Godmother.png"
   },
   {
     "class": "Mage",
     "element": "Light",
     "value": "Guider Aither",
-    "label": "Guider Aither"
+    "label": "Guider Aither",
+    "photo": "assets/characters/Guider Aither.png"
   },
   {
     "class": "Warrior",
     "element": "Light",
     "value": "Gunther",
-    "label": "Gunther"
+    "label": "Gunther",
+    "photo": "assets/characters/Gunther.png"
   },
   {
     "class": "Thief",
     "element": "Fire",
     "value": "Haste",
-    "label": "Haste"
+    "label": "Haste",
+    "photo": "assets/characters/Haste.png"
   },
   {
     "class": "Thief",
     "element": "Fire",
     "value": "Hataan",
-    "label": "Hataan"
+    "label": "Hataan",
+    "photo": "assets/characters/Hataan.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Fire",
     "value": "Hazel",
-    "label": "Hazel"
+    "label": "Hazel",
+    "photo": "assets/characters/Hazel.png"
   },
   {
     "class": "Warrior",
     "element": "Earth",
     "value": "Helga",
-    "label": "Helga"
+    "label": "Helga",
+    "photo": "assets/characters/Helga.png"
   },
   {
     "class": "Warrior",
     "element": "Fire",
     "value": "Holiday Yufine",
-    "label": "Holiday Yufine"
+    "label": "Holiday Yufine",
+    "photo": "assets/characters/Holiday Yufine.png"
   },
   {
     "class": "Mage",
     "element": "Dark",
     "value": "Hurado",
-    "label": "Hurado"
+    "label": "Hurado",
+    "photo": "assets/characters/Hurado.png"
   },
   {
     "class": "Ranger",
     "element": "Ice",
     "value": "Ian",
-    "label": "Ian"
+    "label": "Ian",
+    "photo": "assets/characters/Ian.png"
   },
   {
     "class": "Ranger",
     "element": "Earth",
     "value": "Iseria",
-    "label": "Iseria"
+    "label": "Iseria",
+    "photo": "assets/characters/Iseria.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Earth",
     "value": "Jecht",
-    "label": "Jecht"
+    "label": "Jecht",
+    "photo": "assets/characters/Jecht.png"
   },
   {
     "class": "Mage",
     "element": "Ice",
     "value": "Jena",
-    "label": "Jena"
+    "label": "Jena",
+    "photo": "assets/characters/Jena.png"
   },
   {
     "class": "Warrior",
     "element": "Light",
     "value": "Judge Kise",
-    "label": "Judge Kise"
+    "label": "Judge Kise",
+    "photo": "assets/characters/Judge Kise.png"
   },
   {
     "class": "Thief",
     "element": "Fire",
     "value": "Judith",
-    "label": "Judith"
+    "label": "Judith",
+    "photo": "assets/characters/Judith.png"
   },
   {
     "class": "Thief",
     "element": "Ice",
     "value": "Karin",
-    "label": "Karin"
+    "label": "Karin",
+    "photo": "assets/characters/Karin.png"
   },
   {
     "class": "Mage",
     "element": "Fire",
     "value": "Kawerik",
-    "label": "Kawerik"
+    "label": "Kawerik",
+    "photo": "assets/characters/Kawerik.png"
   },
   {
     "class": "Thief",
     "element": "Fire",
     "value": "Kayron",
-    "label": "Kayron"
+    "label": "Kayron",
+    "photo": "assets/characters/Kayron.png"
   },
   {
     "class": "Warrior",
     "element": "Fire",
     "value": "Ken",
-    "label": "Ken"
+    "label": "Ken",
+    "photo": "assets/characters/Ken.png"
   },
   {
     "class": "Thief",
     "element": "Fire",
     "value": "Khawana",
-    "label": "Khawana"
+    "label": "Khawana",
+    "photo": "assets/characters/Khawana.png"
   },
   {
     "class": "Warrior",
     "element": "Fire",
     "value": "Khawazu",
-    "label": "Khawazu"
+    "label": "Khawazu",
+    "photo": "assets/characters/Khawazu.png"
   },
   {
     "class": "Knight",
     "element": "Light",
     "value": "Kikirat V2",
-    "label": "Kikirat V2"
+    "label": "Kikirat V2",
+    "photo": "assets/characters/Kikirat V2.png"
   },
   {
     "class": "Ranger",
     "element": "Earth",
     "value": "Kiris",
-    "label": "Kiris"
+    "label": "Kiris",
+    "photo": "assets/characters/Kiris.png"
   },
   {
     "class": "Thief",
     "element": "Ice",
     "value": "Kise",
-    "label": "Kise"
+    "label": "Kise",
+    "photo": "assets/characters/Kise.png"
   },
   {
     "class": "Warrior",
     "element": "Dark",
     "value": "Kitty Clarissa",
-    "label": "Kitty Clarissa"
+    "label": "Kitty Clarissa",
+    "photo": "assets/characters/Kitty Clarissa.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Fire",
     "value": "Kizuna AI",
-    "label": "Kizuna AI"
+    "label": "Kizuna AI",
+    "photo": "assets/characters/Kizuna AI.png"
   },
   {
     "class": "Knight",
     "element": "Earth",
     "value": "Kluri",
-    "label": "Kluri"
+    "label": "Kluri",
+    "photo": "assets/characters/Kluri.png"
   },
   {
     "class": "Knight",
     "element": "Ice",
     "value": "Krau",
-    "label": "Krau"
+    "label": "Krau",
+    "photo": "assets/characters/Krau.png"
   },
   {
     "class": "Ranger",
     "element": "Earth",
     "value": "Landy",
-    "label": "Landy"
+    "label": "Landy",
+    "photo": "assets/characters/Landy.png"
   },
   {
     "class": "Knight",
     "element": "Light",
     "value": "Last Rider Krau",
-    "label": "Last Rider Krau"
+    "label": "Last Rider Krau",
+    "photo": "assets/characters/Last Rider Krau.png"
   },
   {
     "class": "Warrior",
     "element": "Ice",
     "value": "Lena",
-    "label": "Lena"
+    "label": "Lena",
+    "photo": "assets/characters/Lena.png"
   },
   {
     "class": "Ranger",
     "element": "Earth",
     "value": "Leo",
-    "label": "Leo"
+    "label": "Leo",
+    "photo": "assets/characters/Leo.png"
   },
   {
     "class": "Ranger",
     "element": "Fire",
     "value": "Lidica",
-    "label": "Lidica"
+    "label": "Lidica",
+    "photo": "assets/characters/Lidica.png"
   },
   {
     "class": "Knight",
     "element": "Fire",
     "value": "Lilias",
-    "label": "Lilias"
+    "label": "Lilias",
+    "photo": "assets/characters/Lilias.png"
   },
   {
     "class": "Warrior",
     "element": "Earth",
     "value": "Lilibet",
-    "label": "Lilibet"
+    "label": "Lilibet",
+    "photo": "assets/characters/Lilibet.png"
   },
   {
     "class": "Warrior",
     "element": "Light",
     "value": "Little Queen Charlotte",
-    "label": "Little Queen Charlotte"
+    "label": "Little Queen Charlotte",
+    "photo": "assets/characters/Little Queen Charlotte.png"
   },
   {
     "class": "Warrior",
     "element": "Dark",
     "value": "Lorina",
-    "label": "Lorina"
+    "label": "Lorina",
+    "photo": "assets/characters/Lorina.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Earth",
     "value": "Lots",
-    "label": "Lots"
+    "label": "Lots",
+    "photo": "assets/characters/Lots.png"
   },
   {
     "class": "Mage",
     "element": "Earth",
     "value": "Ludwig",
-    "label": "Ludwig"
+    "label": "Ludwig",
+    "photo": "assets/characters/Ludwig.png"
   },
   {
     "class": "Mage",
     "element": "Ice",
     "value": "Luluca",
-    "label": "Luluca"
+    "label": "Luluca",
+    "photo": "assets/characters/Luluca.png"
   },
   {
     "class": "Warrior",
     "element": "Ice",
     "value": "Luna",
-    "label": "Luna"
+    "label": "Luna",
+    "photo": "assets/characters/Luna.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Light",
     "value": "Magic Scholar Doris",
-    "label": "Magic Scholar Doris"
+    "label": "Magic Scholar Doris",
+    "photo": "assets/characters/Magic Scholar Doris.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Light",
     "value": "Maid Chloe",
-    "label": "Maid Chloe"
+    "label": "Maid Chloe",
+    "photo": "assets/characters/Maid Chloe.png"
   },
   {
     "class": "Warrior",
     "element": "Dark",
     "value": "Martial Artist Ken",
-    "label": "Martial Artist Ken"
+    "label": "Martial Artist Ken",
+    "photo": "assets/characters/Martial Artist Ken.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Fire",
     "value": "Mascot Hazel",
-    "label": "Mascot Hazel"
+    "label": "Mascot Hazel",
+    "photo": "assets/characters/Mascot Hazel.png"
   },
   {
     "class": "Knight",
     "element": "Fire",
     "value": "Maya",
-    "label": "Maya"
+    "label": "Maya",
+    "photo": "assets/characters/Maya.png"
   },
   {
     "class": "Mage",
     "element": "Fire",
     "value": "Melissa",
-    "label": "Melissa"
+    "label": "Melissa",
+    "photo": "assets/characters/Melissa.png"
   },
   {
     "class": "Mage",
     "element": "Fire",
     "value": "Mercedes",
-    "label": "Mercedes"
+    "label": "Mercedes",
+    "photo": "assets/characters/Mercedes.png"
   },
   {
     "class": "Warrior",
     "element": "Earth",
     "value": "Mercenary Helga",
-    "label": "Mercenary Helga"
+    "label": "Mercenary Helga",
+    "photo": "assets/characters/Mercenary Helga.png"
   },
   {
     "class": "Thief",
     "element": "Light",
     "value": "Mirsa",
-    "label": "Mirsa"
+    "label": "Mirsa",
+    "photo": "assets/characters/Mirsa.png"
   },
   {
     "class": "Mage",
     "element": "Ice",
     "value": "Mistychain",
-    "label": "Mistychain"
+    "label": "Mistychain",
+    "photo": "assets/characters/Mistychain.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Ice",
     "value": "Montmorancy",
-    "label": "Montmorancy"
+    "label": "Montmorancy",
+    "photo": "assets/characters/Montmorancy.png"
   },
   {
     "class": "Knight",
     "element": "Earth",
     "value": "Mort",
-    "label": "Mort"
+    "label": "Mort",
+    "photo": "assets/characters/Mort.png"
   },
   {
     "class": "Warrior",
     "element": "Earth",
     "value": "Mucacha",
-    "label": "Mucacha"
+    "label": "Mucacha",
+    "photo": "assets/characters/Mucacha.png"
   },
   {
     "class": "Warrior",
     "element": "Earth",
     "value": "Mui",
-    "label": "Mui"
+    "label": "Mui",
+    "photo": "assets/characters/Mui.png"
   },
   {
     "class": "Ranger",
     "element": "Fire",
     "value": "Nemunas",
-    "label": "Nemunas"
+    "label": "Nemunas",
+    "photo": "assets/characters/Nemunas.png"
   },
   {
     "class": "Ranger",
     "element": "Dark",
     "value": "Operator Sigret",
-    "label": "Operator Sigret"
+    "label": "Operator Sigret",
+    "photo": "assets/characters/Operator Sigret.png"
   },
   {
     "class": "Mage",
     "element": "Dark",
     "value": "Otillie",
-    "label": "Otillie"
+    "label": "Otillie",
+    "photo": "assets/characters/Otillie.png"
   },
   {
     "class": "Ranger",
     "element": "Earth",
     "value": "Pavel",
-    "label": "Pavel"
+    "label": "Pavel",
+    "photo": "assets/characters/Pavel.png"
   },
   {
     "class": "Mage",
     "element": "Earth",
     "value": "Pearlhorizon",
-    "label": "Pearlhorizon"
+    "label": "Pearlhorizon",
+    "photo": "assets/characters/Pearlhorizon.png"
   },
   {
     "class": "Warrior",
     "element": "Earth",
     "value": "Purrgis",
-    "label": "Purrgis"
+    "label": "Purrgis",
+    "photo": "assets/characters/Purrgis.png"
   },
   {
     "class": "Knight",
     "element": "Dark",
     "value": "Pyllis",
-    "label": "Pyllis"
+    "label": "Pyllis",
+    "photo": "assets/characters/Pyllis.png"
   },
   {
     "class": "Knight",
     "element": "Fire",
     "value": "Ras",
-    "label": "Ras"
+    "label": "Ras",
+    "photo": "assets/characters/Ras.png"
   },
   {
     "class": "Warrior",
     "element": "Fire",
     "value": "Ravi",
-    "label": "Ravi"
+    "label": "Ravi",
+    "photo": "assets/characters/Ravi.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Earth",
     "value": "Ray",
-    "label": "Ray"
+    "label": "Ray",
+    "photo": "assets/characters/Ray.png"
   },
   {
     "class": "Thief",
     "element": "Dark",
     "value": "Remnant Violet",
-    "label": "Remnant Violet"
+    "label": "Remnant Violet",
+    "photo": "assets/characters/Remnant Violet.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Dark",
     "value": "Requiemroar",
-    "label": "Requiemroar"
+    "label": "Requiemroar",
+    "photo": "assets/characters/Requiemroar.png"
   },
   {
     "class": "Mage",
     "element": "Fire",
     "value": "Researcher Carrot",
-    "label": "Researcher Carrot"
+    "label": "Researcher Carrot",
+    "photo": "assets/characters/Researcher Carrot.png"
   },
   {
     "class": "Thief",
     "element": "Earth",
     "value": "Righteous Thief Roozid",
-    "label": "Righteous Thief Roozid"
+    "label": "Righteous Thief Roozid",
+    "photo": "assets/characters/Righteous Thief Roozid.png"
   },
   {
     "class": "Warrior",
     "element": "Light",
     "value": "Rikoris",
-    "label": "Rikoris"
+    "label": "Rikoris",
+    "photo": "assets/characters/Rikoris.png"
   },
   {
     "class": "Ranger",
     "element": "Ice",
     "value": "Rima",
-    "label": "Rima"
+    "label": "Rima",
+    "photo": "assets/characters/Rima.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Earth",
     "value": "Rin",
-    "label": "Rin"
+    "label": "Rin",
+    "photo": "assets/characters/Rin.png"
   },
   {
     "class": "Ranger",
     "element": "Dark",
     "value": "Roaming Warrior Leo",
-    "label": "Roaming Warrior Leo"
+    "label": "Roaming Warrior Leo",
+    "photo": "assets/characters/Roaming Warrior Leo.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Earth",
     "value": "Roana",
-    "label": "Roana"
+    "label": "Roana",
+    "photo": "assets/characters/Roana.png"
   },
   {
     "class": "Mage",
     "element": "Ice",
     "value": "Romann",
-    "label": "Romann"
+    "label": "Romann",
+    "photo": "assets/characters/Romann.png"
   },
   {
     "class": "Thief",
     "element": "Earth",
     "value": "Roozid",
-    "label": "Roozid"
+    "label": "Roozid",
+    "photo": "assets/characters/Roozid.png"
   },
   {
     "class": "Knight",
     "element": "Ice",
     "value": "Rose",
-    "label": "Rose"
+    "label": "Rose",
+    "photo": "assets/characters/Rose.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Light",
     "value": "Ruele of Light",
-    "label": "Ruele of Light"
+    "label": "Ruele of Light",
+    "photo": "assets/characters/Ruele of Light.png"
   },
   {
     "class": "Mage",
     "element": "Light",
     "value": "Sage Baal and Sezan",
-    "label": "Sage Baal and Sezan"
+    "label": "Sage Baal and Sezan",
+    "photo": "assets/characters/Sage Baal and Sezan.png"
   },
   {
     "class": "Ranger",
     "element": "Fire",
     "value": "Schuri",
-    "label": "Schuri"
+    "label": "Schuri",
+    "photo": "assets/characters/Schuri.png"
   },
   {
     "class": "Ranger",
     "element": "Ice",
     "value": "Seaside Bellona",
-    "label": "Seaside Bellona"
+    "label": "Seaside Bellona",
+    "photo": "assets/characters/Seaside Bellona.png"
   },
   {
     "class": "Mage",
     "element": "Fire",
     "value": "Serila",
-    "label": "Serila"
+    "label": "Serila",
+    "photo": "assets/characters/Serila.png"
   },
   {
     "class": "Thief",
     "element": "Ice",
     "value": "Sez",
-    "label": "Sez"
+    "label": "Sez",
+    "photo": "assets/characters/Sez.png"
   },
   {
     "class": "Knight",
     "element": "Dark",
     "value": "Shadow Rose",
-    "label": "Shadow Rose"
+    "label": "Shadow Rose",
+    "photo": "assets/characters/Shadow Rose.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Dark",
     "value": "Shooting Star Achates",
-    "label": "Shooting Star Achates"
+    "label": "Shooting Star Achates",
+    "photo": "assets/characters/Shooting Star Achates.png"
   },
   {
     "class": "Warrior",
     "element": "Ice",
     "value": "Sigret",
-    "label": "Sigret"
+    "label": "Sigret",
+    "photo": "assets/characters/Sigret.png"
   },
   {
     "class": "Ranger",
     "element": "Earth",
     "value": "Silk",
-    "label": "Silk"
+    "label": "Silk",
+    "photo": "assets/characters/Silk.png"
   },
   {
     "class": "Mage",
     "element": "Light",
     "value": "Silver Blade Aramintha",
-    "label": "Silver Blade Aramintha"
+    "label": "Silver Blade Aramintha",
+    "photo": "assets/characters/Silver Blade Aramintha.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Dark",
     "value": "Sinful Angelica",
-    "label": "Sinful Angelica"
+    "label": "Sinful Angelica",
+    "photo": "assets/characters/Sinful Angelica.png"
   },
   {
     "class": "Warrior",
     "element": "Fire",
     "value": "Sol Badguy",
-    "label": "Sol Badguy"
+    "label": "Sol Badguy",
+    "photo": "assets/characters/Sol Badguy.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Light",
     "value": "Sonia",
-    "label": "Sonia"
+    "label": "Sonia",
+    "photo": "assets/characters/Sonia.png"
   },
   {
     "class": "Thief",
     "element": "Light",
     "value": "Specimen Sez",
-    "label": "Specimen Sez"
+    "label": "Specimen Sez",
+    "photo": "assets/characters/Specimen Sez.png"
   },
   {
     "class": "Mage",
     "element": "Dark",
     "value": "Specter Tenebria",
-    "label": "Specter Tenebria"
+    "label": "Specter Tenebria",
+    "photo": "assets/characters/Specter Tenebria.png"
   },
   {
     "class": "Thief",
     "element": "Fire",
     "value": "Surin",
-    "label": "Surin"
+    "label": "Surin",
+    "photo": "assets/characters/Surin.png"
   },
   {
     "class": "Thief",
     "element": "Dark",
     "value": "Sven",
-    "label": "Sven"
+    "label": "Sven",
+    "photo": "assets/characters/Sven.png"
   },
   {
     "class": "Soul Weaver",
     "element": "Fire",
     "value": "Tamarinne",
-    "label": "Tamarinne"
+    "label": "Tamarinne",
+    "photo": "assets/characters/Tamarinne.png"
   },
   {
     "class": "Warrior",
     "element": "Ice",
     "value": "Taranor Guard",
-    "label": "Taranor Guard"
+    "label": "Taranor Guard",
+    "photo": "assets/characters/Taranor Guard.png"
   },
   {
     "class": "Knight",
     "element": "Ice",
     "value": "Taranor Royal Guard",
-    "label": "Taranor Royal Guard"
+    "label": "Taranor Royal Guard",
+    "photo": "assets/characters/Taranor Royal Guard.png"
   },
   {
     "class": "Thief",
     "element": "Light",
     "value": "Tempest Surin",
-    "label": "Tempest Surin"
+    "label": "Tempest Surin",
+    "photo": "assets/characters/Tempest Surin.png"
   },
   {
     "class": "Mage",
     "element": "Fire",
     "value": "Tenebria",
-    "label": "Tenebria"
+    "label": "Tenebria",
+    "photo": "assets/characters/Tenebria.png"
   },
   {
     "class": "Warrior",
     "element": "Fire",
     "value": "Tieria",
-    "label": "Tieria"
+    "label": "Tieria",
+    "photo": "assets/characters/Tieria.png"
   },
   {
     "class": "Mage",
     "element": "Dark",
     "value": "Top Model Luluca",
-    "label": "Top Model Luluca"
+    "label": "Top Model Luluca",
+    "photo": "assets/characters/Top Model Luluca.png"
   },
   {
     "class": "Knight",
     "element": "Dark",
     "value": "Troublemaker Crozet",
-    "label": "Troublemaker Crozet"
+    "label": "Troublemaker Crozet",
+    "photo": "assets/characters/Troublemaker Crozet.png"
   },
   {
     "class": "Knight",
     "element": "Ice",
     "value": "Tywin",
-    "label": "Tywin"
+    "label": "Tywin",
+    "photo": "assets/characters/Tywin.png"
   },
   {
     "class": "Thief",
     "element": "Earth",
     "value": "Vildred",
-    "label": "Vildred"
+    "label": "Vildred",
+    "photo": "assets/characters/Vildred.png"
   },
   {
     "class": "Thief",
     "element": "Earth",
     "value": "Violet",
-    "label": "Violet"
+    "label": "Violet",
+    "photo": "assets/characters/Violet.png"
   },
   {
     "class": "Mage",
     "element": "Earth",
     "value": "Vivian",
-    "label": "Vivian"
+    "label": "Vivian",
+    "photo": "assets/characters/Vivian.png"
   },
   {
     "class": "Ranger",
     "element": "Dark",
     "value": "Wanda",
-    "label": "Wanda"
+    "label": "Wanda",
+    "photo": "assets/characters/Wanda.png"
   },
   {
     "class": "Ranger",
     "element": "Light",
     "value": "Wanderer Silk",
-    "label": "Wanderer Silk"
+    "label": "Wanderer Silk",
+    "photo": "assets/characters/Wanderer Silk.png"
   },
   {
     "class": "Ranger",
     "element": "Light",
     "value": "Watcher Schuri",
-    "label": "Watcher Schuri"
+    "label": "Watcher Schuri",
+    "photo": "assets/characters/Watcher Schuri.png"
   },
   {
     "class": "Warrior",
     "element": "Earth",
     "value": "Yufine",
-    "label": "Yufine"
+    "label": "Yufine",
+    "photo": "assets/characters/Yufine.png"
   },
   {
     "class": "Ranger",
     "element": "Ice",
     "value": "Yuna",
-    "label": "Yuna"
+    "label": "Yuna",
+    "photo": "assets/characters/Yuna.png"
   },
   {
     "class": "Mage",
     "element": "Fire",
     "value": "Zealot Carmainerose",
-    "label": "Zealot Carmainerose"
+    "label": "Zealot Carmainerose",
+    "photo": "assets/characters/Zealot Carmainerose.png"
   },
   {
     "class": "Mage",
     "element": "Ice",
     "value": "Zeno",
-    "label": "Zeno"
+    "label": "Zeno",
+    "photo": "assets/characters/Zeno.png"
   },
   {
     "class": "Mage",
     "element": "Ice",
     "value": "Zerato",
-    "label": "Zerato"
+    "label": "Zerato",
+    "photo": "assets/characters/Zerato.png"
   }
 ]

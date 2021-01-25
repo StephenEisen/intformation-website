@@ -1,11 +1,12 @@
 import React, { useState, useEffect }  from "react";
-import { getCharacterImage } from 'globals/utils.js';
+import { CharacterImages } from 'globals/images.js';
 import { webserver } from 'globals/socket.js';
 import "./statistics.css";
 
+
 const Statistics = () => {
   const[totalGuilds, setTotalGuilds] = useState(0);
-  const[mostUsed, setMostUsed] = useState({});
+  const[mostUsed, setMostUsed] = useState([]);
 
   const getTotalGuilds = async () => {
     const response = await fetch(`${webserver}/api/statistics/totalIntels`);
@@ -19,6 +20,13 @@ const Statistics = () => {
     setMostUsed(data);
   }
 
+  const getMostUsedImage = (index) => {
+    if (mostUsed.length > 0){
+      return mostUsed[0][0].split(":")[index];
+    }
+      return "Enott";
+  }
+
   useEffect(() => {
     getTotalGuilds();
     getMostUsed();
@@ -29,11 +37,11 @@ const Statistics = () => {
       <h1>Total Number of Guilds Analyzed: {totalGuilds}</h1>
 
       <p>
-        Most Used Defence
+        Most Used Defence :
       </p>
-      <img alt="" width="62" height="62" src={getCharacterImage("Enott")} />
-      <img alt="" width="62" height="62" src={getCharacterImage("Enott")} />
-      <img alt="" width="62" height="62" src={getCharacterImage("Enott")} />
+      <img alt="" width="62" height="62" src={CharacterImages[getMostUsedImage(0)]} />
+      <img alt="" width="62" height="62" src={CharacterImages[getMostUsedImage(1)]} />
+      <img alt="" width="62" height="62" src={CharacterImages[getMostUsedImage(2)]} />
 
       {/* pass in whatever the most commonly used units for that given time period are */}
       <h2>Most Commonly Used Stats On: {"Enott"}</h2>

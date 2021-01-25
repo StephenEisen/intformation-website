@@ -77,7 +77,7 @@ async function countMostUsedTeams() {
       }
     })
   })
-  return teamMap;
+  return [...teamMap.entries()].sort((a, b) => b[1] - a[1]);
 }
 
 module.exports = {

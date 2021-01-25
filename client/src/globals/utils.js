@@ -1,9 +1,10 @@
-const importAll = (r) => r.keys().map(r);
+
 
 /**
  * Array of all the character images located in "assets/characters".
  */
-export const characterImages = importAll(require.context("assets/characters", false, /\.(png|jpe?g|svg)$/));
+export const characterImages = require.context("assets/characters", true);
+
 
 /**
  * Retrieve the path to a character image located in "assets/characters".
