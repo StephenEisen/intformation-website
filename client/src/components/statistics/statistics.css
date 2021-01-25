@@ -1,0 +1,46 @@
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  padding: 5px;
+  overflow: none;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.first-most-used, .third-most-used {
+  text-align: left;
+}
+
+.second-most-used {
+  text-align: right;
+}
+
+.slider-left {
+  background: blue;
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+}
+
+.slider-right {
+  background: blue;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+}
+
+.slide-in{
+  animation: slide-in 0.5s forwards;
+  -webkit-animation: slide-in 0.5s forwards;
+}
+
+@keyframes slide-in {
+  100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in {
+  100% { -webkit-transform: translateX(0%); }
+}

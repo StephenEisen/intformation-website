@@ -1,31 +1,32 @@
-import React, { useState, useEffect }  from "react";
-import { CharacterImages } from 'globals/images.js';
-import { webserver } from 'globals/socket.js';
+import React, { useState, useEffect } from "react";
+import { CharacterImages } from "globals/images.js";
+import { webserver } from "globals/socket.js";
 import "./statistics.css";
 
-
 const Statistics = () => {
-  const[totalGuilds, setTotalGuilds] = useState(0);
-  const[mostUsed, setMostUsed] = useState([]);
+  const [totalGuilds, setTotalGuilds] = useState(0);
+  const [mostUsed, setMostUsed] = useState([]);
 
   const getTotalGuilds = async () => {
     const response = await fetch(`${webserver}/api/statistics/totalIntels`);
     const data = await response.json();
     setTotalGuilds(data.totalGuilds);
-  }
+  };
 
   const getMostUsed = async () => {
-    const response = await fetch(`${webserver}/api/statistics/mostFrequentlyUsed`);
+    const response = await fetch(
+      `${webserver}/api/statistics/mostFrequentlyUsed`
+    );
     const data = await response.json();
     setMostUsed(data);
-  }
+  };
 
   const getMostUsedImage = (index) => {
-    if (mostUsed.length > 0){
+    if (mostUsed.length > 0) {
       return mostUsed[0][0].split(":")[index];
     }
-      return "Enott";
-  }
+    return "Enott";
+  };
 
   useEffect(() => {
     getTotalGuilds();
@@ -36,40 +37,71 @@ const Statistics = () => {
     <div>
       <h1>Total Number of Guilds Analyzed: {totalGuilds}</h1>
 
-      <p>
-        Most Used Defence :
-      </p>
-      <img alt="" width="62" height="62" src={CharacterImages[getMostUsedImage(0)]} />
-      <img alt="" width="62" height="62" src={CharacterImages[getMostUsedImage(1)]} />
-      <img alt="" width="62" height="62" src={CharacterImages[getMostUsedImage(2)]} />
+      <p>Most Used Defence :</p>
+      <div className="row">
+        <div className="column">
+          <img
+            alt=""
+            width="62"
+            height="62"
+            src={CharacterImages[getMostUsedImage(0)]}
+          />
+          <p>{getMostUsedImage(0)}</p>
+        </div>
+
+        <div className="column">
+          <img
+            alt=""
+            width="62"
+            height="62"
+            src={CharacterImages[getMostUsedImage(1)]}
+          />
+          <p>{getMostUsedImage(1)}</p>
+        </div>
+        <div className="column">
+          <img
+            alt=""
+            width="62"
+            height="62"
+            src={CharacterImages[getMostUsedImage(2)]}
+          />
+          <p>{getMostUsedImage(2)}</p>
+        </div>
+      </div>
 
       {/* pass in whatever the most commonly used units for that given time period are */}
-      <h2>Most Commonly Used Stats On: {"Enott"}</h2>
-      <p>
-        Artifact: {"Artifact"} <br></br>
-        Hp: {"435345"} <br></br>
-        Speed: {"1447"} <br></br>
-        LifeSteal ? Counter ? | null
-      </p>
-      <h2>Most Commonly Used Stats On: {"Enott"}</h2>
-      <p>
-        Artifact: {"Artifact"} <br></br>
-        Hp: {"435345"} <br></br>
-        Speed: {"1447"} <br></br>
-        LifeSteal ? Counter ? | null
-      </p>
-      <h2>Most Commonly Used Stats On: {"Enott"}</h2>
-      <p>
-        Artifact: {"Artifact"} <br></br>
-        Hp: {"435345"} <br></br>
-        Speed: {"1447"} <br></br>
-        LifeSteal ? Counter ? | null
-      </p>
+      <div className="first-most-used slider-left slide-in">
+        <h2>Most Commonly Used Stats On: {getMostUsedImage(0)}</h2>
+        <p>
+          Artifact: {"Artifact"} <br></br>
+          Hp: {"435345"} <br></br>
+          Speed: {"1447"} <br></br>
+          LifeSteal ? Counter ? | null
+        </p>
+      </div>
+
+      <div className="second-most-used slider-right slide-in">
+        <h2>Most Commonly Used Stats On: {getMostUsedImage(1)}</h2>
+        <p>
+          Artifact: {"Artifact"} <br></br>
+          Hp: {"435345"} <br></br>
+          Speed: {"1447"} <br></br>
+          LifeSteal ? Counter ? | null
+        </p>
+      </div>
+
+      <div className="third-most-used slider-left slide-in">
+        <h2>Most Commonly Used Stats On: {getMostUsedImage(2)}</h2>
+        <p>
+          Artifact: {"Artifact"} <br></br>
+          Hp: {"435345"} <br></br>
+          Speed: {"1447"} <br></br>
+          LifeSteal ? Counter ? | null
+        </p>
+      </div>
 
       <h3>More Defences</h3>
-      <p>
-        MORE ENOTTT etc etc etc
-      </p>
+      <p>MORE ENOTTT etc etc etc</p>
     </div>
   );
 };
