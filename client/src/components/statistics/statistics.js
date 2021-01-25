@@ -1,25 +1,24 @@
-import React, { useEffect }  from "react";
-import "./statistics.css";
-import { socket } from "globals/socket.js";
+import React, { useState, useEffect }  from "react";
 import { getCharacterImage } from 'globals/utils.js';
-
-const getStatistics = (data) => {
-  return;
-};
+import { webserver } from 'globals/socket.js';
+import "./statistics.css";
 
 const Statistics = () => {
-  useEffect(() => {
-    const getStatisticsHandler = (data) => { getStatistics(data) };
-    socket.on("getStatistics", getStatisticsHandler);
+  const[totalGuilds, setTotalGuilds] = useState(0);
 
-    return () => {
-      socket.off("getStatisticsSuccess", getStatisticsHandler);
-    };
+  const getStatistics = async () => {
+    const response = await fetch(`${webserver}/api/statistics/totalIntels`);
+    const data = await response.json();
+    setTotalGuilds(data.totalGuilds);
+  }
+
+  useEffect(() => {
+    getStatistics();
   }, []);
 
   return (
     <div>
-      <h1>Stats page</h1>
+      <h1>Total Number of Guilds Analyzed: {totalGuilds}</h1>
 
       <p>
         Most Used Defence

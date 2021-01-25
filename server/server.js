@@ -1,11 +1,24 @@
-const server = require("http").createServer();
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const server = require("http").createServer(app);
 const options = { cors: true, origins: ["http://127.0.0.1:3000"] };
 const io = require("socket.io")(server, options);
 const mongodb = require("./mongodb/connection.js");
 const queries = require("./mongodb/queries.js");
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200
+}
+
 // Connect to mongodb
 mongodb.connect();
+
+app.get("/api/statistics/totalIntels", cors(corsOptions), async (request, response) => {
+  const totalGuilds = await queries.countTotalGuilds();
+  response.send({totalGuilds: totalGuilds});
+});
 
 // Listen to socket events
 io.on("connection", (socket) => {
@@ -45,11 +58,6 @@ io.on("connection", (socket) => {
     else {
       socket.emit("createTowerError", "Tower already exists");
     }
-  });
-
-  socket.on("getStatistics", async () => {
-    const totalGuilds = await queries.countTotalGuilds();
-    sockets.emite("getStatisticsSuccess", totalGuilds);
   });
 
   socket.on("updateCharacter", async (characterData) => {

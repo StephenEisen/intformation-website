@@ -49,7 +49,7 @@ async function updateCharacter(characterData) {
 };
 
 async function countTotalGuilds() {
-  return GuildData.count({});
+  return GuildData.countDocuments();
 };
 
 module.exports = { findIntel, createIntel, createTower, updateCharacter, countTotalGuilds };
