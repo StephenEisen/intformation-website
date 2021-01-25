@@ -59,46 +59,25 @@ async function countTotalGuilds() {
 async function countMostUsedTeams() {
   const teamMap = new Map();
   const guildData = await GuildData.find({});
-  guildData.forEach(guild => { console.log(guild.data)
-    // let team1 = [];
-    // let team2 = [];
-    // guild.data.forEach(tower => {
-    //  team1 = tower.characters.filter(a => a.team == 0).map(a => a.name).sort().join(":");
-    // });
-    // guild.data.forEach(tower => {
-    //  team2 = tower.characters.filter(a => a.team == 1).map(a => a.name).sort().join(":");
-    // });
-    // if (teamMap.has(team1)){
-    //   teamMap.set(team1, teamMap.get(team1) + 1);
-    // }
-    // else {
-    //   teamMap.set(team1, 1);
-    // }
-
-    // if (teamMap.has(team2)){
-    //   teamMap.set(team2, teamMap.get(team2) + 1);
-    // }
-    // else {
-    //   teamMap.set(team2, 1);
-    // }
-
+  guildData.forEach(guild => {
+    guild.data.forEach(data => {
+      if (data.characters) {
+        let team1 = data.characters.filter(c => c.team === 0).map(c => c.name).sort().join(":")
+        let team2 = data.characters.filter(c => c.team === 1).map(c => c.name).sort().join(":")
+        if (teamMap.has(team1)){
+          teamMap.set(team1, teamMap.get(team1) + 1);
+        } else {
+          teamMap.set(team1, 1);
+        }
+        if (teamMap.has(team2)){
+          teamMap.set(team2, teamMap.get(team2) + 1);
+        } else {
+          teamMap.set(team2, 1);
+        }
+      }
+    })
   })
-  console.log(teamMap);
-  return null;
-  // let teamMap = new Map();
-  // return new Promise((resolve, reject) => {
-  //   GuildData.find().stream()
-  //   .on('data', element => {
-
-
-  //   })
-  //   .on('error', function(err){
-  //     reject(err);
-  //   })
-  //   .on('end', function(){
-  //     resolve(teamMap);
-  //   });
-  // })
+  return teamMap;
 }
 
 module.exports = {

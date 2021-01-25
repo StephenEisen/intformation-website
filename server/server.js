@@ -23,8 +23,7 @@ app.get("/api/statistics/totalIntels", cors(corsOptions), async (request, respon
 app.get("/api/statistics/mostFrequentlyUsed", cors(corsOptions), async (request, response) => {
   try {
     const mostUsed = await queries.countMostUsedTeams();
-    console.log(mostUsed);
-    response.send("ok");
+    response.send(Object.fromEntries(mostUsed));
   } catch (err){
     console.log(err);
   }
