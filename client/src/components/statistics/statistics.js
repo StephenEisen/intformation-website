@@ -5,15 +5,23 @@ import "./statistics.css";
 
 const Statistics = () => {
   const[totalGuilds, setTotalGuilds] = useState(0);
+  const[mostUsed, setMostUsed] = useState({});
 
-  const getStatistics = async () => {
+  const getTotalGuilds = async () => {
     const response = await fetch(`${webserver}/api/statistics/totalIntels`);
     const data = await response.json();
     setTotalGuilds(data.totalGuilds);
   }
 
+  const getMostUsed = async () => {
+    const response = await fetch(`${webserver}/api/statistics/mostFrequentlyUsed`);
+    const data = await response.json();
+    setMostUsed(data);
+  }
+
   useEffect(() => {
-    getStatistics();
+    getTotalGuilds();
+    getMostUsed();
   }, []);
 
   return (

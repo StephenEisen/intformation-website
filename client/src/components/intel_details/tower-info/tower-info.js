@@ -61,7 +61,7 @@ class TowerInfo extends React.Component {
   updateCharacter(teamIndex, characterIndex, characterName) {
     const data = this.state.characterList;
     data[characterIndex] = {
-      pageId: this.props.match.params.id,
+      pageId: this.props.intelID,
       towerIndex: this.props.towerIndex,
       characterIndex: characterIndex,
       team: teamIndex,

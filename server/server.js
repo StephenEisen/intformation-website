@@ -20,6 +20,16 @@ app.get("/api/statistics/totalIntels", cors(corsOptions), async (request, respon
   response.send({totalGuilds: totalGuilds});
 });
 
+app.get("/api/statistics/mostFrequentlyUsed", cors(corsOptions), async (request, response) => {
+  try {
+    const mostUsed = await queries.countMostUsedTeams();
+    console.log(mostUsed);
+    response.send("ok");
+  } catch (err){
+    console.log(err);
+  }
+});
+
 // Listen to socket events
 io.on("connection", (socket) => {
   console.log(socket.id);
