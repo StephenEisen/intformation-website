@@ -30,7 +30,7 @@ const TowerDisplay = (props) => {
       {/* SHOW ALL TOWER INFO */}
       {props.towerData.length
         ? props.towerData.map((tower, index) => (
-          <TowerInfo key={tower.name} tower={tower} towerIndex={index} />
+          <TowerInfo key={tower.name} tower={tower} towerIndex={index} intelID={props.intelID} />
         ))
         : null}
     </div>
