@@ -104,7 +104,7 @@ const Statistics = () => {
       <p>MORE ENOTTT etc etc etc</p>
 
       {
-        mostUsed.map((team) => <p>{team[0].replace(":", " ")}</p>)
+        mostUsed.map((team) => <p>{team[0].replaceAll(":", " ")}</p>)
       }
 
     </div>
