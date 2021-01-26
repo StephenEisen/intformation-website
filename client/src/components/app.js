@@ -4,9 +4,8 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import { Routes } from "globals/routes.js";
 import Intel from "components/intel/intel";
-import IntelDetails from "components/intel_details/intel_details"
+import IntelDetails from "components/intel-details/intel-details"
 import Navbar from "components/navbar/navbar";
-import Defence from "components/defence/defence";
 import Footer from "components/footer/footer";
 import About from "components/about/about";
 import Statistics from "components/statistics/statistics";
@@ -24,7 +23,6 @@ function App() {
             <Switch location={location}>
               <Route exact path="/"><Redirect to={Routes.Home} /></Route>
               <Route exact path={Routes.Home} component={Home} />
-              <Route exact path={Routes.Defence} component={Defence} />
               <Route exact path={Routes.Intel} component={Intel} />
               <Route exact path={Routes.IntelID} component={IntelDetails} />
               <Route exact path={Routes.Statistics} component={Statistics} />

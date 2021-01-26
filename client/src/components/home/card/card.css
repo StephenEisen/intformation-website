@@ -14,3 +14,7 @@
   overflow:hidden;
   margin:30px;
 }
+
+.card-container ul {
+  list-style: none;
+}

@@ -103,6 +103,8 @@ input[type='number'] {
   font-size: 0.8rem;
   font-weight: 900;
   text-transform: uppercase;
+  outline: none;
+  background-color: transparent;
 }
 
 .slide-btn-horizontal>.slide-btn-text {

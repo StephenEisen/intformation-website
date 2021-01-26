@@ -8,15 +8,13 @@ const Statistics = () => {
   const [mostUsed, setMostUsed] = useState([]);
 
   const getTotalGuilds = async () => {
-    const response = await fetch(`${webserver}/api/statistics/totalIntels`);
+    const response = await fetch(`${webserver}/api/statistics/total-intels`);
     const data = await response.json();
     setTotalGuilds(data.totalGuilds);
   };
 
   const getMostUsed = async () => {
-    const response = await fetch(
-      `${webserver}/api/statistics/mostFrequentlyUsed`
-    );
+    const response = await fetch(`${webserver}/api/statistics/most-frequently-used`);
     const data = await response.json();
     setMostUsed(data);
   };

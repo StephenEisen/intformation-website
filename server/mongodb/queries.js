@@ -28,11 +28,7 @@ async function createTower(towerData) {
 }
 
 async function updateCharacter(characterData) {
-  const queryKey =
-    "data." +
-    characterData.towerIndex +
-    ".characters." +
-    characterData.characterIndex;
+  const queryKey = `data.${characterData.towerIndex}.characters.${characterData.characterIndex}`;
 
   return GuildData.findOneAndUpdate(
     { pageId: characterData.pageId },
@@ -45,6 +41,7 @@ async function updateCharacter(characterData) {
           speed: characterData.speed,
           artifact: characterData.artifact,
           notes: characterData.notes,
+          lastUpdated: Date.now()
         },
       },
     },
@@ -64,12 +61,12 @@ async function countMostUsedTeams() {
       if (data.characters) {
         let team1 = data.characters.filter(c => c.team === 0).map(c => c.name).sort().join(":")
         let team2 = data.characters.filter(c => c.team === 1).map(c => c.name).sort().join(":")
-        if (teamMap.has(team1)){
+        if (teamMap.has(team1)) {
           teamMap.set(team1, teamMap.get(team1) + 1);
         } else {
           teamMap.set(team1, 1);
         }
-        if (teamMap.has(team2)){
+        if (teamMap.has(team2)) {
           teamMap.set(team2, teamMap.get(team2) + 1);
         } else {
           teamMap.set(team2, 1);
