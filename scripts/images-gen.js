@@ -10,12 +10,12 @@ for (let i = 0; i < characters.length; i++){
   importArr.push(`import ${value} from '${characters[i].photo}';`);
 }
 importArr.push('');
-importArr.push('export default CharacterImages = {');
+importArr.push('export const CharacterImages = {');
 for (let i = 0; i < characters.length; i++){
   const value = characters[i].value.replace(/ /g, '').replace(/-/g, '').replace(/'/g, '');
-  importArr.push(`  ${value}: ${value},`)
+  importArr.push(`  \'${characters[i].value}\': ${value},`)
 }
-importArr.push('}');
+importArr.push('};\n');
 
 fs.writeFileSync('../client/src/globals/images.js', importArr.join("\n"));
 

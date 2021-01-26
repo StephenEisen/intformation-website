@@ -50,12 +50,15 @@ class TowerData extends React.Component {
      */
 
     for (let i = 0; i < 6; i++) {
+      const teamIndex = i <= 2 ? 1 : 2;
+
       elements.push((
         <CharacterData
           key={this.props.towerData.characters[i].lastUpdated || i}
           character={this.props.towerData.characters[i]}
           options={this.state.characterOptions}
           intelId={this.props.intelId}
+          teamIndex={teamIndex}
           towerIndex={this.props.towerIndex}
           characterIndex={i}
           selectionChange={(option) => this.updateCharacterOptions(option, i)}

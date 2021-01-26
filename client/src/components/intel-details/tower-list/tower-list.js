@@ -10,7 +10,6 @@ const TowerList = (props) => {
 
   // Update tower list when a new tower is added
   const updateTowerList = (intel) => {
-    console.log(intel);
     setTowerList(intel.data);
   }
 

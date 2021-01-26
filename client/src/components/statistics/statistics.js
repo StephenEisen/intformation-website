@@ -102,9 +102,8 @@ const Statistics = () => {
       <p>MORE ENOTTT etc etc etc</p>
 
       {
-        mostUsed.map((team) => <p>{team[0].replaceAll(":", " ")}</p>)
+        mostUsed.map((team, index) => <p key={index}>{team[0].replaceAll(':', ' ')}</p>)
       }
-
     </div>
   );
 };

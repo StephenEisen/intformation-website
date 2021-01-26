@@ -1,4 +1,4 @@
-const GuildData = require("./guild-data.js");
+const GuildData = require('./guild-data.js');
 
 async function findIntel(pageId) {
   return GuildData.findOne({ pageId });
@@ -56,11 +56,13 @@ async function countTotalGuilds() {
 async function countMostUsedTeams() {
   const teamMap = new Map();
   const guildData = await GuildData.find({});
+
   guildData.forEach(guild => {
     guild.data.forEach(data => {
       if (data.characters) {
-        let team1 = data.characters.filter(c => c.team === 0).map(c => c.name).sort().join(":")
-        let team2 = data.characters.filter(c => c.team === 1).map(c => c.name).sort().join(":")
+        let team1 = data.characters.filter(c => c.team === 1).map(c => c.name).sort().join(':')
+        let team2 = data.characters.filter(c => c.team === 2).map(c => c.name).sort().join(':')
+
         if (teamMap.has(team1)) {
           teamMap.set(team1, teamMap.get(team1) + 1);
         } else {
@@ -74,6 +76,7 @@ async function countMostUsedTeams() {
       }
     })
   })
+
   return [...teamMap.entries()].sort((a, b) => b[1] - a[1]);
 }
 
