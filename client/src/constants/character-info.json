@@ -1036,6 +1036,13 @@
     "photo": "assets/characters/Pearlhorizon.png"
   },
   {
+    "class": "Mage",
+    "element": "Fire",
+    "value": "Politis",
+    "label": "Politis",
+    "photo": "assets/characters/Politis.png"
+  },
+  {
     "class": "Warrior",
     "element": "Earth",
     "value": "Purrgis",

@@ -27,9 +27,6 @@ const Navbar = () => {
           <li className={getClassIfActive(Routes.Home)}>
             <NavLink exact to={Routes.Home}>Home</NavLink>
           </li>
-          <li className={getClassIfActive(Routes.Defence)}>
-            <NavLink exact to={Routes.Defence}>Defence</NavLink>
-          </li>
           <li className={getClassIfActive(Routes.Intel)}>
             <NavLink to={Routes.Intel}>Intel</NavLink>
           </li>

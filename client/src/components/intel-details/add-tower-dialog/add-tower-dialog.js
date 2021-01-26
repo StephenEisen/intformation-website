@@ -20,7 +20,7 @@ const AddTowerDialog = (props) => {
 
   const sendTowerData = () => {
     socket.emit("createTower", {
-      pageId: props.intelID,
+      pageId: props.intelId,
       name: towerName,
       location: towerLocation,
     });

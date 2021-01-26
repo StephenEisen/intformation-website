@@ -8,6 +8,7 @@ const CharacterSchema = new Schema({
   speed: Number,
   artifact: String,
   notes: String,
+  lastUpdated: Date
 });
 
 const TowerSchema = new Schema({

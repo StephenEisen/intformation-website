@@ -146,6 +146,7 @@ import OperatorSigret from 'assets/characters/Operator Sigret.png';
 import Otillie from 'assets/characters/Otillie.png';
 import Pavel from 'assets/characters/Pavel.png';
 import Pearlhorizon from 'assets/characters/Pearlhorizon.png';
+import Politis from 'assets/characters/Politis.png';
 import Purrgis from 'assets/characters/Purrgis.png';
 import Pyllis from 'assets/characters/Pyllis.png';
 import Ras from 'assets/characters/Ras.png';
@@ -351,6 +352,7 @@ export const CharacterImages = {
   Otillie: Otillie,
   Pavel: Pavel,
   Pearlhorizon: Pearlhorizon,
+  Politis: Politis,
   Purrgis: Purrgis,
   Pyllis: Pyllis,
   Ras: Ras,
@@ -406,4 +408,4 @@ export const CharacterImages = {
   ZealotCarmainerose: ZealotCarmainerose,
   Zeno: Zeno,
   Zerato: Zerato,
-}
+};

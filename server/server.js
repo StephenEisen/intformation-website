@@ -15,16 +15,16 @@ const corsOptions = {
 // Connect to mongodb
 mongodb.connect();
 
-app.get("/api/statistics/totalIntels", cors(corsOptions), async (request, response) => {
+app.get("/api/statistics/total-intels", cors(corsOptions), async (request, response) => {
   const totalGuilds = await queries.countTotalGuilds();
-  response.send({totalGuilds: totalGuilds});
+  response.send({ totalGuilds: totalGuilds });
 });
 
-app.get("/api/statistics/mostFrequentlyUsed", cors(corsOptions), async (request, response) => {
+app.get("/api/statistics/most-frequently-used", cors(corsOptions), async (request, response) => {
   try {
     const mostUsed = await queries.countMostUsedTeams();
     response.send(mostUsed);
-  } catch (err){
+  } catch (err) {
     console.log(err);
   }
 });

@@ -11,11 +11,10 @@ const Card = () => {
               title="politis"
               width="560"
               height="315"
-              src="https://www.youtube.com/embed/TA8MJaK-ZnY"
+              src="https://www.youtube-nocookie.com/embed/TA8MJaK-ZnY?origin=https://epic7.gg"
               frameBorder="0"
-              allowFullScreen
-            ></iframe>
-            <h3>Title</h3>
+              allowFullScreen>
+            </iframe>
           </div>
         </li>
         <li>
@@ -23,7 +22,7 @@ const Card = () => {
             title="archdemon"
             width="560"
             height="315"
-            src="https://www.youtube.com/embed/1sDEwr6qmS0"
+            src="https://www.youtube-nocookie.com/embed/1sDEwr6qmS0?origin=https://epic7.gg"
             frameBorder="0"
             allowFullScreen
           ></iframe>

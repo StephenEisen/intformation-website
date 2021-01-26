@@ -1,0 +1,70 @@
+/* ========================
+ * Dropdown styles
+ * ===================== */
+.select-dropdown {
+  text-align: left;
+  color: #000;
+  font-size: 16px;
+}
+
+/* ========================
+ * General styles
+ * ===================== */
+.character-data-container {
+  margin-top: 30px;
+  flex: 1 1 25%;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+  transition: 0.3s ease-out all;
+}
+
+.character-data-container[disabled] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.character-stats-container {
+  margin-top: 20px;
+}
+
+.character-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.character-data label {
+  float: left;
+  width: 10%;
+  margin-right: 10px;
+}
+
+.character-data input {
+  float: right;
+  width: 90%;
+}
+
+/* ========================
+ * Image styles
+ * ===================== */
+.character-data img {
+  width: 30px;
+  vertical-align: middle;
+}
+
+
+/* ========================
+ * Mobile styles
+ * ===================== */
+@media only screen and (max-width: 1200px) {
+  .character-data-container {
+    padding: 0;
+  }
+
+  .character-stats-container {
+    margin-bottom: 50px;
+  }
+}
