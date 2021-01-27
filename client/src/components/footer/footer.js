@@ -1,4 +1,5 @@
 import React from "react";
+import ravi from 'assets/ravi-triggerd.png';
 import "./footer.css";
 
 const Footer = () => {
@@ -6,8 +7,8 @@ const Footer = () => {
     <footer>
       <div className="footer-content">
         <div className="footer-left">
-          &copy; Copyright 2021
-      </div>
+          <img className="ravi-slide-up" src={ravi} alt="" width="50px" />
+        </div>
 
         <div className="footer-right">
           <span className="footer-subtext">Developed by </span>

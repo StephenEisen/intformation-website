@@ -67,3 +67,25 @@
     top: -8px;
   }
 }
+
+/* ========================
+ * RAVI TRIGGERED
+ * ===================== */
+.ravi-slide-up {
+  animation: ravi-slide-up 2s forwards;
+  -webkit-animation: ravi-slide-up 2s forwards;
+  transform: translateY(100%);
+  -webkit-transform: translateY(100%);
+}
+
+@keyframes ravi-slide-up {
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@-webkit-keyframes ravi-slide-up {
+  100% {
+    -webkit-transform: translateY(0%);
+  }
+}

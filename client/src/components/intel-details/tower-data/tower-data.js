@@ -43,22 +43,14 @@ class TowerData extends React.Component {
   getCharacterElements() {
     const elements = [];
 
-    /**
-     * KEY reinstances the component instead of updating. This helps because we set the stats inside
-     * the constructor of CharacterData. So whenever props change, it will call the constructor again
-     * and reinitialize the default values.
-     */
-
     for (let i = 0; i < 6; i++) {
-      const teamIndex = i <= 2 ? 1 : 2;
-
       elements.push((
         <CharacterData
-          key={this.props.towerData.characters[i].lastUpdated || i}
+          key={this.props.towerData.characters[i]._id}
           character={this.props.towerData.characters[i]}
           options={this.state.characterOptions}
           intelId={this.props.intelId}
-          teamIndex={teamIndex}
+          teamIndex={i <= 2 ? 1 : 2}
           towerIndex={this.props.towerIndex}
           characterIndex={i}
           selectionChange={(option) => this.updateCharacterOptions(option, i)}
