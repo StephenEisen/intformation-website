@@ -35,6 +35,24 @@ app.get("/api/statistics/most-frequently-used", cors(corsOptions), async (reques
   }
 });
 
+app.post("/api/intel", cors(corsOptions), async (request, response) => {
+  try {
+    const newIntel = await queries.createIntel();
+    response.status(201).send(newIntel);
+  } catch (err) {
+    response.status(500).send("Intel create failed");
+  }
+});
+
+app.get("/api/intel/:pageId", cors(corsOptions), async (request, response) => {
+  try {
+    const existingIntel = await queries.findIntel(request.params.pageId);
+    response.status(200).send(existingIntel);
+  } catch (err) {
+    response.status(404).send("Intel not found")
+  }
+});
+
 // Listen to socket events
 io.on("connection", (socket) => {
   socket.on('joinRoom', ({username, room}) => {
@@ -78,24 +96,6 @@ io.on("connection", (socket) => {
   socket.on("updateCharacter", async (characterData) => {
     const updatedCharacter = await queries.updateCharacter(characterData);
     io.sockets.to(characterData.pageId).emit("updateCharacterSuccess", updatedCharacter);
-  });
-
-  //Creates new intel page, first checks to make sure the unique pageid is not already being used
-  socket.on("createIntel", async () => {
-    // Save new record into database
-    const newIntel = await queries.createIntel();
-    socket.emit("createIntelSuccess", newIntel);
-  });
-
-  // Search database for existing intel
-  socket.on("findIntel", async (pageId) => {
-    const exisitingIntel = await queries.findIntel(pageId);
-
-    if (exisitingIntel != null) {
-      socket.emit("findIntelSuccess", exisitingIntel);
-    } else {
-      socket.emit("findIntelError", "Intel not found or does not exist");
-    }
   });
 });
 
