@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const server = require("http").createServer(app);
-const options = { cors: true, origins: ["http://127.0.0.1:3000"] };
+const options = { cors: true, origins: ["https://epic7.gg"] };
 const io = require("socket.io")(server, options);
 const mongodb = require("./mongodb/connection.js");
 const queries = require("./mongodb/queries.js");
@@ -14,7 +14,7 @@ const {
 } = require("./mongodb/users.js");
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://epic7.gg",
   optionsSuccessStatus: 200
 }
 
