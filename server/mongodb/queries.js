@@ -63,20 +63,23 @@ async function countMostUsedTeams() {
         let team1 = data.characters.filter(c => c.team === 1).map(c => c.name).sort().join(':')
         let team2 = data.characters.filter(c => c.team === 2).map(c => c.name).sort().join(':')
 
-        if (teamMap.has(team1)) {
-          teamMap.set(team1, teamMap.get(team1) + 1);
-        } else {
-          teamMap.set(team1, 1);
-        }
-        if (teamMap.has(team2)) {
-          teamMap.set(team2, teamMap.get(team2) + 1);
-        } else {
-          teamMap.set(team2, 1);
+        if (team1.length == 3 && team2.length == 3){
+          if (teamMap.has(team1)) {
+            teamMap.set(team1, teamMap.get(team1) + 1);
+          } else {
+            teamMap.set(team1, 1);
+          }
+          if (teamMap.has(team2)) {
+            teamMap.set(team2, teamMap.get(team2) + 1);
+          } else {
+            teamMap.set(team2, 1);
+          }
         }
       }
-    })
-  })
+    });
+  });
 
+  // {matt/ppp/big dick: {character: {num times, {stats [hp][speed][{artifact: times}]}}}}
   return [...teamMap.entries()].sort((a, b) => b[1] - a[1]);
 }
 
