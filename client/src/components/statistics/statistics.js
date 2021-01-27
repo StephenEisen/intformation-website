@@ -70,7 +70,7 @@ const Statistics = () => {
       {/* pass in whatever the most commonly used units for that given time period are */}
       <div className="first-most-used slider-left slide-in">
         <h2>Most Commonly Used Stats On: {getMostUsedImage(0)}</h2>
-        <p className="statistics-slide-up">
+        <p className="statistics-slide-up statistics-slide-stats">
           Artifact: {"Artifact"} <br></br>
           Hp: {"435345"} <br></br>
           Speed: {"1447"} <br></br>

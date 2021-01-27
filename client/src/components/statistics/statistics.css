@@ -32,10 +32,21 @@
   -webkit-transform: translateX(100%);
 }
 
+.statistics-slide-stats{
+  background: red;
+  transform: translateY(100%);
+  -webkit-transform: translateY(100%);
+}
+
 .statistics-slide-up {
   animation: statistics-slide-up 0.5s forwards;
   animation-delay: 2s;
   -webkit-animation: statistics-slide-up 0.5s forwards;
+}
+
+.slide-in{
+  animation: slide-in 0.5s forwards;
+  -webkit-animation: slide-in 0.5s forwards;
 }
 
 @keyframes statistics-slide-up {
@@ -44,11 +55,6 @@
 
 @-webkit-keyframes statistics-slide-up {
   100% { -webkit-transform: translateY(0%); }
-}
-
-.slide-in{
-  animation: slide-in 0.5s forwards;
-  -webkit-animation: slide-in 0.5s forwards;
 }
 
 @keyframes slide-in {
