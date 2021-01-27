@@ -25,6 +25,11 @@ const IntelDetails = () => {
     setTowerList(intel.data);
     localStoragePushIntel();
     setShowTowerList(true);
+
+    //fetch the room to join based on the pageid can also pass in a username
+    const room = id;
+    const username = 'admin';
+    socket.emit('joinRoom', { username, room });
   }
 
   const findIntelError = () => {
