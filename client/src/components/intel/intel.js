@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { socket } from 'globals/socket.js';
+import { intelPost } from 'globals/api.js';
 import './intel.css';
 import castle from 'assets/castle.png';
 import map from 'assets/map.png';
@@ -11,18 +11,13 @@ const Intel = () => {
 
   const recentIntels = JSON.parse(localStorage.getItem('recentIntels')) || [];
 
-  const createNewIntelSuccessHandler = data => {
-    socket.off('createIntelSuccess', createNewIntelSuccessHandler);
-    history.push(`/intel/${data.pageId}`)
-  }
-
-  const createNewIntel = () => {
-    socket.on('createIntelSuccess', createNewIntelSuccessHandler);
-    socket.emit('createIntel');
+  const createIntelHandler = () => {
+    // TODO: Let's eventually show some kind of toast for error
+    intelPost().then(i => history.push(`/intel/${i.pageId}`)).catch(e => console.log(e));
   };
 
-  const joinExistingIntel = () => {
-    history.push(`/intel/${intelID}`)
+  const joinIntelHandler = async () => {
+    history.push(`/intel/${intelID}`);
   };
 
   return (
@@ -42,7 +37,7 @@ const Intel = () => {
             Click the button below to get started.
               </p>
           <div className="intel-connect-create">
-            <button className="slide-btn-horizontal" onClick={createNewIntel}>
+            <button className="slide-btn-horizontal" onClick={createIntelHandler}>
               <span className="slide-btn-text">Create New Intel</span>
             </button>
           </div>
@@ -65,12 +60,12 @@ const Intel = () => {
               onChange={e => setIntelID(e.target.value)}
               onKeyPress={e => {
                 if (e.key === "Enter") {
-                  joinExistingIntel()
+                  joinIntelHandler()
                 }
               }}
               placeholder="Enter intel id...">
             </input>
-            <button className="slide-btn-horizontal" onClick={joinExistingIntel}>
+            <button className="slide-btn-horizontal" onClick={joinIntelHandler}>
               <span className="slide-btn-text">Join Existing Intel</span>
             </button>
           </div>
