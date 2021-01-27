@@ -32,7 +32,7 @@ const Statistics = () => {
   }, []);
 
   return (
-    <div>
+    <div className="statistics-container">
       <h1>Total Number of Guilds Analyzed: {totalGuilds}</h1>
 
       <p>Most Used Defence :</p>

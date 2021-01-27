@@ -18,19 +18,15 @@ function App() {
     <div className="App">
       <Navbar />
       <main>
-        <TransitionGroup>
-          <CSSTransition classNames="page" key={location.key} timeout={300} unmountOnExit>
-            <Switch location={location}>
-              <Route exact path="/"><Redirect to={Routes.Home} /></Route>
-              <Route exact path={Routes.Home} component={Home} />
-              <Route exact path={Routes.Intel} component={Intel} />
-              <Route exact path={Routes.IntelID} component={IntelDetails} />
-              <Route exact path={Routes.Statistics} component={Statistics} />
-              <Route exact path={Routes.About} component={About} />
-              <Route component={Error} />
-            </Switch>
-          </CSSTransition>
-        </TransitionGroup>
+        <Switch location={location}>
+          <Route exact path="/"><Redirect to={Routes.Home} /></Route>
+          <Route exact path={Routes.Home} component={Home} />
+          <Route exact path={Routes.Intel} component={Intel} />
+          <Route exact path={Routes.IntelID} component={IntelDetails} />
+          <Route exact path={Routes.Statistics} component={Statistics} />
+          <Route exact path={Routes.About} component={About} />
+          <Route component={Error} />
+        </Switch>
       </main>
       <Footer />
     </div>

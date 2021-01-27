@@ -1,3 +1,7 @@
+.statistics-container {
+  overflow-x: hidden;
+}
+
 /* Three image containers (use 25% for four, and 50% for two, etc) */
 .column {
   float: left;
@@ -12,7 +16,8 @@
   display: table;
 }
 
-.first-most-used, .third-most-used {
+.first-most-used,
+.third-most-used {
   text-align: left;
 }
 
@@ -32,7 +37,7 @@
   -webkit-transform: translateX(100%);
 }
 
-.statistics-slide-stats{
+.statistics-slide-stats {
   background: red;
   transform: translateY(100%);
   -webkit-transform: translateY(100%);
@@ -44,23 +49,31 @@
   -webkit-animation: statistics-slide-up 0.5s forwards;
 }
 
-.slide-in{
+.slide-in {
   animation: slide-in 0.5s forwards;
   -webkit-animation: slide-in 0.5s forwards;
 }
 
 @keyframes statistics-slide-up {
-  100% { transform: translateY(0%); }
+  100% {
+    transform: translateY(0%);
+  }
 }
 
 @-webkit-keyframes statistics-slide-up {
-  100% { -webkit-transform: translateY(0%); }
+  100% {
+    -webkit-transform: translateY(0%);
+  }
 }
 
 @keyframes slide-in {
-  100% { transform: translateX(0%); }
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 @-webkit-keyframes slide-in {
-  100% { -webkit-transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(0%);
+  }
 }

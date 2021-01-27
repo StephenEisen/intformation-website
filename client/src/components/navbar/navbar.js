@@ -53,18 +53,26 @@ const Navbar = () => {
         <div className="navbar-menu" onClick={() => toggleMobileNavBar()}></div>
 
         <ul className="navbar-links">
-          <li className={getClassIfActive(Routes.Home)} onClick={() => toggleMobileNavBar()}>
-            <NavLink exact to={Routes.Home}>Home</NavLink>
-          </li>
-          <li className={getClassIfActive(Routes.Intel)} onClick={() => toggleMobileNavBar()}>
-            <NavLink to={Routes.Intel}>Intel</NavLink>
-          </li>
-          <li className={getClassIfActive(Routes.Statistics)} onClick={() => toggleMobileNavBar()}>
-            <NavLink to={Routes.Statistics}>Statistics</NavLink>
-          </li>
-          <li className={getClassIfActive(Routes.About)} onClick={() => toggleMobileNavBar()}>
-            <NavLink exact to={Routes.About}>About</NavLink>
-          </li>
+          <NavLink exact to={Routes.Home}>
+            <li className={getClassIfActive(Routes.Home)} onClick={() => toggleMobileNavBar()}>
+              Home
+            </li>
+          </NavLink>
+          <NavLink to={Routes.Intel}>
+            <li className={getClassIfActive(Routes.Intel)} onClick={() => toggleMobileNavBar()}>
+              Intel
+            </li>
+          </NavLink>
+          <NavLink to={Routes.Statistics}>
+            <li className={getClassIfActive(Routes.Statistics)} onClick={() => toggleMobileNavBar()}>
+              Statistics
+            </li>
+          </NavLink>
+          <NavLink exact to={Routes.About}>
+            <li className={getClassIfActive(Routes.About)} onClick={() => toggleMobileNavBar()}>
+              About
+            </li>
+          </NavLink>
         </ul>
       </nav>
     </section>
