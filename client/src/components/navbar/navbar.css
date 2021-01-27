@@ -78,8 +78,8 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  font-family: Monaco;
-  font-size: 36px;
+  font-family: 'Audiowide';
+  font-size: 24px;
   clear: both;
   max-height: 0;
   transition: max-height 0.2s ease-out;
@@ -131,7 +131,7 @@
   }
 
   .navbar.hamburger-open {
-    height: 400px;
+    height: 350px;
   }
 
   .navbar-logo {

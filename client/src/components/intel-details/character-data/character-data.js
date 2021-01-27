@@ -54,7 +54,7 @@ class CharacterData extends React.Component {
           onChange={(e) => this.updateCharacterSelection(e.value)}
         />
 
-        <div className="character-stats-container">
+        <div className="character-stats-container" disabled={!this.state.name ? true : null}>
           <div className="character-data">
             <label className="input-label">
               <img src={hp} alt="" />

@@ -38,7 +38,7 @@ const TowerList = (props) => {
         intelId={props.intelId}
         onClose={() => toggleAddTowerDialog(false)}
       />
-      <button className="slide-btn-horizontal" onClick={() => toggleAddTowerDialog(true)}>
+      <button className="slide-btn-horizontal add-tower-btn" onClick={() => toggleAddTowerDialog(true)}>
         <span className="slide-btn-text">Add Tower</span>
       </button>
 

@@ -36,7 +36,7 @@ const Navbar = () => {
 
   const getClassIfActive = (route) => {
     const currentPath = history.location.pathname;
-    return route === currentPath ? 'navbar-link-active' : null;
+    return currentPath.includes(route) ? 'navbar-link-active' : null;
   }
 
   return (
