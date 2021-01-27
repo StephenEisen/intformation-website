@@ -1,6 +1,5 @@
 import React from "react";
 import "./app.css";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import { Routes } from "globals/routes.js";
 import Intel from "components/intel/intel";
