@@ -5,66 +5,119 @@
   text-align: left;
   color: #000;
   font-size: 16px;
+  margin-left: 10px;
 }
 
 /* ========================
- * General styles
+ * Character container
  * ===================== */
 .character-data-container {
-  margin-top: 30px;
-  flex: 1 1 25%;
-  margin: 0 auto;
-  padding: 20px;
-  width: 100%;
   transition: 0.3s ease-out all;
-}
-
-.character-stats-container[disabled] {
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-.character-stats-container {
-  margin-top: 20px;
-}
-
-.character-data {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+  width: 100%;
+  text-align: left;
+  padding: 15px;
+  padding-left: 0;
+  padding-top: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
-.character-data label {
-  float: left;
-  width: 10%;
+.character-data-container:hover {
+  background: var(--purple-color);
+  box-shadow: 5px 5px 5px #000;
+}
+
+.character-edit {
+  cursor: default !important;
+  background: var(--purple-color);
+  box-shadow: 5px 5px 5px #000;
+}
+
+/* ========================
+ * Character selection
+ * ===================== */
+.character-selection {
+  flex: 1;
+  text-align: center;
+  margin-right: 20px;
+  min-width: 200px;
+  position: relative;
+}
+
+.character-selection .slide-btn-horizontal {
+  bottom: 10px;
+  position: absolute;
+  margin-left: 40px;
+  cursor: pointer;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.character-selection img {
+  border-radius: 50%;
+  width: 100px;
+}
+
+.character-selection .slide-btn-text img {
+  width: 15px;
+  vertical-align: bottom;
   margin-right: 10px;
 }
 
-.character-data input {
-  float: right;
-  width: 90%;
+/* ========================
+ * Character stats container
+ * ===================== */
+.character-stats-container {
+  flex: 4;
 }
 
-/* ========================
- * Image styles
- * ===================== */
-.character-data img {
+.character-stats-header {
+  position: relative;
+  top: 5px;
+}
+
+.character-stats-header img {
   width: 30px;
   vertical-align: middle;
+  margin-right: 5px;
 }
 
+.character-stats-left {
+  float: left;
+}
+
+.character-stats-right {
+  float: right;
+}
+
+.character-stat {
+  margin-right: 20px;
+}
+
+.character-stats-notes {
+  clear: both;
+  padding-top: 20px;
+}
 
 /* ========================
- * Mobile styles
+ * Character stats inputs
  * ===================== */
-@media only screen and (max-width: 1200px) {
-  .character-data-container {
-    padding: 0;
-  }
+.character-stats-inputs {
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-top: 100px;
+  padding-right: 25px;
+}
 
-  .character-stats-container {
-    margin-bottom: 50px;
-  }
+.character-stats-inputs input {
+  resize: horizontal;
+  width: 200px;
+}
+
+.character-stats-inputs textarea {
+  display: block;
+  resize: vertical;
+  width: 100%;
 }
