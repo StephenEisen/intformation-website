@@ -4,7 +4,7 @@ import { socket } from 'globals/socket.js';
 import { Routes } from 'globals/routes';
 import TowerList from './tower-list/tower-list';
 import './intel-details.css'
-import { intelGet } from 'globals/api';
+import { intelGet, intelPut } from 'globals/api';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -20,7 +20,11 @@ const IntelDetails = () => {
   }
 
   const handlePasswordSubmit = event => {
-    alert(password);
+    const put = {...intel};
+    put["password"] = password;
+    intelPut(put)
+      .then(res => setIntel(res))
+      .catch(err => console.error('Error', err));
     event.preventDefault();
   };
 
@@ -54,8 +58,9 @@ const IntelDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  return (
-    <div>
+  let passwordForm = null;
+  if (intel && !intel.password) {
+    passwordForm  = (
       <form onSubmit={handlePasswordSubmit} className="form-password">
         <input
           type="text"
@@ -69,6 +74,12 @@ const IntelDetails = () => {
           </span>
         </button>
       </form>
+    );
+  }
+
+  return (
+    <div>
+      { passwordForm }
       { intel ? <TowerList intelId={id} towerList={intel.data} /> : null }
     </div>
   )
