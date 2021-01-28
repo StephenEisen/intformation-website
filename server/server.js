@@ -7,7 +7,7 @@ const io = require("socket.io")(server, options);
 const mongodb = require("./mongodb/connection.js");
 const queries = require("./mongodb/queries.js");
 const bodyParser = require('body-parser');
-const { updatePassword } = require('./passwords');
+const { updatePassword, authenticateIntel } = require('./passwords');
 
 const {
   userJoin,
@@ -47,21 +47,27 @@ app.post("/api/intel", async (request, response) => {
 
 app.get("/api/intel/:pageId", async (request, response) => {
   try {
-    const existingIntel = await queries.findIntel(request.params.pageId);
-    response.status(200).send(existingIntel);
+    const plainText = "P@ssword!";
+    const auth = await authenticateIntel(request.params.pageId, plainText);
+    if (auth) {
+      const existingIntel = await queries.findIntel(request.params.pageId);
+      response.status(200).send(existingIntel);
+    } else {
+      response.status(403).send("Forbidden");
+    }
   } catch (err) {
-    response.status(404).send("Intel not found")
+    response.status(404).send("Intel not found");
   }
 });
 
-app.put("/api/intel/:pageId", async (request, response) => {
+app.post("/api/intel/:pageId/password", async (request, response) => {
   try {
-    const intel = await updatePassword(request.body);
-    response.status(200).send(intel);
+    await updatePassword(request.body);
+    response.status(204).send();
   } catch (err) {
     response.status(500).send("Server error");
   }
-});
+})
 
 // Listen to socket events
 io.on("connection", (socket) => {

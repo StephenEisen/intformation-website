@@ -25,8 +25,7 @@ const GuildDataSchema = new Schema(
       type: String,
       unique: true
     },
-    data: [TowerSchema],
-    password: String
+    data: [TowerSchema]
   },
 );
 
