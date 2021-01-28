@@ -4,7 +4,7 @@ import { socket } from 'globals/socket.js';
 import { Routes } from 'globals/routes';
 import TowerList from './tower-list/tower-list';
 import './intel-details.css'
-import { intelGet, intelPut } from 'globals/api';
+import { intelGet, intelPasswordPost } from 'globals/api';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -20,11 +20,10 @@ const IntelDetails = () => {
   }
 
   const handlePasswordSubmit = event => {
-    const put = {...intel};
-    put["password"] = password;
-    intelPut(put)
-      .then(res => setIntel(res))
+    intelPasswordPost(id, password)
+      .then(resp => console.log('Password set', resp))
       .catch(err => console.error('Error', err));
+    setPassword("");
     event.preventDefault();
   };
 

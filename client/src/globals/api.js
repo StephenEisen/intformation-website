@@ -14,15 +14,18 @@ export const intelPost = async () => {
   return intel;
 }
 
-export const intelPut = async (intel) => {
-  const resp = await fetch(`${webserver}/api/intel/${intel.pageId}`, {
-    method: 'PUT',
-    body: JSON.stringify(intel),
+// Should change to a put if we let them modify passwords
+export const intelPasswordPost = async (pageId, password) => {
+  const resp = await fetch(`${webserver}/api/intel/${pageId}/password`, {
+    method: 'POST',
+    body: JSON.stringify({
+      pageId: pageId,
+      password: password
+    }),
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
   });
-  const put = await resp.json();
-  return put;
+  return resp;
 }
