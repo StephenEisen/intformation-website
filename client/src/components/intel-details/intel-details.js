@@ -6,10 +6,23 @@ import TowerList from './tower-list/tower-list';
 import './intel-details.css'
 import { intelGet } from 'globals/api';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+
 const IntelDetails = () => {
   const { id } = useParams();
   const history = useHistory();
   const [intel, setIntel] = useState(null);
+  const [password, setPassword] = useState("");
+
+  const handlePasswordChange = event => {
+    setPassword(event.target.value);
+  }
+
+  const handlePasswordSubmit = event => {
+    alert(password);
+    event.preventDefault();
+  };
 
   const localStoragePushIntel = () => {
     const recents = JSON.parse(localStorage.getItem('recentIntels')) || [];
@@ -43,6 +56,19 @@ const IntelDetails = () => {
 
   return (
     <div>
+      <form onSubmit={handlePasswordSubmit} className="form-password">
+        <input
+          type="text"
+          name="password"
+          placeholder="Set Password"
+          value={password}
+          onChange={handlePasswordChange}></input>
+        <button type="submit" className="btn-password slide-btn-horizontal">
+          <span>
+            <FontAwesomeIcon icon={faCheck} className="icon-check-password" />
+          </span>
+        </button>
+      </form>
       { intel ? <TowerList intelId={id} towerList={intel.data} /> : null }
     </div>
   )
