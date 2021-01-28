@@ -18,17 +18,12 @@ const updatePassword = request => {
 };
 
 const authenticateIntel = async (pageId, plainText) => {
-  try {
-    const intelPassword = await queries.findIntelPassword(pageId);
-    if (!intelPassword) {
-      return true;
-    }
-  } catch (err) {
-    console.log('Error', err);
-    reject(err);
+  const record = await queries.findIntelPassword(pageId);
+  if (!record) {
+    return true;
   }
   return new Promise((resolve, reject) => {
-    bcrypt.compare(plainText, intelPassword.password, (err, result) => {
+    bcrypt.compare(plainText, record.password, (err, result) => {
       if (err) {
         reject(err);
       }

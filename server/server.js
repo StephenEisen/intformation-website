@@ -15,6 +15,7 @@ const {
   userLeave,
   getRoomUsers,
 } = require("./mongodb/users.js");
+const { query } = require("express");
 
 // Connect to mongodb
 mongodb.connect();
@@ -47,16 +48,19 @@ app.post("/api/intel", async (request, response) => {
 
 app.get("/api/intel/:pageId", async (request, response) => {
   try {
-    const plainText = "P@ssword!";
-    const auth = await authenticateIntel(request.params.pageId, plainText);
-    if (auth) {
-      const existingIntel = await queries.findIntel(request.params.pageId);
-      response.status(200).send(existingIntel);
+    const plainText = "password";
+    if (await authenticateIntel(request.params.pageId, plainText)) {
+      const intel = await queries.findIntel(request.params.pageId);
+      if (intel) {
+        response.status(200).send(intel);
+      } else {
+        response.status(404).send();
+      }
     } else {
       response.status(403).send("Forbidden");
     }
   } catch (err) {
-    response.status(404).send("Intel not found");
+    response.status(500).send("Server error");
   }
 });
 
