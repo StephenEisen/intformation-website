@@ -13,9 +13,26 @@ export const intelPost = async () => {
   return intel;
 }
 
+// This is for setting passwords
 // Should change to a put if we let them modify passwords
 export const intelPasswordPost = async (pageId, password) => {
   const resp = await fetch(`${webserver}/api/intel/${pageId}/password`, {
+    method: 'POST',
+    body: JSON.stringify({
+      pageId: pageId,
+      password: password
+    }),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  });
+  return resp;
+}
+
+// This is for authenticating an intel using the password
+export const intelAuthTokenPost = async (pageId, password) => {
+  const resp = await fetch(`${webserver}/api/intel/${pageId}/token`, {
     method: 'POST',
     body: JSON.stringify({
       pageId: pageId,

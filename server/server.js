@@ -71,7 +71,13 @@ app.post("/api/intel/:pageId/password", async (request, response) => {
   } catch (err) {
     response.status(500).send("Server error");
   }
-})
+});
+
+app.post("/api/intel/:pageId/token", async (request, response) => {
+
+  // TODO: Implement JWT token creation
+  response.status(204).send();
+});
 
 // Listen to socket events
 io.on("connection", (socket) => {
