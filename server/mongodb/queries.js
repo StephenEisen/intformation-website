@@ -11,6 +11,18 @@ async function createIntel() {
   return newData.save();
 }
 
+async function updatePassword(intel) {
+  return GuildData.findOneAndUpdate(
+    { pageId: intel.pageId },
+    {
+      $set: {
+        password: intel.password
+      },
+    },
+    { new: true, upsert: true }
+  );
+}
+
 async function createTower(towerData) {
   return GuildData.findOneAndUpdate(
     { pageId: towerData.pageId },
@@ -40,8 +52,7 @@ async function updateCharacter(characterData) {
           hp: characterData.hp,
           speed: characterData.speed,
           artifact: characterData.artifact,
-          notes: characterData.notes,
-          lastUpdated: Date.now()
+          notes: characterData.notes
         },
       },
     },
@@ -86,6 +97,7 @@ async function countMostUsedTeams() {
 module.exports = {
   findIntel,
   createIntel,
+  updatePassword,
   createTower,
   updateCharacter,
   countTotalGuilds,

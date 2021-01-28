@@ -2,10 +2,13 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const server = require("http").createServer(app);
-const options = { cors: true, origins: ["https://epic7.gg"] };
+const options = { cors: true, origins: ["http://localhost:3000"] };
 const io = require("socket.io")(server, options);
 const mongodb = require("./mongodb/connection.js");
 const queries = require("./mongodb/queries.js");
+const bodyParser = require('body-parser');
+const { updatePassword } = require('./passwords');
+
 const {
   userJoin,
   getCurrentUser,
@@ -13,20 +16,18 @@ const {
   getRoomUsers,
 } = require("./mongodb/users.js");
 
-const corsOptions = {
-  origin: "https://epic7.gg",
-  optionsSuccessStatus: 200
-}
-
 // Connect to mongodb
 mongodb.connect();
 
-app.get("/api/statistics/total-intels", cors(corsOptions), async (request, response) => {
+app.use(cors());
+app.use(bodyParser.json())
+
+app.get("/api/statistics/total-intels", async (request, response) => {
   const totalGuilds = await queries.countTotalGuilds();
   response.send({ totalGuilds: totalGuilds });
 });
 
-app.get("/api/statistics/most-frequently-used", cors(corsOptions), async (request, response) => {
+app.get("/api/statistics/most-frequently-used", async (request, response) => {
   try {
     const mostUsed = await queries.countMostUsedTeams();
     response.send(mostUsed);
@@ -35,7 +36,7 @@ app.get("/api/statistics/most-frequently-used", cors(corsOptions), async (reques
   }
 });
 
-app.post("/api/intel", cors(corsOptions), async (request, response) => {
+app.post("/api/intel", async (request, response) => {
   try {
     const newIntel = await queries.createIntel();
     response.status(201).send(newIntel);
@@ -44,12 +45,21 @@ app.post("/api/intel", cors(corsOptions), async (request, response) => {
   }
 });
 
-app.get("/api/intel/:pageId", cors(corsOptions), async (request, response) => {
+app.get("/api/intel/:pageId", async (request, response) => {
   try {
     const existingIntel = await queries.findIntel(request.params.pageId);
     response.status(200).send(existingIntel);
   } catch (err) {
     response.status(404).send("Intel not found")
+  }
+});
+
+app.put("/api/intel/:pageId", async (request, response) => {
+  try {
+    const intel = await updatePassword(request.body);
+    response.status(200).send(intel);
+  } catch (err) {
+    response.status(500).send("Server error");
   }
 });
 
