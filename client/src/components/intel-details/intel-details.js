@@ -14,6 +14,7 @@ const IntelDetails = () => {
   const history = useHistory();
   const [intel, setIntel] = useState(null);
   const [password, setPassword] = useState("");
+  const [forbidden, setForbidden] = useState(false);
 
   const handlePasswordChange = event => {
     setPassword(event.target.value);
@@ -37,17 +38,22 @@ const IntelDetails = () => {
 
   const loadIntel = async () => {
     try {
-      const intel = await intelGet(id);
-      setIntel(intel);
-      localStoragePushIntel();
-  
-      //fetch the room to join based on the pageid can also pass in a username
-      const room = id;
-      const username = 'admin';
-      socket.emit('joinRoom', { username, room });
-
+      const resp = await intelGet(id);
+      if (resp.ok) {
+        setIntel(await resp.json());
+        localStoragePushIntel();
+    
+        //fetch the room to join based on the pageid can also pass in a username
+        const room = id;
+        const username = 'admin';
+        socket.emit('joinRoom', { username, room });
+      } else if (resp.status === 403) {
+        setForbidden(true);
+      } else {
+        console.error(resp);
+        history.push(Routes.Intel);
+      }
     } catch (err) {
-
       history.push(Routes.Intel);
     }
   };
@@ -78,6 +84,7 @@ const IntelDetails = () => {
 
   return (
     <div>
+      { forbidden ? <p>I'm gay</p> : null}
       { passwordForm }
       { intel ? <TowerList intelId={id} towerList={intel.data} /> : null }
     </div>

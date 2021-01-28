@@ -2,8 +2,7 @@ import { webserver } from './socket'
 
 export const intelGet = async (pageId) => {
   const resp = await fetch(`${webserver}/api/intel/${pageId}`);
-  const intel = await resp.json();
-  return intel;
+  return resp;
 }
 
 export const intelPost = async () => {
