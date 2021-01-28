@@ -21,10 +21,14 @@ const IntelDetails = () => {
   }
 
   const handlePasswordSubmit = event => {
-    intelPasswordPost(id, password)
-      .then(resp => console.log('Password set', resp))
-      .catch(err => console.error('Error', err));
-    setPassword("");
+    if (forbidden) {
+      // TODO: authenticate intel
+    } else {
+      intelPasswordPost(id, password)
+        .then(resp => console.log('Password set', resp))
+        .catch(err => console.error('Error', err));
+      setPassword("");
+    }
     event.preventDefault();
   };
 
@@ -63,14 +67,16 @@ const IntelDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
+  // I'm just being lazy and reusing this form for both password set and
+  // password entry. I'm sure Mo can design a nicer UX here
   let passwordForm = null;
-  if (intel && !intel.password) {
-    passwordForm  = (
+  if (intel || forbidden) {
+    passwordForm = (
       <form onSubmit={handlePasswordSubmit} className="form-password">
         <input
           type="text"
           name="password"
-          placeholder="Set Password"
+          placeholder={forbidden ? "Enter password" : "Set password"}
           value={password}
           onChange={handlePasswordChange}></input>
         <button type="submit" className="btn-password slide-btn-horizontal">
@@ -84,7 +90,6 @@ const IntelDetails = () => {
 
   return (
     <div>
-      { forbidden ? <p>I'm gay</p> : null}
       { passwordForm }
       { intel ? <TowerList intelId={id} towerList={intel.data} /> : null }
     </div>
