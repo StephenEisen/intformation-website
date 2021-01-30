@@ -8,7 +8,9 @@ const CharacterSchema = new Schema({
   speed: Number,
   artifact: String,
   notes: String,
-  lastUpdated: Date
+  immunity: Boolean,
+  counter: Boolean,
+  lifesteal: Boolean
 });
 
 const TowerSchema = new Schema({

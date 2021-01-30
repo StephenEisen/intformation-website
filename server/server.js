@@ -2,31 +2,28 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const server = require("http").createServer(app);
+const bodyParser = require('body-parser');
 const options = { cors: true, origins: ["http://localhost:3000"] };
 const io = require("socket.io")(server, options);
 const mongodb = require("./mongodb/connection.js");
 const queries = require("./mongodb/queries.js");
-const {
-  userJoin,
-  getCurrentUser,
-  userLeave,
-  getRoomUsers,
-} = require("./mongodb/users.js");
-
-const corsOptions = {
-  origin: "http://localhost:3000",
-  optionsSuccessStatus: 200
-}
+const passwords = require('./passwords');
+const users = require("./mongodb/users.js");
 
 // Connect to mongodb
 mongodb.connect();
 
-app.get("/api/statistics/total-intels", cors(corsOptions), async (request, response) => {
+// Setup middlewear
+app.use(cors());
+app.use(bodyParser.json())
+
+// Api calls
+app.get("/api/statistics/total-intels", async (request, response) => {
   const totalGuilds = await queries.countTotalGuilds();
   response.send({ totalGuilds: totalGuilds });
 });
 
-app.get("/api/statistics/most-frequently-used", cors(corsOptions), async (request, response) => {
+app.get("/api/statistics/most-frequently-used", async (request, response) => {
   try {
     const mostUsed = await queries.countMostUsedTeams();
     response.send(mostUsed);
@@ -35,7 +32,7 @@ app.get("/api/statistics/most-frequently-used", cors(corsOptions), async (reques
   }
 });
 
-app.post("/api/intel", cors(corsOptions), async (request, response) => {
+app.post("/api/intel", async (request, response) => {
   try {
     const newIntel = await queries.createIntel();
     response.status(201).send(newIntel);
@@ -44,32 +41,58 @@ app.post("/api/intel", cors(corsOptions), async (request, response) => {
   }
 });
 
-app.get("/api/intel/:pageId", cors(corsOptions), async (request, response) => {
+app.get("/api/intel/:pageId", async (request, response) => {
   try {
-    const existingIntel = await queries.findIntel(request.params.pageId);
-    response.status(200).send(existingIntel);
+    let token = "";
+    if (request.headers.authorization && request.headers.authorization.split(' ')[0] === 'Bearer') {
+      token = request.headers.authorization.split(' ')[1];
+    }
+    const pageId = request.params.pageId;
+    const intel = await queries.findIntel(pageId);
+    if (await passwords.authRequired(pageId)) {
+      if (token && await passwords.authenticateIntel(pageId, token)) {
+        return response.status(200).send(intel);
+      } else {
+        return response.status(403).send("Forbidden");
+      }
+    } else {
+      return response.status(200).send(intel);
+    }
   } catch (err) {
-    response.status(404).send("Intel not found")
+    console.error(err);
+    response.status(500).send("Server error");
+  }
+});
+
+app.post("/api/intel/:pageId/password", async (request, response) => {
+  try {
+    await passwords.updatePassword(request.body);
+    response.status(204).send();
+  } catch (err) {
+    response.status(500).send("Server error");
+  }
+});
+
+app.post("/api/intel/:pageId/token", async (request, response) => {
+  try {
+    const plainText = request.body.password;
+    if (await passwords.verifyPassword(request.params.pageId, plainText)) {
+      const token = await passwords.generateToken(request.params.pageId);
+      response.status(201).send(token);
+    } else {
+      response.status(403).send("Forbidden");
+    }
+  } catch (err) {
+    response.status(500).send("Server error");
   }
 });
 
 // Listen to socket events
 io.on("connection", (socket) => {
   socket.on('joinRoom', ({username, room}) => {
-    const user = userJoin(socket.id, username, room);
-
-
+    const user = users.userJoin(socket.id, username, room);
     console.log(`${user.username} has joined room: ${user.room} with socket ${user.id}`);
-
     socket.join(user.room);
-
-
-
-    // Get users and room info
-    // io.to(user.room).emit('getRoomUsers', {
-    //   room: user.room,
-    //   users: getRoomUsers(user.room)
-    // });
   });
 
   socket.on("createTower", async (data) => {
@@ -88,9 +111,6 @@ io.on("connection", (socket) => {
     else {
       io.sockets.to(data.pageId).emit("createTowerError", "Tower already exists");
     }
-
-    // Broadcast to other users that a tower was created
-    // io.sockets.broadcast.to(user.room).emit('newTower' ,`${user.username} has created a tower.`);
   });
 
   socket.on("updateCharacter", async (characterData) => {

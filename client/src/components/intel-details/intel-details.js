@@ -4,12 +4,41 @@ import { socket } from 'globals/socket.js';
 import { Routes } from 'globals/routes';
 import TowerList from './tower-list/tower-list';
 import './intel-details.css'
-import { intelGet } from 'globals/api';
+import { intelAuthTokenPost, intelGet, intelPasswordPost } from 'globals/api';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 const IntelDetails = () => {
   const { id } = useParams();
   const history = useHistory();
   const [intel, setIntel] = useState(null);
+  const [password, setPassword] = useState("");
+  const [forbidden, setForbidden] = useState(false);
+
+  const handlePasswordChange = event => {
+    setPassword(event.target.value);
+  }
+
+  const handlePasswordSubmit = event => {
+    if (forbidden) {
+      intelAuthTokenPost(id, password)
+        .then(token => {
+          loadIntel();
+          setForbidden(false);
+        })
+        .catch(err => console.error(err));
+      
+
+      setPassword("");
+    } else {
+      intelPasswordPost(id, password)
+        .then(resp => console.log('Password set', resp))
+        .catch(err => console.error('Error', err));
+      setPassword("");
+    }
+    event.preventDefault();
+  };
 
   const localStoragePushIntel = () => {
     const recents = JSON.parse(localStorage.getItem('recentIntels')) || [];
@@ -21,17 +50,22 @@ const IntelDetails = () => {
 
   const loadIntel = async () => {
     try {
-      const intel = await intelGet(id);
-      setIntel(intel);
-      localStoragePushIntel();
-  
-      //fetch the room to join based on the pageid can also pass in a username
-      const room = id;
-      const username = 'admin';
-      socket.emit('joinRoom', { username, room });
-
+      const resp = await intelGet(id);
+      if (resp.ok) {
+        setIntel(await resp.json());
+        localStoragePushIntel();
+    
+        //fetch the room to join based on the pageid can also pass in a username
+        const room = id;
+        const username = 'admin';
+        socket.emit('joinRoom', { username, room });
+      } else if (resp.status === 403) {
+        setForbidden(true);
+      } else {
+        console.error(resp);
+        history.push(Routes.Intel);
+      }
     } catch (err) {
-
       history.push(Routes.Intel);
     }
   };
@@ -41,8 +75,31 @@ const IntelDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
+  // I'm just being lazy and reusing this form for both password set and
+  // password entry. I'm sure Mo can design a nicer UX here
+  let passwordForm = null;
+  if (intel || forbidden) {
+    passwordForm = (
+      <form onSubmit={handlePasswordSubmit} className="form-password">
+        <input
+          type="text"
+          name="password"
+          placeholder={forbidden ? "Enter password" : "Set password"}
+          value={password}
+          onChange={handlePasswordChange}></input>
+        <button type="submit" className="btn-password slide-btn-horizontal">
+          <span>
+            <FontAwesomeIcon icon={faCheck} className="icon-check-password" />
+          </span>
+        </button>
+      </form>
+    );
+  }
+
   return (
     <div>
+      { passwordForm }
+      { forbidden ? <p>Forbidden</p> : null }
       { intel ? <TowerList intelId={id} towerList={intel.data} /> : null }
     </div>
   )
