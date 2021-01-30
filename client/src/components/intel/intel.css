@@ -54,6 +54,7 @@
 .intel-connect-join {
   float: right;
   margin-top: 50px;
+  text-align: right;
 }
 
 .intel-connect-join .slide-btn {
@@ -138,14 +139,14 @@
  * Inputs
  * ===================== */
 .intel-id-input {
-  font-size: 24px !important;
+  font-size: 20px !important;
   display: inline;
   margin-right: 20px;
   padding: 64px;
-  padding: 14px !important;
+  padding: 16px !important;
   position: relative;
-  top: 4px;
-  max-width: 100%;
+  top: 2px;
+  width: 50%;
 }
 
 /* ========================
@@ -158,9 +159,8 @@
 /* ========================
  * Mobile styles
  * ===================== */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1280px) {
   .intel-id-input {
-    font-size: 14px !important;
     top: 0;
     margin-right: 0;
     margin-bottom: 20px;
@@ -168,7 +168,6 @@
   }
 
   .intel-connect .slide-btn-horizontal {
-    font-size: 18px;
     width: 100%;
   }
 

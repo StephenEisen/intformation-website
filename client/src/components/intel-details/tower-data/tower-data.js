@@ -10,7 +10,8 @@ class TowerData extends React.Component {
 
     this.state = {
       characterOptions: clone(characters),
-      selectedCharacters: Array(6).fill(null)
+      selectedCharacters: Array(6).fill(null),
+      isEditingList: Array(6).fill(false)
     };
   }
 
@@ -40,6 +41,12 @@ class TowerData extends React.Component {
     this.setState({ characterOptions, selectedCharacters });
   }
 
+  updateIsEditing(isEditing, characterIndex) {
+    const isEditingList = Array(6).fill(false);
+    isEditingList.splice(characterIndex, 1, isEditing);
+    this.setState({ isEditingList });
+  }
+
   getCharacterElements() {
     const elements = [];
 
@@ -53,6 +60,8 @@ class TowerData extends React.Component {
           teamIndex={i <= 2 ? 1 : 2}
           towerIndex={this.props.towerIndex}
           characterIndex={i}
+          isEditing={this.state.isEditingList[i]}
+          editChange={(value) => this.updateIsEditing(value, i)}
           selectionChange={(option) => this.updateCharacterOptions(option, i)}
         />
       ));

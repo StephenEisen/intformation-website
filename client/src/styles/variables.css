@@ -1,0 +1,13 @@
+:root {
+  /* Breakpoints */
+  --tablet-breakpoint: 1280px;
+  --phone-breakpoint: 900px;
+
+  /* Colors */
+  --pink-color: #ff85ea;
+  --purple-color: rgb(28, 16, 36);
+  --dark-purple-color: #120b18;
+
+  /* Fonts */
+  --roboto-font: 'Roboto', sans-serif;
+}

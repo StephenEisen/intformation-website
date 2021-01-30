@@ -5,66 +5,195 @@
   text-align: left;
   color: #000;
   font-size: 16px;
-}
-
-/* ========================
- * General styles
- * ===================== */
-.character-data-container {
-  margin-top: 30px;
-  flex: 1 1 25%;
-  margin: 0 auto;
-  padding: 20px;
-  width: 100%;
-  transition: 0.3s ease-out all;
-}
-
-.character-stats-container[disabled] {
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-.character-stats-container {
-  margin-top: 20px;
-}
-
-.character-data {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   margin-bottom: 20px;
 }
 
-.character-data label {
-  float: left;
-  width: 10%;
-  margin-right: 10px;
+.select-dropdown [class*="-control"] {
+  background: #120b18;
+  border-color: rgb(28, 16, 36);
 }
 
-.character-data input {
-  float: right;
-  width: 90%;
+.select-dropdown [class*="-placeholder"] {
+  color: rgb(158, 158, 158);
+}
+
+.select-dropdown [class*="-singleValue"] {
+  color: #fff;
+}
+
+.character-inputs div.select-dropdown:nth-child(2) {
+  margin-left: 10px;
 }
 
 /* ========================
- * Image styles
+ * Character container
  * ===================== */
-.character-data img {
-  width: 30px;
-  vertical-align: middle;
+.character-data-container {
+  transition: 0.3s ease-out all;
+  width: 100%;
+  text-align: left;
+  padding: 20px 15px 15px 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
+.character-data-container:hover {
+  background: var(--purple-color);
+  box-shadow: 5px 5px 5px #000;
+}
+
+.character-edit {
+  cursor: default !important;
+  background: var(--purple-color);
+  box-shadow: 5px 5px 5px #000;
+}
+
+/* ========================
+ * Character selection
+ * ===================== */
+.character-selection-container {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.character-selection-container img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+/* ========================
+ * Character stats labels
+ * ===================== */
+.character-stats-labels {
+  flex: 4;
+  position: relative;
+  top: 5px;
+}
+
+.character-stats-labels img {
+  width: 30px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.character-stats-left {
+  float: left;
+}
+
+.character-stats-right {
+  float: right;
+}
+
+.character-stat {
+  margin-right: 20px;
+}
+
+.character-stats-notes {
+  clear: both;
+  padding-top: 20px;
+}
+
+/* ========================
+ * Character inputs
+ * ===================== */
+.character-inputs {
+  margin-bottom: 10px;
+}
+
+.character-inputs input[type="number"] {
+  margin-right: 20px;
+}
+
+.character-inputs textarea {
+  display: block;
+  resize: vertical;
+  width: 93.8%;
+  margin-right: 20px;
+  background-color: #22152c;
+  border: 1px solid #2e1c44;
+  color: #fff;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+.character-debuffs {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.character-debuffs label {
+  margin-right: 20px;
+}
+
+.character-speed.flex-container,
+.character-speed .flex-1 {
+  display: inline;
+}
 
 /* ========================
  * Mobile styles
  * ===================== */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 900px) {
   .character-data-container {
-    padding: 0;
+    flex-wrap: wrap;
   }
 
-  .character-stats-container {
-    margin-bottom: 50px;
+  .character-selection-container {
+    flex: none;
+    margin-right: 20px;
+  }
+
+  .character-stat {
+    margin-right: 0;
+    display: block;
+  }
+
+  .character-stats-notes {
+    display: none;
+  }
+
+  .character-stats-right img {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .character-options {
+    flex: none;
+    display: none;
+  }
+
+  .character-inputs {
+    padding-right: 0;
+    width: 100%;
+    padding-right: 25px;
+    margin-top: 20px;
+  }
+
+  .character-inputs input[type="number"] {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .character-debuffs {
+    text-align: center;
+  }
+
+  .character-speed div:nth-child(1) {
+    margin-right: 10px;
+  }
+
+  .character-speed.flex-container {
+    display: flex;
+  }
+
+  .character-speed .flex-1 {
+    flex: 1;
+  }
+
+  .character-inputs textarea {
+    margin-top: 0;
   }
 }

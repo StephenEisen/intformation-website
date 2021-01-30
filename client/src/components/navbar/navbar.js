@@ -16,7 +16,7 @@ const Navbar = () => {
   const closeNavBar = () => {
     const classes = ['navbar']
 
-    if (window.innerWidth < 1200) {
+    if (window.innerWidth <= 1280) {
       classes.push('hamburger-closed');
     }
     setNavbarClasses(classes);

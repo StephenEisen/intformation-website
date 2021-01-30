@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { intelPost } from 'globals/api.js';
-import './intel.css';
 import castle from 'assets/castle.png';
 import map from 'assets/map.png';
+import './intel.css';
 
 const Intel = () => {
   const history = useHistory();

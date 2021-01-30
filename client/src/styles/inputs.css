@@ -1,0 +1,87 @@
+/* ========================
+ * Button styles
+ * ===================== */
+.slide-btn-horizontal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+  border: 1px solid #5821a9;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  outline: none;
+  background-color: transparent;
+}
+
+.slide-btn-horizontal>.slide-btn-text {
+  position: relative;
+  color: #fff;
+  background-image: linear-gradient(90deg, #ff85ea 0%, #ff85ea 50%, #5821a9 50%, #5821a9 100%);
+  background-repeat: repeat;
+  background-size: 200%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background-position 300ms;
+}
+
+.slide-btn-horizontal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #5821a9;
+  transform-origin: 100% 0;
+  transform: scale3d(0, 1, 1);
+  transition: transform 300ms;
+}
+
+.slide-btn-horizontal:hover .slide-btn-text {
+  background-position: 0 0;
+}
+
+.slide-btn-horizontal:hover::before {
+  transform-origin: 0 0;
+  transform: scale3d(1, 1, 1);
+}
+
+/* ========================
+ * Input styles
+ * ===================== */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type='text'],
+input[type='number'] {
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  padding: 10px;
+  color: #fff;
+  background-color: #22152c;
+  border: none;
+  border-radius: 0;
+  outline: 0;
+  cursor: text;
+  box-sizing: border-box;
+  border: 1px solid #2e1c44;
+}
+
+.input-label {
+  font-family: 'Audiowide';
+  font-size: 32px;
+  font-weight: 800;
+  display: block;
+}
