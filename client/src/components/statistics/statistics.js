@@ -70,40 +70,34 @@ const Statistics = () => {
       {/* pass in whatever the most commonly used units for that given time period are */}
       <div className="first-most-used slider-left slide-in">
         <h2>Most Commonly Used Stats On: {getMostUsedImage(0)}</h2>
-        <p className="statistics-slide-up statistics-slide-stats">
-          Artifact: {"Artifact"} <br></br>
-          Hp: {"435345"} <br></br>
-          Speed: {"1447"} <br></br>
-          LifeSteal ? Counter ? | null
-        </p>
+          <p className="statistics-slide-up-artifact statistics-slide-stats">Artifact: {"Artifact"} </p>
+          <p className="statistics-slide-up-hp statistics-slide-stats">Hp: {"435345"} </p>
+          <p className="statistics-slide-up-speed statistics-slide-stats">Speed: {"1447"} </p>
+          <p className="statistics-slide-up-gear statistics-slide-stats">LifeSteal ? Counter ? | null</p>
       </div>
 
       <div className="second-most-used slider-right slide-in">
         <h2>Most Commonly Used Stats On: {getMostUsedImage(1)}</h2>
-        <p>
-          Artifact: {"Artifact"} <br></br>
-          Hp: {"435345"} <br></br>
-          Speed: {"1447"} <br></br>
-          LifeSteal ? Counter ? | null
-        </p>
+          <p className="statistics-slide-up-artifact statistics-slide-stats">Artifact: {"Artifact"} </p>
+          <p className="statistics-slide-up-hp statistics-slide-stats">Hp: {"435345"} </p>
+          <p className="statistics-slide-up-speed statistics-slide-stats">Speed: {"1447"} </p>
+          <p className="statistics-slide-up-gear statistics-slide-stats">LifeSteal ? Counter ? | null</p>
       </div>
 
       <div className="third-most-used slider-left slide-in">
         <h2>Most Commonly Used Stats On: {getMostUsedImage(2)}</h2>
-        <p>
-          Artifact: {"Artifact"} <br></br>
-          Hp: {"435345"} <br></br>
-          Speed: {"1447"} <br></br>
-          LifeSteal ? Counter ? | null
-        </p>
+          <p className="statistics-slide-up-artifact statistics-slide-stats">Artifact: {"Artifact"} </p>
+          <p className="statistics-slide-up-hp statistics-slide-stats">Hp: {"435345"} </p>
+          <p className="statistics-slide-up-speed statistics-slide-stats">Speed: {"1447"} </p>
+          <p className="statistics-slide-up-gear statistics-slide-stats">LifeSteal ? Counter ? | null</p>
       </div>
 
       <h3>More Defences</h3>
-      <p>MORE ENOTTT etc etc etc</p>
-
+      <div className="container">
       {
         mostUsed.map((team, index) => <p key={index}>{team[0].replaceAll(':', ' ')}</p>)
       }
+      </div>
     </div>
   );
 };
