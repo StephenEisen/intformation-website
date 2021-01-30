@@ -23,7 +23,10 @@ const IntelDetails = () => {
   const handlePasswordSubmit = event => {
     if (forbidden) {
       intelAuthTokenPost(id, password)
-        .then(token => loadIntel())
+        .then(token => {
+          loadIntel();
+          setForbidden(false);
+        })
         .catch(err => console.error(err));
       
 
@@ -96,6 +99,7 @@ const IntelDetails = () => {
   return (
     <div>
       { passwordForm }
+      { forbidden ? <p>Forbidden</p> : null }
       { intel ? <TowerList intelId={id} towerList={intel.data} /> : null }
     </div>
   )
