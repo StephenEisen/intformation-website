@@ -54,9 +54,8 @@ app.get("/api/intel/:pageId", async (request, response) => {
     }
     const pageId = request.params.pageId;
     const intel = await queries.findIntel(pageId);
-    console.log(intel);
     if (await authRequired(pageId)) {
-      if (await authenticateIntel(pageId, token)) {
+      if (token && await authenticateIntel(pageId, token)) {
         return response.status(200).send(intel);
       } else {
         return response.status(403).send("Forbidden");
@@ -65,6 +64,7 @@ app.get("/api/intel/:pageId", async (request, response) => {
       return response.status(200).send(intel);
     }
   } catch (err) {
+    console.error(err);
     response.status(500).send("Server error");
   }
 });
@@ -80,7 +80,7 @@ app.post("/api/intel/:pageId/password", async (request, response) => {
 
 app.post("/api/intel/:pageId/token", async (request, response) => {
   try {
-    const plainText = "password";
+    const plainText = request.body.password;
     if (await verifyPassword(request.params.pageId, plainText)) {
       const token = await generateToken(request.params.pageId);
       response.status(201).send(token);

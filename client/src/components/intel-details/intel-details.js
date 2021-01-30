@@ -4,7 +4,7 @@ import { socket } from 'globals/socket.js';
 import { Routes } from 'globals/routes';
 import TowerList from './tower-list/tower-list';
 import './intel-details.css'
-import { intelGet, intelPasswordPost } from 'globals/api';
+import { intelAuthTokenPost, intelGet, intelPasswordPost } from 'globals/api';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -22,7 +22,12 @@ const IntelDetails = () => {
 
   const handlePasswordSubmit = event => {
     if (forbidden) {
-      // TODO: authenticate intel
+      intelAuthTokenPost(id, password)
+        .then(token => loadIntel())
+        .catch(err => console.error(err));
+      
+
+      setPassword("");
     } else {
       intelPasswordPost(id, password)
         .then(resp => console.log('Password set', resp))
