@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const queries = require('./mongodb/queries');
 const saltRounds = 10;
@@ -32,4 +33,20 @@ const authenticateIntel = async (pageId, plainText) => {
   });
 };
 
-module.exports = { updatePassword, authenticateIntel };
+const generateToken = (pageId) => {
+  return new Promise((resolve, reject) => {
+    const data = {
+      pageId: pageId
+    }
+    const signature = "qMW!6uk5DV981hVY" // Generate a better secret and read from file system
+    const expiration = "24h"
+    return jwt.sign(data, signature, { expiresIn: expiration }, (err, token) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(token);
+    });
+  })
+}
+
+module.exports = { updatePassword, authenticateIntel, generateToken };

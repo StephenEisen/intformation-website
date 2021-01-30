@@ -7,7 +7,7 @@ const io = require("socket.io")(server, options);
 const mongodb = require("./mongodb/connection.js");
 const queries = require("./mongodb/queries.js");
 const bodyParser = require('body-parser');
-const { updatePassword, authenticateIntel } = require('./passwords');
+const { updatePassword, authenticateIntel, generateToken } = require('./passwords');
 
 const {
   userJoin,
@@ -74,9 +74,17 @@ app.post("/api/intel/:pageId/password", async (request, response) => {
 });
 
 app.post("/api/intel/:pageId/token", async (request, response) => {
-
-  // TODO: Implement JWT token creation
-  response.status(204).send();
+  try {
+    const plainText = "password";
+    if (await authenticateIntel(request.params.pageId, plainText)) {
+      const token = await generateToken(request.params.pageId);
+      response.status(201).send(token);
+    } else {
+      response.status(403).send("Forbidden");
+    }
+  } catch (err) {
+    response.status(500).send("Server error");
+  }
 });
 
 // Listen to socket events
