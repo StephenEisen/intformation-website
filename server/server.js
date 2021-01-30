@@ -7,7 +7,7 @@ const io = require("socket.io")(server, options);
 const mongodb = require("./mongodb/connection.js");
 const queries = require("./mongodb/queries.js");
 const bodyParser = require('body-parser');
-const { updatePassword, authenticateIntel, generateToken } = require('./passwords');
+const { updatePassword, authenticateIntel, generateToken, authRequired, verifyPassword } = require('./passwords');
 
 const {
   userJoin,
@@ -48,16 +48,21 @@ app.post("/api/intel", async (request, response) => {
 
 app.get("/api/intel/:pageId", async (request, response) => {
   try {
-    const plainText = "password";
-    if (await authenticateIntel(request.params.pageId, plainText)) {
-      const intel = await queries.findIntel(request.params.pageId);
-      if (intel) {
-        response.status(200).send(intel);
+    let token = "";
+    if (request.headers.authorization && request.headers.authorization.split(' ')[0] === 'Bearer') {
+      token = request.headers.authorization.split(' ')[1];
+    }
+    const pageId = request.params.pageId;
+    const intel = await queries.findIntel(pageId);
+    console.log(intel);
+    if (await authRequired(pageId)) {
+      if (await authenticateIntel(pageId, token)) {
+        return response.status(200).send(intel);
       } else {
-        response.status(404).send();
+        return response.status(403).send("Forbidden");
       }
     } else {
-      response.status(403).send("Forbidden");
+      return response.status(200).send(intel);
     }
   } catch (err) {
     response.status(500).send("Server error");
@@ -76,7 +81,7 @@ app.post("/api/intel/:pageId/password", async (request, response) => {
 app.post("/api/intel/:pageId/token", async (request, response) => {
   try {
     const plainText = "password";
-    if (await authenticateIntel(request.params.pageId, plainText)) {
+    if (await verifyPassword(request.params.pageId, plainText)) {
       const token = await generateToken(request.params.pageId);
       response.status(201).send(token);
     } else {
