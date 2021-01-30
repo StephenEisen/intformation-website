@@ -2,31 +2,33 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const server = require("http").createServer(app);
-const options = { cors: true, origins: ["https://epic7.gg"] };
+const options = { cors: true, origins: ["http://localhost:3000"] };
 const io = require("socket.io")(server, options);
 const mongodb = require("./mongodb/connection.js");
 const queries = require("./mongodb/queries.js");
+const bodyParser = require('body-parser');
+const { updatePassword, authenticateIntel, generateToken, authRequired, verifyPassword } = require('./passwords');
+
 const {
   userJoin,
   getCurrentUser,
   userLeave,
   getRoomUsers,
 } = require("./mongodb/users.js");
-
-const corsOptions = {
-  origin: "https://epic7.gg",
-  optionsSuccessStatus: 200
-}
+const { query } = require("express");
 
 // Connect to mongodb
 mongodb.connect();
 
-app.get("/api/statistics/total-intels", cors(corsOptions), async (request, response) => {
+app.use(cors());
+app.use(bodyParser.json())
+
+app.get("/api/statistics/total-intels", async (request, response) => {
   const totalGuilds = await queries.countTotalGuilds();
   response.send({ totalGuilds: totalGuilds });
 });
 
-app.get("/api/statistics/most-frequently-used", cors(corsOptions), async (request, response) => {
+app.get("/api/statistics/most-frequently-used", async (request, response) => {
   try {
     const mostUsed = await queries.countMostUsedTeams();
     response.send(mostUsed);
@@ -35,7 +37,7 @@ app.get("/api/statistics/most-frequently-used", cors(corsOptions), async (reques
   }
 });
 
-app.post("/api/intel", cors(corsOptions), async (request, response) => {
+app.post("/api/intel", async (request, response) => {
   try {
     const newIntel = await queries.createIntel();
     response.status(201).send(newIntel);
@@ -44,12 +46,49 @@ app.post("/api/intel", cors(corsOptions), async (request, response) => {
   }
 });
 
-app.get("/api/intel/:pageId", cors(corsOptions), async (request, response) => {
+app.get("/api/intel/:pageId", async (request, response) => {
   try {
-    const existingIntel = await queries.findIntel(request.params.pageId);
-    response.status(200).send(existingIntel);
+    let token = "";
+    if (request.headers.authorization && request.headers.authorization.split(' ')[0] === 'Bearer') {
+      token = request.headers.authorization.split(' ')[1];
+    }
+    const pageId = request.params.pageId;
+    const intel = await queries.findIntel(pageId);
+    if (await authRequired(pageId)) {
+      if (token && await authenticateIntel(pageId, token)) {
+        return response.status(200).send(intel);
+      } else {
+        return response.status(403).send("Forbidden");
+      }
+    } else {
+      return response.status(200).send(intel);
+    }
   } catch (err) {
-    response.status(404).send("Intel not found")
+    console.error(err);
+    response.status(500).send("Server error");
+  }
+});
+
+app.post("/api/intel/:pageId/password", async (request, response) => {
+  try {
+    await updatePassword(request.body);
+    response.status(204).send();
+  } catch (err) {
+    response.status(500).send("Server error");
+  }
+});
+
+app.post("/api/intel/:pageId/token", async (request, response) => {
+  try {
+    const plainText = request.body.password;
+    if (await verifyPassword(request.params.pageId, plainText)) {
+      const token = await generateToken(request.params.pageId);
+      response.status(201).send(token);
+    } else {
+      response.status(403).send("Forbidden");
+    }
+  } catch (err) {
+    response.status(500).send("Server error");
   }
 });
 

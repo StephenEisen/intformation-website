@@ -1,4 +1,5 @@
 const GuildData = require('./guild-data.js');
+const Authentication = require('./intel-password')
 
 async function findIntel(pageId) {
   return GuildData.findOne({ pageId });
@@ -40,8 +41,7 @@ async function updateCharacter(characterData) {
           hp: characterData.hp,
           speed: characterData.speed,
           artifact: characterData.artifact,
-          notes: characterData.notes,
-          lastUpdated: Date.now()
+          notes: characterData.notes
         },
       },
     },
@@ -83,11 +83,26 @@ async function countMostUsedTeams() {
   return [...teamMap.entries()].sort((a, b) => b[1] - a[1]);
 }
 
+async function findIntelPassword(pageId) {
+  const intelPassword = await Authentication.findOne({pageId: pageId});
+  return intelPassword;
+}
+
+async function updateIntelPassword(pageId, hash) {
+  const newAuth = new Authentication({
+    pageId: pageId,
+    password: hash
+  });
+  return newAuth.save();
+}
+
 module.exports = {
   findIntel,
   createIntel,
   createTower,
   updateCharacter,
   countTotalGuilds,
-  countMostUsedTeams
+  countMostUsedTeams,
+  findIntelPassword,
+  updateIntelPassword
 };

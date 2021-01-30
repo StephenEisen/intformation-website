@@ -6,7 +6,8 @@ function connect() {
   mongoose.connect("mongodb://localhost/testdata", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
   });
 
   mongoose.connection
