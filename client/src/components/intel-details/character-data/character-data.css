@@ -5,6 +5,23 @@
   text-align: left;
   color: #000;
   font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.select-dropdown [class*="-control"] {
+  background: #120b18;
+  border-color: rgb(28, 16, 36);
+}
+
+.select-dropdown [class*="-placeholder"] {
+  color: rgb(158, 158, 158);
+}
+
+.select-dropdown [class*="-singleValue"] {
+  color: #fff;
+}
+
+.character-inputs div.select-dropdown:nth-child(2) {
   margin-left: 10px;
 }
 
@@ -13,14 +30,12 @@
  * ===================== */
 .character-data-container {
   transition: 0.3s ease-out all;
-  display: flex;
   width: 100%;
   text-align: left;
-  padding: 15px;
-  padding-left: 0;
-  padding-top: 20px;
+  padding: 20px 15px 15px 15px;
   margin-bottom: 10px;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .character-data-container:hover {
@@ -37,47 +52,28 @@
 /* ========================
  * Character selection
  * ===================== */
-.character-selection {
+.character-selection-container {
   flex: 1;
   text-align: center;
-  margin-right: 20px;
-  min-width: 200px;
   position: relative;
 }
 
-.character-selection .slide-btn-horizontal {
-  bottom: 10px;
-  position: absolute;
-  margin-left: 40px;
-  cursor: pointer;
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-
-.character-selection img {
+.character-selection-container img {
   border-radius: 50%;
   width: 100px;
-}
-
-.character-selection .slide-btn-text img {
-  width: 15px;
-  vertical-align: bottom;
-  margin-right: 10px;
+  height: 100px;
 }
 
 /* ========================
- * Character stats container
+ * Character stats labels
  * ===================== */
-.character-stats-container {
+.character-stats-labels {
   flex: 4;
-}
-
-.character-stats-header {
   position: relative;
   top: 5px;
 }
 
-.character-stats-header img {
+.character-stats-labels img {
   width: 30px;
   vertical-align: middle;
   margin-right: 5px;
@@ -101,23 +97,103 @@
 }
 
 /* ========================
- * Character stats inputs
+ * Character inputs
  * ===================== */
-.character-stats-inputs {
-  margin-left: 10px;
-  margin-top: 20px;
+.character-inputs {
   margin-bottom: 10px;
-  padding-top: 100px;
-  padding-right: 25px;
 }
 
-.character-stats-inputs input {
-  resize: horizontal;
-  width: 200px;
+.character-inputs input[type="number"] {
+  margin-right: 20px;
 }
 
-.character-stats-inputs textarea {
+.character-inputs textarea {
   display: block;
   resize: vertical;
-  width: 100%;
+  width: 93.8%;
+  margin-right: 20px;
+  background-color: #22152c;
+  border: 1px solid #2e1c44;
+  color: #fff;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+.character-debuffs {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.character-debuffs label {
+  margin-right: 20px;
+}
+
+.character-speed.flex-container,
+.character-speed .flex-1 {
+  display: inline;
+}
+
+/* ========================
+ * Mobile styles
+ * ===================== */
+@media only screen and (max-width: 900px) {
+  .character-data-container {
+    flex-wrap: wrap;
+  }
+
+  .character-selection-container {
+    flex: none;
+    margin-right: 20px;
+  }
+
+  .character-stat {
+    margin-right: 0;
+    display: block;
+  }
+
+  .character-stats-notes {
+    display: none;
+  }
+
+  .character-stats-right img {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .character-options {
+    flex: none;
+    display: none;
+  }
+
+  .character-inputs {
+    padding-right: 0;
+    width: 100%;
+    padding-right: 25px;
+    margin-top: 20px;
+  }
+
+  .character-inputs input[type="number"] {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .character-debuffs {
+    text-align: center;
+  }
+
+  .character-speed div:nth-child(1) {
+    margin-right: 10px;
+  }
+
+  .character-speed.flex-container {
+    display: flex;
+  }
+
+  .character-speed .flex-1 {
+    flex: 1;
+  }
+
+  .character-inputs textarea {
+    margin-top: 0;
+  }
 }

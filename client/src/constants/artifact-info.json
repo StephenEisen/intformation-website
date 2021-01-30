@@ -1,614 +1,767 @@
 [
   {
-    "name": "A little Queen's Huge Crown",
-    "class": "Warrior"
+    "value": "A little Queen's Huge Crown",
+    "class": "Warrior",
+    "label": "A little Queen's Huge Crown"
   },
   {
-    "name": "A Song for Everybody",
-    "class": "Any"
+    "value": "A Song for Everybody",
+    "class": "Any",
+    "label": "A Song for Everybody"
   },
   {
-    "name": "A Symbol of Unity",
-    "class": "Any"
+    "value": "A Symbol of Unity",
+    "class": "Any",
+    "label": "A Symbol of Unity"
   },
   {
-    "name": "Abyssal Crown",
-    "class": "Mage"
+    "value": "Abyssal Crown",
+    "class": "Mage",
+    "label": "Abyssal Crown"
   },
   {
-    "name": "Adamant Shield",
-    "class": "Knight"
+    "value": "Adamant Shield",
+    "class": "Knight",
+    "label": "Adamant Shield"
   },
   {
-    "name": "Alabastron",
-    "class": "Theif"
+    "value": "Alabastron",
+    "class": "Theif",
+    "label": "Alabastron"
   },
   {
-    "name": "Alencinox's Wrath",
-    "class": "Warrior"
+    "value": "Alencinox's Wrath",
+    "class": "Warrior",
+    "label": "Alencinox's Wrath"
   },
   {
-    "name": "Alexa's Basket",
-    "class": "Theif"
+    "value": "Alexa's Basket",
+    "class": "Theif",
+    "label": "Alexa's Basket"
   },
   {
-    "name": "Alsacian Spear",
-    "class": "Any"
+    "value": "Alsacian Spear",
+    "class": "Any",
+    "label": "Alsacian Spear"
   },
   {
-    "name": "Ambrote",
-    "class": "Ranger"
+    "value": "Ambrote",
+    "class": "Ranger",
+    "label": "Ambrote"
   },
   {
-    "name": "Ancient Dragon's Legacy",
-    "class": "Knight"
+    "value": "Ancient Dragon's Legacy",
+    "class": "Knight",
+    "label": "Ancient Dragon's Legacy"
   },
   {
-    "name": "Ancient Sheath",
-    "class": "Any"
+    "value": "Ancient Sheath",
+    "class": "Any",
+    "label": "Ancient Sheath"
   },
   {
-    "name": "Andre's Crossbow",
-    "class": "Ranger"
+    "value": "Andre's Crossbow",
+    "class": "Ranger",
+    "label": "Andre's Crossbow"
   },
   {
-    "name": "Aqua Rose",
-    "class": "Any"
+    "value": "Aqua Rose",
+    "class": "Any",
+    "label": "Aqua Rose"
   },
   {
-    "name": "Ascending Axe",
-    "class": "Any"
+    "value": "Ascending Axe",
+    "class": "Any",
+    "label": "Ascending Axe"
   },
   {
-    "name": "Atma's Portal",
-    "class": "Any"
+    "value": "Atma's Portal",
+    "class": "Any",
+    "label": "Atma's Portal"
   },
   {
-    "name": "Aurius",
-    "class": "Knight"
+    "value": "Aurius",
+    "class": "Knight",
+    "label": "Aurius"
   },
   {
-    "name": "Barthez's Orbuculum",
-    "class": "Mage"
+    "value": "Barthez's Orbuculum",
+    "class": "Mage",
+    "label": "Barthez's Orbuculum"
   },
   {
-    "name": "Bastion of Perlutia",
-    "class": "Knight"
+    "value": "Bastion of Perlutia",
+    "class": "Knight",
+    "label": "Bastion of Perlutia"
   },
   {
-    "name": "Biting Wind Star",
-    "class": "Any"
+    "value": "Biting Wind Star",
+    "class": "Any",
+    "label": "Biting Wind Star"
   },
   {
-    "name": "Black Hand of the Goddess",
-    "class": "Mage"
+    "value": "Black Hand of the Goddess",
+    "class": "Mage",
+    "label": "Black Hand of the Goddess"
   },
   {
-    "name": "Blessings of Camaraderie",
-    "class": "Any"
+    "value": "Blessings of Camaraderie",
+    "class": "Any",
+    "label": "Blessings of Camaraderie"
   },
   {
-    "name": "Bloodbead Dagger",
-    "class": "Any"
+    "value": "Bloodbead Dagger",
+    "class": "Any",
+    "label": "Bloodbead Dagger"
   },
   {
-    "name": "Bloodstone",
-    "class": "Ranger"
+    "value": "Bloodstone",
+    "class": "Ranger",
+    "label": "Bloodstone"
   },
   {
-    "name": "Bloody Rose",
-    "class": "Mage"
+    "value": "Bloody Rose",
+    "class": "Mage",
+    "label": "Bloody Rose"
   },
   {
-    "name": "Border Coin",
-    "class": "Warrior"
+    "value": "Border Coin",
+    "class": "Warrior",
+    "label": "Border Coin"
   },
   {
-    "name": "Butterfly Mandolin",
-    "class": "Any"
+    "value": "Butterfly Mandolin",
+    "class": "Any",
+    "label": "Butterfly Mandolin"
   },
   {
-    "name": "Card of Small Miracles",
-    "class": "Any"
+    "value": "Card of Small Miracles",
+    "class": "Any",
+    "label": "Card of Small Miracles"
   },
   {
-    "name": "Celestine",
-    "class": "Soul Weaver"
+    "value": "Celestine",
+    "class": "Soul Weaver",
+    "label": "Celestine"
   },
   {
-    "name": "Champion's Trophy",
-    "class": "Warrior"
+    "value": "Champion's Trophy",
+    "class": "Warrior",
+    "label": "Champion's Trophy"
   },
   {
-    "name": "Chatty",
-    "class": "Mage"
+    "value": "Chatty",
+    "class": "Mage",
+    "label": "Chatty"
   },
   {
-    "name": "Circle Fantasia",
-    "class": "Warrior"
+    "value": "Circle Fantasia",
+    "class": "Warrior",
+    "label": "Circle Fantasia"
   },
   {
-    "name": "Cradle of Life",
-    "class": "Warrior"
+    "value": "Cradle of Life",
+    "class": "Warrior",
+    "label": "Cradle of Life"
   },
   {
-    "name": "Creation and Destruction",
-    "class": "Warrior"
+    "value": "Creation and Destruction",
+    "class": "Warrior",
+    "label": "Creation and Destruction"
   },
   {
-    "name": "Crimson Moon of Nightmares",
-    "class": "Mage"
+    "value": "Crimson Moon of Nightmares",
+    "class": "Mage",
+    "label": "Crimson Moon of Nightmares"
   },
   {
-    "name": "Crimson Seed",
-    "class": "Warrior"
+    "value": "Crimson Seed",
+    "class": "Warrior",
+    "label": "Crimson Seed"
   },
   {
-    "name": "Crown of Glory",
-    "class": "Knight"
+    "value": "Crown of Glory",
+    "class": "Knight",
+    "label": "Crown of Glory"
   },
   {
-    "name": "Cursed Compass",
-    "class": "Any"
+    "value": "Cursed Compass",
+    "class": "Any",
+    "label": "Cursed Compass"
   },
   {
-    "name": "Daydream Joker",
-    "class": "Any"
+    "value": "Daydream Joker",
+    "class": "Any",
+    "label": "Daydream Joker"
   },
   {
-    "name": "Days of Destiny",
-    "class": "Any"
+    "value": "Days of Destiny",
+    "class": "Any",
+    "label": "Days of Destiny"
   },
   {
-    "name": "Deadly Sword",
-    "class": "Any"
+    "value": "Deadly Sword",
+    "class": "Any",
+    "label": "Deadly Sword"
   },
   {
-    "name": "Demon's Pistol",
-    "class": "Any"
+    "value": "Demon's Pistol",
+    "class": "Any",
+    "label": "Demon's Pistol"
   },
   {
-    "name": "Devil's Brand",
-    "class": "Any"
+    "value": "Devil's Brand",
+    "class": "Any",
+    "label": "Devil's Brand"
   },
   {
-    "name": "Dignus Orb",
-    "class": "Mage"
+    "value": "Dignus Orb",
+    "class": "Mage",
+    "label": "Dignus Orb"
   },
   {
-    "name": "Doctor's Bag",
-    "class": "Soul Weaver"
+    "value": "Doctor's Bag",
+    "class": "Soul Weaver",
+    "label": "Doctor's Bag"
   },
   {
-    "name": "Double-Edged Decrescent",
-    "class": "Theif"
+    "value": "Double-Edged Decrescent",
+    "class": "Theif",
+    "label": "Double-Edged Decrescent"
   },
   {
-    "name": "Draco Plate",
-    "class": "Warrior"
+    "value": "Draco Plate",
+    "class": "Warrior",
+    "label": "Draco Plate"
   },
   {
-    "name": "Dream Scroll",
-    "class": "Any"
+    "value": "Dream Scroll",
+    "class": "Any",
+    "label": "Dream Scroll"
   },
   {
-    "name": "Durandal",
-    "class": "Warrior"
+    "value": "Durandal",
+    "class": "Warrior",
+    "label": "Durandal"
   },
   {
-    "name": "Dust Devil",
-    "class": "Theif"
+    "value": "Dust Devil",
+    "class": "Theif",
+    "label": "Dust Devil"
   },
   {
-    "name": "Dux Noctis",
-    "class": "Ranger"
+    "value": "Dux Noctis",
+    "class": "Ranger",
+    "label": "Dux Noctis"
   },
   {
-    "name": "Egg of Delusion",
-    "class": "Any"
+    "value": "Egg of Delusion",
+    "class": "Any",
+    "label": "Egg of Delusion"
   },
   {
-    "name": "El's Fist",
-    "class": "Warrior"
+    "value": "El's Fist",
+    "class": "Warrior",
+    "label": "El's Fist"
   },
   {
-    "name": "Elbris Ritual Sword",
-    "class": "Knight"
+    "value": "Elbris Ritual Sword",
+    "class": "Knight",
+    "label": "Elbris Ritual Sword"
   },
   {
-    "name": "Elf's Bow",
-    "class": "Any"
+    "value": "Elf's Bow",
+    "class": "Any",
+    "label": "Elf's Bow"
   },
   {
-    "name": "Elyha's Knife",
-    "class": "Theif"
+    "value": "Elyha's Knife",
+    "class": "Theif",
+    "label": "Elyha's Knife"
   },
   {
-    "name": "Enhanced Gauntlet",
-    "class": "Any"
+    "value": "Enhanced Gauntlet",
+    "class": "Any",
+    "label": "Enhanced Gauntlet"
   },
   {
-    "name": "Envoy's Pipe",
-    "class": "Any"
+    "value": "Envoy's Pipe",
+    "class": "Any",
+    "label": "Envoy's Pipe"
   },
   {
-    "name": "Eternus",
-    "class": "Soul Weaver"
+    "value": "Eternus",
+    "class": "Soul Weaver",
+    "label": "Eternus"
   },
   {
-    "name": "Erica's Scepter",
-    "class": "Mage"
+    "value": "Erica's Scepter",
+    "class": "Mage",
+    "label": "Erica's Scepter"
   },
   {
-    "name": "Exorcist's Tonfa",
-    "class": "Any"
+    "value": "Exorcist's Tonfa",
+    "class": "Any",
+    "label": "Exorcist's Tonfa"
   },
   {
-    "name": "Fairy Tale for a Nightmare",
-    "class": "Mage"
+    "value": "Fairy Tale for a Nightmare",
+    "class": "Mage",
+    "label": "Fairy Tale for a Nightmare"
   },
   {
-    "name": "Fairy's Grimoire",
-    "class": "Any"
+    "value": "Fairy's Grimoire",
+    "class": "Any",
+    "label": "Fairy's Grimoire"
   },
   {
-    "name": "Firm Shield",
-    "class": "Any"
+    "value": "Firm Shield",
+    "class": "Any",
+    "label": "Firm Shield"
   },
   {
-    "name": "Flower Shower",
-    "class": "Warrior"
+    "value": "Flower Shower",
+    "class": "Warrior",
+    "label": "Flower Shower"
   },
   {
-    "name": "Forest Totem",
-    "class": "Any"
+    "value": "Forest Totem",
+    "class": "Any",
+    "label": "Forest Totem"
   },
   {
-    "name": "Goblin's Lamp",
-    "class": "Any"
+    "value": "Goblin's Lamp",
+    "class": "Any",
+    "label": "Goblin's Lamp"
   },
   {
-    "name": "Golden Cocoa Cookie",
-    "class": "Any"
+    "value": "Golden Cocoa Cookie",
+    "class": "Any",
+    "label": "Golden Cocoa Cookie"
   },
   {
-    "name": "Grail of Blood",
-    "class": "Any"
+    "value": "Grail of Blood",
+    "class": "Any",
+    "label": "Grail of Blood"
   },
   {
-    "name": "Guiding Light",
-    "class": "Ranger"
+    "value": "Guiding Light",
+    "class": "Ranger",
+    "label": "Guiding Light"
   },
   {
-    "name": "Hell Cutter",
-    "class": "Warrior"
+    "value": "Hell Cutter",
+    "class": "Warrior",
+    "label": "Hell Cutter"
   },
   {
-    "name": "Hilag Lance",
-    "class": "Knight"
+    "value": "Hilag Lance",
+    "class": "Knight",
+    "label": "Hilag Lance"
   },
   {
-    "name": "Holy Sacrifice",
-    "class": "Knight"
+    "value": "Holy Sacrifice",
+    "class": "Knight",
+    "label": "Holy Sacrifice"
   },
   {
-    "name": "Idol's Cheer",
-    "class": "Soul Weaver"
+    "value": "Idol's Cheer",
+    "class": "Soul Weaver",
+    "label": "Idol's Cheer"
   },
   {
-    "name": "Iela Violin",
-    "class": "Mage"
+    "value": "Iela Violin",
+    "class": "Mage",
+    "label": "Iela Violin"
   },
   {
-    "name": "Infinity Basket",
-    "class": "Ranger"
+    "value": "Infinity Basket",
+    "class": "Ranger",
+    "label": "Infinity Basket"
   },
   {
-    "name": "Iron Fan",
-    "class": "Ranger"
+    "value": "Iron Fan",
+    "class": "Ranger",
+    "label": "Iron Fan"
   },
   {
-    "name": "Junkyard Dog",
-    "class": "Warrior"
+    "value": "Junkyard Dog",
+    "class": "Warrior",
+    "label": "Junkyard Dog"
   },
   {
-    "name": "Justice for All",
-    "class": "Knight"
+    "value": "Justice for All",
+    "class": "Knight",
+    "label": "Justice for All"
   },
   {
-    "name": "Kal'adra",
-    "class": "Mage"
+    "value": "Kal'adra",
+    "class": "Mage",
+    "label": "Kal'adra"
   },
   {
-    "name": "Labyrinth Cube",
-    "class": "Any"
+    "value": "Labyrinth Cube",
+    "class": "Any",
+    "label": "Labyrinth Cube"
   },
   {
-    "name": "Last Teatime",
-    "class": "Mage"
+    "value": "Last Teatime",
+    "class": "Mage",
+    "label": "Last Teatime"
   },
   {
-    "name": "Love Potion",
-    "class": "Any"
+    "value": "Love Potion",
+    "class": "Any",
+    "label": "Love Potion"
   },
   {
-    "name": "Magaraha's Tome",
-    "class": "Soul Weaver"
+    "value": "Magaraha's Tome",
+    "class": "Soul Weaver",
+    "label": "Magaraha's Tome"
   },
   {
-    "name": "Manica of Control",
-    "class": "Thief"
+    "value": "Manica of Control",
+    "class": "Thief",
+    "label": "Manica of Control"
   },
   {
-    "name": "Merciless Glutton",
-    "class": "Warrior"
+    "value": "Merciless Glutton",
+    "class": "Warrior",
+    "label": "Merciless Glutton"
   },
   {
-    "name": "Midnight Bloom",
-    "class": "Any"
+    "value": "Midnight Bloom",
+    "class": "Any",
+    "label": "Midnight Bloom"
   },
   {
-    "name": "Might Yaksha",
-    "class": "Any"
+    "value": "Might Yaksha",
+    "class": "Any",
+    "label": "Might Yaksha"
   },
   {
-    "name": "Moonlight Dreamblade",
-    "class": "Thief"
+    "value": "Moonlight Dreamblade",
+    "class": "Thief",
+    "label": "Moonlight Dreamblade"
   },
   {
-    "name": "Moonlight's Vestige",
-    "class": "Any"
+    "value": "Moonlight's Vestige",
+    "class": "Any",
+    "label": "Moonlight's Vestige"
   },
   {
-    "name": "Ms. Confille",
-    "class": "Ranger"
+    "value": "Ms. Confille",
+    "class": "Ranger",
+    "label": "Ms. Confille"
   },
   {
-    "name": "Necro and Undine",
-    "class": "Mage"
+    "value": "Necro and Undine",
+    "class": "Mage",
+    "label": "Necro and Undine"
   },
   {
-    "name": "New Year Cookies",
-    "class": "Any"
+    "value": "New Year Cookies",
+    "class": "Any",
+    "label": "New Year Cookies"
   },
   {
-    "name": "Noble Oath",
-    "class": "Knight"
+    "value": "Noble Oath",
+    "class": "Knight",
+    "label": "Noble Oath"
   },
   {
-    "name": "Oath Key",
-    "class": "Any"
+    "value": "Oath Key",
+    "class": "Any",
+    "label": "Oath Key"
   },
   {
-    "name": "One Year Gratitude",
-    "class": "Any"
+    "value": "One Year Gratitude",
+    "class": "Any",
+    "label": "One Year Gratitude"
   },
   {
-    "name": "Otherworldly Machinery",
-    "class": "Ranger"
+    "value": "Otherworldly Machinery",
+    "class": "Ranger",
+    "label": "Otherworldly Machinery"
   },
   {
-    "name": "Portrait of the Saviors",
-    "class": "Any"
+    "value": "Portrait of the Saviors",
+    "class": "Any",
+    "label": "Portrait of the Saviors"
   },
   {
-    "name": "Proof of Valor",
-    "class": "Any"
+    "value": "Proof of Valor",
+    "class": "Any",
+    "label": "Proof of Valor"
   },
   {
-    "name": "Prophetic Candlestick",
-    "class": "Any"
+    "value": "Prophetic Candlestick",
+    "class": "Any",
+    "label": "Prophetic Candlestick"
   },
   {
-    "name": "Radiant Forever",
-    "class": "Mage"
+    "value": "Radiant Forever",
+    "class": "Mage",
+    "label": "Radiant Forever"
   },
   {
-    "name": "Rainbow Scale",
-    "class": "Any"
+    "value": "Rainbow Scale",
+    "class": "Any",
+    "label": "Rainbow Scale"
   },
   {
-    "name": "Ranon's Memorandum",
-    "class": "Any"
+    "value": "Ranon's Memorandum",
+    "class": "Any",
+    "label": "Ranon's Memorandum"
   },
   {
-    "name": "Reingar's Special Drink",
-    "class": "Ranger"
+    "value": "Reingar's Special Drink",
+    "class": "Ranger",
+    "label": "Reingar's Special Drink"
   },
   {
-    "name": "Resolute Soldier Series",
-    "class": "Any"
+    "value": "Resolute Soldier Series",
+    "class": "Any",
+    "label": "Resolute Soldier Series"
   },
   {
-    "name": "Rhianna & Luciella",
-    "class": "Thief"
+    "value": "Rhianna & Luciella",
+    "class": "Thief",
+    "label": "Rhianna & Luciella"
   },
   {
-    "name": "Rise of a Monarch",
-    "class": "Knight"
+    "value": "Rise of a Monarch",
+    "class": "Knight",
+    "label": "Rise of a Monarch"
   },
   {
-    "name": "Rod of Amaryllis",
-    "class": "Soul Weaver"
+    "value": "Rod of Amaryllis",
+    "class": "Soul Weaver",
+    "label": "Rod of Amaryllis"
   },
   {
-    "name": "Rosa Hargana",
-    "class": "Ranger"
+    "value": "Rosa Hargana",
+    "class": "Ranger",
+    "label": "Rosa Hargana"
   },
   {
-    "name": "Samsara Prayer Beads",
-    "class": "Warrior"
+    "value": "Samsara Prayer Beads",
+    "class": "Warrior",
+    "label": "Samsara Prayer Beads"
   },
   {
-    "name": "Santa Muerte",
-    "class": "Thief"
+    "value": "Santa Muerte",
+    "class": "Thief",
+    "label": "Santa Muerte"
   },
   {
-    "name": "Sashe Ithanes",
-    "class": "Ranger"
+    "value": "Sashe Ithanes",
+    "class": "Ranger",
+    "label": "Sashe Ithanes"
   },
   {
-    "name": "Secret Art - Storm Sword",
-    "class": "Thief"
+    "value": "Secret Art - Storm Sword",
+    "class": "Thief",
+    "label": "Secret Art - Storm Sword"
   },
   {
-    "name": "Sepulcrum",
-    "class": "Warrior"
+    "value": "Sepulcrum",
+    "class": "Warrior",
+    "label": "Sepulcrum"
   },
   {
-    "name": "Shepherd of the Hollow",
-    "class": "Thief"
+    "value": "Shepherd of the Hollow",
+    "class": "Thief",
+    "label": "Shepherd of the Hollow"
   },
   {
-    "name": "Shepherds of Chaos",
-    "class": "Thief"
+    "value": "Shepherds of Chaos",
+    "class": "Thief",
+    "label": "Shepherds of Chaos"
   },
   {
-    "name": "Shimadra Staff",
-    "class": "Soul Weaver"
+    "value": "Shimadra Staff",
+    "class": "Soul Weaver",
+    "label": "Shimadra Staff"
   },
   {
-    "name": "Sigurd Scythe",
-    "class": "Warrior"
+    "value": "Sigurd Scythe",
+    "class": "Warrior",
+    "label": "Sigurd Scythe"
   },
   {
-    "name": "Silver Rain",
-    "class": "Thief"
+    "value": "Silver Rain",
+    "class": "Thief",
+    "label": "Silver Rain"
   },
   {
-    "name": "Sira-Ren",
-    "class": "Mage"
+    "value": "Sira-Ren",
+    "class": "Mage",
+    "label": "Sira-Ren"
   },
   {
-    "name": "Snow Crystal",
-    "class": "Warrior"
+    "value": "Snow Crystal",
+    "class": "Warrior",
+    "label": "Snow Crystal"
   },
   {
-    "name": "Song of Stars",
-    "class": "Ranger"
+    "value": "Song of Stars",
+    "class": "Ranger",
+    "label": "Song of Stars"
   },
   {
-    "name": "Spirit's Breath",
-    "class": "Mage"
+    "value": "Spirit's Breath",
+    "class": "Mage",
+    "label": "Spirit's Breath"
   },
   {
-    "name": "Spooky Solayu Stories",
-    "class": "Any"
+    "value": "Spooky Solayu Stories",
+    "class": "Any",
+    "label": "Spooky Solayu Stories"
   },
   {
-    "name": "Staff of Wisdom",
-    "class": "Any"
+    "value": "Staff of Wisdom",
+    "class": "Any",
+    "label": "Staff of Wisdom"
   },
   {
-    "name": "Steadfast Gatekeeper",
-    "class": "Knight"
+    "value": "Steadfast Gatekeeper",
+    "class": "Knight",
+    "label": "Steadfast Gatekeeper"
   },
   {
-    "name": "Stella Harpa",
-    "class": "Soul Weaver"
+    "value": "Stella Harpa",
+    "class": "Soul Weaver",
+    "label": "Stella Harpa"
   },
   {
-    "name": "Strak Gauntlet",
-    "class": "Warrior"
+    "value": "Strak Gauntlet",
+    "class": "Warrior",
+    "label": "Strak Gauntlet"
   },
   {
-    "name": "Sword of Ezera",
-    "class": "Knight"
+    "value": "Sword of Ezera",
+    "class": "Knight",
+    "label": "Sword of Ezera"
   },
   {
-    "name": "Sword of Judgment",
-    "class": "Ranger"
+    "value": "Sword of Judgment",
+    "class": "Ranger",
+    "label": "Sword of Judgment"
   },
   {
-    "name": "Sword of Summer Twilight",
-    "class": "Thief"
+    "value": "Sword of Summer Twilight",
+    "class": "Thief",
+    "label": "Sword of Summer Twilight"
   },
   {
-    "name": "Sword of the Morning",
-    "class": "Any"
+    "value": "Sword of the Morning",
+    "class": "Any",
+    "label": "Sword of the Morning"
   },
   {
-    "name": "Sword of the Sun",
-    "class": "Any"
+    "value": "Sword of the Sun",
+    "class": "Any",
+    "label": "Sword of the Sun"
   },
   {
-    "name": "Tagehel's Ancient Book",
-    "class": "Mage"
+    "value": "Tagehel's Ancient Book",
+    "class": "Mage",
+    "label": "Tagehel's Ancient Book"
   },
   {
-    "name": "Tear of the Desert",
-    "class": "Mage"
+    "value": "Tear of the Desert",
+    "class": "Mage",
+    "label": "Tear of the Desert"
   },
   {
-    "name": "The Guardian Star's Blessing",
-    "class": "Any"
+    "value": "The Guardian Star's Blessing",
+    "class": "Any",
+    "label": "The Guardian Star's Blessing"
   },
   {
-    "name": "Time Matter",
-    "class": "Mage"
+    "value": "Time Matter",
+    "class": "Mage",
+    "label": "Time Matter"
   },
   {
-    "name": "Timeless Anchor",
-    "class": "Any"
+    "value": "Timeless Anchor",
+    "class": "Any",
+    "label": "Timeless Anchor"
   },
   {
-    "name": "To a New World",
-    "class": "Any"
+    "value": "To a New World",
+    "class": "Any",
+    "label": "To a New World"
   },
   {
-    "name": "Torn Sleeve",
-    "class": "Thief"
+    "value": "Torn Sleeve",
+    "class": "Thief",
+    "label": "Torn Sleeve"
   },
   {
-    "name": "Touch of Rekos",
-    "class": "Soul Weaver"
+    "value": "Touch of Rekos",
+    "class": "Soul Weaver",
+    "label": "Touch of Rekos"
   },
   {
-    "name": "Uberius's Tooth",
-    "class": "Warrior"
+    "value": "Uberius's Tooth",
+    "class": "Warrior",
+    "label": "Uberius's Tooth"
   },
   {
-    "name": "Unfading Memories",
-    "class": "Soul Weaver"
+    "value": "Unfading Memories",
+    "class": "Soul Weaver",
+    "label": "Unfading Memories"
   },
   {
-    "name": "Unseen Observer",
-    "class": "Ranger"
+    "value": "Unseen Observer",
+    "class": "Ranger",
+    "label": "Unseen Observer"
   },
   {
-    "name": "Venus Orb",
-    "class": "Any"
+    "value": "Venus Orb",
+    "class": "Any",
+    "label": "Venus Orb"
   },
   {
-    "name": "Victorious Flag",
-    "class": "Any"
+    "value": "Victorious Flag",
+    "class": "Any",
+    "label": "Victorious Flag"
   },
   {
-    "name": "Violet Talisman",
-    "class": "Thief"
+    "value": "Violet Talisman",
+    "class": "Thief",
+    "label": "Violet Talisman"
   },
   {
-    "name": "Wall of Order",
-    "class": "Ranger"
+    "value": "Wall of Order",
+    "class": "Ranger",
+    "label": "Wall of Order"
   },
   {
-    "name": "Water's Origin",
-    "class": "Soul Weaver"
+    "value": "Water's Origin",
+    "class": "Soul Weaver",
+    "label": "Water's Origin"
   },
   {
-    "name": "Wind Rider",
-    "class": "Thief"
+    "value": "Wind Rider",
+    "class": "Thief",
+    "label": "Wind Rider"
   },
   {
-    "name": "Wondrous Potion Vial",
-    "class": "Soul Weaver"
+    "value": "Wondrous Potion Vial",
+    "class": "Soul Weaver",
+    "label": "Wondrous Potion Vial"
   },
   {
-    "name": "XIII. Death",
-    "class": "Any"
+    "value": "XIII. Death",
+    "class": "Any",
+    "label": "XIII. Death"
   },
   {
-    "name": "XVI. The Tower",
-    "class": "XVIII. The Moon"
+    "value": "XVI. The Tower",
+    "class": "XVIII. The Moon",
+    "label": "XVI. The Tower"
   }
 ]
