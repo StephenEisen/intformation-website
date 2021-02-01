@@ -2,7 +2,7 @@ import React from 'react';
 import CharacterData from '../character-data/character-data';
 import { clone } from 'globals/utils';
 import './tower-data.css';
-const characters = require('data/character-info.json');
+const characters = require('data/characters.json');
 
 class TowerData extends React.Component {
   constructor(props) {

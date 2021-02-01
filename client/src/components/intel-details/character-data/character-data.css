@@ -79,26 +79,6 @@
   margin-right: 20px;
 }
 
-.character-dropdowns .select-dropdown {
-  text-align: left;
-  color: #000;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.select-dropdown [class*="-control"] {
-  background: var(--dark-purple-color);
-  border-color: rgb(28, 16, 36);
-}
-
-.select-dropdown [class*="-placeholder"] {
-  color: rgb(158, 158, 158);
-}
-
-.select-dropdown [class*="-singleValue"] {
-  color: #fff;
-}
-
 .character-dropdowns .flex-1:not(:first-child) {
   margin-left: 20px;
 }

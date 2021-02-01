@@ -16,7 +16,7 @@ class CharacterData extends React.Component {
   constructor(props) {
     super(props);
     this.maxLengths = { hp: 5, speed: 3, notes: 150 };
-    this.artifactList = clone(require('data/artifact-info.json'));
+    this.artifactList = clone(require('data/artifacts.json'));
 
     this.state = {
       name: props.character.name,
@@ -78,9 +78,9 @@ class CharacterData extends React.Component {
     const value = event.target.checked;
 
     if ((key === 'lifesteal' && !this.state.counter) || (key === 'counter' && !this.state.lifesteal)) {
-      this.setState({ [key]: value });
+      this.setState({ [key]: value }, this.emitCharacterData);
     } else if (key === 'immunity') {
-      this.setState({ [key]: value });
+      this.setState({ [key]: value }, this.emitCharacterData);
     }
   }
 
@@ -158,12 +158,29 @@ class CharacterData extends React.Component {
 
               {/* CHARACTER DEBUFFS */}
               <div className="character-debuffs">
-                <input type="checkbox" id="counter" value="counter" checked={this.state.counter} onChange={(e) => this.updateDebuff(e)} />
-                <label htmlFor="counter"> Counter</label>
-                <input type="checkbox" id="lifesteal" value="lifesteal" checked={this.state.lifesteal} onChange={(e) => this.updateDebuff(e)} />
-                <label htmlFor="lifesteal"> Lifesteal</label>
-                <input type="checkbox" id="immunity" value="immunity" checked={this.state.immunity} onChange={(e) => this.updateDebuff(e)} />
-                <label htmlFor="immunity"> Immunity</label>
+                <input
+                  type="checkbox"
+                  id={`counter-${this.props.characterIndex}`}
+                  value="counter"
+                  checked={this.state.counter}
+                  onChange={(e) => this.updateDebuff(e)} />
+                <label htmlFor={`counter-${this.props.characterIndex}`}> Counter</label>
+
+                <input
+                  type="checkbox"
+                  id={`lifesteal-${this.props.characterIndex}`}
+                  value="lifesteal"
+                  checked={this.state.lifesteal}
+                  onChange={(e) => this.updateDebuff(e)} />
+                <label htmlFor={`lifesteal-${this.props.characterIndex}`}> Lifesteal</label>
+
+                <input
+                  type="checkbox"
+                  id={`immunity-${this.props.characterIndex}`}
+                  value="immunity"
+                  checked={this.state.immunity}
+                  onChange={(e) => this.updateDebuff(e)} />
+                <label htmlFor={`immunity-${this.props.characterIndex}`}> Immunity</label>
               </div>
 
               {/* CHARACTER INPUTS */}

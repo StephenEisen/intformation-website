@@ -12,6 +12,7 @@ const TowerList = (props) => {
 
   // Update tower list when a new tower is added
   const updateTowerList = (intel) => {
+    setAddTowerDialogVisible(false);
     setTowerList(intel.data);
   }
 
@@ -20,12 +21,15 @@ const TowerList = (props) => {
     setAddTowerDialogVisible(isVisible);
   }
 
+  const updateScrollAtBottom = () => {
+    const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 50;
+    setIsScrollAtBottom(isAtBottom);
+  }
+
   // Logic to run when this component is rendered for the first time
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 50;
-      setIsScrollAtBottom(isAtBottom);
-    });
+    updateScrollAtBottom();
+    window.addEventListener('scroll', updateScrollAtBottom);
 
     socket.on('createTowerSuccess', updateTowerList);
     socket.on('updateCharacterSuccess', updateTowerList);
@@ -50,6 +54,7 @@ const TowerList = (props) => {
         src={addButton}
         className={`add-tower-btn ${isScrollAtBottom ? 'fixed-bottom-btn' : ''}`}
         title="Add Tower"
+        alt="Add Tower"
         onClick={() => toggleAddTowerDialog(true)}
       />
 

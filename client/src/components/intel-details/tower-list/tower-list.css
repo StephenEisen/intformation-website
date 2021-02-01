@@ -20,6 +20,12 @@
 /* ========================
  * Mobile styles
  * ===================== */
+@media only screen and (max-width: 1280px) {
+  .add-tower-btn {
+    margin-left: -40px;
+  }
+}
+
 @media only screen and (max-width: 900px) {
   .add-tower-btn {
     opacity: 1;

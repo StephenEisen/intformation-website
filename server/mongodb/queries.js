@@ -41,7 +41,10 @@ async function updateCharacter(characterData) {
           hp: characterData.hp,
           speed: characterData.speed,
           artifact: characterData.artifact,
-          notes: characterData.notes
+          notes: characterData.notes,
+          immunity: characterData.immunity,
+          counter: characterData.counter,
+          lifesteal: characterData.lifesteal
         },
       },
     },
@@ -63,7 +66,7 @@ async function countMostUsedTeams() {
         let team1 = data.characters.filter(c => c.team === 1).map(c => c.name).sort().join(':')
         let team2 = data.characters.filter(c => c.team === 2).map(c => c.name).sort().join(':')
 
-        if (team1.length == 3 && team2.length == 3){
+        if (team1.length == 3 && team2.length == 3) {
           if (teamMap.has(team1)) {
             teamMap.set(team1, teamMap.get(team1) + 1);
           } else {
@@ -84,7 +87,7 @@ async function countMostUsedTeams() {
 }
 
 async function findIntelPassword(pageId) {
-  const intelPassword = await Authentication.findOne({pageId: pageId});
+  const intelPassword = await Authentication.findOne({ pageId: pageId });
   return intelPassword;
 }
 
