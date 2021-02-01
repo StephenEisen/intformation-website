@@ -3,26 +3,17 @@ const app = express();
 const cors = require("cors");
 const server = require("http").createServer(app);
 const bodyParser = require('body-parser');
-const options = { cors: true, origins: ["http://localhost:3000"] };
+const options = { cors: true, origins: ["https://epic7.gg"] };
 const io = require("socket.io")(server, options);
 const mongodb = require("./mongodb/connection.js");
 const queries = require("./mongodb/queries.js");
 const passwords = require('./passwords');
 const users = require("./mongodb/users.js");
-const { updatePassword, authenticateIntel, generateToken, authRequired, verifyPassword } = require('./passwords');
 
 const corsOpts = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200 
+  origin: 'https://epic7.gg',
+  optionsSuccessStatus: 200
 };
-
-const {
-  userJoin,
-  getCurrentUser,
-  userLeave,
-  getRoomUsers,
-} = require("./mongodb/users.js");
-const { query } = require("express");
 
 // Connect to mongodb
 mongodb.connect();

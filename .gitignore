@@ -12,6 +12,7 @@ node_modules
 /build
 build/
 build.*
+*.tgz
 
 # misc
 .DS_Store

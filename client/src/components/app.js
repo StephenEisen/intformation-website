@@ -18,7 +18,7 @@ function App() {
       <Navbar />
       <main>
         <Switch location={location}>
-          <Route exact path="/"><Redirect to={Routes.Home} /></Route>
+          <Route exact path="/"><Redirect to={Routes.Intel} /></Route>
           <Route exact path={Routes.Home} component={Home} />
           <Route exact path={Routes.Intel} component={Intel} />
           <Route exact path={Routes.IntelID} component={IntelDetails} />

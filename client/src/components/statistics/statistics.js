@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { CharacterImages } from "globals/images.js";
 import { webserver } from "globals/socket.js";
 import "./statistics.css";
-import Chart from 'chart.js';
 
 
 const Statistics = () => {

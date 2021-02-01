@@ -51,6 +51,10 @@
   border-color: red;
 }
 
+.add-tower-name input.error {
+  border-color: red;
+}
+
 /* ========================
  * Data styles
  * ===================== */

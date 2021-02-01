@@ -40,11 +40,11 @@ const Navbar = () => {
         <div className="navbar-menu" onClick={() => toggleMobileNavBar()}></div>
 
         <ul className="navbar-links">
-          <NavLink exact to={Routes.Home}>
+          {/* <NavLink exact to={Routes.Home}>
             <li className={getClassIfActive(Routes.Home)} onClick={() => toggleMobileNavBar()}>
               Home
             </li>
-          </NavLink>
+          </NavLink> */}
           <NavLink to={Routes.Intel}>
             <li className={getClassIfActive(Routes.Intel)} onClick={() => toggleMobileNavBar()}>
               Intel

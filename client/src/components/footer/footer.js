@@ -8,6 +8,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-left">
           <img className="ravi-slide-up" src={ravi} alt="" width="50px" />
+          v0.1
         </div>
 
         <div className="footer-right">

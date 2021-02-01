@@ -19,16 +19,21 @@ const AddTowerDialog = (props) => {
   }, []);
 
   const setAddTowerError = () => {
-    setErrorStates({ towerLocation: true });
+    setErrorStates({
+      towerLocation: !towerLocation || towerLocation === '',
+      towerName: !towerName || towerName === ''
+    });
   }
 
   const sendTowerData = () => {
-    if (towerLocation && towerLocation !== '') {
+    if (towerLocation && towerLocation !== '' && towerName && towerName !== '') {
       socket.emit('createTower', {
         pageId: props.intelId,
         name: towerName,
         location: towerLocation,
       });
+      setTowerName('');
+      setTowerLocation('');
     } else {
       setAddTowerError();
     }
@@ -38,6 +43,13 @@ const AddTowerDialog = (props) => {
     if (value && value !== '') {
       setErrorStates({ towerLocation: false });
       setTowerLocation(value);
+    }
+  }
+
+  const updateTowerName = (value) => {
+    if (value && value !== '') {
+      setErrorStates({ towerName: false });
+      setTowerName(value);
     }
   }
 
@@ -73,9 +85,10 @@ const AddTowerDialog = (props) => {
             <h2>Tower name</h2>
             <input
               type="text"
+              className={errorStates.towerName ? 'error' : ''}
               placeholder="Tower name"
               value={towerName}
-              onChange={(e) => setTowerName(e.target.value)}>
+              onChange={(e) => updateTowerName(e.target.value)}>
             </input>
           </div>
 
