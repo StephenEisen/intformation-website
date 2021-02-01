@@ -56,15 +56,34 @@
 /* ========================
  * Mobile styles
  * ===================== */
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 900px) {
+  .footer-content {
+    position: absolute;
+    left: 0;
+    height: auto;
+  }
+
   .footer-left,
   .footer-right {
-    float: none;
     text-align: center;
     margin: 0;
     padding: 0;
     position: relative;
     top: -8px;
+  }
+
+  .footer-left {
+    padding-left: 50px;
+    top: -10px;
+  }
+
+  .footer-right {
+    top: -4px;
+    padding-right: 40px;
+  }
+
+  .footer-subtext {
+    display: block;
   }
 }
 

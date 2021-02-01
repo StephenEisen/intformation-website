@@ -1,8 +1,8 @@
-import React from "react";
-import CharacterData from "../character-data/character-data";
-import { clone } from "globals/utils";
-import "./tower-data.css";
-const characters = require("constants/character-info.json");
+import React from 'react';
+import CharacterData from '../character-data/character-data';
+import { clone } from 'globals/utils';
+import './tower-data.css';
+const characters = require('data/characters.json');
 
 class TowerData extends React.Component {
   constructor(props) {
@@ -74,7 +74,7 @@ class TowerData extends React.Component {
     const characterElements = this.getCharacterElements();
 
     return (
-      <div className="container">
+      <div className="tower-data container">
         <div className="tower-header">
           <span className="tower-name">{this.props.towerData.name}</span>
           <span className="tower-location">{this.props.towerData.location}</span>

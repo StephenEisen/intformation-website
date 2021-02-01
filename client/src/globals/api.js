@@ -1,8 +1,8 @@
 import { webserver } from './socket'
 
 export const intelGet = async (pageId) => {
-  let token = sessionStorage.getItem("authToken");
-  token = token ? `Bearer ${token}` : ""
+  let token = sessionStorage.getItem('authToken');
+  token = token ? `Bearer ${token}` : ''
   const resp = await fetch(`${webserver}/api/intel/${pageId}`, {
     headers: {
       'Authorization': token
@@ -49,10 +49,10 @@ export const intelAuthTokenPost = async (pageId, password) => {
       'Content-Type': 'application/json'
     }
   });
-  let token = "";
+  let token = '';
   if (resp.status === 201) {
     const token = await resp.text();
-    sessionStorage.setItem("authToken", token);
+    sessionStorage.setItem('authToken', token);
   }
   return token;
 }

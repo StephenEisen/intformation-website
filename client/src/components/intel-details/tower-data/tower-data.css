@@ -6,7 +6,7 @@
   margin-bottom: 50px;
   display: flex;
   font-size: 24px;
-  font-family: 'Audiowide';
+  font-family: var(--audiowide-font);
   padding: 10px;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .tower-team-title {
-  font-family: 'Audiowide';
+  font-family: var(--audiowide-font);
   font-size: 24px;
   color: #a992fa;
   text-align: left;
@@ -63,6 +63,10 @@
 }
 
 @media only screen and (max-width: 900px) {
+  .tower-data.container {
+    padding: 0;
+  }
+
   .tower-characters {
     flex-direction: unset;
     padding-left: 0;

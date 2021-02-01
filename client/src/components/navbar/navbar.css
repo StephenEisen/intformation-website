@@ -27,18 +27,22 @@
   margin-right: 50px;
   margin-top: 30px;
   cursor: pointer;
-  background: url("../../assets/menu.png");
+  background: url("../../assets/icons/menu.png");
   background-size: cover;
 }
 
 .navbar-menu:hover {
-  background: url("../../assets/menu_hover.png");
+  background: url("../../assets/icons/menu_hover.png");
   background-size: cover;
 }
 
 /* ========================
  * Logo and title
  * ===================== */
+.navbar {
+  padding-top: 0;
+}
+
 .navbar-logo {
   margin-bottom: 80px;
   margin-top: 20px;
@@ -78,7 +82,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  font-family: 'Audiowide';
+  font-family: var(--audiowide-font);
   font-size: 24px;
   clear: both;
   max-height: 0;
@@ -99,12 +103,12 @@
 }
 
 .navbar-links li:hover a {
-  color: #ff85ea;
+  color: var(--pink-color);
 }
 
 .navbar-link-active {
   background: #21132c;
-  color: #ff85ea;
+  color: var(--pink-color);
 }
 
 /* ========================
@@ -131,7 +135,7 @@
   }
 
   .navbar.hamburger-open {
-    height: 350px;
+    height: 325px;
   }
 
   .navbar-logo {
@@ -139,9 +143,11 @@
   }
 
   .navbar-logo img {
-    height: 80px;
+    height: 65px;
     float: left;
     margin-left: 50px;
+    position: relative;
+    top: 10px;
   }
 
   .navbar-logo a {

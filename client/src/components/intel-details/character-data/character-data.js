@@ -1,19 +1,22 @@
-import React from "react";
+import React from 'react';
 import Select from 'react-select'
-import { socket } from "globals/socket";
-import { CharacterImages } from "globals/images";
+import { socket } from 'globals/socket';
+import { CharacterImages } from 'globals/images';
+import { clone } from 'globals/utils';
+import avatar from 'assets/avatar.png';
 import hp from 'assets/icons/hp.png';
 import speed from 'assets/icons/speed.png';
 import artifact from 'assets/icons/artifact.png';
 import counter from 'assets/icons/counter.png';
 import lifesteal from 'assets/icons/lifesteal.png';
 import immunity from 'assets/icons/immunity.png';
-import "./character-data.css";
-const artifactList = require("constants/artifact-info.json");
+import './character-data.css';
 
 class CharacterData extends React.Component {
   constructor(props) {
     super(props);
+    this.maxLengths = { hp: 5, speed: 3, notes: 150 };
+    this.artifactList = clone(require('data/artifacts.json'));
 
     this.state = {
       name: props.character.name,
@@ -23,12 +26,12 @@ class CharacterData extends React.Component {
       notes: props.character.notes || '',
       counter: props.character.counter || false,
       lifesteal: props.character.lifesteal || false,
-      immunity: props.character.immunity || false,
+      immunity: props.character.immunity || false
     };
   }
 
   emitCharacterData() {
-    socket.emit("updateCharacter", {
+    socket.emit('updateCharacter', {
       pageId: this.props.intelId,
       team: this.props.teamIndex,
       towerIndex: this.props.towerIndex,
@@ -38,7 +41,7 @@ class CharacterData extends React.Component {
   }
 
   getCharacterImage() {
-    return CharacterImages[this.state.name] || CharacterImages['Enott'];
+    return CharacterImages[this.state.name] || avatar;
   }
 
   getSelectedCharacter() {
@@ -46,7 +49,7 @@ class CharacterData extends React.Component {
   }
 
   getSelectedArtifact() {
-    return artifactList.find((artifact) => artifact.value === this.state.artifact);
+    return this.artifactList.find((artifact) => artifact.value === this.state.artifact);
   }
 
   getArtifactLabel() {
@@ -65,7 +68,9 @@ class CharacterData extends React.Component {
   }
 
   updateCharacterData(key, value) {
-    this.setState({ [key]: value });
+    const maxLength = this.maxLengths[key];
+    const updatedValue = value.length > maxLength ? value.slice(0, maxLength) : value;
+    this.setState({ [key]: updatedValue });
   }
 
   updateDebuff(event) {
@@ -73,9 +78,9 @@ class CharacterData extends React.Component {
     const value = event.target.checked;
 
     if ((key === 'lifesteal' && !this.state.counter) || (key === 'counter' && !this.state.lifesteal)) {
-      this.setState({ [key]: value });
+      this.setState({ [key]: value }, this.emitCharacterData);
     } else if (key === 'immunity') {
-      this.setState({ [key]: value });
+      this.setState({ [key]: value }, this.emitCharacterData);
     }
   }
 
@@ -88,7 +93,7 @@ class CharacterData extends React.Component {
     return (
       <div className={`character-data-container ${this.props.isEditing ? 'character-edit' : ''}`} onClick={(e) => this.editCharacter(e, true)}>
         <div className="flex-container">
-          {/* CHARACTER SELECTION */}
+          {/* CHARACTER IMAGE */}
           <div className="character-selection-container">
             <img src={this.getCharacterImage()} alt="Character" />
           </div>
@@ -126,9 +131,10 @@ class CharacterData extends React.Component {
 
           </div>
 
+          {/* CHARACTER SELECTION AND ARTIFACT */}
           <div className="flex-4">
             <div className="character-inputs">
-              <div className="flex-container">
+              <div className="character-dropdowns flex-container">
                 <div className="flex-1">
                   <Select
                     className="select-dropdown"
@@ -143,52 +149,76 @@ class CharacterData extends React.Component {
                   <Select
                     className="select-dropdown"
                     placeholder="Artifact"
-                    options={artifactList}
+                    options={this.artifactList}
                     value={this.getSelectedArtifact()}
                     onChange={(e) => this.updateCharacterData('artifact', e.value)}
                   />
                 </div>
               </div>
 
+              {/* CHARACTER DEBUFFS */}
               <div className="character-debuffs">
-                <input type="checkbox" id="counter" value="counter" checked={this.state.counter} onChange={(e) => this.updateDebuff(e)} />
-                <label htmlFor="counter"> Counter</label>
-                <input type="checkbox" id="lifesteal" value="lifesteal" checked={this.state.lifesteal} onChange={(e) => this.updateDebuff(e)} />
-                <label htmlFor="lifesteal"> Lifesteal</label>
-                <input type="checkbox" id="immunity" value="immunity" checked={this.state.immunity} onChange={(e) => this.updateDebuff(e)} />
-                <label htmlFor="immunity"> Immunity</label>
+                <input
+                  type="checkbox"
+                  id={`counter-${this.props.characterIndex}`}
+                  value="counter"
+                  checked={this.state.counter}
+                  onChange={(e) => this.updateDebuff(e)} />
+                <label htmlFor={`counter-${this.props.characterIndex}`}> Counter</label>
+
+                <input
+                  type="checkbox"
+                  id={`lifesteal-${this.props.characterIndex}`}
+                  value="lifesteal"
+                  checked={this.state.lifesteal}
+                  onChange={(e) => this.updateDebuff(e)} />
+                <label htmlFor={`lifesteal-${this.props.characterIndex}`}> Lifesteal</label>
+
+                <input
+                  type="checkbox"
+                  id={`immunity-${this.props.characterIndex}`}
+                  value="immunity"
+                  checked={this.state.immunity}
+                  onChange={(e) => this.updateDebuff(e)} />
+                <label htmlFor={`immunity-${this.props.characterIndex}`}> Immunity</label>
               </div>
 
-              <div className="character-stats-inputs">
-                <input
-                  type="number"
-                  placeholder="Health Points"
-                  value={this.state.hp}
-                  onChange={(e) => this.updateCharacterData('hp', e.target.value)}
-                  onBlur={() => this.emitCharacterData()}>
-                </input>
-
-                <div className="character-speed flex-container">
-                  <div className="flex-1">
-                    <input
-                      type="number"
-                      placeholder="Min Speed"
-                      value={this.state.speed}
-                      onChange={(e) => this.updateCharacterData('speed', e.target.value)}
-                      onBlur={() => this.emitCharacterData()}>
-                    </input>
-                  </div>
-                  <div className="flex-1">
-                    <input
-                      type="number"
-                      placeholder="Max Speed"
-                      value={this.state.speed}
-                      onChange={(e) => this.updateCharacterData('speed', e.target.value)}
-                      onBlur={() => this.emitCharacterData()}>
-                    </input>
-                  </div>
+              {/* CHARACTER INPUTS */}
+              <div className="character-stats-inputs flex-container">
+                <div className="flex-1">
+                  <input
+                    type="number"
+                    placeholder="HP"
+                    pattern="/^-?\d+\.?\d*$/"
+                    value={this.state.hp}
+                    onChange={(e) => this.updateCharacterData('hp', e.target.value)}
+                    onBlur={() => this.emitCharacterData()}>
+                  </input>
                 </div>
+                <div className="flex-1">
+                  <input
+                    type="number"
+                    placeholder="Min Speed"
+                    pattern="/^-?\d+\.?\d*$/"
+                    value={this.state.speed}
+                    onChange={(e) => this.updateCharacterData('speed', e.target.value)}
+                    onBlur={() => this.emitCharacterData()}>
+                  </input>
+                </div>
+                <div className="flex-1">
+                  <input
+                    type="number"
+                    placeholder="Max Speed"
+                    pattern="/^-?\d+\.?\d*$/"
+                    value={this.state.speed}
+                    onChange={(e) => this.updateCharacterData('speed', e.target.value)}
+                    onBlur={() => this.emitCharacterData()}>
+                  </input>
+                </div>
+              </div>
 
+              {/* CHARACTER NOTES */}
+              <div className="character-notes-container">
                 <textarea rows="2"
                   value={this.state.notes}
                   placeholder="Notes"

@@ -1,44 +1,95 @@
-import React from "react";
-import "./add-tower-dialog.css";
-import Select from "react-select"
-import { socket } from "globals/socket";
-
-let towerName = "";
-let towerLocation = "";
-
-const towerLocations = [
-  { value: "Bronze Fortress", label: "Bronze Fortess" },
-  { value: "Dalberg Fortress", label: "Dalberg Fortress" },
-  { value: "Silver Fortress", label: "Silver Fortress" },
-  { value: "Stronghold", label: "Stronghold" },
-];
+import React, { useState, useEffect } from 'react';
+import Select from 'react-select'
+import { socket } from 'globals/socket';
+import castle from 'assets/icons/castle2.png';
+import './add-tower-dialog.css';
+const towerLocations = require('data/tower-locations.json');
 
 const AddTowerDialog = (props) => {
+  const [towerName, setTowerName] = useState('');
+  const [towerLocation, setTowerLocation] = useState('');
+  const [errorStates, setErrorStates] = useState({});
+
+  useEffect(() => {
+    socket.on('createTowerError', setAddTowerError);
+
+    return () => {
+      socket.off('createTowerError', setAddTowerError);
+    }
+  }, []);
+
+  const setAddTowerError = () => {
+    setErrorStates({ towerLocation: true });
+  }
+
+  const sendTowerData = () => {
+    if (towerLocation && towerLocation !== '') {
+      socket.emit('createTower', {
+        pageId: props.intelId,
+        name: towerName,
+        location: towerLocation,
+      });
+    } else {
+      setAddTowerError();
+    }
+  };
+
+  const updateTowerLocation = (value) => {
+    if (value && value !== '') {
+      setErrorStates({ towerLocation: false });
+      setTowerLocation(value);
+    }
+  }
+
   if (!props.visible) {
     return null;
   }
 
-  const sendTowerData = () => {
-    socket.emit("createTower", {
-      pageId: props.intelId,
-      name: towerName,
-      location: towerLocation,
-    });
-    props.onClose();
-  };
-
   return (
-    <div className="modal-container">
-      <div id="modal" className="modal">
-        <Select
-          search
-          options={towerLocations}
-          placeholder="Choose Tower Location"
-          onChange={(e) => (towerLocation = e.value)}
-        />
-        <input placeholder="Input tower name" className="input-box" onBlur={(e) => (towerName = e.target.value)}></input>
-        <button className="modal-button" onClick={sendTowerData}>Add Tower</button>
-        <button className="modal-button" onClick={props.onClose}>Cancel</button>
+    <div className="add-tower-dialog">
+      <div className="add-tower-modal">
+        <div className="add-tower-content">
+          {/* HEADER */}
+          <div className="add-tower-header">
+            <h1>
+              <img src={castle} alt="Add Tower" />
+              Add Tower
+            </h1>
+          </div>
+
+          {/* LOCATION */}
+          <div className="add-tower-location">
+            <h2>Tower location</h2>
+            <Select
+              className={`select-dropdown ${errorStates.towerLocation ? 'error' : ''}`}
+              options={towerLocations}
+              placeholder="Choose Tower Location"
+              onChange={(e) => updateTowerLocation(e.value)}
+            />
+          </div>
+
+          {/* NAME */}
+          <div className="add-tower-name">
+            <h2>Tower name (optional)</h2>
+            <input
+              type="text"
+              placeholder="Tower name"
+              value={towerName}
+              onChange={(e) => setTowerName(e.target.value)}>
+            </input>
+          </div>
+
+          {/* ACTIONS */}
+          <div className="add-tower-actions">
+            <button className="slide-btn-horizontal" onClick={sendTowerData}>
+              <span className="slide-btn-text">Add Tower</span>
+            </button>
+
+            <button className="slide-btn-horizontal" onClick={props.onClose}>
+              <span className="slide-btn-text">Cancel</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,31 +1,4 @@
 /* ========================
- * Dropdown styles
- * ===================== */
-.select-dropdown {
-  text-align: left;
-  color: #000;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.select-dropdown [class*="-control"] {
-  background: #120b18;
-  border-color: rgb(28, 16, 36);
-}
-
-.select-dropdown [class*="-placeholder"] {
-  color: rgb(158, 158, 158);
-}
-
-.select-dropdown [class*="-singleValue"] {
-  color: #fff;
-}
-
-.character-inputs div.select-dropdown:nth-child(2) {
-  margin-left: 10px;
-}
-
-/* ========================
  * Character container
  * ===================== */
 .character-data-container {
@@ -71,6 +44,7 @@
   flex: 4;
   position: relative;
   top: 5px;
+  margin-right: 20px;
 }
 
 .character-stats-labels img {
@@ -94,6 +68,7 @@
 .character-stats-notes {
   clear: both;
   padding-top: 20px;
+  word-wrap: anywhere;
 }
 
 /* ========================
@@ -101,22 +76,11 @@
  * ===================== */
 .character-inputs {
   margin-bottom: 10px;
-}
-
-.character-inputs input[type="number"] {
   margin-right: 20px;
 }
 
-.character-inputs textarea {
-  display: block;
-  resize: vertical;
-  width: 93.8%;
-  margin-right: 20px;
-  background-color: #22152c;
-  border: 1px solid #2e1c44;
-  color: #fff;
-  padding: 10px;
-  margin-top: 15px;
+.character-dropdowns .flex-1:not(:first-child) {
+  margin-left: 20px;
 }
 
 .character-debuffs {
@@ -128,9 +92,24 @@
   margin-right: 20px;
 }
 
-.character-speed.flex-container,
-.character-speed .flex-1 {
-  display: inline;
+.character-stats-inputs div:not(:last-child) {
+  margin-right: 20px;
+}
+
+.character-stats-inputs div input {
+  width: 100%;
+}
+
+.character-notes-container textarea {
+  display: block;
+  resize: vertical;
+  width: 100%;
+  background-color: #22152c;
+  border: 1px solid #2e1c44;
+  color: #fff;
+  padding: 10px;
+  margin-top: 15px;
+  box-sizing: border-box;
 }
 
 /* ========================
@@ -144,6 +123,10 @@
   .character-selection-container {
     flex: none;
     margin-right: 20px;
+  }
+
+  .character-stats-labels {
+    margin-right: 0;
   }
 
   .character-stat {
@@ -177,23 +160,7 @@
     width: 100%;
   }
 
-  .character-debuffs {
-    text-align: center;
-  }
-
-  .character-speed div:nth-child(1) {
-    margin-right: 10px;
-  }
-
-  .character-speed.flex-container {
-    display: flex;
-  }
-
-  .character-speed .flex-1 {
-    flex: 1;
-  }
-
-  .character-inputs textarea {
-    margin-top: 0;
+  .character-notes-container textarea {
+    margin-top: 5px;
   }
 }
