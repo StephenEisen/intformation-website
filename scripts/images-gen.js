@@ -1,5 +1,5 @@
 const fs = require('fs');
-const characters = JSON.parse(fs.readFileSync('../client/src/constants/character-info.json'));
+const characters = JSON.parse(fs.readFileSync('../client/src/data/character-info.json'));
 
 // Write import lines
 const importArr = [];

@@ -87,7 +87,7 @@
 }
 
 .select-dropdown [class*="-control"] {
-  background: #120b18;
+  background: var(--dark-purple-color);
   border-color: rgb(28, 16, 36);
 }
 

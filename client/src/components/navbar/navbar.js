@@ -6,7 +6,7 @@ import { Routes } from 'globals/routes.js';
 
 const Navbar = () => {
   const history = useHistory();
-  const [navbarClasses, setNavbarClasses] = useState(['navbar']);
+  const [isNavbarOpen, setIsNavBarOpen] = useState(false);
 
   useEffect(() => {
     closeNavBar();
@@ -14,24 +14,11 @@ const Navbar = () => {
   }, []);
 
   const closeNavBar = () => {
-    const classes = ['navbar']
-
-    if (window.innerWidth <= 1280) {
-      classes.push('hamburger-closed');
-    }
-    setNavbarClasses(classes);
+    setIsNavBarOpen(false);
   }
 
   const toggleMobileNavBar = () => {
-    const newClasses = ['navbar'];
-
-    if (navbarClasses.includes('hamburger-open')) {
-      newClasses.push('hamburger-closed');
-    } else {
-      newClasses.push('hamburger-open');
-    }
-
-    setNavbarClasses(newClasses);
+    setIsNavBarOpen(!isNavbarOpen);
   }
 
   const getClassIfActive = (route) => {
@@ -41,12 +28,12 @@ const Navbar = () => {
 
   return (
     <section>
-      <nav className={navbarClasses.join(' ')}>
+      <nav className={`navbar ${isNavbarOpen ? 'hamburger-open' : 'hamburger-closed'}`}>
         <div className="navbar-logo">
           <img src={logo} alt="IntFormation" />
           <a href="/">
             <div className="navbar-title-first">Epic7</div>
-            <div className="navbar-title-second">Real Time Intel</div>
+            <div className="navbar-title-second">Intel</div>
           </a>
         </div>
 

@@ -63,6 +63,10 @@
 }
 
 @media only screen and (max-width: 900px) {
+  .tower-data.container {
+    padding: 0;
+  }
+
   .tower-characters {
     flex-direction: unset;
     padding-left: 0;

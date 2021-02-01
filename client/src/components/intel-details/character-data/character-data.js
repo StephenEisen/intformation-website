@@ -1,21 +1,22 @@
-import React from "react";
+import React from 'react';
 import Select from 'react-select'
-import { socket } from "globals/socket";
-import { CharacterImages } from "globals/images";
-import { clone } from "globals/utils";
+import { socket } from 'globals/socket';
+import { CharacterImages } from 'globals/images';
+import { clone } from 'globals/utils';
+import avatar from 'assets/avatar.png';
 import hp from 'assets/icons/hp.png';
 import speed from 'assets/icons/speed.png';
 import artifact from 'assets/icons/artifact.png';
 import counter from 'assets/icons/counter.png';
 import lifesteal from 'assets/icons/lifesteal.png';
 import immunity from 'assets/icons/immunity.png';
-import "./character-data.css";
+import './character-data.css';
 
 class CharacterData extends React.Component {
   constructor(props) {
     super(props);
     this.maxLengths = { hp: 5, speed: 3, notes: 150 };
-    this.artifactList = clone(require("constants/artifact-info.json"));
+    this.artifactList = clone(require('data/artifact-info.json'));
 
     this.state = {
       name: props.character.name,
@@ -30,7 +31,7 @@ class CharacterData extends React.Component {
   }
 
   emitCharacterData() {
-    socket.emit("updateCharacter", {
+    socket.emit('updateCharacter', {
       pageId: this.props.intelId,
       team: this.props.teamIndex,
       towerIndex: this.props.towerIndex,
@@ -40,7 +41,7 @@ class CharacterData extends React.Component {
   }
 
   getCharacterImage() {
-    return CharacterImages[this.state.name] || CharacterImages['Enott'];
+    return CharacterImages[this.state.name] || avatar;
   }
 
   getSelectedCharacter() {
