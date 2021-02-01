@@ -15,13 +15,14 @@ import './character-data.css';
 class CharacterData extends React.Component {
   constructor(props) {
     super(props);
-    this.maxLengths = { hp: 5, speed: 3, notes: 150 };
+    this.maxLengths = { hp: 5, minSpeed: 3, maxSpeed: 3, notes: 150 };
     this.artifactList = clone(require('data/artifacts.json'));
 
     this.state = {
       name: props.character.name,
       hp: props.character.hp || '',
-      speed: props.character.speed || '',
+      minSpeed: props.character.minSpeed || '',
+      maxSpeed: props.character.maxSpeed || '',
       artifact: props.character.artifact || '',
       notes: props.character.notes || '',
       counter: props.character.counter || false,
@@ -46,6 +47,15 @@ class CharacterData extends React.Component {
 
   getSelectedCharacter() {
     return this.props.options.find((character) => character.value === this.state.name);
+  }
+
+  getCharacterSpeed() {
+    if (this.state.minSpeed || this.state.maxSpeed) {
+      const separator = this.state.minSpeed && this.state.maxSpeed ? '-' : '';
+      return `${this.state.minSpeed}${separator}${this.state.maxSpeed}`;
+    }
+
+    return '-';
   }
 
   getSelectedArtifact() {
@@ -111,7 +121,7 @@ class CharacterData extends React.Component {
               </span>
               <span className="character-stat">
                 <img src={speed} alt="Speed" />
-                {this.state.speed || '-'}
+                {this.getCharacterSpeed()}
               </span>
             </div>
             <div className="character-stats-right">
@@ -200,8 +210,8 @@ class CharacterData extends React.Component {
                     type="number"
                     placeholder="Min Speed"
                     pattern="/^-?\d+\.?\d*$/"
-                    value={this.state.speed}
-                    onChange={(e) => this.updateCharacterData('speed', e.target.value)}
+                    value={this.state.minSpeed}
+                    onChange={(e) => this.updateCharacterData('minSpeed', e.target.value)}
                     onBlur={() => this.emitCharacterData()}>
                   </input>
                 </div>
@@ -210,8 +220,8 @@ class CharacterData extends React.Component {
                     type="number"
                     placeholder="Max Speed"
                     pattern="/^-?\d+\.?\d*$/"
-                    value={this.state.speed}
-                    onChange={(e) => this.updateCharacterData('speed', e.target.value)}
+                    value={this.state.maxSpeed}
+                    onChange={(e) => this.updateCharacterData('maxSpeed', e.target.value)}
                     onBlur={() => this.emitCharacterData()}>
                   </input>
                 </div>

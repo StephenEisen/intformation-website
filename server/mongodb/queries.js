@@ -39,7 +39,8 @@ async function updateCharacter(characterData) {
           team: characterData.team,
           name: characterData.name,
           hp: characterData.hp,
-          speed: characterData.speed,
+          minSpeed: characterData.minSpeed,
+          maxSpeed: characterData.maxSpeed,
           artifact: characterData.artifact,
           notes: characterData.notes,
           immunity: characterData.immunity,
@@ -82,7 +83,6 @@ async function countMostUsedTeams() {
     });
   });
 
-  // {matt/ppp/big dick: {character: {num times, {stats [hp][speed][{artifact: times}]}}}}
   return [...teamMap.entries()].sort((a, b) => b[1] - a[1]);
 }
 

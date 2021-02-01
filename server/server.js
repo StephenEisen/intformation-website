@@ -89,7 +89,7 @@ app.post("/api/intel/:pageId/token", async (request, response) => {
 
 // Listen to socket events
 io.on("connection", (socket) => {
-  socket.on('joinRoom', ({username, room}) => {
+  socket.on('joinRoom', ({ username, room }) => {
     const user = users.userJoin(socket.id, username, room);
     console.log(`${user.username} has joined room: ${user.room} with socket ${user.id}`);
     socket.join(user.room);
@@ -115,7 +115,7 @@ io.on("connection", (socket) => {
 
   socket.on("updateCharacter", async (characterData) => {
     const updatedCharacter = await queries.updateCharacter(characterData);
-    io.sockets.to(characterData.pageId).emit("updateCharacterSuccess", updatedCharacter);
+    socket.broadcast.to(characterData.pageId).emit("updateCharacterSuccess", updatedCharacter);
   });
 });
 
