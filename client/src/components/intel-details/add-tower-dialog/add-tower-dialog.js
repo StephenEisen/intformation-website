@@ -16,6 +16,8 @@ const AddTowerDialog = (props) => {
     return () => {
       socket.off('createTowerError', setAddTowerError);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setAddTowerError = () => {
