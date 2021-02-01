@@ -104,7 +104,7 @@ io.on("connection", (socket) => {
       const newTower = await queries.createTower(data);
       io.sockets.to(data.pageId).emit("createTowerSuccess", newTower);
     }
-    else if (data.location !== "Stronghold" && exisitingIntel.data.filter((tower) => tower.location === data.location).length < 9) {
+    else if (data.location !== "Stronghold" && exisitingIntel.data.filter((tower) => tower.location === data.location).length < 9 && !exisitingIntel.data.some((tower) => tower.name === data.name)) {
       const newTower = await queries.createTower(data);
       io.sockets.to(data.pageId).emit("createTowerSuccess", newTower);
     }

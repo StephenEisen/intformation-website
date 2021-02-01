@@ -70,7 +70,7 @@ const AddTowerDialog = (props) => {
 
           {/* NAME */}
           <div className="add-tower-name">
-            <h2>Tower name (optional)</h2>
+            <h2>Tower name</h2>
             <input
               type="text"
               placeholder="Tower name"

@@ -3,7 +3,6 @@ import Select from 'react-select'
 import { socket } from 'globals/socket';
 import { CharacterImages } from 'globals/images';
 import { clone } from 'globals/utils';
-import avatar from 'assets/avatar.png';
 import hp from 'assets/icons/hp.png';
 import speed from 'assets/icons/speed.png';
 import artifact from 'assets/icons/artifact.png';
@@ -42,7 +41,7 @@ class CharacterData extends React.Component {
   }
 
   getCharacterImage() {
-    return CharacterImages[this.state.name] || avatar;
+    return CharacterImages[this.state.name] || CharacterImages['Enott'];
   }
 
   getSelectedCharacter() {

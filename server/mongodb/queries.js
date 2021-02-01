@@ -64,10 +64,11 @@ async function countMostUsedTeams() {
   guildData.forEach(guild => {
     guild.data.forEach(data => {
       if (data.characters) {
-        let team1 = data.characters.filter(c => c.team === 1).map(c => c.name).sort().join(':')
-        let team2 = data.characters.filter(c => c.team === 2).map(c => c.name).sort().join(':')
-
+        let team1 = data.characters.filter(c => c.team === 1).map(c => c.name).sort();
+        let team2 = data.characters.filter(c => c.team === 2).map(c => c.name).sort();
         if (team1.length == 3 && team2.length == 3) {
+          team1 = team1.join(':');
+          team2 = team2.join(':');
           if (teamMap.has(team1)) {
             teamMap.set(team1, teamMap.get(team1) + 1);
           } else {

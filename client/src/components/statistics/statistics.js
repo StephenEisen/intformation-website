@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { CharacterImages } from "globals/images.js";
 import { webserver } from "globals/socket.js";
 import "./statistics.css";
+import Chart from 'chart.js';
+
 
 const Statistics = () => {
   const [totalGuilds, setTotalGuilds] = useState(0);
@@ -30,6 +32,8 @@ const Statistics = () => {
     getTotalGuilds();
     getMostUsed();
   }, []);
+
+
 
   return (
     <div className="statistics-container">
@@ -74,6 +78,9 @@ const Statistics = () => {
           <p className="statistics-slide-up-hp statistics-slide-stats">Hp: {"435345"} </p>
           <p className="statistics-slide-up-speed statistics-slide-stats">Speed: {"1447"} </p>
           <p className="statistics-slide-up-gear statistics-slide-stats">LifeSteal ? Counter ? | null</p>
+
+          {/* <canvas id="myChart" width="400" height="400"></canvas> */}
+
       </div>
 
       <div className="second-most-used slider-right slide-in">
