@@ -169,27 +169,27 @@ class CharacterData extends React.Component {
               <div className="character-debuffs">
                 <input
                   type="checkbox"
-                  id={`counter-${this.props.characterIndex}`}
+                  id={`counter-t${this.props.towerIndex}-c${this.props.characterIndex}`}
                   value="counter"
                   checked={this.state.counter}
                   onChange={(e) => this.updateDebuff(e)} />
-                <label htmlFor={`counter-${this.props.characterIndex}`}> Counter</label>
+                <label htmlFor={`counter-t${this.props.towerIndex}-c${this.props.characterIndex}`}> Counter</label>
 
                 <input
                   type="checkbox"
-                  id={`lifesteal-${this.props.characterIndex}`}
+                  id={`lifesteal-t${this.props.towerIndex}-c${this.props.characterIndex}`}
                   value="lifesteal"
                   checked={this.state.lifesteal}
                   onChange={(e) => this.updateDebuff(e)} />
-                <label htmlFor={`lifesteal-${this.props.characterIndex}`}> Lifesteal</label>
+                <label htmlFor={`lifesteal-t${this.props.towerIndex}-c${this.props.characterIndex}`}> Lifesteal</label>
 
                 <input
                   type="checkbox"
-                  id={`immunity-${this.props.characterIndex}`}
+                  id={`immunity-t${this.props.towerIndex}-c${this.props.characterIndex}`}
                   value="immunity"
                   checked={this.state.immunity}
                   onChange={(e) => this.updateDebuff(e)} />
-                <label htmlFor={`immunity-${this.props.characterIndex}`}> Immunity</label>
+                <label htmlFor={`immunity-t${this.props.towerIndex}-c${this.props.characterIndex}`}> Immunity</label>
               </div>
 
               {/* CHARACTER INPUTS */}
