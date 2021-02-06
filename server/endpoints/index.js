@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import { Server } from 'socket.io';
 import intelEndpoints from './intel-endpoints.js';
 import statisticsEndpoints from './statistics-endpoints.js';
@@ -12,6 +13,11 @@ export const corsOptions = { origin: process.env.ORIGIN, optionsSuccessStatus: 2
  * @param {Server} io Socket.io Server object
  */
 const endpoints = (app, io) => {
+  // Middlewares
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json())
+
+  // Endpoints
   intelEndpoints(app, io);
   statisticsEndpoints(app);
 }
