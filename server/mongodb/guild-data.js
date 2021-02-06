@@ -17,7 +17,9 @@ const CharacterSchema = new Schema({
 const TowerSchema = new Schema({
   location: String,
   name: String,
-  characters: [CharacterSchema]
+  characters: [CharacterSchema],
+  image1: String,
+  image2: String
 });
 
 const GuildDataSchema = new Schema(

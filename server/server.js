@@ -3,27 +3,55 @@ const app = express();
 const cors = require("cors");
 const server = require("http").createServer(app);
 const bodyParser = require('body-parser');
-const options = { cors: true, origins: ["https://epic7.gg"] };
+const options = { cors: true, origins: ["http://localhost:3000"] };
 const io = require("socket.io")(server, options);
 const mongodb = require("./mongodb/connection.js");
 const queries = require("./mongodb/queries.js");
 const passwords = require('./passwords');
 const users = require("./mongodb/users.js");
+const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
 
 const corsOpts = {
-  origin: 'https://epic7.gg',
+  origin: 'http://localhost:3000',
   optionsSuccessStatus: 200
 };
 
 // Connect to mongodb
 mongodb.connect();
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 app.options("/api/statistics/total-intels", cors(corsOpts));
 app.get("/api/statistics/total-intels", cors(corsOpts), async (request, response) => {
   const totalGuilds = await queries.countTotalGuilds();
   response.send({ totalGuilds: totalGuilds });
+});
+
+
+
+app.options("/api/intel/:pageId/image", cors(corsOpts));
+app.post("/api/intel/:pageId/image", cors(corsOpts), multer().single('uploadedImage'), async (request, response) => {
+  try {
+    const pageId = request.params.pageId;
+    const towerIndex = request.query.towerIndex;
+    const teamIndex = request.query.teamIndex;
+
+    await fs.promises.mkdir(`./images/${pageId}/${towerIndex}`, {recursive: true});
+    fs.writeFileSync(`./images/${pageId}/${towerIndex}/${teamIndex}`, request.file.buffer);
+
+
+    io.sockets.to(pageId).emit("imageUploadSuccess", {
+      file: request.file,
+      teamIndex: Number(teamIndex)
+    });
+
+    response.status(204).send();
+  } catch(err) {
+    console.log(err)
+  }
 });
 
 app.options("/api/statistics/most-frequently-used", cors(corsOpts));
@@ -45,6 +73,23 @@ app.post("/api/intel", cors(corsOpts), async (request, response) => {
     response.status(500).send("Intel create failed");
   }
 });
+const createImageArray = (dirName, imageArray) => {
+  const files = fs.readdirSync(dirName);
+  files.forEach((file) => {
+    const fullPath = path.join(dirName, file);
+    const stats = fs.statSync(fullPath);
+    if (stats.isDirectory()){
+      createImageArray(fullPath, imageArray);
+    }
+    else {
+      const formatedPath = fullPath.replace(/\\/g, "/");
+      const towerIndex = formatedPath.split("/")[2];
+      imageArray[towerIndex] = imageArray[towerIndex] || [];
+      const arr = fs.readFileSync(fullPath);
+      imageArray[towerIndex].push(arr);
+    }
+  });
+};
 
 app.options("/api/intel/:pageId", cors(corsOpts));
 app.get("/api/intel/:pageId", cors(corsOpts), async (request, response) => {
@@ -55,14 +100,25 @@ app.get("/api/intel/:pageId", cors(corsOpts), async (request, response) => {
     }
     const pageId = request.params.pageId;
     const intel = await queries.findIntel(pageId);
+    const images = {};
+
     if (await passwords.authRequired(pageId)) {
       if (token && await passwords.authenticateIntel(pageId, token)) {
-        return response.status(200).send(intel);
+
+        createImageArray(`./images/${pageId}`, images);
+        return response.status(200).send({
+          intel: intel,
+          images: images
+        });
       } else {
         return response.status(403).send("Forbidden");
       }
     } else {
-      return response.status(200).send(intel);
+     createImageArray(`./images/${pageId}`, images);
+      return response.status(200).send({
+        intel: intel,
+        images: images
+      });
     }
   } catch (err) {
     console.error(err);
@@ -120,6 +176,7 @@ io.on("connection", (socket) => {
       io.sockets.to(data.pageId).emit("createTowerError", "Tower already exists");
     }
   });
+
 
   socket.on("updateCharacter", async (characterData) => {
     const updatedCharacter = await queries.updateCharacter(characterData);

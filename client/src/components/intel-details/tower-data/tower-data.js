@@ -2,6 +2,7 @@ import React from 'react';
 import CharacterData from '../character-data/character-data';
 import { clone } from 'globals/utils';
 import './tower-data.css';
+import TeamImage from '../team-image/team-image.js';
 const characters = require('data/characters.json');
 
 class TowerData extends React.Component {
@@ -25,6 +26,7 @@ class TowerData extends React.Component {
 
     this.setState({ selectedCharacters });
     this.updateCharacterOptions();
+    console.log(this.props);
   }
 
   updateCharacterOptions = (selectedOption, characterIndex) => {
@@ -85,10 +87,16 @@ class TowerData extends React.Component {
           <div className="tower-characters">
             {characterElements.slice(0, 3)}
           </div>
+          <div>
+            <TeamImage image={this.props.towerImages[this.props.towerIndex][0]} pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={1}/>
+          </div>
 
           <h3 className="tower-team-title">Team 2</h3>
           <div className="tower-characters">
             {characterElements.slice(3, 6)}
+          </div>
+          <div>
+            <TeamImage image={this.props.towerImages[this.props.towerIndex][1]} pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={2}/>
           </div>
         </div>
       </div>

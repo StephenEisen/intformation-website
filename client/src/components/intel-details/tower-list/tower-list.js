@@ -61,7 +61,7 @@ const TowerList = (props) => {
       {/* SHOW ALL TOWER INFO */}
       {
         towerList.length > 0
-          ? towerList.map((tower, index) => <TowerData key={index} towerIndex={index} intelId={props.intelId} towerData={tower} />)
+          ? towerList.map((tower, index) => <TowerData key={index} towerIndex={index} intelId={props.intelId} towerData={tower} towerImages={props.towerImages}/>)
           : null
       }
     </section>

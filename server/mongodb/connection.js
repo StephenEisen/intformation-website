@@ -3,7 +3,7 @@ mongoose.set("debug", true);
 mongoose.Promise = global.Promise;
 
 function connect() {
-  mongoose.connect("mongodb://localhost/testdata", {
+  mongoose.connect("mongodb://localhost/intel", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

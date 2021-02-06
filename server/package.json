@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "uglify": "npx uglifyjs server.js mongodb/connection.js mongodb/guild-data.js mongodb/queries.js -o server.min.js -c -m",
     "start": "nodemon server.js"
   },
   "dependencies": {
@@ -13,10 +12,10 @@
     "jsonwebtoken": "^8.5.1",
     "mocha": "^8.2.1",
     "mongoose": "^5.11.11",
+    "multer": "^1.4.2",
     "socket.io": "^3.0.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7",
-    "uglify-js": "^3.12.5"
+    "nodemon": "^2.0.7"
   }
 }

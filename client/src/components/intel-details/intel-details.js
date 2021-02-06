@@ -15,6 +15,7 @@ const IntelDetails = () => {
   const [intel, setIntel] = useState(null);
   const [password, setPassword] = useState("");
   const [forbidden, setForbidden] = useState(false);
+  const [towerImages, setTowerImages] = useState(null);
 
   const handlePasswordChange = event => {
     setPassword(event.target.value);
@@ -28,7 +29,7 @@ const IntelDetails = () => {
           setForbidden(false);
         })
         .catch(err => console.error(err));
-      
+
 
       setPassword("");
     } else {
@@ -52,9 +53,12 @@ const IntelDetails = () => {
     try {
       const resp = await intelGet(id);
       if (resp.ok) {
-        setIntel(await resp.json());
+        const {intel, images} = await resp.json();
+        console.log(images);
+        setTowerImages(images);
+        setIntel(intel);
         localStoragePushIntel();
-    
+
         //fetch the room to join based on the pageid can also pass in a username
         const room = id;
         const username = 'admin';
@@ -100,7 +104,7 @@ const IntelDetails = () => {
     <div>
       { passwordForm }
       { forbidden ? <p>Forbidden</p> : null }
-      { intel ? <TowerList intelId={id} towerList={intel.data} /> : null }
+      { intel ? <TowerList intelId={id} towerList={intel.data} towerImages={towerImages}/> : null }
     </div>
   )
 }
