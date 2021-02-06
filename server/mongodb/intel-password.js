@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
+
 const Schema = mongoose.Schema;
 
 const IntelPasswordSchema = new Schema({
@@ -9,6 +10,6 @@ const IntelPasswordSchema = new Schema({
   password: String
 });
 
-const Authentication = mongoose.model("authentication", IntelPasswordSchema);
+const IntelPassword = mongoose.model("intelpassword", IntelPasswordSchema);
 
-module.exports = Authentication;
+export default IntelPassword;

@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
+
 const Schema = mongoose.Schema;
 
 const CharacterSchema = new Schema({
@@ -17,9 +18,7 @@ const CharacterSchema = new Schema({
 const TowerSchema = new Schema({
   location: String,
   name: String,
-  characters: [CharacterSchema],
-  image1: String,
-  image2: String
+  characters: [CharacterSchema]
 });
 
 const GuildDataSchema = new Schema(
@@ -28,10 +27,11 @@ const GuildDataSchema = new Schema(
       type: String,
       unique: true
     },
-    data: [TowerSchema]
+    data: [TowerSchema],
+    createdDate: Date
   },
 );
 
 const GuildData = mongoose.model("guilddata", GuildDataSchema);
 
-module.exports = GuildData;
+export default GuildData;

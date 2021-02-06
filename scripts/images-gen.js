@@ -5,7 +5,6 @@ const characters = JSON.parse(fs.readFileSync('../client/src/data/characters.jso
 const importArr = [];
 
 for (let i = 0; i < characters.length; i++) {
-  console.log(characters[i].value);
   const value = characters[i].value.replace(/ /g, '').replace(/-/g, '').replace(/'/g, '');
   importArr.push(`import ${value} from '${characters[i].photo}';`);
 }

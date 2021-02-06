@@ -30,12 +30,9 @@ const IntelDetails = () => {
         })
         .catch(err => console.error(err));
 
-
       setPassword("");
     } else {
-      intelPasswordPost(id, password)
-        .then(resp => console.log('Password set', resp))
-        .catch(err => console.error('Error', err));
+      intelPasswordPost(id, password).catch((err) => console.error('Error', err));
       setPassword("");
     }
     event.preventDefault();
@@ -54,15 +51,10 @@ const IntelDetails = () => {
       const resp = await intelGet(id);
       if (resp.ok) {
         const {intel, images} = await resp.json();
-        console.log(images);
         setTowerImages(images);
         setIntel(intel);
         localStoragePushIntel();
-
-        //fetch the room to join based on the pageid can also pass in a username
-        const room = id;
-        const username = 'admin';
-        socket.emit('joinRoom', { username, room });
+        socket.emit('joinRoom', id);
       } else if (resp.status === 403) {
         setForbidden(true);
       } else {

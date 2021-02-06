@@ -1,18 +1,18 @@
-const GuildData = require('./guild-data.js');
-const Authentication = require('./intel-password')
+import GuildData from './guild-data.js';
+import IntelPassword from './intel-password.js';
 
-async function findIntel(pageId) {
+export async function findIntel(pageId) {
   return GuildData.findOne({ pageId });
 }
 
-async function createIntel() {
+export async function createIntel() {
   const newData = new GuildData({
     pageId: Math.random().toString(36).slice(2),
   });
   return newData.save();
 }
 
-async function createTower(towerData) {
+export async function createTower(towerData) {
   return GuildData.findOneAndUpdate(
     { pageId: towerData.pageId },
     {
@@ -28,7 +28,7 @@ async function createTower(towerData) {
   );
 }
 
-async function updateCharacter(characterData) {
+export async function updateCharacter(characterData) {
   const queryKey = `data.${characterData.towerIndex}.characters.${characterData.characterIndex}`;
 
   return GuildData.findOneAndUpdate(
@@ -53,11 +53,11 @@ async function updateCharacter(characterData) {
   );
 }
 
-async function countTotalGuilds() {
+export async function countTotalGuilds() {
   return GuildData.countDocuments();
 }
 
-async function countMostUsedTeams() {
+export async function countMostUsedTeams() {
   const teamMap = new Map();
   const guildData = await GuildData.find({});
 
@@ -87,26 +87,15 @@ async function countMostUsedTeams() {
   return [...teamMap.entries()].sort((a, b) => b[1] - a[1]);
 }
 
-async function findIntelPassword(pageId) {
-  const intelPassword = await Authentication.findOne({ pageId: pageId });
+export async function findIntelPassword(pageId) {
+  const intelPassword = await IntelPassword.findOne({ pageId: pageId });
   return intelPassword;
 }
 
-async function updateIntelPassword(pageId, hash) {
-  const newAuth = new Authentication({
+export async function updateIntelPassword(pageId, hash) {
+  const newAuth = new IntelPassword({
     pageId: pageId,
     password: hash
   });
   return newAuth.save();
 }
-
-module.exports = {
-  findIntel,
-  createIntel,
-  createTower,
-  updateCharacter,
-  countTotalGuilds,
-  countMostUsedTeams,
-  findIntelPassword,
-  updateIntelPassword
-};
