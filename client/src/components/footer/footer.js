@@ -8,7 +8,11 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-left">
           <img className="ravi-slide-up" src={ravi} alt="" width="50px" />
-          v0.1
+          v0.2
+        </div>
+
+        <div className="footer-disclaimer">
+        All game content and assets are trademarks and copyrights of SUPERCREATIVE Corp and/or Smilegate Megaport. <br></br>This site is fan made, not affiliated with SUPERCREATIVE Corp and/or Smilegate Megaport.
         </div>
 
         <div className="footer-right">

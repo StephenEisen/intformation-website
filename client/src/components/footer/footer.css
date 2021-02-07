@@ -13,6 +13,10 @@
   padding-top: 25px;
   z-index: 21;
 }
+.footer-disclaimer {
+  font-size: small;
+  font-weight: normal;
+}
 
 .footer-left {
   float: left;

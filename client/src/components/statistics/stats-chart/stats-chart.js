@@ -82,7 +82,7 @@ class StatsChart extends React.Component {
   };
 
   render() {
-    return  <canvas width="100%" ref={this.chartRef}></canvas>
+    return  <canvas width="100%" height="300px" ref={this.chartRef}></canvas>
   }
 }
 
