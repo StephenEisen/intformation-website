@@ -53,13 +53,15 @@ async function updateCharacter(characterData) {
   );
 }
 
+// The stackoverflow masterminds say this may not be efficeint
 async function countTotalGuilds() {
-  return GuildData.countDocuments();
+  const result = await GuildData.find({$where: "this.data.length >= 10"});
+  return result.length;
 }
 
 async function countMostUsedTeams() {
   const teamMap = new Map();
-  const guildData = await GuildData.find({});
+  const guildData = await GuildData.find({$where: "this.data.length >= 10"});
 
   guildData.forEach(guild => {
     guild.data.forEach(data => {

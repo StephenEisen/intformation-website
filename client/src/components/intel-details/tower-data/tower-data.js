@@ -88,7 +88,7 @@ class TowerData extends React.Component {
             {characterElements.slice(0, 3)}
           </div>
           <div>
-            <TeamImage image={this.props.towerImages[this.props.towerIndex][0]} pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={1}/>
+            <TeamImage  pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={1}/>
           </div>
 
           <h3 className="tower-team-title">Team 2</h3>
@@ -96,7 +96,7 @@ class TowerData extends React.Component {
             {characterElements.slice(3, 6)}
           </div>
           <div>
-            <TeamImage image={this.props.towerImages[this.props.towerIndex][1]} pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={2}/>
+            <TeamImage  pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={2}/>
           </div>
         </div>
       </div>

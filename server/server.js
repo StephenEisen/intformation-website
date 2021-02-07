@@ -74,6 +74,7 @@ app.post("/api/intel", cors(corsOpts), async (request, response) => {
   }
 });
 const createImageArray = (dirName, imageArray) => {
+  if (fs.existsSync(dirName)) {
   const files = fs.readdirSync(dirName);
   files.forEach((file) => {
     const fullPath = path.join(dirName, file);
@@ -89,6 +90,7 @@ const createImageArray = (dirName, imageArray) => {
       imageArray[towerIndex].push(arr);
     }
   });
+}
 };
 
 app.options("/api/intel/:pageId", cors(corsOpts));
