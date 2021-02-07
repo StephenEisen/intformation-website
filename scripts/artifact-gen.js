@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const artifactList = JSON.parse(fs.readFileSync('../client/src/data/artifacts.json'));
 

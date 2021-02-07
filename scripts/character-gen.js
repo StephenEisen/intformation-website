@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const characters = JSON.parse(fs.readFileSync('../client/src/data/characters.json'));
 
