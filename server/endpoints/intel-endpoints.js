@@ -118,6 +118,7 @@ const intelEndpoints = (app, io) => {
 
       io.sockets.to(pageId).emit("imageUploadSuccess", {
         file: request.file,
+        towerIndex: Number(towerIndex),
         teamIndex: Number(teamIndex)
       });
 

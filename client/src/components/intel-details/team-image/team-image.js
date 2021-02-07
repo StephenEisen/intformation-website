@@ -14,7 +14,7 @@ const TeamImage = (props) => {
   useEffect(() => {
     if (props.image) {
       const blob = new Blob([Int8Array.from(props.image.data)]);
-      updateImageBox(blob);
+      updateImageBox(blob, props.towerIndex, props.teamIndex);
     }
 
     socket.on("imageUploadSuccess", handleImageBuffer);
@@ -26,19 +26,19 @@ const TeamImage = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleImageBuffer = ({ file, teamIndex }) => {
-    if (teamIndex === props.teamIndex) {
-      const blob = new Blob([file.buffer]);
-      updateImageBox(blob);
-    }
+  const handleImageBuffer = ({ file, towerIndex, teamIndex }) => {
+    const blob = new Blob([file.buffer]);
+    updateImageBox(blob, towerIndex, teamIndex);
   }
 
-  const updateImageBox = (blob) => {
-    const url = URL.createObjectURL(blob);
+  const updateImageBox = (blob, towerIndex, teamIndex) => {
+    if (towerIndex === props.towerIndex && teamIndex === props.teamIndex) {
+      const url = URL.createObjectURL(blob);
 
-    imageBoxRef.current.src = url;
-    imageBoxRef.current.style.display = 'block';
-    imageBoxRef.current.onload = () => URL.revokeObjectURL(url);
+      imageBoxRef.current.src = url;
+      imageBoxRef.current.style.display = 'block';
+      imageBoxRef.current.onload = () => URL.revokeObjectURL(url);
+    }
   }
 
   const dropHandler = (e) => {

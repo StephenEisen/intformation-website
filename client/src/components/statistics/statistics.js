@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { CharacterImages } from "globals/images.js";
 import { webserver } from "globals/socket.js";
-import "./statistics.css";
-import counter from "assets/icons/counter.png";
-import lifesteal from "assets/icons/lifesteal.png";
 import StatsChart from "./stats-chart/stats-chart.js";
+import "./statistics.css";
 
 const Statistics = () => {
   const [totalGuilds, setTotalGuilds] = useState(0);
