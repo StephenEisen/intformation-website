@@ -94,8 +94,10 @@ const IntelDetails = () => {
 
   return (
     <div>
-      { passwordForm }
-      { forbidden ? <p>Forbidden</p> : null }
+      {/*
+        { passwordForm }
+        { forbidden ? <p>Forbidden</p> : null }
+      */}
       { intel ? <TowerList intelId={id} towerList={intel.data} towerImages={towerImages} /> : null }
     </div>
   )

@@ -41,25 +41,16 @@ const TeamImage = (props) => {
   const dropHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
+
     if (e.dataTransfer.files && e.dataTransfer.files.length === 1) {
       handleFile(e.dataTransfer.files[0]);
     }
   };
 
-  const dragOverHandler = (e) => {
+  const dragEventHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
-  };
-
-  const dragLeaveHandler = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
-  const dragEnterHandler = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
+  }
 
   const handleFile = (file) => {
     if (file.type === 'image/jpeg' || file.type === 'image/png') {
@@ -82,7 +73,7 @@ const TeamImage = (props) => {
   }
 
   return (
-    <div onDragOver={dragOverHandler} onDragLeave={dragLeaveHandler} onDragEnter={dragEnterHandler} onDrop={dropHandler} draggable="true" className="">
+    <div className="team-image" onDragOver={dragEventHandler} onDragLeave={dragEventHandler} onDragEnter={dragEventHandler} onDrop={dropHandler} draggable="true">
       <img ref={imageBox} width="100%" alt=""></img>
       <span onClick={handleBtnClick}>
         <input className="mosuck-input"
@@ -91,6 +82,7 @@ const TeamImage = (props) => {
           ref={inputFileRef}
           onChange={onFileChange}
         />
+        Drag or click to upload a team image.
         <FontAwesomeIcon icon={faPlusSquare} className="mo-sucks" />
       </span>
     </div>
