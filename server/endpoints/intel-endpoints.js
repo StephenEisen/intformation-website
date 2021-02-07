@@ -143,10 +143,11 @@ const populateIntelImages = (dirName, images) => {
         populateIntelImages(fullPath, images);
       }
       else {
-        const formatedPath = fullPath.replace(/\\/g, "/");
-        const towerIndex = formatedPath.split("/")[2];
-        images[towerIndex] = images[towerIndex] || [];
-        images[towerIndex].push(fs.readFileSync(fullPath));
+        const formatedPathParts = fullPath.replace(/\\/g, "/").split("/");
+        const towerIndex = formatedPathParts[2];
+        const teamIndex = formatedPathParts[3] - 1;
+        images[towerIndex] = images[towerIndex] || Array(2).fill('');
+        images[towerIndex].splice(teamIndex, 1, fs.readFileSync(fullPath));
       }
     });
   }
