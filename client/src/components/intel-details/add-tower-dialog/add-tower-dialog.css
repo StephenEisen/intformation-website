@@ -66,7 +66,7 @@
 
 .add-tower-name input {
   width: 100%;
-  text-align: left;
+  text-align: left !important;
 }
 
 .add-tower-actions {

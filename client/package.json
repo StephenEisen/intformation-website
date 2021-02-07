@@ -1,13 +1,12 @@
 {
-  "name": "intformation-client",
+  "name": "epic7gg-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env GENERATE_SOURCEMAP=false && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build-prod": "cross-env GENERATE_SOURCEMAP=false && react-scripts build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -31,7 +30,6 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "chart.js": "^2.9.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
@@ -42,6 +40,7 @@
     "web-vitals": "1.0.1"
   },
   "devDependencies": {
+    "@types/webpack-env": "^1.16.0",
     "cross-env": "^7.0.3"
   }
 }

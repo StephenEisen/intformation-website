@@ -76,6 +76,10 @@ class CharacterData extends React.Component {
     this.props.selectionChange(option);
   }
 
+  updateCharacterArtifact(option) {
+    this.setState({ artifact: option }, () => this.emitCharacterData());
+  }
+
   updateCharacterData(key, value) {
     const maxLength = this.maxLengths[key];
     const updatedValue = value.length > maxLength ? value.slice(0, maxLength) : value;
@@ -160,7 +164,7 @@ class CharacterData extends React.Component {
                     placeholder="Artifact"
                     options={this.artifactList}
                     value={this.getSelectedArtifact()}
-                    onChange={(e) => this.updateCharacterData('artifact', e.value)}
+                    onChange={(e) => this.updateCharacterArtifact(e.value)}
                   />
                 </div>
               </div>

@@ -1,11 +1,10 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const queries = require('./mongodb/queries');
-const saltRounds = 10;
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import * as queries from '../mongodb/queries.js';
 
-const updatePassword = async request => {
+export const updatePassword = async (request) => {
   return new Promise((resolve, reject) => {
-    bcrypt.genSalt(saltRounds, (err, salt) => {
+    bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(request.password, salt, async (err, hash) => {
         try {
           const updated = await queries.updateIntelPassword(request.pageId, hash);
@@ -18,11 +17,13 @@ const updatePassword = async request => {
   });
 };
 
-const verifyPassword = async (pageId, plainText) => {
+export const verifyPassword = async (pageId, plainText) => {
   const record = await queries.findIntelPassword(pageId);
+
   if (!record) {
     return true;
   }
+
   return new Promise((resolve, reject) => {
     bcrypt.compare(plainText, record.password, (err, result) => {
       if (err) {
@@ -33,13 +34,12 @@ const verifyPassword = async (pageId, plainText) => {
   });
 };
 
-const generateToken = async (pageId) => {
+export const generateToken = async (pageId) => {
   return new Promise((resolve, reject) => {
-    const data = {
-      pageId: pageId
-    }
-    const signature = "qMW!6uk5DV981hVY" // Generate a better secret and read from file system
-    const expiration = "24h"
+    const data = { pageId: pageId };
+    const signature = "qMW!6uk5DV981hVY"; // Generate a better secret and read from file system
+    const expiration = "24h";
+
     return jwt.sign(data, signature, { expiresIn: expiration }, (err, token) => {
       if (err) {
         reject(err);
@@ -49,9 +49,10 @@ const generateToken = async (pageId) => {
   })
 }
 
-const authenticateIntel = async (pageId, token) => {
+export const authenticateIntel = async (pageId, token) => {
   return new Promise((resolve, reject) => {
     const signature = "qMW!6uk5DV981hVY" // Generate a better secret and read from file system
+
     jwt.verify(token, signature, (err, decoded) => {
       if (err) {
         reject(err);
@@ -61,18 +62,7 @@ const authenticateIntel = async (pageId, token) => {
   });
 }
 
-const authRequired = async (pageId) => {
+export const authRequired = async (pageId) => {
   const record = await queries.findIntelPassword(pageId);
-  if (record) {
-    return true;
-  }
-  return false;
+  return record ? true : false;
 }
-
-module.exports = {
-  updatePassword,
-  authenticateIntel,
-  generateToken,
-  authRequired,
-  verifyPassword
-};

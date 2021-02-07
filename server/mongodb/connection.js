@@ -1,8 +1,9 @@
-const mongoose = require("mongoose");
-mongoose.set("debug", true);
+import mongoose from 'mongoose';
+
+mongoose.set("debug", process.env.IS_DEV);
 mongoose.Promise = global.Promise;
 
-function connect() {
+export const connectToDatabase = () => {
   mongoose.connect("mongodb://localhost/intel", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -18,5 +19,3 @@ function connect() {
       console.log("Connection error:", error);
     });
 }
-
-module.exports = { connect };

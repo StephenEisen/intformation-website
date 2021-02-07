@@ -91,6 +91,7 @@
  * RAVI TRIGGERED
  * ===================== */
 .ravi-slide-up {
+  margin-right: 10px;
   animation: ravi-slide-up 2s forwards;
   -webkit-animation: ravi-slide-up 2s forwards;
   transform: translateY(100%);

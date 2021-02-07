@@ -3,6 +3,7 @@ import { webserver } from './socket'
 export const intelGet = async (pageId) => {
   let token = sessionStorage.getItem('authToken');
   token = token ? `Bearer ${token}` : ''
+
   const resp = await fetch(`${webserver}/api/intel/${pageId}`, {
     headers: {
       'Authorization': token
@@ -15,6 +16,7 @@ export const intelPost = async () => {
   const resp = await fetch(`${webserver}/api/intel`, {
     method: 'POST'
   });
+
   const intel = await resp.json();
   return intel;
 }
@@ -49,6 +51,7 @@ export const intelAuthTokenPost = async (pageId, password) => {
       'Content-Type': 'application/json'
     }
   });
+
   let token = '';
   if (resp.status === 201) {
     token = await resp.text();

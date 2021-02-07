@@ -3,7 +3,7 @@
 }
 
 .form-password {
-  display: inline-flex;
+  display: none;
 }
 
 .btn-password {

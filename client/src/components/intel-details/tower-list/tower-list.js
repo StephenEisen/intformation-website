@@ -37,6 +37,7 @@ const TowerList = (props) => {
     return () => {
       socket.off('createTowerSuccess', updateTowerList);
       socket.off('updateCharacterSuccess', updateTowerList);
+      window.removeEventListener('scroll', updateScrollAtBottom);
     }
   }, []);
 
@@ -61,7 +62,15 @@ const TowerList = (props) => {
       {/* SHOW ALL TOWER INFO */}
       {
         towerList.length > 0
-          ? towerList.map((tower, index) => <TowerData key={index} towerIndex={index} intelId={props.intelId} towerData={tower} towerImages={props.towerImages}/>)
+          ? towerList.map((tower, index) =>
+            <TowerData
+              key={index}
+              towerIndex={index}
+              intelId={props.intelId}
+              towerData={tower}
+              towerImages={props.towerImages}
+            />
+          )
           : null
       }
     </section>
