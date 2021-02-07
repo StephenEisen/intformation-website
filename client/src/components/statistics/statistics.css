@@ -5,8 +5,23 @@
 /* Three image containers (use 25% for four, and 50% for two, etc) */
 .column {
   float: left;
-  padding: 5px;
+  padding: 0 10px;
   overflow: none;
+  width: 100px;
+}
+
+.row {
+  display: inline-block;
+}
+
+.statistics-container ul {
+  list-style: none;
+}
+
+.statistics-container img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
 }
 
 /* Clear floats after image containers */
@@ -19,10 +34,16 @@
 .first-most-used,
 .third-most-used {
   text-align: left;
+  display:grid;
+  grid-template-columns: 0.70fr 1fr ;
+  grid-gap: 8px;
 }
 
 .second-most-used {
   text-align: right;
+  display: grid;
+  grid-template-columns: 1fr 0.7fr ;
+  grid-gap: 8px;
 }
 
 .slider-left {
