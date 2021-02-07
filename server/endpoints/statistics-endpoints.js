@@ -1,4 +1,3 @@
-import express from 'express';
 import cors from 'cors';
 import { corsOptions } from './index.js';
 import * as queries from '../mongodb/queries.js';
@@ -7,7 +6,7 @@ const apiPath = '/api/statistics';
 
 /**
  * ALl endpoints defined for the statistics page.
- * @param {express.Express} app
+ * @param {import("express").Express} app Express object
  */
 const statisticsEndpoints = (app) => {
   /**

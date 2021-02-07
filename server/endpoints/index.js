@@ -1,16 +1,15 @@
-import express from 'express';
 import bodyParser from 'body-parser';
-import { Server } from 'socket.io';
 import intelEndpoints from './intel-endpoints.js';
 import statisticsEndpoints from './statistics-endpoints.js';
+import { origin } from '../utils/constants.js';
 
 // Common variables endpoints will use.
-export const corsOptions = { origin: process.env.ORIGIN, optionsSuccessStatus: 200 };
+export const corsOptions = { origin: origin, optionsSuccessStatus: 200 };
 
 /**
  * Endpoints to include within the server.
- * @param {express.Express} app Express object
- * @param {Server} io Socket.io Server object
+ * @param {import("express").Express} app Express object
+ * @param {import("socket.io").Server} io Socket.io Server object
  */
 const endpoints = (app, io) => {
   // Middlewares

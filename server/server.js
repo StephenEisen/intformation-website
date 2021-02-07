@@ -2,13 +2,14 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import { connectToDatabase } from './mongodb/connection.js';
+import { origin } from './utils/constants.js';
 import endpoints from './endpoints/index.js';
 import socketEvents from './socket.io/index.js';
 
 // Setup server
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, { cors: true, origins: [process.env.ORIGIN] });
+const io = new Server(server, { cors: true, origins: [origin] });
 
 // Connect to mongodb
 connectToDatabase();

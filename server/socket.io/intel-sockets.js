@@ -1,10 +1,9 @@
-import { Server, Socket } from 'socket.io';
 import * as queries from '../mongodb/queries.js';
 
 /**
  * All the socket event listeners for the intel page.
- * @param {Server} io Socket.io Server object
- * @param {Socket} socket Socket object
+ * @param {import("socket.io").Server} io Socket.io Server object
+ * @param {import("socket.io").Socket} socket Socket.io Socket object
  */
 const intelSockets = (io, socket) => {
   socket.on("createTower", async (data) => {

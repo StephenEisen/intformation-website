@@ -2,8 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import cors from 'cors';
 import multer from 'multer';
-import express from 'express';
-import { Server } from 'socket.io';
 import { corsOptions } from './index.js';
 import * as queries from '../mongodb/queries.js';
 import * as passwords from '../utils/passwords.js';
@@ -12,8 +10,8 @@ const apiPath = '/api/intel';
 
 /**
  * ALl endpoints defined for the intel page.
- * @param {express.Express} app
- * @param {Server} io
+ * @param {import("express").Express} app Express object
+ * @param {import("socket.io").Server} io Socket.io Server object
  */
 const intelEndpoints = (app, io) => {
   /**
