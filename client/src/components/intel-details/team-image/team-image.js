@@ -99,7 +99,7 @@ const TeamImage = (props) => {
       <div ref={imageDialogRef} className="image-modal" onClick={defaultEventHandler}>
         <span className="image-close" onClick={closeModal}>&times;</span>
         <div className="modal-image-container">
-          <img ref={fullImageRef} className="modal-image" />
+          <img ref={fullImageRef} className="modal-image" alt="" />
         </div>
       </div>
 
