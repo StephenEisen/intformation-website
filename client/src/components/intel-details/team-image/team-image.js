@@ -1,20 +1,20 @@
 import React, { useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { towerImagePost } from 'globals/api.js';
 import { socket } from 'globals/socket';
 import './team-image.css';
 
 const TeamImage = (props) => {
-  const imageBox = useRef(null);
+  const imageBoxRef = useRef(null);
   const inputFileRef = useRef(null);
+  const imageDialogRef = useRef(null);
+  const fullImageRef = useRef(null);
 
   useEffect(() => {
     if (props.image) {
       const blob = new Blob([Int8Array.from(props.image.data)]);
-      const url = URL.createObjectURL(blob);
-      imageBox.current.src = url;
-      imageBox.current.onload = () => URL.revokeObjectURL(url);
+      updateImageBox(blob);
     }
 
     socket.on("imageUploadSuccess", handleImageBuffer);
@@ -28,14 +28,17 @@ const TeamImage = (props) => {
 
   const handleImageBuffer = ({ file, teamIndex }) => {
     if (teamIndex === props.teamIndex) {
-      const blob = new Blob([file.buffer || file.data]);
-      const url = URL.createObjectURL(blob);
-
-      imageBox.current.src = url;
-      imageBox.current.onload = () => {
-        URL.revokeObjectURL(url);
-      }
+      const blob = new Blob([file.buffer]);
+      updateImageBox(blob);
     }
+  }
+
+  const updateImageBox = (blob) => {
+    const url = URL.createObjectURL(blob);
+
+    imageBoxRef.current.src = url;
+    imageBoxRef.current.style.display = 'block';
+    imageBoxRef.current.onload = () => URL.revokeObjectURL(url);
   }
 
   const dropHandler = (e) => {
@@ -47,7 +50,7 @@ const TeamImage = (props) => {
     }
   };
 
-  const dragEventHandler = (e) => {
+  const defaultEventHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
   }
@@ -68,23 +71,44 @@ const TeamImage = (props) => {
     }
   }
 
-  const handleBtnClick = () => {
+  const handleUploadClick = () => {
     inputFileRef.current.click();
   }
 
+  const handleImageClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    fullImageRef.current.src = imageBoxRef.current.src;
+    fullImageRef.current.style.display = 'block';
+    imageDialogRef.current.style.display = 'block';
+  }
+
+  const closeModal = () => {
+    imageDialogRef.current.style.display = 'none';
+  }
+
   return (
-    <div className="team-image" onDragOver={dragEventHandler} onDragLeave={dragEventHandler} onDragEnter={dragEventHandler} onDrop={dropHandler} draggable="true">
-      <img ref={imageBox} width="100%" alt=""></img>
-      <span onClick={handleBtnClick}>
-        <input className="mosuck-input"
-          type="file"
-          accept=".png,.jpeg,.jpg"
-          ref={inputFileRef}
-          onChange={onFileChange}
-        />
-        Drag or click to upload a team image.
-        <FontAwesomeIcon icon={faPlusSquare} className="mo-sucks" />
-      </span>
+    <div className="team-image" draggable="true" onClick={handleUploadClick} onDrop={dropHandler} onDragOver={defaultEventHandler} onDragLeave={defaultEventHandler} onDragEnter={defaultEventHandler}>
+      <FontAwesomeIcon icon={faUpload} />Drag or click to upload image
+
+      <div className="uploaded-image">
+        <img ref={imageBoxRef} alt="" onClick={handleImageClick}></img>
+      </div>
+
+      <div ref={imageDialogRef} className="image-modal" onClick={defaultEventHandler}>
+        <span className="image-close" onClick={closeModal}>&times;</span>
+        <div className="modal-image-container">
+          <img ref={fullImageRef} className="modal-image" alt="" />
+        </div>
+      </div>
+
+      <input
+        type="file"
+        accept=".png,.jpeg,.jpg"
+        ref={inputFileRef}
+        onChange={onFileChange}
+      />
     </div>
   );
 };

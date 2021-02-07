@@ -71,6 +71,15 @@ class TowerData extends React.Component {
     return elements;
   }
 
+  getTeamImage(teamIndex) {
+    const towerImages = this.props.towerImages;
+
+    if (towerImages && towerImages[this.props.towerIndex]) {
+      const index = teamIndex - 1 >= 0 ? teamIndex - 1 : 0;
+      return towerImages[this.props.towerIndex][index];
+    }
+  }
+
   render() {
     const characterElements = this.getCharacterElements();
 
@@ -85,13 +94,13 @@ class TowerData extends React.Component {
           <h3 className="tower-team-title">Team 1</h3>
           <div className="tower-characters">
             {characterElements.slice(0, 3)}
-            <TeamImage pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={1} />
+            <TeamImage pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={1} image={this.getTeamImage(1)} />
           </div>
 
           <h3 className="tower-team-title">Team 2</h3>
           <div className="tower-characters">
             {characterElements.slice(3, 6)}
-            <TeamImage pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={2} />
+            <TeamImage pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={2} image={this.getTeamImage(2)} />
           </div>
         </div>
       </div>
