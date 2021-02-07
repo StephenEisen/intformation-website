@@ -26,6 +26,7 @@ const Intel = () => {
         <h1>Create or Join Intel</h1>
       </div>
 
+      {/* CREATE INTEL */}
       <div className="container">
         <div className="intel-connect-container-left">
           <img src={castle} alt="Create New Intel" />
@@ -44,6 +45,7 @@ const Intel = () => {
         </div>
       </div>
 
+      {/* JOIN INTEL */}
       <div className="container intel-join-container">
         <div className="intel-join-action">
           <div className="intel-connect-container-left">
@@ -73,13 +75,14 @@ const Intel = () => {
           </div>
         </div>
 
+        {/* RECENT INTELS */}
         {
           recentIntels.length > 0
             ? (
               <div className="intel-join-recents">
                 <p className="intel-join-recents-title">Recent Intels</p>
                 <ul className="intel-connect-recents-list">
-                  {recentIntels.map(intelID =>
+                  {recentIntels.map((intelID) =>
                     <li key={intelID}>
                       <NavLink to={`/intel/${intelID}`}>{intelID}</NavLink>
                     </li>

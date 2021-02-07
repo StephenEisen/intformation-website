@@ -20,6 +20,17 @@ const AddTowerDialog = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const closeDialog = () => {
+    resetDialog();
+    props.onClose();
+  }
+
+  const resetDialog = () => {
+    setTowerName('');
+    setTowerLocation('');
+    setErrorStates({});
+  }
+
   const setAddTowerError = () => {
     setErrorStates({
       towerLocation: !towerLocation || towerLocation === '',
@@ -34,8 +45,7 @@ const AddTowerDialog = (props) => {
         name: towerName,
         location: towerLocation,
       });
-      setTowerName('');
-      setTowerLocation('');
+      resetDialog();
     } else {
       setAddTowerError();
     }
@@ -77,6 +87,7 @@ const AddTowerDialog = (props) => {
             <Select
               className={`select-dropdown ${errorStates.towerLocation ? 'error' : ''}`}
               options={towerLocations}
+              isSearchable={false}
               placeholder="Choose Tower Location"
               onChange={(e) => updateTowerLocation(e.value)}
             />
@@ -100,7 +111,7 @@ const AddTowerDialog = (props) => {
               <span className="slide-btn-text">Add Tower</span>
             </button>
 
-            <button className="slide-btn-horizontal" onClick={props.onClose}>
+            <button className="slide-btn-horizontal" onClick={closeDialog}>
               <span className="slide-btn-text">Cancel</span>
             </button>
           </div>

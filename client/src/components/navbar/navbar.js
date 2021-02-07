@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import "./navbar.css";
-import logo from "assets/logo.png";
 import { Routes } from 'globals/routes.js';
+import logo from "assets/logo.png";
+import "./navbar.css";
 
 const Navbar = () => {
   const history = useHistory();
@@ -11,6 +11,10 @@ const Navbar = () => {
   useEffect(() => {
     closeNavBar();
     window.addEventListener('resize', closeNavBar);
+
+    return () => {
+      window.removeEventListener('resize', closeNavBar);
+    }
   }, []);
 
   const closeNavBar = () => {
@@ -40,11 +44,6 @@ const Navbar = () => {
         <div className="navbar-menu" onClick={() => toggleMobileNavBar()}></div>
 
         <ul className="navbar-links">
-          {/* <NavLink exact to={Routes.Home}>
-            <li className={getClassIfActive(Routes.Home)} onClick={() => toggleMobileNavBar()}>
-              Home
-            </li>
-          </NavLink> */}
           <NavLink to={Routes.Intel}>
             <li className={getClassIfActive(Routes.Intel)} onClick={() => toggleMobileNavBar()}>
               Intel

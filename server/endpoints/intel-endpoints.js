@@ -104,7 +104,7 @@ const intelEndpoints = (app, io) => {
    * Writes the given image to a server directory. The teamIndex is used as the file name.
    * Currently the path is "images/<pageId>/<towerIndex>/<teamIndex>".
    *
-   * TODO: Use Google Cloud Vision to check if image is appropriate.
+   * TODO: Check if image is appropriate before saving.
    */
   app.options(`${apiPath}/:pageId/image`, cors(corsOptions));
   app.post(`${apiPath}/:pageId/image`, cors(corsOptions), multer().single('uploadedImage'), async (request, response) => {

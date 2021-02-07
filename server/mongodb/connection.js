@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 mongoose.set("debug", process.env.IS_DEV);
 mongoose.Promise = global.Promise;
 
-export const connectToMongoDB = () => {
+export const connectToDatabase = () => {
   mongoose.connect("mongodb://localhost/intel", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
