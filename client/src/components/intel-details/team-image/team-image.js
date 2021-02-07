@@ -34,10 +34,8 @@ const TeamImage = (props) => {
   const updateImageBox = (blob, towerIndex, teamIndex) => {
     if (towerIndex === props.towerIndex && teamIndex === props.teamIndex) {
       const url = URL.createObjectURL(blob);
-
       imageBoxRef.current.src = url;
       imageBoxRef.current.style.display = 'block';
-      imageBoxRef.current.onload = () => URL.revokeObjectURL(url);
     }
   }
 
