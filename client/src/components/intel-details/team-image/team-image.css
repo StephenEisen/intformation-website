@@ -87,9 +87,9 @@
  * ===================== */
 @media only screen and (max-width: 900px) {
   .team-image {
-    padding: 20px;
     margin: 20px;
-    padding: 20px;
+    padding: 28px;
+    width: 100%;
   }
 
   .team-image .image-modal {
