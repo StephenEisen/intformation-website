@@ -3,6 +3,7 @@ import { socket } from 'globals/socket.js';
 import AddTowerDialog from '../add-tower-dialog/add-tower-dialog.js';
 import TowerData from '../tower-data/tower-data.js';
 import addButton from 'assets/icons/add.png';
+import TowerMap from '../tower-map/tower-map.js';
 import './tower-list.css';
 
 const TowerList = (props) => {
@@ -58,6 +59,9 @@ const TowerList = (props) => {
         alt="Add Tower"
         onClick={() => toggleAddTowerDialog(true)}
       />
+
+      {/* TOWER MAP */}
+      <TowerMap />
 
       {/* SHOW ALL TOWER INFO */}
       {
