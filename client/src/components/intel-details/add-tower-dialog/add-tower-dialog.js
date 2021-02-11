@@ -41,7 +41,7 @@ const AddTowerDialog = (props) => {
   const sendTowerData = () => {
     if (towerLocation && towerLocation !== '' && towerName && towerName !== '') {
       socket.emit('addTower', {
-        pageId: props.intelId,
+        pageId: props.pageId,
         towerLocation: towerLocation,
         towerName: towerName
       });

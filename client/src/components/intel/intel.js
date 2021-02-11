@@ -7,7 +7,7 @@ import './intel.css';
 
 const Intel = () => {
   const history = useHistory();
-  const [intelID, setIntelID] = useState('');
+  const [pageId, setPageID] = useState('');
 
   const recentIntels = JSON.parse(localStorage.getItem('recentIntels')) || [];
 
@@ -17,7 +17,7 @@ const Intel = () => {
   };
 
   const joinIntelHandler = async () => {
-    history.push(`/intel/${intelID}`);
+    history.push(`/intel/${pageId}`);
   };
 
   return (
@@ -60,7 +60,7 @@ const Intel = () => {
               <input
                 className="intel-id-input"
                 type="text"
-                onChange={e => setIntelID(e.target.value)}
+                onChange={e => setPageID(e.target.value)}
                 onKeyPress={e => {
                   if (e.key === "Enter") {
                     joinIntelHandler()
@@ -82,9 +82,9 @@ const Intel = () => {
               <div className="intel-join-recents">
                 <p className="intel-join-recents-title">Recent Intels</p>
                 <ul className="intel-connect-recents-list">
-                  {recentIntels.map((intelID) =>
-                    <li key={intelID}>
-                      <NavLink to={`/intel/${intelID}`}>{intelID}</NavLink>
+                  {recentIntels.map((pageId) =>
+                    <li key={pageId}>
+                      <NavLink to={`/intel/${pageId}`}>{pageId}</NavLink>
                     </li>
                   )}
                 </ul>

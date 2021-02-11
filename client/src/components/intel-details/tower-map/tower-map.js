@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { socket } from 'globals/socket.js';
 import stronghold from 'assets/towers/stronghold.png';
 import bronzeTower from 'assets/towers/bronze.png';
@@ -23,13 +23,6 @@ const TowerMap = (props) => {
     setCurrentLocation(towerLocation);
     setCurrentName(towerName);
   }
-
-  useEffect(() => {
-    if (props.filteredTower.location) {
-      setCurrentLocation(props.filteredTower.location);
-      setCurrentName(props.filteredTower.name);
-    }
-  }, [props]);
 
   return (
     <section className="tower-map container">

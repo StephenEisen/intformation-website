@@ -97,7 +97,7 @@ const IntelDetails = () => {
     <div>
       { passwordForm }
       { forbidden ? <p>Forbidden</p> : null }
-      { intel ? <TowerList intelId={id} towerList={intel.data} towerImages={towerImages} /> : null }
+      { intel ? <TowerList pageId={id} towerList={intel.data} towerImages={towerImages} /> : null }
     </div>
   )
 }

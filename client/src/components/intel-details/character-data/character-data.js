@@ -32,7 +32,7 @@ class CharacterData extends React.Component {
 
   emitCharacterData() {
     socket.emit('updateCharacter', {
-      pageId: this.props.intelId,
+      pageId: this.props.pageId,
       team: this.props.teamIndex,
       towerId: this.props.towerData._id,
       towerLocation: this.props.towerData.location,

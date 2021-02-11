@@ -58,7 +58,7 @@ const TowerList = (props) => {
       {/* ADD NEW TOWER */}
       <AddTowerDialog
         visible={addTowerDialogVisible}
-        intelId={props.intelId}
+        pageId={props.pageId}
         onClose={() => toggleAddTowerDialog(false)}
       />
 
@@ -79,7 +79,7 @@ const TowerList = (props) => {
           ? towerList.map((tower) =>
             <TowerData
               key={tower._id}
-              intelId={props.intelId}
+              pageId={props.pageId}
               towerData={tower}
               towerImages={props.towerImages}
             />
