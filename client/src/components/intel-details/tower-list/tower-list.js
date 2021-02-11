@@ -8,7 +8,6 @@ import './tower-list.css';
 
 const TowerList = (props) => {
   const [towerList, setTowerList] = useState(props.towerList);
-  const [filteredTower, setFilteredTower] = useState({});
   const [addTowerDialogVisible, setAddTowerDialogVisible] = useState(false);
   const [isScrollAtBottom, setIsScrollAtBottom] = useState(false);
 
@@ -39,11 +38,6 @@ const TowerList = (props) => {
 
   // Update tower list
   const towerListUpdate = (updatedTowerList) => {
-    setFilteredTower({
-      location: updatedTowerList[0] ? updatedTowerList[0].location : null,
-      name: updatedTowerList[0] ? updatedTowerList[0].towerName : null
-    });
-
     setTowerList(updatedTowerList);
   }
 
@@ -56,18 +50,6 @@ const TowerList = (props) => {
   const updateScrollAtBottom = () => {
     const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 50;
     setIsScrollAtBottom(isAtBottom);
-  }
-
-  // Filter the list based on a tower selection in the tower map
-  const filterTowerList = (towerLocation, towerName) => {
-    /**
-     * Need to emit instead of filtering on client. If you filter by towerList on the UI then
-     * any changes the user makes to a character will be lost when they change to a different
-     * tower. This is because when a character update happens, we broadcast a socket event (We
-     * need to broadcast so the client doesn't lose focus when switching to a different input).
-     * Thus, the "towerListUpdate" is never called. This solution seems to work pretty well.
-     */
-    socket.emit('filterTower', { pageId: props.intelId, towerLocation, towerName });
   }
 
   // Render all the tower data
@@ -89,7 +71,7 @@ const TowerList = (props) => {
       />
 
       {/* TOWER MAP */}
-      <TowerMap onFilterList={filterTowerList} filteredTower={filteredTower} />
+      <TowerMap pageId={props.pageId} />
 
       {/* SHOW ALL TOWER INFO */}
       {

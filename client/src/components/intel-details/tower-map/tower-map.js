@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { socket } from 'globals/socket.js';
 import stronghold from 'assets/towers/stronghold.png';
 import bronzeTower from 'assets/towers/bronze.png';
 import silverTower from 'assets/towers/silver.png';
@@ -10,9 +11,17 @@ const TowerMap = (props) => {
   const [currentName, setCurrentName] = useState(null);
 
   const changeTower = (towerLocation, towerName) => {
+    /**
+     * Need to emit instead of filtering on client. If you filter by towerList on the UI then
+     * any changes the user makes to a character will be lost when they change to a different
+     * tower. This is because when a character update happens, we broadcast a socket event (We
+     * need to broadcast so the client doesn't lose focus when switching to a different input).
+     * Thus, the "towerListUpdate" is never called. This solution seems to work pretty well.
+     */
+    socket.emit('filterTower', { pageId: props.pageId, towerLocation, towerName });
+
     setCurrentLocation(towerLocation);
     setCurrentName(towerName);
-    props.onFilterList(towerLocation, towerName);
   }
 
   useEffect(() => {
