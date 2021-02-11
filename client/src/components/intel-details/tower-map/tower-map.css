@@ -1,27 +1,74 @@
 .tower-map {
-  box-shadow: 0px 1px 5px 0px rgb(0, 0, 0);
-  background: var(--dark-purple-color);
-  margin: 0 auto;
   margin-bottom: 50px;
+  position: relative;
+  height: 350px !important;
+}
+
+.tower-info {
+  text-align: left;
+}
+
+.tower-map .tower-images div {
+  position: absolute;
 }
 
 .tower-map img {
-  width: 60%;
-  height: auto;
-}
-
-.tower-image-map {
-  position: relative;
-}
-
-.tower-image-map .area {
-  display: block;
-  position: absolute;
+  max-width: 100px;
+  max-height: 100px;
   cursor: pointer;
-  transition: box-shadow 0.15s ease-in-out;
+  transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.tower-image-map .area:hover {
-  background-color: var(--dark-purple-color);
-  opacity: 0.2;
+.tower-map img:hover {
+  opacity: 0.8;
+  transform: rotate(720deg) translate(0, 0);
+  transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.tower-map .stronghold {
+  top: 20px;
+  left: 75%;
+}
+
+.tower-map .bronze-tower {
+  top: 50px;
+  left: 50%;
+}
+
+.tower-map .dalberg-tower {
+  top: 220px;
+  left: 58%;
+}
+
+.tower-map .silver-tower {
+  top: 250px;
+  left: 80%;
+}
+
+/* ========================
+ * Mobile
+ * ===================== */
+@media only screen and (max-width: 700px) {
+  .tower-map img {
+    max-width: 70px;
+    max-height: 70px;
+  }
+
+  .tower-map .stronghold {
+    left: 60%;
+  }
+
+  .tower-map .bronze-tower {
+    left: 15%;
+  }
+
+  .tower-map .dalberg-tower {
+    top: 160px;
+    left: 30%;
+  }
+
+  .tower-map .silver-tower {
+    top: 175px;
+    left: 68%;
+  }
 }

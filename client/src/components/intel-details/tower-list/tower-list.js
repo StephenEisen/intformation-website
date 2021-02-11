@@ -8,13 +8,43 @@ import './tower-list.css';
 
 const TowerList = (props) => {
   const [towerList, setTowerList] = useState(props.towerList);
+  const [filteredTower, setFilteredTower] = useState({});
   const [addTowerDialogVisible, setAddTowerDialogVisible] = useState(false);
   const [isScrollAtBottom, setIsScrollAtBottom] = useState(false);
 
+  // Logic to run when this component is rendered for the first time
+  useEffect(() => {
+    updateScrollAtBottom();
+    window.addEventListener('scroll', updateScrollAtBottom);
+
+    socket.on('addTowerSuccess', addTowerUpdate);
+    socket.on('updateCharacterSuccess', towerListUpdate);
+    socket.on('filterTowerSuccess', towerListUpdate);
+
+    return () => {
+      socket.off('addTowerSuccess', addTowerUpdate);
+      socket.off('updateCharacterSuccess', towerListUpdate);
+      socket.off('filterTowerSuccess', towerListUpdate);
+      window.removeEventListener('scroll', updateScrollAtBottom);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Update tower list when a new tower is added
-  const updateTowerList = (intel) => {
+  const addTowerUpdate = (updatedTowerList) => {
     setAddTowerDialogVisible(false);
-    setTowerList(intel.data);
+    towerListUpdate(updatedTowerList);
+  }
+
+  // Update tower list
+  const towerListUpdate = (updatedTowerList) => {
+    setFilteredTower({
+      location: updatedTowerList[0] ? updatedTowerList[0].location : null,
+      name: updatedTowerList[0] ? updatedTowerList[0].towerName : null
+    });
+
+    setTowerList(updatedTowerList);
   }
 
   // Show or hide the add tower dialog
@@ -22,25 +52,23 @@ const TowerList = (props) => {
     setAddTowerDialogVisible(isVisible);
   }
 
+  // Update whether the user has scrolled to the bottom.
   const updateScrollAtBottom = () => {
     const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 50;
     setIsScrollAtBottom(isAtBottom);
   }
 
-  // Logic to run when this component is rendered for the first time
-  useEffect(() => {
-    updateScrollAtBottom();
-    window.addEventListener('scroll', updateScrollAtBottom);
-
-    socket.on('createTowerSuccess', updateTowerList);
-    socket.on('updateCharacterSuccess', updateTowerList);
-
-    return () => {
-      socket.off('createTowerSuccess', updateTowerList);
-      socket.off('updateCharacterSuccess', updateTowerList);
-      window.removeEventListener('scroll', updateScrollAtBottom);
-    }
-  }, []);
+  // Filter the list based on a tower selection in the tower map
+  const filterTowerList = (towerLocation, towerName) => {
+    /**
+     * Need to emit instead of filtering on client. If you filter by towerList on the UI then
+     * any changes the user makes to a character will be lost when they change to a different
+     * tower. This is because when a character update happens, we broadcast a socket event (We
+     * need to broadcast so the client doesn't lose focus when switching to a different input).
+     * Thus, the "towerListUpdate" is never called. This solution seems to work pretty well.
+     */
+    socket.emit('filterTower', { pageId: props.intelId, towerLocation, towerName });
+  }
 
   // Render all the tower data
   return (
@@ -61,15 +89,14 @@ const TowerList = (props) => {
       />
 
       {/* TOWER MAP */}
-      <TowerMap />
+      <TowerMap onFilterList={filterTowerList} filteredTower={filteredTower} />
 
       {/* SHOW ALL TOWER INFO */}
       {
         towerList.length > 0
-          ? towerList.map((tower, index) =>
+          ? towerList.map((tower) =>
             <TowerData
-              key={index}
-              towerIndex={index}
+              key={tower._id}
               intelId={props.intelId}
               towerData={tower}
               towerImages={props.towerImages}

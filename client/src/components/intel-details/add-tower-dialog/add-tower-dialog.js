@@ -11,10 +11,10 @@ const AddTowerDialog = (props) => {
   const [errorStates, setErrorStates] = useState({});
 
   useEffect(() => {
-    socket.on('createTowerError', setAddTowerError);
+    socket.on('addTowerError', setAddTowerError);
 
     return () => {
-      socket.off('createTowerError', setAddTowerError);
+      socket.off('addTowerError', setAddTowerError);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,7 +31,7 @@ const AddTowerDialog = (props) => {
     setErrorStates({});
   }
 
-  const setAddTowerError = () => {
+  const setAddTowerError = (e) => {
     setErrorStates({
       towerLocation: !towerLocation || towerLocation === '',
       towerName: !towerName || towerName === ''
@@ -40,10 +40,10 @@ const AddTowerDialog = (props) => {
 
   const sendTowerData = () => {
     if (towerLocation && towerLocation !== '' && towerName && towerName !== '') {
-      socket.emit('createTower', {
+      socket.emit('addTower', {
         pageId: props.intelId,
-        name: towerName,
-        location: towerLocation,
+        towerLocation: towerLocation,
+        towerName: towerName
       });
       resetDialog();
     } else {

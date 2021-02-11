@@ -108,15 +108,15 @@ const intelEndpoints = (app, io) => {
   app.post(`${apiPath}/:pageId/image`, cors(corsOptions), multer().single('uploadedImage'), async (request, response) => {
     try {
       const pageId = request.params.pageId;
-      const towerIndex = request.query.towerIndex;
+      const towerId = request.query.towerId;
       const teamIndex = request.query.teamIndex;
 
-      await fs.promises.mkdir(`./images/${pageId}/${towerIndex}`, { recursive: true });
-      fs.writeFileSync(`./images/${pageId}/${towerIndex}/${teamIndex}`, request.file.buffer);
+      await fs.promises.mkdir(`./images/${pageId}/${towerId}`, { recursive: true });
+      fs.writeFileSync(`./images/${pageId}/${towerId}/${teamIndex}`, request.file.buffer);
 
       io.sockets.to(pageId).emit("imageUploadSuccess", {
         file: request.file,
-        towerIndex: Number(towerIndex),
+        towerId: towerId,
         teamIndex: Number(teamIndex)
       });
 
@@ -143,10 +143,10 @@ const populateIntelImages = (dirName, images) => {
       }
       else {
         const formatedPathParts = fullPath.replace(/\\/g, "/").split("/");
-        const towerIndex = formatedPathParts[2];
+        const towerId = formatedPathParts[2];
         const teamIndex = formatedPathParts[3] - 1;
-        images[towerIndex] = images[towerIndex] || Array(2).fill('');
-        images[towerIndex].splice(teamIndex, 1, fs.readFileSync(fullPath));
+        images[towerId] = images[towerId] || Array(2).fill('');
+        images[towerId].splice(teamIndex, 1, fs.readFileSync(fullPath));
       }
     });
   }

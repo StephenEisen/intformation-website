@@ -1,56 +1,59 @@
-import React, { useEffect, useRef } from 'react';
-import towerMap from 'assets/tower-map.png';
+import React, { useEffect, useState } from 'react';
+import stronghold from 'assets/towers/stronghold.png';
+import bronzeTower from 'assets/towers/bronze.png';
+import silverTower from 'assets/towers/silver.png';
+import dalbergTower from 'assets/towers/dalberg.png';
 import './tower-map.css';
 
-const TowerMap = () => {
-  const imageRef = useRef(null);
-  const mapRef = useRef(null);
+const TowerMap = (props) => {
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const [currentName, setCurrentName] = useState(null);
 
-  useEffect(() => {
-    createImageMap();
-  }, []);
-
-  const createImageMap = () => {
-    const imageWidth = imageRef.current.getAttribute('width');
-    const imageHeight = imageRef.current.getAttribute('height');
-    const areas = mapRef.current.querySelectorAll('area');
-
-    imageRef.current.removeAttribute('usemap');
-    mapRef.current.remove();
-
-    // Create wrapper container
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('tower-image-map');
-    imageRef.current.parentNode.insertBefore(wrapper, imageRef.current);
-    wrapper.appendChild(imageRef.current);
-
-    areas.forEach((area) => {
-      const coords = area.getAttribute('coords').split(',');
-      let xCoords = [parseInt(coords[0]), parseInt(coords[2])];
-      let yCoords = [parseInt(coords[1]), parseInt(coords[3])];
-      xCoords = xCoords.sort(function (a, b) { return a - b });
-      yCoords = yCoords.sort(function (a, b) { return a - b });
-
-      const left = `left: ${((xCoords[0] / imageWidth) * 100).toFixed(2)}%`;
-      const top = `top: ${((yCoords[0] / imageHeight) * 100).toFixed(2)}%`;
-      const width = `width: ${(((xCoords[1] - xCoords[0]) / imageWidth) * 100).toFixed(2)}%`;
-      const height = `height: ${(((yCoords[1] - yCoords[0]) / imageHeight) * 100).toFixed(2)}%`;
-
-      wrapper.innerHTML += `<span class='area' style='${left}; ${top}; ${width}; ${height};'></span>`;
-    });
+  const changeTower = (towerLocation, towerName) => {
+    setCurrentLocation(towerLocation);
+    setCurrentName(towerName);
+    props.onFilterList(towerLocation, towerName);
   }
 
-  return (
-    <div className="tower-map">
-      <img ref={imageRef} src={towerMap} alt="" width="1000" height="630" useMap="#tower-map" />
+  useEffect(() => {
+    if (props.filteredTower.location) {
+      setCurrentLocation(props.filteredTower.location);
+      setCurrentName(props.filteredTower.name);
+    }
+  }, [props]);
 
-      <map ref={mapRef} name="tower-map">
-        <area alt="Stronghold" title="Stronghold" coords="530,50,690,290" shape="rect" />
-        <area alt="Bronze Fortress" title="Bronze Fortress" coords="270,80,380,276" shape="rect" />
-        <area alt="Dalberg Fortess" title="Dalberg Fortess" coords="385,272,507,454" shape="rect" />
-        <area alt="Silver Fortress" title="Silver Fortress" coords="565,401,670,588" shape="rect" />
-      </map>
-    </div>
+  return (
+    <section className="tower-map container">
+      <div className="flex-container">
+        <div className="tower-info flex-3">
+          <h2>Tower Map</h2>
+          <p>Select a tower location to filter towers.</p>
+          <p>Tower location: {currentLocation || 'All'}</p>
+          <p hidden={!currentName}>Tower name: {currentName || ''}</p>
+        </div>
+
+        <div className="flex-4">
+          <div className="tower-images">
+            {/* TOWER LOCATIONS */}
+            <div className="stronghold">
+              <img src={stronghold} alt="Stronghold" onClick={() => changeTower('Stronghold')} />
+            </div>
+            <div className="bronze-tower">
+              <img src={bronzeTower} alt="Bronze Fortress" onClick={() => changeTower('Bronze Fortress')} />
+            </div>
+            <div className="dalberg-tower">
+              <img src={dalbergTower} alt="Dalberg Fortress" onClick={() => changeTower('Dalberg Fortress')} />
+            </div>
+            <div className="silver-tower">
+              <img src={silverTower} alt="Silver Fortress" onClick={() => changeTower('Silver Fortress')} />
+            </div>
+
+            {/* INDIVIDUAL TOWERS */}
+
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

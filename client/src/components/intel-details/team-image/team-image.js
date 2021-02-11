@@ -14,7 +14,7 @@ const TeamImage = (props) => {
   useEffect(() => {
     if (props.image) {
       const blob = new Blob([Int8Array.from(props.image.data)]);
-      updateImageBox(blob, props.towerIndex, props.teamIndex);
+      updateImageBox(blob, props.towerId, props.teamIndex);
     }
 
     socket.on("imageUploadSuccess", handleImageBuffer);
@@ -26,13 +26,13 @@ const TeamImage = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleImageBuffer = ({ file, towerIndex, teamIndex }) => {
+  const handleImageBuffer = ({ file, towerId, teamIndex }) => {
     const blob = new Blob([file.buffer]);
-    updateImageBox(blob, towerIndex, teamIndex);
+    updateImageBox(blob, towerId, teamIndex);
   }
 
-  const updateImageBox = (blob, towerIndex, teamIndex) => {
-    if (towerIndex === props.towerIndex && teamIndex === props.teamIndex) {
+  const updateImageBox = (blob, towerId, teamIndex) => {
+    if (towerId === props.towerId && teamIndex === props.teamIndex) {
       const url = URL.createObjectURL(blob);
       imageBoxRef.current.src = url;
       imageBoxRef.current.style.display = 'block';
@@ -54,12 +54,12 @@ const TeamImage = (props) => {
   }
 
   const handleFile = (file) => {
-    if (file.type === 'image/jpeg' || file.type === 'image/png') {
+    if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/heic') {
       if (file.size > 10e6) {
         alert("Your image is too powerful! File size cannot exceed 10MB");
         return;
       }
-      towerImagePost(file, props.pageId, props.towerIndex, props.teamIndex);
+      towerImagePost(file, props.pageId, props.towerId, props.teamIndex);
     }
   };
 
@@ -103,7 +103,7 @@ const TeamImage = (props) => {
 
       <input
         type="file"
-        accept=".png,.jpeg,.jpg"
+        accept=".png,.jpeg,.jpg,.heic"
         ref={inputFileRef}
         onChange={onFileChange}
       />

@@ -89,7 +89,7 @@
   .team-image {
     margin: 20px;
     padding: 28px;
-    width: 100%;
+    width: 100% !important;
   }
 
   .team-image .image-modal {

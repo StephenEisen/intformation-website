@@ -12,14 +12,14 @@ export async function createIntel() {
   return newData.save();
 }
 
-export async function createTower(towerData) {
+export async function createTower(pageId, towerLocation, towerName) {
   return GuildData.findOneAndUpdate(
-    { pageId: towerData.pageId },
+    { pageId: pageId },
     {
       $push: {
         data: {
-          name: towerData.name,
-          location: towerData.location,
+          location: towerLocation,
+          name: towerName,
           characters: Array(6).fill({}),
         },
       },
@@ -29,10 +29,13 @@ export async function createTower(towerData) {
 }
 
 export async function updateCharacter(characterData) {
-  const queryKey = `data.${characterData.towerIndex}.characters.${characterData.characterIndex}`;
+  const queryKey = `data.$.characters.${characterData.characterIndex}`;
 
   return GuildData.findOneAndUpdate(
-    { pageId: characterData.pageId },
+    {
+      pageId: characterData.pageId,
+      'data._id': characterData.towerId
+    },
     {
       $set: {
         [queryKey]: {
@@ -46,10 +49,13 @@ export async function updateCharacter(characterData) {
           immunity: characterData.immunity,
           counter: characterData.counter,
           lifesteal: characterData.lifesteal
-        },
-      },
+        }
+      }
     },
-    { new: true, upsert: true }
+    {
+      new: true,
+      upsert: true
+    }
   );
 }
 

@@ -34,7 +34,9 @@ class CharacterData extends React.Component {
     socket.emit('updateCharacter', {
       pageId: this.props.intelId,
       team: this.props.teamIndex,
-      towerIndex: this.props.towerIndex,
+      towerId: this.props.towerData._id,
+      towerLocation: this.props.towerData.location,
+      towerName: this.props.towerData.name,
       characterIndex: this.props.characterIndex,
       ...this.state
     });
@@ -86,7 +88,7 @@ class CharacterData extends React.Component {
     this.setState({ [key]: updatedValue });
   }
 
-  updateDebuff(event) {
+  updateBuff(event) {
     const key = event.target.value;
     const value = event.target.checked;
 
@@ -169,14 +171,14 @@ class CharacterData extends React.Component {
                 </div>
               </div>
 
-              {/* CHARACTER DEBUFFS */}
-              <div className="character-debuffs">
+              {/* CHARACTER BUFFS */}
+              <div className="character-buffs">
                 <input
                   type="checkbox"
                   id={`counter-t${this.props.towerIndex}-c${this.props.characterIndex}`}
                   value="counter"
                   checked={this.state.counter}
-                  onChange={(e) => this.updateDebuff(e)} />
+                  onChange={(e) => this.updateBuff(e)} />
                 <label htmlFor={`counter-t${this.props.towerIndex}-c${this.props.characterIndex}`}> Counter</label>
 
                 <input
@@ -184,7 +186,7 @@ class CharacterData extends React.Component {
                   id={`lifesteal-t${this.props.towerIndex}-c${this.props.characterIndex}`}
                   value="lifesteal"
                   checked={this.state.lifesteal}
-                  onChange={(e) => this.updateDebuff(e)} />
+                  onChange={(e) => this.updateBuff(e)} />
                 <label htmlFor={`lifesteal-t${this.props.towerIndex}-c${this.props.characterIndex}`}> Lifesteal</label>
 
                 <input
@@ -192,7 +194,7 @@ class CharacterData extends React.Component {
                   id={`immunity-t${this.props.towerIndex}-c${this.props.characterIndex}`}
                   value="immunity"
                   checked={this.state.immunity}
-                  onChange={(e) => this.updateDebuff(e)} />
+                  onChange={(e) => this.updateBuff(e)} />
                 <label htmlFor={`immunity-t${this.props.towerIndex}-c${this.props.characterIndex}`}> Immunity</label>
               </div>
 
