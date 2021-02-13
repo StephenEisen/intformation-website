@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { socket } from 'globals/socket.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import stronghold from 'assets/towers/stronghold.png';
 import bronzeTower from 'assets/towers/bronze.png';
 import silverTower from 'assets/towers/silver.png';
@@ -8,6 +10,7 @@ import defaultTower from 'assets/towers/tower.png';
 import './tower-map.css';
 
 // Constants
+const ALL_TOWERS = 'All';
 const STRONGHOLD = 'Stronghold';
 const BRONZE = 'Bronze Fortress';
 const DALBERG = 'Dalberg Fortress';
@@ -38,7 +41,7 @@ const TowerMap = (props) => {
 
     setCurrentLocation(towerLocation);
     setCurrentName(towerName);
-    setShowChildren(towerLocation !== STRONGHOLD);
+    setShowChildren(towerLocation !== STRONGHOLD && towerLocation !== ALL_TOWERS);
   }
 
   const getRootTower = () => {
@@ -47,14 +50,26 @@ const TowerMap = (props) => {
     }
   }
 
+  const resetSelection = () => {
+    changeTower(ALL_TOWERS);
+  }
+
   return (
     <section className="tower-map container">
       <div className="flex-container">
         <div className="tower-info flex-2">
           <h2>Tower Map</h2>
-          <p>Select a tower location to filter towers.</p>
-          <p>Tower location: {currentLocation || 'All'}</p>
+          <p>Select a tower to filter.</p>
+          <p>Tower location: {currentLocation || ALL_TOWERS}</p>
           <p hidden={!currentName}>Tower name: {currentName || ''}</p>
+
+          <div className="tower-actions" hidden={!showChildren}>
+            <button className="underline-btn" onClick={resetSelection}>
+              <FontAwesomeIcon icon={faArrowLeft} />
+              Tower selection
+            </button>
+          </div>
+
           <hr />
         </div>
 

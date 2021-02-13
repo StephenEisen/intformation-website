@@ -43,14 +43,20 @@ const intelSockets = (io, socket) => {
  ** Helper functions
  ** ========================================== */
 const filterTowerList = (towerList, towerLocation, towerName) => {
-  const filteredTowerList = towerList.filter((tower) => {
-    if (towerName) {
-      return tower.location === towerLocation && tower.name === towerName;
-    }
-    return tower.location === towerLocation;
-  });
+  // Return a filtered list
+  if (towerLocation !== 'All') {
+    const filteredTowerList = towerList.filter((tower) => {
+      if (towerName) {
+        return tower.location === towerLocation && tower.name === towerName;
+      }
+      return tower.location === towerLocation;
+    });
 
-  return filteredTowerList;
+    return filteredTowerList;
+  }
+
+  // Return all the towers (no filter)
+  return towerList;
 }
 
 export default intelSockets;

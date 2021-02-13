@@ -1,5 +1,5 @@
 /* ========================
- * Button styles
+ * Slide effect button
  * ===================== */
 .slide-btn-horizontal {
   display: flex;
@@ -47,6 +47,52 @@
 .slide-btn-horizontal:hover::before {
   transform-origin: 0 0;
   transform: scale3d(1, 1, 1);
+}
+
+/* =============================
+ * Underline effect button
+ * =========================== */
+.underline-btn {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: relative;
+  transition: 0.5s color ease;
+  text-decoration: none;
+  color: #a1a1a1;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.underline-btn:hover {
+  color: #d73444;
+}
+
+.underline-btn:after {
+  content: "";
+  transition: 0.2s all ease;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+.underline-btn:after {
+  bottom: -0.25em;
+}
+
+.underline-btn:after {
+  height: 2px;
+  width: 0;
+  background: #d73444;
+}
+
+.underline-btn:after {
+  right: 0;
+}
+
+.underline-btn:hover:after {
+  width: 100%;
 }
 
 /* ========================

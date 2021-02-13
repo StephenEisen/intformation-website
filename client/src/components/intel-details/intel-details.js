@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { socket } from 'globals/socket.js';
 import { Routes } from 'globals/routes';
 import { intelAuthTokenPost, intelGet, intelPasswordPost } from 'globals/api';
 import TowerList from './tower-list/tower-list';
-import './intel-details.css'
+import './intel-details.css';
 
 const IntelDetails = () => {
   const { id } = useParams();
@@ -83,7 +83,8 @@ const IntelDetails = () => {
           name="password"
           placeholder={forbidden ? "Enter password" : "Set password"}
           value={password}
-          onChange={handlePasswordChange}></input>
+          onChange={handlePasswordChange}>
+        </input>
         <button type="submit" className="btn-password slide-btn-horizontal">
           <span>
             <FontAwesomeIcon icon={faCheck} className="icon-check-password" />
