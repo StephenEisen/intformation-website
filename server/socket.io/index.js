@@ -1,9 +1,8 @@
-import { Server } from 'socket.io';
 import intelSockets from './intel-sockets.js';
 
 /**
  * Endpoints to include within the server.
- * @param {Server} io Socket.io Server object
+ * @param {import("socket.io").Server} io Socket.io Server object
  */
 const socketEvents = (io) => {
   io.on("connection", (socket) => {

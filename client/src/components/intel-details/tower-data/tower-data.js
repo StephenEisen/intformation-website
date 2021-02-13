@@ -57,9 +57,9 @@ class TowerData extends React.Component {
           key={this.props.towerData.characters[i]._id}
           character={this.props.towerData.characters[i]}
           options={this.state.characterOptions}
-          intelId={this.props.intelId}
+          pageId={this.props.pageId}
+          towerData={this.props.towerData}
           teamIndex={i <= 2 ? 1 : 2}
-          towerIndex={this.props.towerIndex}
           characterIndex={i}
           isEditing={this.state.isEditingList[i]}
           editChange={(value) => this.updateIsEditing(value, i)}
@@ -74,9 +74,9 @@ class TowerData extends React.Component {
   getTeamImage(teamIndex) {
     const towerImages = this.props.towerImages;
 
-    if (towerImages && towerImages[this.props.towerIndex]) {
+    if (towerImages && towerImages[this.props.towerData._id]) {
       const index = teamIndex - 1 >= 0 ? teamIndex - 1 : 0;
-      return towerImages[this.props.towerIndex][index];
+      return towerImages[this.props.towerData._id][index];
     }
   }
 
@@ -94,13 +94,13 @@ class TowerData extends React.Component {
           <h3 className="tower-team-title">Team 1</h3>
           <div className="tower-characters">
             {characterElements.slice(0, 3)}
-            <TeamImage pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={1} image={this.getTeamImage(1)} />
+            <TeamImage pageId={this.props.pageId} towerId={this.props.towerData._id} teamIndex={1} image={this.getTeamImage(1)} />
           </div>
 
           <h3 className="tower-team-title">Team 2</h3>
           <div className="tower-characters">
             {characterElements.slice(3, 6)}
-            <TeamImage pageId={this.props.intelId} towerIndex={this.props.towerIndex} teamIndex={2} image={this.getTeamImage(2)} />
+            <TeamImage pageId={this.props.pageId} towerId={this.props.towerData._id} teamIndex={2} image={this.getTeamImage(2)} />
           </div>
         </div>
       </div>

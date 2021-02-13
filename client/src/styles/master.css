@@ -1,12 +1,15 @@
 /* ========================
  * General styles
  * ===================== */
+html, body {
+  overflow-x: hidden !important;
+}
+
 body {
   color: #fff;
   background-color: var(--body-color);
   background: url('../assets/backgrounds/bg00.jpg');
   background-size: cover;
-  overflow-x: hidden;
 }
 
 /* ========================
@@ -51,6 +54,14 @@ a:hover {
 
 .flex-1 {
   flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
 }
 
 .flex-4 {

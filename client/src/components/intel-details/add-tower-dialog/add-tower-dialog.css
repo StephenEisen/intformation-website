@@ -15,13 +15,15 @@
 .add-tower-modal {
   border: 1px solid var(--purple-color);
   position: fixed;
-  top: 28%;
-  left: 48%;
   box-shadow: 5px 5px 5px #000;
   background-color: var(--dark-purple-color);
   font-family: var(--roboto-font);
   font-size: 1.2rem;
   text-align: left;
+  left: 50%;
+  top: 45%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 /* ========================
@@ -84,15 +86,6 @@
 /* ========================
  * Mobile styles
  * ===================== */
-@media only screen and (max-width: 1280px) {
-  .add-tower-modal {
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
-}
-
 @media only screen and (max-width: 900px) {
   .add-tower-modal {
     width: 100%;

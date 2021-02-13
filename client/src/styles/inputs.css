@@ -1,5 +1,5 @@
 /* ========================
- * Button styles
+ * Slide effect button
  * ===================== */
 .slide-btn-horizontal {
   display: flex;
@@ -47,6 +47,89 @@
 .slide-btn-horizontal:hover::before {
   transform-origin: 0 0;
   transform: scale3d(1, 1, 1);
+}
+
+/* =============================
+ * Right underline effect button
+ * =========================== */
+.right-underline-btn {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: relative;
+  transition: 0.5s color ease;
+  text-decoration: none;
+  color: #a1a1a1;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.right-underline-btn:hover {
+  color: #d73444;
+}
+
+.right-underline-btn:after {
+  content: "";
+  transition: 0.2s all ease;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+.right-underline-btn:after {
+  bottom: -0.25em;
+  height: 2px;
+  width: 0;
+  background: #d73444;
+  right: 0;
+}
+
+.right-underline-btn:hover:after {
+  width: 100%;
+}
+
+/* =============================
+ * Underline effect button
+ * =========================== */
+.center-underline-btn {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: relative;
+  transition: 0.5s color ease;
+  text-decoration: none;
+  color: #a1a1a1;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.center-underline-btn:hover {
+  color: #d73444;
+}
+
+.center-underline-btn:after {
+  content: "";
+  transition: 0.2s all ease;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+.center-underline-btn:after {
+  bottom: -0.25em;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  height: 2px;
+  width: 0;
+  background: #d73444;
+  right: 0;
+}
+
+.center-underline-btn:hover:after {
+  width: 100%;
 }
 
 /* ========================

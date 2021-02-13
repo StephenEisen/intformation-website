@@ -1,5 +1,6 @@
 .tower-list {
   position: relative;
+  transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .add-tower-btn {
@@ -24,9 +25,17 @@
   .add-tower-btn {
     margin-left: -40px;
   }
+
+  .fixed-bottom-btn {
+    bottom: 180px;
+  }
 }
 
 @media only screen and (max-width: 900px) {
+  .tower-list {
+    margin-top: -65px;
+  }
+
   .add-tower-btn {
     opacity: 1;
     bottom: 40px;
@@ -34,6 +43,6 @@
   }
 
   .fixed-bottom-btn {
-    bottom: 100px;
+    bottom: 250px;
   }
 }

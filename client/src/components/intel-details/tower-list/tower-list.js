@@ -1,80 +1,125 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { socket } from 'globals/socket.js';
 import AddTowerDialog from '../add-tower-dialog/add-tower-dialog.js';
 import TowerData from '../tower-data/tower-data.js';
 import addButton from 'assets/icons/add.png';
+import TowerMap from '../tower-map/tower-map.js';
 import './tower-list.css';
 
-const TowerList = (props) => {
-  const [towerList, setTowerList] = useState(props.towerList);
-  const [addTowerDialogVisible, setAddTowerDialogVisible] = useState(false);
-  const [isScrollAtBottom, setIsScrollAtBottom] = useState(false);
+class TowerList extends React.Component {
+  constructor(props) {
+    super(props);
 
-  // Update tower list when a new tower is added
-  const updateTowerList = (intel) => {
-    setAddTowerDialogVisible(false);
-    setTowerList(intel.data);
+    this.state = {
+      towerList: props.towerList,
+      filteredList: props.towerList,
+      filteredData: {},
+      addTowerDialogVisible: false,
+      isScrollAtBottom: false
+    };
   }
 
-  // Show or hide the add tower dialog
-  const toggleAddTowerDialog = (isVisible) => {
-    setAddTowerDialogVisible(isVisible);
+  componentDidMount() {
+    this.updateScrollAtBottom();
+    window.addEventListener('scroll', () => this.updateScrollAtBottom);
+
+    socket.on('addTowerSuccess', (towerList) => this.addTowerUpdate(towerList));
+    socket.on('updateCharacterSuccess', (towerList) => this.towerListUpdate(towerList));
+    socket.on('filterTowerSuccess', (towerList) => this.towerListUpdate(towerList));
   }
 
-  const updateScrollAtBottom = () => {
+  componentWillUnmount() {
+    socket.off('addTowerSuccess', this.addTowerUpdate);
+    socket.off('updateCharacterSuccess', this.towerListUpdate);
+    socket.off('filterTowerSuccess', this.towerListUpdate);
+    window.removeEventListener('scroll', this.updateScrollAtBottom);
+  }
+
+  updateScrollAtBottom() {
     const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 50;
-    setIsScrollAtBottom(isAtBottom);
+    this.setState({ isScrollAtBottom: isAtBottom });
   }
 
-  // Logic to run when this component is rendered for the first time
-  useEffect(() => {
-    updateScrollAtBottom();
-    window.addEventListener('scroll', updateScrollAtBottom);
+  toggleAddTowerDialog(isVisible) {
+    this.setState({ addTowerDialogVisible: isVisible });
+  }
 
-    socket.on('createTowerSuccess', updateTowerList);
-    socket.on('updateCharacterSuccess', updateTowerList);
+  addTowerUpdate(updatedTowerList) {
+    this.setState({ addTowerDialogVisible: false }, () => this.towerListUpdate(updatedTowerList));
+  }
 
-    return () => {
-      socket.off('createTowerSuccess', updateTowerList);
-      socket.off('updateCharacterSuccess', updateTowerList);
-      window.removeEventListener('scroll', updateScrollAtBottom);
+  towerListUpdate(updatedTowerList) {
+    let newFilteredTowerList = updatedTowerList;
+    const filteredData = this.state.filteredData;
+
+    if (filteredData.towerLocation !== 'All') {
+      newFilteredTowerList = updatedTowerList.filter((tower) => {
+        if (filteredData.towerName) {
+          return tower.location === filteredData.towerLocation && tower.name === filteredData.towerName;
+        }
+        return tower.location === filteredData.towerLocation;
+      });
     }
-  }, []);
 
-  // Render all the tower data
-  return (
-    <section className="tower-list">
-      {/* ADD NEW TOWER */}
-      <AddTowerDialog
-        visible={addTowerDialogVisible}
-        intelId={props.intelId}
-        onClose={() => toggleAddTowerDialog(false)}
-      />
+    this.setState({
+      towerList: updatedTowerList,
+      filteredList: newFilteredTowerList
+    });
+  }
 
-      <img
-        src={addButton}
-        className={`add-tower-btn ${isScrollAtBottom ? 'fixed-bottom-btn' : ''}`}
-        title="Add Tower"
-        alt="Add Tower"
-        onClick={() => toggleAddTowerDialog(true)}
-      />
+  onTowerChange(towerLocation, towerName) {
+    /**
+     * Need to emit instead of filtering on client. If you filter by towerList on the UI then
+     * any changes the user makes to a character will be lost when they change to a different
+     * tower. This is because when a character update happens, we broadcast a socket event (We
+     * need to broadcast so the client doesn't lose focus when switching to a different input).
+     * Thus, the "towerListUpdate" is never called. This solution seems to work pretty well.
+     */
+    const filteredData = { towerLocation, towerName };
+    this.setState({ filteredData }, () => socket.emit('filterTower', this.props.pageId));
+  }
 
-      {/* SHOW ALL TOWER INFO */}
-      {
-        towerList.length > 0
-          ? towerList.map((tower, index) =>
-            <TowerData
-              key={index}
-              towerIndex={index}
-              intelId={props.intelId}
-              towerData={tower}
-              towerImages={props.towerImages}
-            />
-          )
-          : null
-      }
-    </section>
-  )
+  render() {
+    return (
+      <section className="tower-list">
+        {/* ADD NEW TOWER */}
+        <AddTowerDialog
+          visible={this.state.addTowerDialogVisible}
+          pageId={this.props.pageId}
+          onClose={() => this.toggleAddTowerDialog(false)}
+        />
+
+        <img
+          src={addButton}
+          className={`add-tower-btn ${this.state.isScrollAtBottom ? 'fixed-bottom-btn' : ''}`}
+          title="Add Tower"
+          alt="Add Tower"
+          onClick={() => this.toggleAddTowerDialog(true)}
+        />
+
+        {/* TOWER MAP */}
+        <TowerMap
+          pageId={this.props.pageId}
+          towerList={this.state.towerList}
+          onTowerChange={(location, name) => this.onTowerChange(location, name)}
+        />
+
+        {/* SHOW ALL TOWER INFO */}
+        {
+          this.state.filteredList.length > 0
+            ? this.state.filteredList.map((tower) =>
+              <TowerData
+                key={tower._id}
+                pageId={this.props.pageId}
+                towerData={tower}
+                towerImages={this.props.towerImages}
+              />
+            )
+            : null
+        }
+      </section>
+    )
+  }
 }
 
 export default TowerList;
