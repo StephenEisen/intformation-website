@@ -71,7 +71,7 @@ const TowerList = (props) => {
       />
 
       {/* TOWER MAP */}
-      <TowerMap pageId={props.pageId} />
+      <TowerMap pageId={props.pageId} towerList={towerList} />
 
       {/* SHOW ALL TOWER INFO */}
       {

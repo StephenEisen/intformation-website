@@ -4,6 +4,7 @@ import stronghold from 'assets/towers/stronghold.png';
 import bronzeTower from 'assets/towers/bronze.png';
 import silverTower from 'assets/towers/silver.png';
 import dalbergTower from 'assets/towers/dalberg.png';
+import defaultTower from 'assets/towers/tower.png';
 import './tower-map.css';
 
 // Constants
@@ -12,10 +13,18 @@ const BRONZE = 'Bronze Fortress';
 const DALBERG = 'Dalberg Fortress';
 const SILVER = 'Silver Fortress';
 
+const towerLocations = {
+  [STRONGHOLD]: { img: stronghold },
+  [BRONZE]: { img: bronzeTower },
+  [DALBERG]: { img: dalbergTower },
+  [SILVER]: { img: silverTower }
+};
+
 // Component
 const TowerMap = (props) => {
   const [currentLocation, setCurrentLocation] = useState(null);
   const [currentName, setCurrentName] = useState(null);
+  const [showChildren, setShowChildren] = useState(false);
 
   const changeTower = (towerLocation, towerName) => {
     /**
@@ -29,38 +38,48 @@ const TowerMap = (props) => {
 
     setCurrentLocation(towerLocation);
     setCurrentName(towerName);
+    setShowChildren(towerLocation !== STRONGHOLD);
+  }
+
+  const getRootTower = () => {
+    if (showChildren) {
+      return towerLocations[currentLocation].img;
+    }
   }
 
   return (
     <section className="tower-map container">
       <div className="flex-container">
-        <div className="tower-info flex-3">
+        <div className="tower-info flex-2">
           <h2>Tower Map</h2>
           <p>Select a tower location to filter towers.</p>
           <p>Tower location: {currentLocation || 'All'}</p>
           <p hidden={!currentName}>Tower name: {currentName || ''}</p>
+          <hr />
         </div>
 
         <div className="flex-4">
           <div className="tower-images">
             {/* TOWER LOCATIONS */}
-            <div className="tower-root">
-              <div className="stronghold">
-                <img src={stronghold} alt={STRONGHOLD} onClick={() => changeTower(STRONGHOLD)} />
-              </div>
-              <div className="bronze-tower">
-                <img src={bronzeTower} alt={BRONZE} onClick={() => changeTower(BRONZE)} />
-              </div>
-              <div className="dalberg-tower">
-                <img src={dalbergTower} alt={DALBERG} onClick={() => changeTower(DALBERG)} />
-              </div>
-              <div className="silver-tower">
-                <img src={silverTower} alt={SILVER} onClick={() => changeTower(SILVER)} />
-              </div>
+            <div className="tower-root tower-container" hidden={showChildren}>
+              <img className="stronghold" src={stronghold} alt={STRONGHOLD} onClick={() => changeTower(STRONGHOLD)} />
+              <img className="bronze-tower" src={bronzeTower} alt={BRONZE} onClick={() => changeTower(BRONZE)} />
+              <img className="dalberg-tower" src={dalbergTower} alt={DALBERG} onClick={() => changeTower(DALBERG)} />
+              <img className="silver-tower" src={silverTower} alt={SILVER} onClick={() => changeTower(SILVER)} />
             </div>
 
             {/* INDIVIDUAL TOWERS */}
-
+            <div className="tower-children tower-container" hidden={!showChildren}>
+              <img className="root-tower" src={getRootTower()} alt="" />
+              <img className="tower-1" src={defaultTower} alt="" />
+              <img className="tower-2" src={defaultTower} alt="" />
+              <img className="tower-3" src={defaultTower} alt="" />
+              <img className="tower-4" src={defaultTower} alt="" />
+              <img className="tower-5" src={defaultTower} alt="" />
+              <img className="tower-6" src={defaultTower} alt="" />
+              <img className="tower-7" src={defaultTower} alt="" />
+              <img className="tower-8" src={defaultTower} alt="" />
+            </div>
           </div>
         </div>
       </div>

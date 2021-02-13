@@ -1,12 +1,15 @@
 /* ========================
  * General styles
  * ===================== */
+html, body {
+  overflow-x: hidden !important;
+}
+
 body {
   color: #fff;
   background-color: var(--body-color);
   background: url('../assets/backgrounds/bg00.jpg');
   background-size: cover;
-  overflow-x: hidden;
 }
 
 /* ========================

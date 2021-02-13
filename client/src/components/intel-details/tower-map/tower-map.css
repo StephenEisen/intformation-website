@@ -1,74 +1,150 @@
+/* ========================
+ * Tower map
+ * ===================== */
 .tower-map {
-  margin-bottom: 50px;
   position: relative;
-  height: 350px !important;
+  margin-bottom: 50px;
+  padding-bottom: 20px !important;
 }
 
 .tower-info {
   text-align: left;
 }
 
-.tower-root div {
-  position: absolute;
+.tower-info hr {
+  display: none;
 }
 
-.tower-root img {
-  max-width: 100px;
-  max-height: 100px;
+.tower-map img {
+  position: absolute;
   cursor: pointer;
   transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 10%;
 }
 
-.tower-root img:hover {
+.tower-map img:hover {
   opacity: 0.8;
   transform: rotate(720deg) translate(0, 0);
   transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
+.tower-container {
+  position: relative;
+  height: 380px;
+}
+
+/* ========================
+ * Tower root
+ * ===================== */
+.tower-root img {
+  width: 12%;
+}
+
 .tower-root .stronghold {
-  top: 20px;
-  left: 75%;
+  top: 5%;
+  left: 60%;
 }
 
 .tower-root .bronze-tower {
-  top: 50px;
-  left: 50%;
+  top: 15%;
+  left: 20%;
 }
 
 .tower-root .dalberg-tower {
-  top: 220px;
-  left: 58%;
+  top: 50%;
+  left: 35%;
 }
 
 .tower-root .silver-tower {
-  top: 250px;
+  top: 65%;
+  left: 65%;
+}
+
+/* ========================
+ * Tower children
+ * ===================== */
+.tower-children .root-tower {
+  top: 35%;
+  left: 50%;
+}
+
+.tower-children .tower-1 {
+  top: 15%;
+  left: 5%;
+}
+
+.tower-children .tower-2 {
+  top: 60%;
+  left: 10%;
+}
+
+.tower-children .tower-3 {
+  top: 40%;
+  left: 25%;
+}
+
+.tower-children .tower-4 {
+  top: 5%;
+  left: 35%;
+}
+
+.tower-children .tower-5 {
+  top: 70%;
+  left: 62%;
+}
+
+.tower-children .tower-6 {
+  top: 5%;
+  left: 65%;
+}
+
+.tower-children .tower-7 {
+  top: 25%;
   left: 80%;
+}
+
+.tower-children .tower-8 {
+  top: 55%;
+  left: 88%;
 }
 
 /* ========================
  * Mobile
  * ===================== */
-@media only screen and (max-width: 700px) {
-  .tower-root img {
-    max-width: 70px;
-    max-height: 70px;
+@media only screen and (max-width: 900px) {
+  .tower-map {
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
-  .tower-root .stronghold {
-    left: 60%;
+  .tower-info {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
   }
 
-  .tower-root .bronze-tower {
-    left: 15%;
+  .tower-info hr {
+    display: block;
   }
 
-  .tower-root .dalberg-tower {
-    top: 160px;
-    left: 30%;
+  .tower-map .flex-container {
+    display: block;
   }
 
-  .tower-root .silver-tower {
-    top: 175px;
-    left: 68%;
+  .tower-map .flex-2,
+  .tower-map .flex-4 {
+    flex: none;
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+  }
+
+  .tower-container {
+    height: 420px;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .tower-container {
+    height: 245px;
   }
 }
