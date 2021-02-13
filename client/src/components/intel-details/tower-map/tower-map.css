@@ -8,39 +8,39 @@
   text-align: left;
 }
 
-.tower-map .tower-images div {
+.tower-root div {
   position: absolute;
 }
 
-.tower-map img {
+.tower-root img {
   max-width: 100px;
   max-height: 100px;
   cursor: pointer;
   transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.tower-map img:hover {
+.tower-root img:hover {
   opacity: 0.8;
   transform: rotate(720deg) translate(0, 0);
   transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.tower-map .stronghold {
+.tower-root .stronghold {
   top: 20px;
   left: 75%;
 }
 
-.tower-map .bronze-tower {
+.tower-root .bronze-tower {
   top: 50px;
   left: 50%;
 }
 
-.tower-map .dalberg-tower {
+.tower-root .dalberg-tower {
   top: 220px;
   left: 58%;
 }
 
-.tower-map .silver-tower {
+.tower-root .silver-tower {
   top: 250px;
   left: 80%;
 }
@@ -49,25 +49,25 @@
  * Mobile
  * ===================== */
 @media only screen and (max-width: 700px) {
-  .tower-map img {
+  .tower-root img {
     max-width: 70px;
     max-height: 70px;
   }
 
-  .tower-map .stronghold {
+  .tower-root .stronghold {
     left: 60%;
   }
 
-  .tower-map .bronze-tower {
+  .tower-root .bronze-tower {
     left: 15%;
   }
 
-  .tower-map .dalberg-tower {
+  .tower-root .dalberg-tower {
     top: 160px;
     left: 30%;
   }
 
-  .tower-map .silver-tower {
+  .tower-root .silver-tower {
     top: 175px;
     left: 68%;
   }

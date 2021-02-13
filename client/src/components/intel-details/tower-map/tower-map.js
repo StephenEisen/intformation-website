@@ -6,6 +6,13 @@ import silverTower from 'assets/towers/silver.png';
 import dalbergTower from 'assets/towers/dalberg.png';
 import './tower-map.css';
 
+// Constants
+const STRONGHOLD = 'Stronghold';
+const BRONZE = 'Bronze Fortress';
+const DALBERG = 'Dalberg Fortress';
+const SILVER = 'Silver Fortress';
+
+// Component
 const TowerMap = (props) => {
   const [currentLocation, setCurrentLocation] = useState(null);
   const [currentName, setCurrentName] = useState(null);
@@ -37,17 +44,19 @@ const TowerMap = (props) => {
         <div className="flex-4">
           <div className="tower-images">
             {/* TOWER LOCATIONS */}
-            <div className="stronghold">
-              <img src={stronghold} alt="Stronghold" onClick={() => changeTower('Stronghold')} />
-            </div>
-            <div className="bronze-tower">
-              <img src={bronzeTower} alt="Bronze Fortress" onClick={() => changeTower('Bronze Fortress')} />
-            </div>
-            <div className="dalberg-tower">
-              <img src={dalbergTower} alt="Dalberg Fortress" onClick={() => changeTower('Dalberg Fortress')} />
-            </div>
-            <div className="silver-tower">
-              <img src={silverTower} alt="Silver Fortress" onClick={() => changeTower('Silver Fortress')} />
+            <div className="tower-root">
+              <div className="stronghold">
+                <img src={stronghold} alt={STRONGHOLD} onClick={() => changeTower(STRONGHOLD)} />
+              </div>
+              <div className="bronze-tower">
+                <img src={bronzeTower} alt={BRONZE} onClick={() => changeTower(BRONZE)} />
+              </div>
+              <div className="dalberg-tower">
+                <img src={dalbergTower} alt={DALBERG} onClick={() => changeTower(DALBERG)} />
+              </div>
+              <div className="silver-tower">
+                <img src={silverTower} alt={SILVER} onClick={() => changeTower(SILVER)} />
+              </div>
             </div>
 
             {/* INDIVIDUAL TOWERS */}

@@ -16,13 +16,13 @@ main {
 
 @media only screen and (max-width: 1280px) {
   main {
-    padding: 150px 50px 100px 50px;
+    padding: 150px 50px 180px 50px;
   }
 }
 
 @media only screen and (max-width: 900px) {
   main {
-    padding: 150px 0 100px 0;
+    padding: 150px 0 220px 0;
   }
 }
 

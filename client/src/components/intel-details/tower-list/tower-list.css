@@ -25,6 +25,10 @@
   .add-tower-btn {
     margin-left: -40px;
   }
+
+  .fixed-bottom-btn {
+    bottom: 180px;
+  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -39,6 +43,6 @@
   }
 
   .fixed-bottom-btn {
-    bottom: 100px;
+    bottom: 250px;
   }
 }
