@@ -50,9 +50,9 @@
 }
 
 /* =============================
- * Underline effect button
+ * Right underline effect button
  * =========================== */
-.underline-btn {
+.right-underline-btn {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   position: relative;
@@ -65,11 +65,11 @@
   padding: 0;
 }
 
-.underline-btn:hover {
+.right-underline-btn:hover {
   color: #d73444;
 }
 
-.underline-btn:after {
+.right-underline-btn:after {
   content: "";
   transition: 0.2s all ease;
   -webkit-backface-visibility: hidden;
@@ -77,21 +77,58 @@
   position: absolute;
 }
 
-.underline-btn:after {
+.right-underline-btn:after {
   bottom: -0.25em;
-}
-
-.underline-btn:after {
   height: 2px;
   width: 0;
   background: #d73444;
-}
-
-.underline-btn:after {
   right: 0;
 }
 
-.underline-btn:hover:after {
+.right-underline-btn:hover:after {
+  width: 100%;
+}
+
+/* =============================
+ * Underline effect button
+ * =========================== */
+.center-underline-btn {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: relative;
+  transition: 0.5s color ease;
+  text-decoration: none;
+  color: #a1a1a1;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.center-underline-btn:hover {
+  color: #d73444;
+}
+
+.center-underline-btn:after {
+  content: "";
+  transition: 0.2s all ease;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+.center-underline-btn:after {
+  bottom: -0.25em;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  height: 2px;
+  width: 0;
+  background: #d73444;
+  right: 0;
+}
+
+.center-underline-btn:hover:after {
   width: 100%;
 }
 

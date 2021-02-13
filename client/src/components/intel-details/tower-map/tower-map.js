@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { socket } from 'globals/socket.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faEye } from '@fortawesome/free-solid-svg-icons';
 import stronghold from 'assets/towers/stronghold.png';
 import bronzeTower from 'assets/towers/bronze.png';
 import silverTower from 'assets/towers/silver.png';
@@ -29,19 +28,24 @@ const TowerMap = (props) => {
   const [currentName, setCurrentName] = useState(null);
   const [showChildren, setShowChildren] = useState(false);
 
-  const changeTower = (towerLocation, towerName) => {
-    /**
-     * Need to emit instead of filtering on client. If you filter by towerList on the UI then
-     * any changes the user makes to a character will be lost when they change to a different
-     * tower. This is because when a character update happens, we broadcast a socket event (We
-     * need to broadcast so the client doesn't lose focus when switching to a different input).
-     * Thus, the "towerListUpdate" is never called. This solution seems to work pretty well.
-     */
-    socket.emit('filterTower', { pageId: props.pageId, towerLocation, towerName });
-
+  const changeLocation = (towerLocation, towerName) => {
     setCurrentLocation(towerLocation);
     setCurrentName(towerName);
     setShowChildren(towerLocation !== STRONGHOLD && towerLocation !== ALL_TOWERS);
+
+    props.onTowerChange(towerLocation, towerName);
+  }
+
+  const changeTower = (index) => {
+    const towerList = props.towerList.filter((tower) => tower.location === currentLocation);
+
+    if (towerList.length > 0 && towerList[index]) {
+      changeLocation(currentLocation, towerList[index].name);
+    }
+  }
+
+  const showAllTowers = () => {
+    changeLocation(currentLocation);
   }
 
   const getRootTower = () => {
@@ -51,7 +55,7 @@ const TowerMap = (props) => {
   }
 
   const resetSelection = () => {
-    changeTower(ALL_TOWERS);
+    changeLocation(ALL_TOWERS);
   }
 
   return (
@@ -60,13 +64,25 @@ const TowerMap = (props) => {
         <div className="tower-info flex-2">
           <h2>Tower Map</h2>
           <p>Select a tower to filter.</p>
-          <p>Tower location: {currentLocation || ALL_TOWERS}</p>
-          <p hidden={!currentName}>Tower name: {currentName || ''}</p>
+
+          <div className="tower-info-content">
+            <span className="tower-info-title">Tower location:</span>
+            <span className="tower-info-value">{currentLocation || ALL_TOWERS}</span>
+          </div>
+
+          <div className="tower-info-content">
+            <span className="tower-info-title">Tower name:</span>
+            <span className="tower-info-value">{currentName || 'Not selected'}</span>
+          </div>
 
           <div className="tower-actions" hidden={!showChildren}>
-            <button className="underline-btn" onClick={resetSelection}>
+            <button className="right-underline-btn" onClick={resetSelection}>
               <FontAwesomeIcon icon={faArrowLeft} />
               Tower selection
+            </button>
+            <button className="center-underline-btn" onClick={showAllTowers}>
+              <FontAwesomeIcon icon={faEye} />
+              Show all towers
             </button>
           </div>
 
@@ -77,23 +93,23 @@ const TowerMap = (props) => {
           <div className="tower-images">
             {/* TOWER LOCATIONS */}
             <div className="tower-root tower-container" hidden={showChildren}>
-              <img className="stronghold" src={stronghold} alt={STRONGHOLD} onClick={() => changeTower(STRONGHOLD)} />
-              <img className="bronze-tower" src={bronzeTower} alt={BRONZE} onClick={() => changeTower(BRONZE)} />
-              <img className="dalberg-tower" src={dalbergTower} alt={DALBERG} onClick={() => changeTower(DALBERG)} />
-              <img className="silver-tower" src={silverTower} alt={SILVER} onClick={() => changeTower(SILVER)} />
+              <img className="stronghold" src={stronghold} alt={STRONGHOLD} onClick={() => changeLocation(STRONGHOLD)} />
+              <img className="bronze-tower" src={bronzeTower} alt={BRONZE} onClick={() => changeLocation(BRONZE)} />
+              <img className="dalberg-tower" src={dalbergTower} alt={DALBERG} onClick={() => changeLocation(DALBERG)} />
+              <img className="silver-tower" src={silverTower} alt={SILVER} onClick={() => changeLocation(SILVER)} />
             </div>
 
             {/* INDIVIDUAL TOWERS */}
             <div className="tower-children tower-container" hidden={!showChildren}>
-              <img className="root-tower" src={getRootTower()} alt="" />
-              <img className="tower-1" src={defaultTower} alt="" />
-              <img className="tower-2" src={defaultTower} alt="" />
-              <img className="tower-3" src={defaultTower} alt="" />
-              <img className="tower-4" src={defaultTower} alt="" />
-              <img className="tower-5" src={defaultTower} alt="" />
-              <img className="tower-6" src={defaultTower} alt="" />
-              <img className="tower-7" src={defaultTower} alt="" />
-              <img className="tower-8" src={defaultTower} alt="" />
+              <img className="root-tower" src={getRootTower()} alt="" onClick={() => changeTower(0)} />
+              <img className="tower-1" src={defaultTower} alt="" onClick={() => changeTower(1)} />
+              <img className="tower-2" src={defaultTower} alt="" onClick={() => changeTower(2)} />
+              <img className="tower-3" src={defaultTower} alt="" onClick={() => changeTower(3)} />
+              <img className="tower-4" src={defaultTower} alt="" onClick={() => changeTower(4)} />
+              <img className="tower-5" src={defaultTower} alt="" onClick={() => changeTower(5)} />
+              <img className="tower-6" src={defaultTower} alt="" onClick={() => changeTower(6)} />
+              <img className="tower-7" src={defaultTower} alt="" onClick={() => changeTower(7)} />
+              <img className="tower-8" src={defaultTower} alt="" onClick={() => changeTower(8)} />
             </div>
           </div>
         </div>

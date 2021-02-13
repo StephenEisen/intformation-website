@@ -7,14 +7,6 @@
   padding-bottom: 20px !important;
 }
 
-.tower-info {
-  text-align: left;
-}
-
-.tower-info hr {
-  display: none;
-}
-
 .tower-map img {
   position: absolute;
   cursor: pointer;
@@ -31,6 +23,50 @@
 .tower-container {
   position: relative;
   height: 380px;
+}
+
+/* ========================
+ * Tower info
+ * ===================== */
+.tower-info {
+  text-align: left;
+}
+
+.tower-info hr {
+  display: none;
+}
+
+.tower-info-content {
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+.tower-info-title {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.tower-actions {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.tower-actions button {
+  margin-bottom: 20px;
+  display: block;
+}
+
+.tower-actions .right-underline-btn svg,
+.tower-actions .center-underline-btn svg {
+  margin-right: 10px;
+}
+
+.tower-actions .center-underline-btn:hover {
+  color: #3480d7;
+}
+
+.tower-actions .center-underline-btn:after {
+  background: #3480d7;
 }
 
 /* ========================
@@ -106,13 +142,6 @@
 .tower-children .tower-8 {
   top: 55%;
   left: 88%;
-}
-
-/* ========================
- * Tower actions
- * ===================== */
-.tower-actions .underline-btn svg {
-  margin-right: 10px;
 }
 
 /* ========================
