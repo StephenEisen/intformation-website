@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import AddTowerDialog from "../add-tower-dialog/add-tower-dialog.js";
 import stronghold from 'assets/towers/stronghold.png';
 import bronzeTower from 'assets/towers/bronze.png';
 import silverTower from 'assets/towers/silver.png';
@@ -25,7 +26,13 @@ const towerLocations = {
 // Component
 const TowerMap = (props) => {
   const [currentLocation, setCurrentLocation] = useState(null);
+  const [currentTowerIndex, setCurrentTowerIndex] = useState(null);
   const [showChildren, setShowChildren] = useState(false);
+  const [addTowerDialogVisible, setAddTowerDialogVisible] = useState(false);
+
+  const toggleAddTowerDialog = (isVisible) => {
+    setAddTowerDialogVisible(isVisible);
+  }
 
   const getTowerByIndex = (index) => {
     if (props.towerList[index]) {
@@ -53,6 +60,9 @@ const TowerMap = (props) => {
 
     if (tower) {
       props.onTowerChange(tower._id);
+    } else {
+      setCurrentTowerIndex(index);
+      toggleAddTowerDialog(true);
     }
   }
 
@@ -81,11 +91,12 @@ const TowerMap = (props) => {
     const towerChildren = [];
 
     for (let i = 0; i < 9; i++) {
+      const tower = getTowerByIndex(i);
       const towerKey = `tower-${i}`;
       const towerImage = i === 4 ? getRootTower() : defaultTower;
 
       towerChildren.push((
-        <div key={towerKey} className={towerKey}>
+        <div key={towerKey} className={`${towerKey} ${tower && tower.name ? '' : 'no-tower'}`}>
           <img src={towerImage} alt="" onClick={() => changeTower(i)} />
           <span className="tower-map-name">{getTowerName(i)}</span>
         </div>
@@ -97,6 +108,19 @@ const TowerMap = (props) => {
 
   return (
     <section className="tower-map container">
+      {/* ADD NEW TOWER */}
+      {
+        addTowerDialogVisible && currentTowerIndex >= 0
+          ? <AddTowerDialog
+            visible={addTowerDialogVisible}
+            pageId={props.pageId}
+            towerIndex={currentTowerIndex}
+            towerLocation={currentLocation}
+            onClose={() => toggleAddTowerDialog(false)}
+          />
+          : null
+      }
+
       <div className="flex-container">
         <div className="tower-info flex-2">
           <h2>Tower Map</h2>

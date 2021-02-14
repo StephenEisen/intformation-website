@@ -6,21 +6,24 @@ import * as queries from '../mongodb/queries.js';
  * @param {import('socket.io').Socket} socket Socket.io Socket object
  */
 const intelSockets = (io, socket) => {
-  socket.on('addTower', async ({ pageId, towerLocation, towerName }) => {
-    // Get data from database
-    const exisitingIntel = await queries.findIntel(pageId);
+  socket.on('addTower', async (towerData) => {
+    const exisitingIntel = await queries.findIntel(towerData.pageId);
 
     // Emit to everyone and create new tower
-    if (towerLocation === 'Stronghold' && exisitingIntel.data.filter((tower) => tower.location === 'Stronghold').length < 1) {
-      const updatedIntel = await queries.createTower(pageId, towerLocation, towerName);
-      io.sockets.to(pageId).emit('addTowerSuccess', updatedIntel.data);
+    if (towerData.towerLocation === 'Stronghold' && exisitingIntel.data.filter((tower) => tower.location === 'Stronghold').length < 1) {
+      const updatedIntel = await queries.updateTowerName(towerData);
+      const towerList = updatedIntel.data;
+      const towerId = updatedIntel.data[towerData.towerIndex]._id;
+      io.sockets.to(towerData.pageId).emit('addTowerSuccess', { towerList, towerId });
     }
-    else if (towerLocation !== 'Stronghold' && exisitingIntel.data.filter((tower) => tower.location === towerLocation).length < 9 && !exisitingIntel.data.some((tower) => tower.name === towerName)) {
-      const updatedIntel = await queries.createTower(pageId, towerLocation, towerName);
-      io.sockets.to(pageId).emit('addTowerSuccess', updatedIntel.data);
+    else if (towerData.towerLocation !== 'Stronghold' && exisitingIntel.data.filter((tower) => tower.location === towerData.towerLocation).length < 9) {
+      const updatedIntel = await queries.updateTowerName(towerData);
+      const towerList = updatedIntel.data;
+      const towerId = updatedIntel.data[towerData.towerIndex]._id;
+      io.sockets.to(towerData.pageId).emit('addTowerSuccess', { towerList, towerId });
     }
     else {
-      io.sockets.to(pageId).emit('addTowerError', 'Tower already exists');
+      io.sockets.to(towerData.pageId).emit('addTowerError', 'Tower already exists');
     }
   });
 
@@ -33,6 +36,6 @@ const intelSockets = (io, socket) => {
     const updatedIntel = await queries.updateCharacter(characterData);
     socket.broadcast.to(characterData.pageId).emit('updateCharacterSuccess', updatedIntel.data);
   });
-}
+};
 
 export default intelSockets;

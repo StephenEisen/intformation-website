@@ -1,8 +1,6 @@
 import React from "react";
 import { socket } from "globals/socket.js";
-import AddTowerDialog from "../add-tower-dialog/add-tower-dialog.js";
 import TowerData from "../tower-data/tower-data.js";
-import addButton from "assets/icons/add.png";
 import TowerMap from "../tower-map/tower-map.js";
 import "./tower-list.css";
 
@@ -14,7 +12,6 @@ class TowerList extends React.Component {
       towerList: props.towerList,
       filteredTower: null,
       filteredTowerId: null,
-      addTowerDialogVisible: false,
       isScrollAtBottom: false
     };
   }
@@ -23,16 +20,16 @@ class TowerList extends React.Component {
     this.updateScrollAtBottom();
     window.addEventListener("scroll", () => this.updateScrollAtBottom);
 
-    socket.on("addTowerSuccess", (towerList) => this.addTowerUpdate(towerList));
+    socket.on("addTowerSuccess", (newTowerData) => this.addTower(newTowerData));
     socket.on("updateCharacterSuccess", (towerList) => this.towerListUpdate(towerList));
     socket.on("filterTowerSuccess", (towerList) => this.towerListUpdate(towerList));
   }
 
   componentWillUnmount() {
-    socket.off("addTowerSuccess", this.addTowerUpdate);
-    socket.off("updateCharacterSuccess", this.towerListUpdate);
-    socket.off("filterTowerSuccess", this.towerListUpdate);
-    window.removeEventListener("scroll", this.updateScrollAtBottom);
+    socket.off("addTowerSuccess", (newTowerData) => this.addTower(newTowerData));
+    socket.off("updateCharacterSuccess", (towerList) => this.towerListUpdate(towerList));
+    socket.off("filterTowerSuccess", (towerList) => this.towerListUpdate(towerList));
+    window.removeEventListener("scroll", () => this.updateScrollAtBottom);
   }
 
   updateScrollAtBottom() {
@@ -40,19 +37,14 @@ class TowerList extends React.Component {
     this.setState({ isScrollAtBottom: isAtBottom });
   }
 
-  toggleAddTowerDialog(isVisible) {
-    this.setState({ addTowerDialogVisible: isVisible });
-  }
-
-  addTowerUpdate(updatedTowerList) {
-    this.setState({ addTowerDialogVisible: false }, () =>
-      this.towerListUpdate(updatedTowerList)
-    );
+  addTower({ towerList, towerId }) {
+    const newFilteredTower = towerList.find((tower) => tower._id === towerId);
+    this.setState({ towerList: towerList, filteredTower: newFilteredTower, filteredTowerId: towerId });
   }
 
   async towerListUpdate(updatedTowerList) {
     const newFilteredTower = updatedTowerList.find((tower) => tower._id === this.state.filteredTowerId);
-    this.setState({ towerList: updatedTowerList, filteredTower: newFilteredTower});
+    this.setState({ towerList: updatedTowerList, filteredTower: newFilteredTower });
   }
 
   onTowerChange(towerId) {
@@ -69,26 +61,12 @@ class TowerList extends React.Component {
   render() {
     return (
       <section className="tower-list">
-        {/* ADD NEW TOWER */}
-        <AddTowerDialog
-          visible={this.state.addTowerDialogVisible}
-          pageId={this.props.pageId}
-          onClose={() => this.toggleAddTowerDialog(false)}
-        />
-
-        <img
-          src={addButton}
-          className={`add-tower-btn ${this.state.isScrollAtBottom ? "fixed-bottom-btn" : ""}`}
-          title="Add Tower"
-          alt="Add Tower"
-          onClick={() => this.toggleAddTowerDialog(true)}
-        />
-
         {/* TOWER MAP */}
         <TowerMap
           pageId={this.props.pageId}
           towerList={this.state.towerList}
           onTowerChange={(towerId) => this.onTowerChange(towerId)}
+          onAddTower={(towerLocation, towerIndex) => this.onAddTower(towerLocation, towerIndex)}
         />
 
         {/* SHOW ALL TOWER INFO */}

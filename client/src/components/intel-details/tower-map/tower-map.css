@@ -15,17 +15,25 @@
 .tower-container div {
   position: absolute;
   width: 10%;
+  cursor: pointer;
 }
 
 .tower-map img {
   width: 70%;
-  cursor: pointer;
   transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .tower-map img:hover {
   opacity: 0.8;
   animation: glitch 1s linear infinite;
+}
+
+.tower-map .no-tower {
+  opacity: 0.4;
+}
+
+.tower-map .no-tower:hover {
+  opacity: 0.8;
 }
 
 /* ========================

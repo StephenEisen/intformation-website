@@ -40,7 +40,7 @@
 }
 
 .add-tower-content img {
-  width: 50px;
+  width: 50px !important;
   vertical-align: sub;
   margin-right: 20px;
 }

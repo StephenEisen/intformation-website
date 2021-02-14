@@ -8,23 +8,37 @@ export async function findIntel(pageId) {
 export async function createIntel() {
   const newData = new GuildData({
     pageId: Math.random().toString(36).slice(2),
+    data: Array(9).fill({})
   });
   return newData.save();
 }
 
-export async function createTower(pageId, towerLocation, towerName) {
+export async function updateTowerName(towerData) {
+  const queryKey = `data.${towerData.towerIndex}`;
+
+  const newTowerName = towerData.towerName && towerData.towerName.replace(/\s/g, '').length > 0
+    ? towerData.towerName
+    : `Tower ${towerData.towerIndex + 1}`;
+
+  console.log(towerData);
+
   return GuildData.findOneAndUpdate(
-    { pageId: pageId },
     {
-      $push: {
-        data: {
-          location: towerLocation,
-          name: towerName,
-          characters: Array(6).fill({}),
-        },
-      },
+      pageId: towerData.pageId
     },
-    { new: true }
+    {
+      $set: {
+        [queryKey]: {
+          location: towerData.towerLocation,
+          name: newTowerName,
+          characters: Array(6).fill({})
+        }
+      }
+    },
+    {
+      new: true,
+      upsert: true
+    }
   );
 }
 
