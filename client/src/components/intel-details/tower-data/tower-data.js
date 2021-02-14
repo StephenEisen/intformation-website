@@ -28,13 +28,13 @@ class TowerData extends React.Component {
 
     this.setState({ selectedCharacters });
     this.updateCharacterOptions();
-    this.getTeamImages();
+    this.loadTowerImages();
   }
 
-  async getTeamImages() {
+  async loadTowerImages() {
     const reponse = await towerImageGet(this.props.pageId, this.props.towerData._id);
     const images = await reponse.json();
-    this.setState({towerImages: images});
+    this.setState({ towerImages: images });
   }
 
   updateCharacterOptions = (selectedOption, characterIndex) => {

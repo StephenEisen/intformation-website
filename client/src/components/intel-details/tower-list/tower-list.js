@@ -24,12 +24,8 @@ class TowerList extends React.Component {
     window.addEventListener("scroll", () => this.updateScrollAtBottom);
 
     socket.on("addTowerSuccess", (towerList) => this.addTowerUpdate(towerList));
-    socket.on("updateCharacterSuccess", (towerList) =>
-      this.towerListUpdate(towerList)
-    );
-    socket.on("filterTowerSuccess", (towerList) =>
-      this.towerListUpdate(towerList)
-    );
+    socket.on("updateCharacterSuccess", (towerList) => this.towerListUpdate(towerList));
+    socket.on("filterTowerSuccess", (towerList) => this.towerListUpdate(towerList));
   }
 
   componentWillUnmount() {
@@ -40,8 +36,7 @@ class TowerList extends React.Component {
   }
 
   updateScrollAtBottom() {
-    const isAtBottom =
-      window.innerHeight + window.scrollY >= document.body.scrollHeight - 50;
+    const isAtBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 50;
     this.setState({ isScrollAtBottom: isAtBottom });
   }
 
@@ -56,14 +51,8 @@ class TowerList extends React.Component {
   }
 
   async towerListUpdate(updatedTowerList) {
-    const newFilteredTower = updatedTowerList.find((tower) => {
-      return tower._id === this.state.filteredTowerId;
-    });
-
-    this.setState({
-      towerList: updatedTowerList,
-      filteredTower: newFilteredTower,
-    });
+    const newFilteredTower = updatedTowerList.find((tower) => tower._id === this.state.filteredTowerId);
+    this.setState({ towerList: updatedTowerList, filteredTower: newFilteredTower});
   }
 
   onTowerChange(towerId) {
@@ -74,9 +63,7 @@ class TowerList extends React.Component {
      * need to broadcast so the client doesn't lose focus when switching to a different input).
      * Thus, the "towerListUpdate" is never called. This solution seems to work pretty well.
      */
-    this.setState({ filteredTowerId: towerId }, () =>
-      socket.emit("filterTower", this.props.pageId)
-    );
+    this.setState({ filteredTowerId: towerId }, () => socket.emit("filterTower", this.props.pageId));
   }
 
   render() {
@@ -91,9 +78,7 @@ class TowerList extends React.Component {
 
         <img
           src={addButton}
-          className={`add-tower-btn ${
-            this.state.isScrollAtBottom ? "fixed-bottom-btn" : ""
-          }`}
+          className={`add-tower-btn ${this.state.isScrollAtBottom ? "fixed-bottom-btn" : ""}`}
           title="Add Tower"
           alt="Add Tower"
           onClick={() => this.toggleAddTowerDialog(true)}

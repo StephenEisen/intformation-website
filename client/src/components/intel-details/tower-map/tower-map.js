@@ -25,34 +25,40 @@ const towerLocations = {
 // Component
 const TowerMap = (props) => {
   const [currentLocation, setCurrentLocation] = useState(null);
-  const [currentName, setCurrentName] = useState(null);
   const [showChildren, setShowChildren] = useState(false);
+
+  const getTowerByIndex = (index) => {
+    if (props.towerList[index]) {
+      const towerId = props.towerList[index]._id;
+      const tower = props.towerList.find((item) => item.location === currentLocation && item._id === towerId);
+
+      return tower;
+    }
+  }
 
   const changeLocation = (towerLocation) => {
     let towerId = null;
-    setCurrentLocation(towerLocation);
-    setShowChildren(towerLocation !== STRONGHOLD && towerLocation !== ALL_TOWERS);
-
     if (towerLocation === STRONGHOLD) {
-      towerId = props.towerList.find((tower) => tower.location === STRONGHOLD)._id;
+      const tower = props.towerList.find((tower) => tower.location === STRONGHOLD);
+      towerId = tower ? tower._id : null;
     }
 
-
+    setCurrentLocation(towerLocation);
+    setShowChildren(towerLocation !== STRONGHOLD && towerLocation !== ALL_TOWERS);
     props.onTowerChange(towerId);
   }
 
   const changeTower = (index) => {
-    if (props.towerList[index]){
-      const towerId = props.towerList[index]._id;
-      const tower = props.towerList.find((item) => item.location === currentLocation && item._id === towerId);
+    const tower = getTowerByIndex(index);
 
-      if (tower) {
-        setCurrentName(tower.name);
-        props.onTowerChange(towerId);
-      }
+    if (tower) {
+      props.onTowerChange(tower._id);
     }
   }
 
+  const resetSelection = () => {
+    changeLocation(ALL_TOWERS);
+  }
 
   const getRootTower = () => {
     if (showChildren) {
@@ -60,8 +66,33 @@ const TowerMap = (props) => {
     }
   }
 
-  const resetSelection = () => {
-    changeLocation(ALL_TOWERS);
+  const getTowerName = (index) => {
+    const tower = getTowerByIndex(index);
+    let towerName = tower ? tower.name : `Tower ${index + 1}`;
+
+    if (towerName.length > 7) {
+      towerName = towerName.slice(0, 7) + '...';
+    }
+
+    return towerName;
+  }
+
+  const getTowerChildren = () => {
+    const towerChildren = [];
+
+    for (let i = 0; i < 9; i++) {
+      const towerKey = `tower-${i}`;
+      const towerImage = i === 4 ? getRootTower() : defaultTower;
+
+      towerChildren.push((
+        <div key={towerKey} className={towerKey}>
+          <img src={towerImage} alt="" onClick={() => changeTower(i)} />
+          <span className="tower-map-name">{getTowerName(i)}</span>
+        </div>
+      ));
+    }
+
+    return towerChildren;
   }
 
   return (
@@ -76,15 +107,9 @@ const TowerMap = (props) => {
             <span className="tower-info-value">{currentLocation || ALL_TOWERS}</span>
           </div>
 
-          <div className="tower-info-content">
-            <span className="tower-info-title">Tower name:</span>
-            <span className="tower-info-value">{currentName || 'Not selected'}</span>
-          </div>
-
           <div className="tower-actions" hidden={!showChildren}>
             <button className="right-underline-btn" onClick={resetSelection}>
-              <FontAwesomeIcon icon={faArrowLeft} />
-              Tower selection
+              <FontAwesomeIcon icon={faArrowLeft} />Tower selection
             </button>
           </div>
 
@@ -95,23 +120,27 @@ const TowerMap = (props) => {
           <div className="tower-images">
             {/* TOWER LOCATIONS */}
             <div className="tower-root tower-container" hidden={showChildren}>
-              <img className="stronghold" src={stronghold} alt={STRONGHOLD} onClick={() => changeLocation(STRONGHOLD)} />
-              <img className="bronze-tower" src={bronzeTower} alt={BRONZE} onClick={() => changeLocation(BRONZE)} />
-              <img className="dalberg-tower" src={dalbergTower} alt={DALBERG} onClick={() => changeLocation(DALBERG)} />
-              <img className="silver-tower" src={silverTower} alt={SILVER} onClick={() => changeLocation(SILVER)} />
+              <div className="stronghold">
+                <img src={stronghold} alt={STRONGHOLD} onClick={() => changeLocation(STRONGHOLD)} />
+                <div className="tower-map-name">{STRONGHOLD}</div>
+              </div>
+              <div className="bronze-tower">
+                <img src={bronzeTower} alt={BRONZE} onClick={() => changeLocation(BRONZE)} />
+                <div className="tower-map-name">{BRONZE}</div>
+              </div>
+              <div className="dalberg-tower">
+                <img src={dalbergTower} alt={DALBERG} onClick={() => changeLocation(DALBERG)} />
+                <div className="tower-map-name">{DALBERG}</div>
+              </div>
+              <div className="silver-tower">
+                <img src={silverTower} alt={SILVER} onClick={() => changeLocation(SILVER)} />
+                <div className="tower-map-name">{SILVER}</div>
+              </div>
             </div>
 
             {/* INDIVIDUAL TOWERS */}
             <div className="tower-children tower-container" hidden={!showChildren}>
-              <img className="root-tower" src={getRootTower()} alt="" onClick={() => changeTower(0)} />
-              <img className="tower-1" src={defaultTower} alt="" onClick={() => changeTower(1)} />
-              <img className="tower-2" src={defaultTower} alt="" onClick={() => changeTower(2)} />
-              <img className="tower-3" src={defaultTower} alt="" onClick={() => changeTower(3)} />
-              <img className="tower-4" src={defaultTower} alt="" onClick={() => changeTower(4)} />
-              <img className="tower-5" src={defaultTower} alt="" onClick={() => changeTower(5)} />
-              <img className="tower-6" src={defaultTower} alt="" onClick={() => changeTower(6)} />
-              <img className="tower-7" src={defaultTower} alt="" onClick={() => changeTower(7)} />
-              <img className="tower-8" src={defaultTower} alt="" onClick={() => changeTower(8)} />
+              {getTowerChildren()}
             </div>
           </div>
         </div>
