@@ -1,6 +1,7 @@
 import cors from 'cors';
 import { corsOptions } from './index.js';
 import * as queries from '../mongodb/queries.js';
+import {getStatsData} from '../utils/statistics.js';
 
 const apiPath = '/api/statistics';
 
@@ -24,7 +25,7 @@ const statisticsEndpoints = (app) => {
   app.options(`${apiPath}/most-frequently-used`, cors(corsOptions));
   app.get(`${apiPath}/most-frequently-used`, cors(corsOptions), async (request, response) => {
     try {
-      const mostUsed = await queries.countMostUsedTeams();
+      const mostUsed = await getStatsData();
       response.send(mostUsed);
     } catch (err) {
       console.log(err);

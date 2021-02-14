@@ -24,7 +24,7 @@ const Statistics = () => {
 
   const getMostUsedImage = (characterIndex, teamIndex) => {
     if (mostUsed.length > 0) {
-      return mostUsed[teamIndex][0].split(":")[characterIndex];
+      return mostUsed[teamIndex].teamKey.split(":")[characterIndex];
     }
     return "Enott";
   };
