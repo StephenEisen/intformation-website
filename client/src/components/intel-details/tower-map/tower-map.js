@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import stronghold from 'assets/towers/stronghold.png';
 import bronzeTower from 'assets/towers/bronze.png';
 import silverTower from 'assets/towers/silver.png';
@@ -28,25 +28,31 @@ const TowerMap = (props) => {
   const [currentName, setCurrentName] = useState(null);
   const [showChildren, setShowChildren] = useState(false);
 
-  const changeLocation = (towerLocation, towerName) => {
+  const changeLocation = (towerLocation) => {
+    let towerId = null;
     setCurrentLocation(towerLocation);
-    setCurrentName(towerName);
     setShowChildren(towerLocation !== STRONGHOLD && towerLocation !== ALL_TOWERS);
 
-    props.onTowerChange(towerLocation, towerName);
+    if (towerLocation === STRONGHOLD) {
+      towerId = props.towerList.find((tower) => tower.location === STRONGHOLD)._id;
+    }
+
+
+    props.onTowerChange(towerId);
   }
 
   const changeTower = (index) => {
-    const towerList = props.towerList.filter((tower) => tower.location === currentLocation);
+    if (props.towerList[index]){
+      const towerId = props.towerList[index]._id;
+      const tower = props.towerList.find((item) => item.location === currentLocation && item._id === towerId);
 
-    if (towerList.length > 0 && towerList[index]) {
-      changeLocation(currentLocation, towerList[index].name);
+      if (tower) {
+        setCurrentName(tower.name);
+        props.onTowerChange(towerId);
+      }
     }
   }
 
-  const showAllTowers = () => {
-    changeLocation(currentLocation);
-  }
 
   const getRootTower = () => {
     if (showChildren) {
@@ -79,10 +85,6 @@ const TowerMap = (props) => {
             <button className="right-underline-btn" onClick={resetSelection}>
               <FontAwesomeIcon icon={faArrowLeft} />
               Tower selection
-            </button>
-            <button className="center-underline-btn" onClick={showAllTowers}>
-              <FontAwesomeIcon icon={faEye} />
-              Show all towers
             </button>
           </div>
 

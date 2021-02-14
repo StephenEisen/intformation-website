@@ -1,5 +1,5 @@
 import fs from 'fs';
-import path from 'path';
+import path, { dirname } from 'path';
 import cors from 'cors';
 import multer from 'multer';
 import { corsOptions } from './index.js';
@@ -47,13 +47,13 @@ const intelEndpoints = (app, io) => {
 
         if (await passwords.authRequired(pageId)) {
           if (token && await passwords.authenticateIntel(pageId, token)) {
-            populateIntelImages(`./images/${pageId}`, images);
+            // populateIntelImages(`./images/${pageId}`, images);
             return response.status(200).send({ intel, images });
           } else {
             return response.status(403).send("Forbidden");
           }
         } else {
-          populateIntelImages(`./images/${pageId}`, images);
+          // populateIntelImages(`./images/${pageId}`, images);
           return response.status(200).send({ intel, images });
         }
       } else {
@@ -125,12 +125,32 @@ const intelEndpoints = (app, io) => {
       console.log(err)
     }
   });
+  app.get(`${apiPath}/:pageId/image`, cors(corsOptions), (request, response) => {
+    const pageId = request.params.pageId;
+    const towerId = request.query.towerId;
+    const images = getTowerImages(pageId, towerId);
+    return response.status(200).send(images);
+  })
 }
+
 
 /** =============================================
  ** Helper functions
  ** ========================================== */
-const populateIntelImages = (dirName, images) => {
+const getTowerImages = (pageId, towerId) => {
+  const dirName = `./images/${pageId}/${towerId}`;
+
+  if (fs.existsSync(dirName)) {
+    const files = fs.readdirSync(dirName);
+    const towerImages = files.map((file) => {
+      const fullPath = path.join(dirName, file);
+      return fs.readFileSync(fullPath);
+    })
+    return {[towerId]: towerImages};
+  }
+}
+
+const populateIntelImages = (dirName, images, towerIds) => {
   if (fs.existsSync(dirName)) {
     const files = fs.readdirSync(dirName);
 
@@ -139,14 +159,17 @@ const populateIntelImages = (dirName, images) => {
       const stats = fs.statSync(fullPath);
 
       if (stats.isDirectory()) {
-        populateIntelImages(fullPath, images);
+        populateIntelImages(fullPath, images, towerIds);
       }
       else {
         const formatedPathParts = fullPath.replace(/\\/g, "/").split("/");
         const towerId = formatedPathParts[2];
         const teamIndex = formatedPathParts[3] - 1;
-        images[towerId] = images[towerId] || Array(2).fill('');
-        images[towerId].splice(teamIndex, 1, fs.readFileSync(fullPath));
+
+        if (towerIds.includes(towerId)){
+          images[towerId] = images[towerId] || Array(2).fill('');
+          images[towerId].splice(teamIndex, 1, fs.readFileSync(fullPath));
+        }
       }
     });
   }

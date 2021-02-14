@@ -71,3 +71,10 @@ export const towerImagePost = async (file, pageId, towerId, teamIndex) => {
   });
   return resp;
 };
+
+export const towerImageGet = async (pageId, towerId) => {
+  const resp = await fetch(`${webserver}/api/intel/${pageId}/image?towerId=${towerId}`, {
+    method: 'GET'
+  });
+  return resp;
+};

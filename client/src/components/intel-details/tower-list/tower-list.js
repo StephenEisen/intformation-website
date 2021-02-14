@@ -1,10 +1,10 @@
-import React from 'react';
-import { socket } from 'globals/socket.js';
-import AddTowerDialog from '../add-tower-dialog/add-tower-dialog.js';
-import TowerData from '../tower-data/tower-data.js';
-import addButton from 'assets/icons/add.png';
-import TowerMap from '../tower-map/tower-map.js';
-import './tower-list.css';
+import React from "react";
+import { socket } from "globals/socket.js";
+import AddTowerDialog from "../add-tower-dialog/add-tower-dialog.js";
+import TowerData from "../tower-data/tower-data.js";
+import addButton from "assets/icons/add.png";
+import TowerMap from "../tower-map/tower-map.js";
+import "./tower-list.css";
 
 class TowerList extends React.Component {
   constructor(props) {
@@ -12,8 +12,8 @@ class TowerList extends React.Component {
 
     this.state = {
       towerList: props.towerList,
-      filteredList: props.towerList,
-      filteredData: {},
+      filteredTower: null,
+      filteredTowerId: null,
       addTowerDialogVisible: false,
       isScrollAtBottom: false
     };
@@ -21,22 +21,27 @@ class TowerList extends React.Component {
 
   componentDidMount() {
     this.updateScrollAtBottom();
-    window.addEventListener('scroll', () => this.updateScrollAtBottom);
+    window.addEventListener("scroll", () => this.updateScrollAtBottom);
 
-    socket.on('addTowerSuccess', (towerList) => this.addTowerUpdate(towerList));
-    socket.on('updateCharacterSuccess', (towerList) => this.towerListUpdate(towerList));
-    socket.on('filterTowerSuccess', (towerList) => this.towerListUpdate(towerList));
+    socket.on("addTowerSuccess", (towerList) => this.addTowerUpdate(towerList));
+    socket.on("updateCharacterSuccess", (towerList) =>
+      this.towerListUpdate(towerList)
+    );
+    socket.on("filterTowerSuccess", (towerList) =>
+      this.towerListUpdate(towerList)
+    );
   }
 
   componentWillUnmount() {
-    socket.off('addTowerSuccess', this.addTowerUpdate);
-    socket.off('updateCharacterSuccess', this.towerListUpdate);
-    socket.off('filterTowerSuccess', this.towerListUpdate);
-    window.removeEventListener('scroll', this.updateScrollAtBottom);
+    socket.off("addTowerSuccess", this.addTowerUpdate);
+    socket.off("updateCharacterSuccess", this.towerListUpdate);
+    socket.off("filterTowerSuccess", this.towerListUpdate);
+    window.removeEventListener("scroll", this.updateScrollAtBottom);
   }
 
   updateScrollAtBottom() {
-    const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 50;
+    const isAtBottom =
+      window.innerHeight + window.scrollY >= document.body.scrollHeight - 50;
     this.setState({ isScrollAtBottom: isAtBottom });
   }
 
@@ -45,29 +50,23 @@ class TowerList extends React.Component {
   }
 
   addTowerUpdate(updatedTowerList) {
-    this.setState({ addTowerDialogVisible: false }, () => this.towerListUpdate(updatedTowerList));
+    this.setState({ addTowerDialogVisible: false }, () =>
+      this.towerListUpdate(updatedTowerList)
+    );
   }
 
-  towerListUpdate(updatedTowerList) {
-    let newFilteredTowerList = updatedTowerList;
-    const filteredData = this.state.filteredData;
-
-    if (filteredData.towerLocation !== 'All') {
-      newFilteredTowerList = updatedTowerList.filter((tower) => {
-        if (filteredData.towerName) {
-          return tower.location === filteredData.towerLocation && tower.name === filteredData.towerName;
-        }
-        return tower.location === filteredData.towerLocation;
-      });
-    }
+  async towerListUpdate(updatedTowerList) {
+    const newFilteredTower = updatedTowerList.find((tower) => {
+      return tower._id === this.state.filteredTowerId;
+    });
 
     this.setState({
       towerList: updatedTowerList,
-      filteredList: newFilteredTowerList
+      filteredTower: newFilteredTower,
     });
   }
 
-  onTowerChange(towerLocation, towerName) {
+  onTowerChange(towerId) {
     /**
      * Need to emit instead of filtering on client. If you filter by towerList on the UI then
      * any changes the user makes to a character will be lost when they change to a different
@@ -75,8 +74,9 @@ class TowerList extends React.Component {
      * need to broadcast so the client doesn't lose focus when switching to a different input).
      * Thus, the "towerListUpdate" is never called. This solution seems to work pretty well.
      */
-    const filteredData = { towerLocation, towerName };
-    this.setState({ filteredData }, () => socket.emit('filterTower', this.props.pageId));
+    this.setState({ filteredTowerId: towerId }, () =>
+      socket.emit("filterTower", this.props.pageId)
+    );
   }
 
   render() {
@@ -91,7 +91,9 @@ class TowerList extends React.Component {
 
         <img
           src={addButton}
-          className={`add-tower-btn ${this.state.isScrollAtBottom ? 'fixed-bottom-btn' : ''}`}
+          className={`add-tower-btn ${
+            this.state.isScrollAtBottom ? "fixed-bottom-btn" : ""
+          }`}
           title="Add Tower"
           alt="Add Tower"
           onClick={() => this.toggleAddTowerDialog(true)}
@@ -101,24 +103,19 @@ class TowerList extends React.Component {
         <TowerMap
           pageId={this.props.pageId}
           towerList={this.state.towerList}
-          onTowerChange={(location, name) => this.onTowerChange(location, name)}
+          onTowerChange={(towerId) => this.onTowerChange(towerId)}
         />
 
         {/* SHOW ALL TOWER INFO */}
-        {
-          this.state.filteredList.length > 0
-            ? this.state.filteredList.map((tower) =>
-              <TowerData
-                key={tower._id}
-                pageId={this.props.pageId}
-                towerData={tower}
-                towerImages={this.props.towerImages}
-              />
-            )
-            : null
-        }
+        {this.state.filteredTower ? (
+          <TowerData
+            key={this.state.filteredTowerId}
+            pageId={this.props.pageId}
+            towerData={this.state.filteredTower}
+          />
+        ) : null}
       </section>
-    )
+    );
   }
 }
 

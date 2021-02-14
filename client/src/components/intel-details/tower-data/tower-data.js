@@ -3,6 +3,7 @@ import CharacterData from '../character-data/character-data';
 import { clone } from 'globals/utils';
 import './tower-data.css';
 import TeamImage from '../team-image/team-image.js';
+import { towerImageGet } from "globals/api.js";
 const characters = require('data/characters.json');
 
 class TowerData extends React.Component {
@@ -12,7 +13,8 @@ class TowerData extends React.Component {
     this.state = {
       characterOptions: clone(characters),
       selectedCharacters: Array(6).fill(null),
-      isEditingList: Array(6).fill(false)
+      isEditingList: Array(6).fill(false),
+      towerImages: []
     };
   }
 
@@ -26,6 +28,13 @@ class TowerData extends React.Component {
 
     this.setState({ selectedCharacters });
     this.updateCharacterOptions();
+    this.getTeamImages();
+  }
+
+  async getTeamImages() {
+    const reponse = await towerImageGet(this.props.pageId, this.props.towerData._id);
+    const images = await reponse.json();
+    this.setState({towerImages: images});
   }
 
   updateCharacterOptions = (selectedOption, characterIndex) => {
@@ -72,7 +81,7 @@ class TowerData extends React.Component {
   }
 
   getTeamImage(teamIndex) {
-    const towerImages = this.props.towerImages;
+    const towerImages = this.state.towerImages;
 
     if (towerImages && towerImages[this.props.towerData._id]) {
       const index = teamIndex - 1 >= 0 ? teamIndex - 1 : 0;

@@ -12,11 +12,6 @@ const TeamImage = (props) => {
   const fullImageRef = useRef(null);
 
   useEffect(() => {
-    if (props.image) {
-      const blob = new Blob([Int8Array.from(props.image.data)]);
-      updateImageBox(blob, props.towerId, props.teamIndex);
-    }
-
     socket.on("imageUploadSuccess", handleImageBuffer);
 
     return () => {
@@ -25,6 +20,14 @@ const TeamImage = (props) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (props.image) {
+      const blob = new Blob([Int8Array.from(props.image.data)]);
+      updateImageBox(blob, props.towerId, props.teamIndex);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.image]);
 
   const handleImageBuffer = ({ file, towerId, teamIndex }) => {
     const blob = new Blob([file.buffer]);
