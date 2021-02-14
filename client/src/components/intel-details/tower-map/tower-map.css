@@ -110,6 +110,11 @@
 /* ========================
  * Tower children
  * ===================== */
+ .tower-children.tower-container .tower-map-name {
+  width: 100%;
+  padding-top: 10px;
+}
+
 .tower-children .tower-0 {
   top: 15%;
   left: 0%;
