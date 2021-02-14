@@ -109,7 +109,7 @@ class TowerList extends React.Component {
         {/* SHOW ALL TOWER INFO */}
         {this.state.filteredTower ? (
           <TowerData
-            key={this.state.filteredTowerId}
+            key={this.state.filteredTower._id}
             pageId={this.props.pageId}
             towerData={this.state.filteredTower}
           />
