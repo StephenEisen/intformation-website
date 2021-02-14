@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Select from 'react-select'
 import { socket } from 'globals/socket';
 import castle from 'assets/icons/castle2.png';
 import './add-tower-dialog.css';
-const towerLocations = require('data/tower-locations.json');
 
 const AddTowerDialog = (props) => {
   const [towerName, setTowerName] = useState('');
-  const [towerLocation, setTowerLocation] = useState('');
   const [errorStates, setErrorStates] = useState({});
 
   useEffect(() => {
@@ -27,36 +24,26 @@ const AddTowerDialog = (props) => {
 
   const resetDialog = () => {
     setTowerName('');
-    setTowerLocation('');
     setErrorStates({});
   }
 
-  const setAddTowerError = (e) => {
-    setErrorStates({
-      towerLocation: !towerLocation || towerLocation === '',
-      towerName: !towerName || towerName === ''
-    });
+  const setAddTowerError = () => {
+    setErrorStates({ towerName: !towerName || towerName === '' });
   }
 
   const sendTowerData = () => {
-    if (towerLocation && towerLocation !== '' && towerName && towerName !== '') {
+    if (towerName && towerName !== '') {
       socket.emit('addTower', {
         pageId: props.pageId,
-        towerLocation: towerLocation,
+        towerIndex: props.towerIndex,
+        towerLocation: props.towerLocation,
         towerName: towerName
       });
-      resetDialog();
+      closeDialog();
     } else {
       setAddTowerError();
     }
   };
-
-  const updateTowerLocation = (value) => {
-    if (value && value !== '') {
-      setErrorStates({ towerLocation: false });
-      setTowerLocation(value);
-    }
-  }
 
   const updateTowerName = (value) => {
     if (value && value !== '') {
@@ -81,21 +68,9 @@ const AddTowerDialog = (props) => {
             </h1>
           </div>
 
-          {/* LOCATION */}
-          <div className="add-tower-location">
-            <h2>Tower location</h2>
-            <Select
-              className={`select-dropdown ${errorStates.towerLocation ? 'error' : ''}`}
-              options={towerLocations}
-              isSearchable={false}
-              placeholder="Choose Tower Location"
-              onChange={(e) => updateTowerLocation(e.value)}
-            />
-          </div>
-
           {/* NAME */}
           <div className="add-tower-name">
-            <h2>Tower name</h2>
+            <h2>Tower name (optional)</h2>
             <input
               type="text"
               className={errorStates.towerName ? 'error' : ''}

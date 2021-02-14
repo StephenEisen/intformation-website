@@ -7,22 +7,33 @@
   padding-bottom: 20px !important;
 }
 
-.tower-map img {
+.tower-container {
+  position: relative;
+  height: 380px;
+}
+
+.tower-container div {
   position: absolute;
-  cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
   width: 10%;
+  cursor: pointer;
+}
+
+.tower-map img {
+  width: 70%;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .tower-map img:hover {
   opacity: 0.8;
-  transform: rotate(720deg) translate(0, 0);
-  transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation: glitch 1s linear infinite;
 }
 
-.tower-container {
-  position: relative;
-  height: 380px;
+.tower-map .no-tower {
+  opacity: 0.4;
+}
+
+.tower-map .no-tower:hover {
+  opacity: 0.8;
 }
 
 /* ========================
@@ -60,79 +71,88 @@
   margin-right: 10px;
 }
 
+.tower-map-name {
+  font-size: 14px;
+}
+
 /* ========================
  * Tower root
  * ===================== */
-.tower-root img {
-  width: 12%;
+.tower-root.tower-container div {
+  width: 20%;
+}
+
+.tower-root.tower-container .tower-map-name {
+  width: 100%;
+  padding-top: 10px;
 }
 
 .tower-root .stronghold {
-  top: 5%;
-  left: 60%;
+  top: 0%;
+  left: 55%;
 }
 
 .tower-root .bronze-tower {
-  top: 15%;
-  left: 20%;
+  top: 10%;
+  left: 10%;
 }
 
 .tower-root .dalberg-tower {
-  top: 50%;
-  left: 35%;
+  top: 45%;
+  left: 30%;
 }
 
 .tower-root .silver-tower {
-  top: 65%;
+  top: 55%;
   left: 65%;
 }
 
 /* ========================
  * Tower children
  * ===================== */
-.tower-children .root-tower {
-  top: 35%;
-  left: 50%;
+.tower-children .tower-0 {
+  top: 15%;
+  left: 0%;
 }
 
 .tower-children .tower-1 {
-  top: 15%;
+  top: 60%;
   left: 5%;
 }
 
 .tower-children .tower-2 {
-  top: 60%;
-  left: 10%;
+  top: 40%;
+  left: 20%;
 }
 
 .tower-children .tower-3 {
-  top: 40%;
-  left: 25%;
+  top: 5%;
+  left: 30%;
 }
 
 .tower-children .tower-4 {
-  top: 5%;
-  left: 35%;
+  top: 35%;
+  left: 45%;
 }
 
 .tower-children .tower-5 {
   top: 70%;
-  left: 62%;
+  left: 57%;
 }
 
 .tower-children .tower-6 {
   top: 5%;
-  left: 65%;
+  left: 60%;
 }
 
 .tower-children .tower-7 {
   top: 25%;
-  left: 80%;
+  left: 75%;
 }
 
 .tower-children .tower-8 {
-  top: 55%;
-  left: 88%;
+  top: 60%;
+  left: 85%;
 }
 
 /* ========================
@@ -166,12 +186,24 @@
   }
 
   .tower-container {
-    height: 420px;
+    height: 550px;
+  }
+
+  .tower-root.tower-container {
+    height: 380px;
   }
 }
 
 @media only screen and (max-width: 530px) {
   .tower-container {
-    height: 245px;
+    height: 450px;
+  }
+
+  .tower-root.tower-container {
+    height: 325px;
+  }
+
+  .tower-container div {
+    width: 18%;
   }
 }

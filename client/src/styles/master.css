@@ -1,7 +1,8 @@
 /* ========================
  * General styles
  * ===================== */
-html, body {
+html,
+body {
   overflow-x: hidden !important;
 }
 
@@ -10,18 +11,6 @@ body {
   background-color: var(--body-color);
   background: url('../assets/backgrounds/bg00.jpg');
   background-size: cover;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px var(--dark-purple-color);
-}
-
-::-webkit-scrollbar-thumb {
-  -webkit-box-shadow: inset 0 0 6px var(--pink-color);
 }
 
 /* ========================

@@ -5,6 +5,7 @@ module.exports = {
       script: "./server.js",
       watch: false,
       env: {
+        "IS_DEV": false,
         "ORIGIN": "https://epic7.gg",
       }
     }

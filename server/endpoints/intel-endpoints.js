@@ -1,5 +1,5 @@
 import fs from 'fs';
-import path, { dirname } from 'path';
+import path from 'path';
 import cors from 'cors';
 import multer from 'multer';
 import { corsOptions } from './index.js';
@@ -10,8 +10,8 @@ const apiPath = '/api/intel';
 
 /**
  * ALl endpoints defined for the intel page.
- * @param {import("express").Express} app Express object
- * @param {import("socket.io").Server} io Socket.io Server object
+ * @param {import('express').Express} app Express object
+ * @param {import('socket.io').Server} io Socket.io Server object
  */
 const intelEndpoints = (app, io) => {
   /**
@@ -23,7 +23,7 @@ const intelEndpoints = (app, io) => {
       const newIntel = await queries.createIntel();
       response.status(201).send(newIntel);
     } catch (err) {
-      response.status(500).send("Intel creation failed");
+      response.status(500).send('Intel creation failed');
     }
   });
 
@@ -37,8 +37,7 @@ const intelEndpoints = (app, io) => {
       const intel = await queries.findIntel(pageId);
 
       if (intel) {
-        let token = "";
-        const images = {};
+        let token = '';
 
         // Get the token from the authorization header
         if (request.headers.authorization && request.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -47,14 +46,12 @@ const intelEndpoints = (app, io) => {
 
         if (await passwords.authRequired(pageId)) {
           if (token && await passwords.authenticateIntel(pageId, token)) {
-            // populateIntelImages(`./images/${pageId}`, images);
-            return response.status(200).send({ intel, images });
+            return response.status(200).send(intel);
           } else {
-            return response.status(403).send("Forbidden");
+            return response.status(403).send('Forbidden');
           }
         } else {
-          // populateIntelImages(`./images/${pageId}`, images);
-          return response.status(200).send({ intel, images });
+          return response.status(200).send(intel);
         }
       } else {
         return response.status(404).send('Intel not found');
@@ -62,7 +59,7 @@ const intelEndpoints = (app, io) => {
 
     } catch (err) {
       console.error(err);
-      response.status(500).send("Server error");
+      response.status(500).send('Server error');
     }
   });
 
@@ -75,7 +72,7 @@ const intelEndpoints = (app, io) => {
       await passwords.updatePassword(request.body);
       response.status(204).send();
     } catch (err) {
-      response.status(500).send("Server error");
+      response.status(500).send('Server error');
     }
   });
 
@@ -91,16 +88,16 @@ const intelEndpoints = (app, io) => {
         const token = await passwords.generateToken(request.params.pageId);
         response.status(201).send(token);
       } else {
-        response.status(403).send("Forbidden");
+        response.status(403).send('Forbidden');
       }
     } catch (err) {
-      response.status(500).send("Server error");
+      response.status(500).send('Server error');
     }
   });
 
   /**
    * Writes the given image to a server directory. The teamIndex is used as the file name.
-   * Currently the path is "images/<pageId>/<towerIndex>/<teamIndex>".
+   * Currently the path is 'images/<pageId>/<towerIndex>/<teamIndex>'.
    *
    * TODO: Check if image is appropriate before saving.
    */
@@ -114,7 +111,7 @@ const intelEndpoints = (app, io) => {
       await fs.promises.mkdir(`./images/${pageId}/${towerId}`, { recursive: true });
       fs.writeFileSync(`./images/${pageId}/${towerId}/${teamIndex}`, request.file.buffer);
 
-      io.sockets.to(pageId).emit("imageUploadSuccess", {
+      io.sockets.to(pageId).emit('imageUploadSuccess', {
         file: request.file,
         towerId: towerId,
         teamIndex: Number(teamIndex)
@@ -125,6 +122,7 @@ const intelEndpoints = (app, io) => {
       console.log(err)
     }
   });
+
   app.get(`${apiPath}/:pageId/image`, cors(corsOptions), (request, response) => {
     const pageId = request.params.pageId;
     const towerId = request.query.towerId;
@@ -139,15 +137,18 @@ const intelEndpoints = (app, io) => {
  ** ========================================== */
 const getTowerImages = (pageId, towerId) => {
   const dirName = `./images/${pageId}/${towerId}`;
+  let towerImages = [];
 
   if (fs.existsSync(dirName)) {
     const files = fs.readdirSync(dirName);
-    const towerImages = files.map((file) => {
+
+    towerImages = files.map((file) => {
       const fullPath = path.join(dirName, file);
       return fs.readFileSync(fullPath);
-    })
-    return {[towerId]: towerImages};
+    });
   }
+
+  return { [towerId]: towerImages };
 }
 
 const populateIntelImages = (dirName, images, towerIds) => {
@@ -162,11 +163,11 @@ const populateIntelImages = (dirName, images, towerIds) => {
         populateIntelImages(fullPath, images, towerIds);
       }
       else {
-        const formatedPathParts = fullPath.replace(/\\/g, "/").split("/");
+        const formatedPathParts = fullPath.replace(/\\/g, '/').split('/');
         const towerId = formatedPathParts[2];
         const teamIndex = formatedPathParts[3] - 1;
 
-        if (towerIds.includes(towerId)){
+        if (towerIds.includes(towerId)) {
           images[towerId] = images[towerId] || Array(2).fill('');
           images[towerId].splice(teamIndex, 1, fs.readFileSync(fullPath));
         }

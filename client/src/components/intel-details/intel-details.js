@@ -14,7 +14,6 @@ const IntelDetails = () => {
   const [intel, setIntel] = useState(null);
   const [password, setPassword] = useState('');
   const [forbidden, setForbidden] = useState(false);
-  const [towerImages, setTowerImages] = useState(null);
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -50,8 +49,7 @@ const IntelDetails = () => {
       const response = await intelGet(id);
 
       if (response.ok) {
-        const { intel, images } = await response.json();
-        setTowerImages(images);
+        const intel = await response.json();
         setIntel(intel);
         localStoragePushIntel();
         socket.emit('joinRoom', id);
@@ -96,9 +94,9 @@ const IntelDetails = () => {
 
   return (
     <div>
-      { passwordForm }
-      { forbidden ? <p>Forbidden</p> : null }
-      { intel ? <TowerList pageId={id} towerList={intel.data} towerImages={towerImages} /> : null }
+      { passwordForm}
+      { forbidden ? <p>Forbidden</p> : null}
+      { intel ? <TowerList pageId={id} towerList={intel.data} /> : null}
     </div>
   )
 }

@@ -26,6 +26,7 @@ const TeamImage = (props) => {
       const blob = new Blob([Int8Array.from(props.image.data)]);
       updateImageBox(blob, props.towerId, props.teamIndex);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.image]);
 
