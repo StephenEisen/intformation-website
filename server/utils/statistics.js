@@ -6,78 +6,89 @@ export async function getStatsData() {
 
   guildData.forEach(guild => {
     guild.data.forEach(data => {
+      // Get the characters for each team
       const team1Characters = data.characters.filter(c => c.team === 1);
       const team2Characters = data.characters.filter(c => c.team === 2);
 
       if (team1Characters.length == 3 && team2Characters.length == 3) {
+        // Build the team keys using the names and a delimeter
         const team1Key = team1Characters.map((c) => c.name).sort().join(':');
         const team2Key = team2Characters.map((c) => c.name).sort().join(':');
 
-        const teamObject1 = getTeamObject(team1Key, team1Characters, teamList);
-        const teamObject2 = getTeamObject(team2Key, team2Characters, teamList);
+        // Get a new or an existing team object from the team list data
+        // If a new one is returned, it will be pushed to the list.
+        const team1Object = getTeamObject(teamList, team1Key, team1Characters);
+        const team2Object = getTeamObject(teamList, team2Key, team2Characters);
 
-        setArtifactKey(teamObject1, team1Characters);
-        setArtifactKey(teamObject2, team2Characters);
+        // Populate the stats per artifact for a given character in each team.
+        populateArtifactData(team1Object, team1Characters);
+        populateArtifactData(team2Object, team2Characters);
       }
     });
   });
 
+  // Calculate the averages per artifact for each character in all the available teams.
   calculateAverages(teamList);
+
+  // Return a sorted list
   return teamList.sort((a, b) => b.pickRate - a.pickRate);
 }
 
-function calculateAverages(teamList){
+function calculateAverages(teamList) {
   teamList.forEach((teamData) => {
-    const teamKeys = Object.keys(teamData);
-    teamKeys.forEach((key) => {
-      if (typeof teamData[key] !== 'string' && Object.keys(teamData[key]).length > 0) {
-       const charactersKeys = Object.keys(teamData[key]);
-       charactersKeys.forEach((characterKey) => {
-         const artifactObject = teamData[key][characterKey];
-         artifactObject.hpAverage = artifactObject.hpAverage / artifactObject.hpCounter;
-         artifactObject.speedAverage = artifactObject.speedAverage / artifactObject.speedCounter;
-       })
+    const teamDataKeyList = Object.keys(teamData);
+
+    teamDataKeyList.forEach((dataKey) => {
+      if (typeof teamData[dataKey] !== 'string' && Object.keys(teamData[dataKey]).length > 0) {
+        const artifactKeyList = Object.keys(teamData[dataKey]);
+
+        artifactKeyList.forEach((artifactKey) => {
+          const artifactObject = teamData[dataKey][artifactKey];
+          artifactObject.hpAverage = artifactObject.hpAverage / artifactObject.hpCounter;
+          artifactObject.speedAverage = artifactObject.speedAverage / artifactObject.speedCounter;
+        });
       }
-    })
-  })
+    });
+  });
 }
 
-function setArtifactKey(teamObject, teamCharacters){
-  for (let i = 0; i < teamCharacters.length; i++){
-    const nameKey = teamCharacters[i].name;
-    const artifactKey = teamCharacters[i].artifact;
+function populateArtifactData(teamObject, teamCharacters) {
+  for (let i = 0; i < teamCharacters.length; i++) {
+    const character = teamCharacters[i];
+    const nameKey = character.name;
+    const artifactKey = character.artifact;
 
-    if (artifactKey){
-      if (!teamObject[nameKey][artifactKey]){
+    if (artifactKey) {
+      if (!teamObject[nameKey][artifactKey]) {
         teamObject[nameKey][artifactKey] = {
           hpAverage: 0,
           speedAverage: 0
         }
       }
 
-      teamObject[nameKey][artifactKey].artifactCounter = teamObject[nameKey][artifactKey].artifactCounter + 1 || 1;
-      calculateHpAverage(teamObject[nameKey][artifactKey], teamCharacters[i]);
-      calculateSpeedAverage( teamObject[nameKey][artifactKey], teamCharacters[i]);
+      const artifactObject = teamObject[nameKey][artifactKey];
+      artifactObject.artifactCounter = artifactObject.artifactCounter + 1 || 1;
+      sumHpAverage(artifactObject, character);
+      sumSpeedAverage(artifactObject, character);
     }
   }
 }
 
-function calculateHpAverage(artifactObject, character){
-  if (character.hp > 0){
+function sumHpAverage(artifactObject, character) {
+  if (character.hp > 0) {
     artifactObject.hpAverage = artifactObject.hpAverage + character.hp;
     artifactObject.hpCounter = artifactObject.hpCounter + 1 || 1;
   }
 }
 
-function calculateSpeedAverage(artifactObject, character){
-  if (character.minSpeed > 0 && character.maxSpeed > 0){
-    artifactObject.speedAverage = artifactObject.speedAverage +
-    (character.minSpeed + character.maxSpeed) / 2;
+function sumSpeedAverage(artifactObject, character) {
+  if (character.minSpeed > 0 && character.maxSpeed > 0) {
+    artifactObject.speedAverage = artifactObject.speedAverage + (character.minSpeed + character.maxSpeed) / 2;
     artifactObject.speedCounter = artifactObject.speedCounter + 1 || 1;
   }
 }
 
-function getTeamObject(teamKey, teamCharacters, teamList) {
+function getTeamObject(teamList, teamKey, teamCharacters) {
   let teamObject = teamList.find((team) => team.teamKey === teamKey);
 
   if (!teamObject) {

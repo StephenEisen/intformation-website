@@ -131,7 +131,6 @@ const intelEndpoints = (app, io) => {
   })
 }
 
-
 /** =============================================
  ** Helper functions
  ** ========================================== */
@@ -150,30 +149,5 @@ const getTowerImages = (pageId, towerId) => {
 
   return { [towerId]: towerImages };
 }
-
-const populateIntelImages = (dirName, images, towerIds) => {
-  if (fs.existsSync(dirName)) {
-    const files = fs.readdirSync(dirName);
-
-    files.forEach((file) => {
-      const fullPath = path.join(dirName, file);
-      const stats = fs.statSync(fullPath);
-
-      if (stats.isDirectory()) {
-        populateIntelImages(fullPath, images, towerIds);
-      }
-      else {
-        const formatedPathParts = fullPath.replace(/\\/g, '/').split('/');
-        const towerId = formatedPathParts[2];
-        const teamIndex = formatedPathParts[3] - 1;
-
-        if (towerIds.includes(towerId)) {
-          images[towerId] = images[towerId] || Array(2).fill('');
-          images[towerId].splice(teamIndex, 1, fs.readFileSync(fullPath));
-        }
-      }
-    });
-  }
-};
 
 export default intelEndpoints;
