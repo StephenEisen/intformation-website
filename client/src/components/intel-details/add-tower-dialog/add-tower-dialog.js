@@ -1,59 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { socket } from 'globals/socket';
+import { sanitizeInput } from 'globals/validation';
 import castle from 'assets/icons/castle2.png';
 import './add-tower-dialog.css';
 
 const AddTowerDialog = (props) => {
   const [towerName, setTowerName] = useState('');
-  const [errorStates, setErrorStates] = useState({});
-
-  useEffect(() => {
-    socket.on('addTowerError', setAddTowerError);
-
-    return () => {
-      socket.off('addTowerError', setAddTowerError);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const closeDialog = () => {
-    resetDialog();
+    setTowerName('');
     props.onClose();
   }
 
-  const resetDialog = () => {
-    setTowerName('');
-    setErrorStates({});
-  }
-
-  const setAddTowerError = () => {
-    setErrorStates({ towerName: !towerName || towerName === '' });
-  }
-
   const sendTowerData = () => {
-    if (towerName && towerName !== '') {
-      socket.emit('addTower', {
-        pageId: props.pageId,
-        towerIndex: props.towerIndex,
-        towerLocation: props.towerLocation,
-        towerName: towerName
-      });
-      closeDialog();
-    } else {
-      setAddTowerError();
-    }
+    const sanitizedTowerName = sanitizeInput(towerName);
+
+    socket.emit('addTower', {
+      pageId: props.pageId,
+      towerIndex: props.towerIndex,
+      towerLocation: props.towerLocation,
+      towerName: sanitizedTowerName
+    });
+
+    closeDialog();
   };
 
   const updateTowerName = (value) => {
-    if (value && value !== '') {
-      setErrorStates({ towerName: false });
-      setTowerName(value);
-    }
-  }
-
-  if (!props.visible) {
-    return null;
+    setTowerName(value);
   }
 
   return (
@@ -73,11 +46,16 @@ const AddTowerDialog = (props) => {
             <h2>Tower name (optional)</h2>
             <input
               type="text"
-              className={errorStates.towerName ? 'error' : ''}
               placeholder="Tower name"
               value={towerName}
               onChange={(e) => updateTowerName(e.target.value)}>
             </input>
+          </div>
+
+          {/* INFORMATION */}
+          <div className="add-tower-info">
+            <p>Choose an optional tower name. A default name will be assigned if one is not given.</p>
+            <p>You'll be able to edit the name on the tower details card itself afterwards.</p>
           </div>
 
           {/* ACTIONS */}

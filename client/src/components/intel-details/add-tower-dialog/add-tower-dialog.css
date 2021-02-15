@@ -45,23 +45,14 @@
   margin-right: 20px;
 }
 
-.add-tower-content .select-dropdown [class*="-control"] {
-  border-color: dimgray;
-}
-
-.add-tower-content .error.select-dropdown [class*="-control"] {
-  border-color: red;
-}
-
-.add-tower-name input.error {
-  border-color: red;
-}
-
 /* ========================
  * Data styles
  * ===================== */
+.add-tower-info {
+  margin-bottom: 50px;
+}
+
 .add-tower-header,
-.add-tower-location,
 .add-tower-name {
   margin-bottom: 50px;
 }
