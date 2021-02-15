@@ -1,5 +1,7 @@
 import React from 'react';
 import Select from 'react-select'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { socket } from 'globals/socket';
 import { CharacterImages } from 'globals/images';
 import { clone } from 'globals/utils';
@@ -104,14 +106,14 @@ class CharacterData extends React.Component {
     }
   }
 
-  editCharacter(event, isEditing) {
+  toggleEditCharacter(event, isEditing) {
     event.stopPropagation();
     this.props.editChange(isEditing);
   }
 
   render() {
     return (
-      <div className={`character-data-container ${this.props.isEditing ? 'character-edit' : ''}`} onClick={(e) => this.editCharacter(e, true)}>
+      <div className={`character-data-container ${this.props.isEditing ? 'character-edit' : ''}`} onClick={(e) => this.toggleEditCharacter(e, true)}>
         <div className="flex-container">
           {/* CHARACTER IMAGE */}
           <div className="character-selection-container">
@@ -148,7 +150,9 @@ class CharacterData extends React.Component {
         {/* CHARACTER INPUTS */}
         <div className="flex-container" hidden={!this.props.isEditing}>
           <div className="character-options flex-1">
-
+            <button className="center-underline-btn" onClick={(e) => this.toggleEditCharacter(e, false)}>
+              <FontAwesomeIcon icon={faLock} /> Close
+            </button>
           </div>
 
           {/* CHARACTER SELECTION AND ARTIFACT */}
