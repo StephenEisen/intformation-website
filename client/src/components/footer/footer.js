@@ -16,7 +16,7 @@ const Footer = () => {
   });
 
   const getRaviVersion = () => {
-    return (<><img className="ravi-slide-up" src={ravi} alt="" width="50px" /> v0.2</>);
+    return (<><img className="ravi-slide-up" src={ravi} alt="" width="50px" /> v0.3</>);
   }
 
   const getRegularSteve = () => {

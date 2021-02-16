@@ -11,15 +11,11 @@ class TowerList extends React.Component {
     this.state = {
       towerList: props.towerList,
       filteredTower: null,
-      filteredTowerId: null,
-      isScrollAtBottom: false
+      filteredTowerId: null
     };
   }
 
   componentDidMount() {
-    this.updateScrollAtBottom();
-    window.addEventListener("scroll", () => this.updateScrollAtBottom);
-
     socket.on("addTowerSuccess", (newTowerData) => this.addTower(newTowerData));
     socket.on("updateCharacterSuccess", (towerList) => this.towerListUpdate(towerList));
     socket.on("filterTowerSuccess", (towerList) => this.towerListUpdate(towerList));
@@ -29,12 +25,6 @@ class TowerList extends React.Component {
     socket.off("addTowerSuccess", (newTowerData) => this.addTower(newTowerData));
     socket.off("updateCharacterSuccess", (towerList) => this.towerListUpdate(towerList));
     socket.off("filterTowerSuccess", (towerList) => this.towerListUpdate(towerList));
-    window.removeEventListener("scroll", () => this.updateScrollAtBottom);
-  }
-
-  updateScrollAtBottom() {
-    const isAtBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 50;
-    this.setState({ isScrollAtBottom: isAtBottom });
   }
 
   addTower({ towerList, towerId }) {

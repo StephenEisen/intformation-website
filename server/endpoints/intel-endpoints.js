@@ -136,15 +136,17 @@ const intelEndpoints = (app, io) => {
  ** ========================================== */
 const getTowerImages = (pageId, towerId) => {
   const dirName = `./images/${pageId}/${towerId}`;
-  let towerImages = [];
+  let towerImages = Array(2).fill('');
 
   if (fs.existsSync(dirName)) {
     const files = fs.readdirSync(dirName);
 
-    towerImages = files.map((file) => {
-      const fullPath = path.join(dirName, file);
-      return fs.readFileSync(fullPath);
-    });
+    for (let i = 0; i < files.length; i++) {
+      const fullPath = path.join(dirName, files[i]);
+      const fullPathParts = fullPath.replace(/\\/g, '/').split('/');
+      const teamIndex = fullPathParts[3] - 1;
+      towerImages.splice(teamIndex, 1, fs.readFileSync(fullPath));
+    }
   }
 
   return { [towerId]: towerImages };

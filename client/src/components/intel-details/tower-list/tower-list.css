@@ -3,46 +3,11 @@
   transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.add-tower-btn {
-  position: fixed;
-  z-index: 25;
-  bottom: 125px;
-  width: 70px;
-  height: 70px;
-  cursor: pointer;
-  opacity: 0.8;
-  transition: 0.1s ease-out all;
-}
-
-.add-tower-btn:hover {
-  opacity: 1;
-}
-
 /* ========================
  * Mobile styles
  * ===================== */
-@media only screen and (max-width: 1280px) {
-  .add-tower-btn {
-    margin-left: -40px;
-  }
-
-  .fixed-bottom-btn {
-    bottom: 180px;
-  }
-}
-
 @media only screen and (max-width: 900px) {
   .tower-list {
     margin-top: -65px;
-  }
-
-  .add-tower-btn {
-    opacity: 1;
-    bottom: 40px;
-    right: 30px;
-  }
-
-  .fixed-bottom-btn {
-    bottom: 250px;
   }
 }

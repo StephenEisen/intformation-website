@@ -1,6 +1,6 @@
 {
   "name": "epic7gg-client",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
@@ -31,6 +31,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "chart.js": "^2.9.4",
+    "dompurify": "^2.2.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",

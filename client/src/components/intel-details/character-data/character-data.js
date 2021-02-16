@@ -1,8 +1,11 @@
 import React from 'react';
 import Select from 'react-select'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { socket } from 'globals/socket';
 import { CharacterImages } from 'globals/images';
 import { clone } from 'globals/utils';
+import { sanitizeObject } from 'globals/validation';
 import hp from 'assets/icons/hp.png';
 import speed from 'assets/icons/speed.png';
 import artifact from 'assets/icons/artifact.png';
@@ -31,6 +34,8 @@ class CharacterData extends React.Component {
   }
 
   emitCharacterData() {
+    const sanitizedState = sanitizeObject(this.state);
+
     socket.emit('updateCharacter', {
       pageId: this.props.pageId,
       team: this.props.teamIndex,
@@ -38,8 +43,10 @@ class CharacterData extends React.Component {
       towerLocation: this.props.towerData.location,
       towerName: this.props.towerData.name,
       characterIndex: this.props.characterIndex,
-      ...this.state
+      ...sanitizedState
     });
+
+    this.setState({ ...sanitizedState });
   }
 
   getCharacterImage() {
@@ -99,14 +106,14 @@ class CharacterData extends React.Component {
     }
   }
 
-  editCharacter(event, isEditing) {
+  toggleEditCharacter(event, isEditing) {
     event.stopPropagation();
     this.props.editChange(isEditing);
   }
 
   render() {
     return (
-      <div className={`character-data-container ${this.props.isEditing ? 'character-edit' : ''}`} onClick={(e) => this.editCharacter(e, true)}>
+      <div className={`character-data-container ${this.props.isEditing ? 'character-edit' : ''}`} onClick={(e) => this.toggleEditCharacter(e, true)}>
         <div className="flex-container">
           {/* CHARACTER IMAGE */}
           <div className="character-selection-container">
@@ -143,7 +150,9 @@ class CharacterData extends React.Component {
         {/* CHARACTER INPUTS */}
         <div className="flex-container" hidden={!this.props.isEditing}>
           <div className="character-options flex-1">
-
+            <button className="center-underline-btn" onClick={(e) => this.toggleEditCharacter(e, false)}>
+              <FontAwesomeIcon icon={faLock} /> Close
+            </button>
           </div>
 
           {/* CHARACTER SELECTION AND ARTIFACT */}
