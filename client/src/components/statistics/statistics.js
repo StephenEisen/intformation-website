@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { CharacterImages } from "globals/images.js";
 import { webserver } from "globals/socket.js";
-import StatsChart from "./stats-chart/stats-chart.js";
 import "./statistics.css";
+import CharacterStats from "./character-stats/character-stats.js";
 
 const Statistics = () => {
   const [totalGuilds, setTotalGuilds] = useState(0);
-  const [mostUsed, setMostUsed] = useState([]);
+  const [teamData, setTeamData] = useState([]);
+  const [selectedTeamIndex, setSelectedTeamIndex] = useState(0);
 
   const getTotalGuilds = async () => {
     const response = await fetch(`${webserver}/api/statistics/total-intels`);
@@ -14,164 +14,46 @@ const Statistics = () => {
     setTotalGuilds(data.totalGuilds);
   };
 
-  const getMostUsed = async () => {
+  const getData = async () => {
     const response = await fetch(
       `${webserver}/api/statistics/most-frequently-used`
     );
     const data = await response.json();
-    setMostUsed(data);
+    setTeamData(data);
   };
 
-  const getMostUsedImage = (characterIndex, teamIndex) => {
-    if (mostUsed.length > 0) {
-      return mostUsed[teamIndex].teamKey.split(":")[characterIndex];
-    }
-    return "Enott";
-  };
+  const onTeamClick = (teamKey) => {
+    const teamIndex = teamData.findIndex(team => team.teamKey === teamKey);
+    setSelectedTeamIndex(teamIndex);
+  }
 
   useEffect(() => {
     getTotalGuilds();
-    getMostUsed();
+    getData();
   }, []);
 
   return (
     <div className="statistics-container">
       <h1>Total Number of Guilds Analyzed: {totalGuilds}</h1>
 
-      <p>Most Used Defence :</p>
-      <div className="row">
-        <div className="column">
-          <img
-            alt=""
-            width="62"
-            height="62"
-            src={CharacterImages[getMostUsedImage(0, 0)]}
-          />
-          <p>{getMostUsedImage(0, 0)}</p>
-        </div>
-
-        <div className="column">
-          <img
-            alt=""
-            width="62"
-            height="62"
-            src={CharacterImages[getMostUsedImage(1, 0)]}
-          />
-          <p>{getMostUsedImage(1, 0)}</p>
-        </div>
-        <div className="column">
-          <img
-            alt=""
-            width="62"
-            height="62"
-            src={CharacterImages[getMostUsedImage(2, 0)]}
-          />
-          <p>{getMostUsedImage(2, 0)}</p>
-        </div>
-      </div>
-
-      {/* pass in whatever the most commonly used units for that given time period are */}
-      <div className="first-most-used slider-left slide-in">
-        <div>
-          <h2>Most Commonly Used Stats On: {getMostUsedImage(0, 0)}</h2>
-          <p className="statistics-slide-up-artifact statistics-slide-stats">
-            Artifact: {"Artifact"}{" "}
-          </p>
-          <p className="statistics-slide-up-hp statistics-slide-stats">
-            Hp: {"435345"}{" "}
-          </p>
-          <p className="statistics-slide-up-speed statistics-slide-stats">
-            Speed: {"1447"}{" "}
-          </p>
-          <p className="statistics-slide-up-gear statistics-slide-stats">
-            LifeSteal ? Counter ? | null
-          </p>
-        </div>
-        <div>
-          <StatsChart index={0} characterStats={mostUsed[0]} />
-        </div>
-      </div>
-
-      <div className="second-most-used slider-right slide-in">
-        <div>
-          <StatsChart index={1} characterStats={mostUsed[0]} />
-        </div>
-        <div>
-          <h2>Most Commonly Used Stats On: {getMostUsedImage(1, 0)}</h2>
-          <p className="statistics-slide-up-artifact statistics-slide-stats">
-            Artifact: {"Artifact"}{" "}
-          </p>
-          <p className="statistics-slide-up-hp statistics-slide-stats">
-            Hp: {"435345"}{" "}
-          </p>
-          <p className="statistics-slide-up-speed statistics-slide-stats">
-            Speed: {"1447"}{" "}
-          </p>
-          <p className="statistics-slide-up-gear statistics-slide-stats">
-            LifeSteal ? Counter ? | null
-          </p>
-        </div>
-      </div>
-
-      <div className="third-most-used slider-left slide-in">
-        <div>
-          <h2>Most Commonly Used Stats On: {getMostUsedImage(2, 0)}</h2>
-          <p className="statistics-slide-up-artifact statistics-slide-stats">
-            Artifact: {"Artifact"}{" "}
-          </p>
-          <p className="statistics-slide-up-hp statistics-slide-stats">
-            Hp: {"435345"}{" "}
-          </p>
-          <p className="statistics-slide-up-speed statistics-slide-stats">
-            Speed: {"1447"}{" "}
-          </p>
-          <p className="statistics-slide-up-gear statistics-slide-stats">
-            LifeSteal ? Counter ? | null
-          </p>
-        </div>
-        <div>
-          <StatsChart index={2} characterStats={mostUsed[0]} />
-        </div>
-      </div>
-
-      <h3>More Defences</h3>
+      {teamData.length > 0 ?
+        <CharacterStats
+          hidden={false}
+          showStats={true}
+          teamData={teamData[selectedTeamIndex]}/>
+        : null}
       <div className="container">
-        <ul>
-          {mostUsed.slice(1).map((team, index) => (
-            <li key={index}>
-              <div className="row">
-                <div className="column">
-                  <img
-                    alt=""
-                    width="62"
-                    height="62"
-                    src={CharacterImages[getMostUsedImage(0, index + 1)]}
-                  />
-                  <p>{getMostUsedImage(0, index + 1)}</p>
-                </div>
-
-                <div className="column">
-                  <img
-                    alt=""
-                    width="62"
-                    height="62"
-                    src={CharacterImages[getMostUsedImage(1, index + 1)]}
-                  />
-                  <p>{getMostUsedImage(1, index + 1)}</p>
-                </div>
-                <div className="column">
-                  <img
-                    alt=""
-                    width="62"
-                    height="62"
-                    src={CharacterImages[getMostUsedImage(2, index + 1)]}
-                  />
-                  <p>{getMostUsedImage(2, index + 1)}</p>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+      <h3>More Defences</h3>
+        {teamData.length > 0 ?
+          teamData.map((value, index) => (
+            <CharacterStats
+              key={index}
+              onTeamClick={onTeamClick}
+              hidden={selectedTeamIndex===index}
+              showStats={false}
+              teamData={teamData[index]}/>
+          ))
+          : null}
       </div>
     </div>
   );

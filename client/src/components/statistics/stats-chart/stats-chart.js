@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 import Chart from "chart.js";
 
 class StatsChart extends React.Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.chartRef = React.createRef();
+    this.state = {
+      artifactData: this.props.artifactData,
+    };
   }
 
   componentDidMount() {
@@ -13,45 +15,24 @@ class StatsChart extends React.Component {
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["artifact1", "artifact2", "artifact3", "artifact4"],
+        labels: Object.keys(this.state.artifactData),
         datasets: [
           {
             yAxisID: "A",
             label: "HP",
-            data: [10000, 8000, 5000, 3000],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 99, 132, 0.2)'
-          ],
-          borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(255, 99, 132, 1)',
-              'rgba(255, 99, 132, 1)',
-              'rgba(255, 99, 132, 1)'
-          ],
-          borderWidth: 1
+            data: this.getAverages("hpAverage"),
+            backgroundColor: this.getColors("rgba(255, 99, 132, 0.2)"),
+            borderColor: this.getColors("rgba(255, 99, 132, 1)"),
+            borderWidth: 1,
           },
           {
             yAxisID: "B",
             label: "Speed",
-            data: [100, 200, 150, 300],
-            backgroundColor: [
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(153, 102, 255, 0.2)'
-          ],
-          borderColor: [
-              'rgba(153, 102, 255, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(153, 102, 255, 1)'
-          ],
-          borderWidth: 1
+            data: this.getAverages("speedAverage"),
+            backgroundColor: this.getColors("rgba(153, 102, 255, 0.2)"),
+            borderColor: this.getColors("rgba(153, 102, 255, 1)"),
+            borderWidth: 1,
           },
-
         ],
       },
       options: {
@@ -64,25 +45,38 @@ class StatsChart extends React.Component {
               type: "linear",
               positon: "left",
               ticks: {
-                beginAtZero: true
-              }
+                beginAtZero: true,
+              },
             },
             {
               id: "B",
               type: "linear",
               position: "right",
               ticks: {
-                beginAtZero: true
-              }
+                beginAtZero: true,
+              },
             },
           ],
         },
       },
     });
-  };
+  }
+
+  getAverages(averageKey) {
+    const averages = [];
+    for (const key in this.state.artifactData) {
+      averages.push(this.state.artifactData[key][averageKey]);
+    }
+    return averages.sort((a, b) => b - a);
+  }
+
+  getColors(color) {
+    const numArtifacts = Object.keys(this.state.artifactData).length;
+    return Array(numArtifacts).fill(color);
+  }
 
   render() {
-    return  <canvas width="100%" height="300px" ref={this.chartRef}></canvas>
+    return <canvas width="100%" height="300px" ref={this.chartRef}></canvas>;
   }
 }
 

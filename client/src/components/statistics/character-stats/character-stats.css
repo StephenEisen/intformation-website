@@ -1,0 +1,12 @@
+.character-stats-row {
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+.character-stats-row:hover {
+  background-color: var(--purple-color);
+}
+
+.character-stats-reverse-grid {
+ direction: rtl;
+}
