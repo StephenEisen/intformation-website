@@ -7,6 +7,7 @@ import * as queries from '../mongodb/queries.js';
 import * as passwords from '../utils/passwords.js';
 
 const apiPath = '/api/intel';
+const upload = multer({limits: {fileSize: 10e6}})
 
 /**
  * ALl endpoints defined for the intel page.
@@ -102,7 +103,7 @@ const intelEndpoints = (app, io) => {
    * TODO: Check if image is appropriate before saving.
    */
   app.options(`${apiPath}/:pageId/image`, cors(corsOptions));
-  app.post(`${apiPath}/:pageId/image`, cors(corsOptions), multer().single('uploadedImage'), async (request, response) => {
+  app.post(`${apiPath}/:pageId/image`, cors(corsOptions), upload.single('uploadedImage'), async (request, response) => {
     try {
       const pageId = request.params.pageId;
       const towerId = request.query.towerId;
