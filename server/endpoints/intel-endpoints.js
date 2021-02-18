@@ -3,6 +3,7 @@ import path from 'path';
 import cors from 'cors';
 import multer from 'multer';
 import { corsOptions } from './index.js';
+import { uploadImageToS3 } from '../aws/s3.js';
 import * as queries from '../mongodb/queries.js';
 import * as passwords from '../utils/passwords.js';
 
@@ -107,16 +108,15 @@ const intelEndpoints = (app, io) => {
     try {
       const pageId = request.params.pageId;
       const towerId = request.query.towerId;
-      const teamIndex = request.query.teamIndex;
+      const teamIndex = Number(request.query.teamIndex);
 
-      await fs.promises.mkdir(`./images/${pageId}/${towerId}`, { recursive: true });
-      fs.writeFileSync(`./images/${pageId}/${towerId}/${teamIndex}`, request.file.buffer);
-
-      io.sockets.to(pageId).emit('imageUploadSuccess', {
-        file: request.file,
-        towerId: towerId,
-        teamIndex: Number(teamIndex)
-      });
+      try {
+        const imagePath = await uploadImageToS3(pageId, towerId, teamIndex, request.file);
+        const imageData = { imagePath, towerId, teamIndex };
+        io.sockets.to(pageId).emit('imageUploadSuccess', imageData);
+      } catch (e) {
+        io.sockets.to(pageId).emit('imageUploadError', 'Error uploading image');
+      }
 
       response.status(204).send();
     } catch (err) {
