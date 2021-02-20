@@ -112,7 +112,6 @@ const TowerMap = (props) => {
       {
         addTowerDialogVisible && currentTowerIndex >= 0
           ? <AddTowerDialog
-            visible={addTowerDialogVisible}
             pageId={props.pageId}
             towerIndex={currentTowerIndex}
             towerLocation={currentLocation}

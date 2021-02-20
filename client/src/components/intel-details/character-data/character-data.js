@@ -6,6 +6,7 @@ import { socket } from 'globals/socket';
 import { CharacterImages } from 'globals/images';
 import { clone } from 'globals/utils';
 import { sanitizeObject } from 'globals/validation';
+import SpeedCalcDialog from '../speed-calc-dialog/speed-calc-dialog.js';
 import hp from 'assets/icons/hp.png';
 import speed from 'assets/icons/speed.png';
 import artifact from 'assets/icons/artifact.png';
@@ -29,7 +30,8 @@ class CharacterData extends React.Component {
       notes: props.character.notes || '',
       counter: props.character.counter || false,
       lifesteal: props.character.lifesteal || false,
-      immunity: props.character.immunity || false
+      immunity: props.character.immunity || false,
+      isSpeedCalcVisible: false
     };
   }
 
@@ -106,6 +108,17 @@ class CharacterData extends React.Component {
     }
   }
 
+  toggleSpeedCalculationDialog = (isVisible) => {
+    this.setState({isSpeedCalcVisible: isVisible});
+  }
+
+  updateSpeedFromCalculation = (minSpeed, maxSpeed) => {
+    this.toggleSpeedCalculationDialog(false);
+    if (minSpeed > 0 && maxSpeed > 0){
+      this.setState({minSpeed, maxSpeed}, () => this.emitCharacterData());
+    }
+  }
+
   toggleEditCharacter(event, isEditing) {
     event.stopPropagation();
     this.props.editChange(isEditing);
@@ -119,6 +132,15 @@ class CharacterData extends React.Component {
           <div className="character-selection-container">
             <img src={this.getCharacterImage()} alt="Character" />
           </div>
+
+          {/* CALCULATE SPEED*/}
+          {
+            this.state.isSpeedCalcVisible
+              ? <SpeedCalcDialog
+                onClose={() => this.toggleSpeedCalculationDialog(false)}
+              />
+              : null
+          }
 
           {/* CHARACTER STAT LABELS */}
           <div className="character-stats-labels">
@@ -238,6 +260,9 @@ class CharacterData extends React.Component {
                     onChange={(e) => this.updateCharacterData('maxSpeed', e.target.value)}
                     onBlur={() => this.emitCharacterData()}>
                   </input>
+                </div>
+                <div className="flex-1">
+                  <button onClick={() => this.toggleSpeedCalculationDialog(true)}>Calculate</button>
                 </div>
               </div>
 
