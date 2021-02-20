@@ -17,27 +17,31 @@ class TowerList extends React.Component {
 
   componentDidMount() {
     socket.on("addTowerSuccess", (newTowerData) => this.addTower(newTowerData));
-    socket.on("updateCharacterSuccess", (towerList) => this.towerListUpdate(towerList));
-    socket.on("filterTowerSuccess", (towerList) => this.towerListUpdate(towerList));
+    socket.on("updateCharacterSuccess", (towerData) => this.towerListUpdate(towerData));
+    socket.on("filterTowerSuccess", (towerData) => this.towerListUpdate(towerData));
   }
 
   componentWillUnmount() {
     socket.off("addTowerSuccess", (newTowerData) => this.addTower(newTowerData));
-    socket.off("updateCharacterSuccess", (towerList) => this.towerListUpdate(towerList));
-    socket.off("filterTowerSuccess", (towerList) => this.towerListUpdate(towerList));
+    socket.off("updateCharacterSuccess", (towerData) => this.towerListUpdate(towerData));
+    socket.off("filterTowerSuccess", (towerData) => this.towerListUpdate(towerData));
   }
 
-  addTower({ towerList, towerId }) {
-    const newFilteredTower = towerList.find((tower) => tower._id === towerId);
+  addTower({ towerList, towerLocation, towerId }) {
+    const newFilteredTower = towerList[towerLocation].find((tower) => tower._id === towerId);
     this.setState({ towerList: towerList, filteredTower: newFilteredTower, filteredTowerId: towerId });
   }
 
-  async towerListUpdate(updatedTowerList) {
-    const newFilteredTower = updatedTowerList.find((tower) => tower._id === this.state.filteredTowerId);
-    this.setState({ towerList: updatedTowerList, filteredTower: newFilteredTower });
+  towerListUpdate({ towerList, towerLocation }) {
+    if (towerLocation && towerLocation !== 'All') {
+      const filteredTower = towerList[towerLocation].find((tower) => tower._id === this.state.filteredTowerId);
+      this.setState({ filteredTower });
+    } else {
+      this.setState({ towerList, filteredTower: null });
+    }
   }
 
-  onTowerChange(towerId) {
+  onTowerChange(towerLocation, towerId) {
     /**
      * Need to emit instead of filtering on client. If you filter by towerList on the UI then
      * any changes the user makes to a character will be lost when they change to a different
@@ -45,7 +49,9 @@ class TowerList extends React.Component {
      * need to broadcast so the client doesn't lose focus when switching to a different input).
      * Thus, the "towerListUpdate" is never called. This solution seems to work pretty well.
      */
-    this.setState({ filteredTowerId: towerId }, () => socket.emit("filterTower", this.props.pageId));
+    this.setState({ filteredTowerId: towerId }, () => {
+      socket.emit("filterTower", { pageId: this.props.pageId, towerLocation: towerLocation });
+    });
   }
 
   render() {
@@ -55,7 +61,7 @@ class TowerList extends React.Component {
         <TowerMap
           pageId={this.props.pageId}
           towerList={this.state.towerList}
-          onTowerChange={(towerId) => this.onTowerChange(towerId)}
+          onTowerChange={(towerLocation, towerId) => this.onTowerChange(towerLocation, towerId)}
           onAddTower={(towerLocation, towerIndex) => this.onAddTower(towerLocation, towerIndex)}
         />
 

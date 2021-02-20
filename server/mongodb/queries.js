@@ -8,13 +8,19 @@ export async function findIntel(pageId) {
 export async function createIntel() {
   const newData = new GuildData({
     pageId: Math.random().toString(36).slice(2),
-    data: Array(9).fill({})
+    createdDate: new Date(),
+    towerList: {
+      'Stronghold': {},
+      'Bronze Fortress': Array(9).fill({}),
+      'Silver Fortress': Array(9).fill({}),
+      'Dalberg Fortress': Array(9).fill({})
+    }
   });
   return newData.save();
 }
 
-export async function updateTowerName(towerData) {
-  const queryKey = `data.${towerData.towerIndex}`;
+export async function addTower(towerData) {
+  const setQueryKey = `towerList.${towerData.towerLocation}.${towerData.towerIndex}`;
 
   const newTowerName = towerData.towerName && towerData.towerName.replace(/\s/g, '').length > 0
     ? towerData.towerName
@@ -26,7 +32,7 @@ export async function updateTowerName(towerData) {
     },
     {
       $set: {
-        [queryKey]: {
+        [setQueryKey]: {
           location: towerData.towerLocation,
           name: newTowerName,
           characters: Array(6).fill({})
@@ -41,16 +47,18 @@ export async function updateTowerName(towerData) {
 }
 
 export async function updateCharacter(characterData) {
-  const queryKey = `data.$.characters.${characterData.characterIndex}`;
+  const towerLocation = characterData.towerLocation;
+  const findQueryKey = `towerList.${towerLocation}._id`;
+  const setQueryKey = `towerList.${towerLocation}.$.characters.${characterData.characterIndex}`;
 
   return GuildData.findOneAndUpdate(
     {
       pageId: characterData.pageId,
-      'data._id': characterData.towerId
+      [findQueryKey]: characterData.towerId
     },
     {
       $set: {
-        [queryKey]: {
+        [setQueryKey]: {
           team: characterData.team,
           name: characterData.name,
           hp: characterData.hp,
