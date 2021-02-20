@@ -63,72 +63,59 @@ const SpeedCalcDialog = (props) => {
   }
 
   return (
-    <div className="add-tower-dialog">
-      <div className="add-tower-modal">
-        <div className="add-tower-content">
+    <div className="speed-calc-dialog">
+      <div className="speed-calc-modal">
+        <div className="speed-calc-content">
           {/* HEADER */}
-          <div className="add-tower-header">
+          <div className="speed-calc-header">
             <h1>Calculate Speed</h1>
           </div>
 
           {/* NAME */}
-          <div className="add-tower-name">
-            <span>Enter your units speed</span>
+          <span className="speed-calc-unit-cr">
             <input
               type="number"
-              placeholder="Speed"
-              value={characterSpeed}
+              placeholder="Enter your units speed"
               onChange={(e) => updateCharacterSpeed(e.target.value)}
             ></input>
-          </div>
 
-          <div className="add-tower-name">
-            <span>Enter the targets CR</span>
             <input
               type="number"
-              placeholder="CR"
-              value={targetCR}
+              placeholder="Enter the targets CR"
               onChange={(e) => updateTargetCR(e.target.value)}
             ></input>
-          </div>
+          </span>
 
           <div className="add-tower-name">
-            <span>Did the target take a turn?</span>
             <label>
+            Did the target take a turn?
               <input
                 type="checkbox"
-                value={targetTurnTaken}
                 onChange={(e) => updateTargetTurnTaken(e.target.checked)}
               ></input>
             </label>
           </div>
 
           <div className="add-tower-name">
-            <span>Did your unit get pushed back?</span>
             <input
               type="number"
-              placeholder="CR Pushed back"
-              value={characterCRPushBack}
+              placeholder="Did your unit get pushed back?"
               onChange={(e) => updateCharacterCRPushBack(e.target.value)}
             ></input>
           </div>
 
           <div className="add-tower-name">
-            <span>Did your unit get pushed forward?</span>
             <input
               type="number"
-              placeholder="CR Push"
-              value={characterCRPush}
+              placeholder="Did your unit get pushed forward?"
               onChange={(e) => updateCharacterCRPush(e.target.value)}
             ></input>
           </div>
 
           <div className="add-tower-name">
-            <span>Did the target get pushed forward?</span>
             <input
               type="number"
-              placeholder="Target CR Push"
-              value={targetCRPush}
+              placeholder="Did the target get pushed forward?"
               onChange={(e) => updateTargetCRPush(e.target.value)}
             ></input>
           </div>
