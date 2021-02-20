@@ -23,10 +23,10 @@ const Footer = () => {
     return (
       <>
         <div className="footer-subtext">Developed by </div>
-        <a href="/">
+        <div>
           <span className="footer-name-first">REGULAR</span>
           <span className="footer-name-second">STEVE</span>
-        </a>
+        </div>
       </>
     )
   }

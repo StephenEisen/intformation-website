@@ -35,10 +35,10 @@ const Navbar = () => {
       <nav className={`navbar ${isNavbarOpen ? 'hamburger-open' : 'hamburger-closed'}`}>
         <div className="navbar-logo">
           <img src={logo} alt="IntFormation" />
-          <a href="/">
+          <div className="navbar-logo-text">
             <div className="navbar-title-first">Epic7</div>
             <div className="navbar-title-second">Intel</div>
-          </a>
+          </div>
         </div>
 
         <div className="navbar-menu" onClick={() => toggleMobileNavBar()}></div>

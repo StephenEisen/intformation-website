@@ -52,7 +52,7 @@
   height: 200px;
 }
 
-.navbar-logo a {
+.navbar-logo-text {
   text-decoration: none;
   color: #20232a;
   font-size: 1.7rem;
@@ -62,7 +62,7 @@
 }
 
 .navbar-title-first {
-  color: #a992fa;
+  color: #ff84e9;
   margin-right: 10px;
 }
 
@@ -150,7 +150,7 @@
     top: 10px;
   }
 
-  .navbar-logo a {
+  .navbar-logo-text {
     float: left;
     margin-left: 20px;
     margin-top: 20px;
