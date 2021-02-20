@@ -14,7 +14,7 @@ class TowerData extends React.Component {
       characterOptions: clone(characters),
       selectedCharacters: Array(6).fill(null),
       isEditingList: Array(6).fill(false),
-      towerImages: []
+      towerImages: {}
     };
   }
 
@@ -85,7 +85,7 @@ class TowerData extends React.Component {
 
     if (towerImages && towerImages[this.props.towerData._id]) {
       const index = teamIndex - 1 >= 0 ? teamIndex - 1 : 0;
-      return towerImages[this.props.towerData._id][index];
+      return towerImages[this.props.towerData._id][index].imagePath;
     }
   }
 

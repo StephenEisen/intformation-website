@@ -9,7 +9,10 @@ class TeamImage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { imageUploaded: false };
+    this.state = {
+      imageSource: '',
+      imageUploaded: false
+    };
 
     this.imageBoxRef = React.createRef(null);
     this.inputFileRef = React.createRef(null);
@@ -21,15 +24,24 @@ class TeamImage extends React.Component {
     socket.on("imageUploadSuccess", (response) => this.updateImage(response));
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.image !== prevProps.image) {
+      this.updateImage({
+        imagePath: this.props.image,
+        towerId: this.props.towerId,
+        teamIndex: this.props.teamIndex
+      });
+    }
+  }
+
   componentWillUnmount() {
     socket.off("imageUploadSuccess", (response) => this.updateImage(response));
   }
 
   updateImage({ imagePath, towerId, teamIndex }) {
-    if (towerId === this.props.towerId && teamIndex === this.props.teamIndex) {
-      this.imageBoxRef.current.src = imagePath;
+    if (imagePath && towerId === this.props.towerId && teamIndex === this.props.teamIndex) {
       this.imageBoxRef.current.style.display = 'block';
-      this.setState({ imageUploaded: true });
+      this.setState({ imageSource: imagePath, imageUploaded: true });
     }
   }
 
@@ -96,13 +108,13 @@ class TeamImage extends React.Component {
         }
 
         <div className="uploaded-image">
-          <img ref={this.imageBoxRef} alt="" onClick={(e) => this.handleImageClick(e)}></img>
+          <img ref={this.imageBoxRef} src={this.state.imageSource} alt="" onClick={(e) => this.handleImageClick(e)}></img>
         </div>
 
         <div ref={this.imageDialogRef} className="image-modal" onClick={this.stopEvents}>
           <span className="image-close" onClick={() => this.closeModal()}>&times;</span>
           <div className="modal-image-container">
-            <img ref={this.fullImageRef} className="modal-image" alt="" />
+            <img ref={this.fullImageRef} src={this.state.imageSource} className="modal-image" alt="" />
           </div>
         </div>
 

@@ -1,14 +1,12 @@
-import fs from 'fs';
-import path from 'path';
 import cors from 'cors';
 import multer from 'multer';
 import { corsOptions } from './index.js';
-import { uploadImageToS3 } from '../aws/s3.js';
+import { getImagesFromS3, uploadImageToS3 } from '../aws/s3.js';
 import * as queries from '../mongodb/queries.js';
 import * as passwords from '../utils/passwords.js';
 
 const apiPath = '/api/intel';
-const upload = multer({limits: {fileSize: 10e6}})
+const upload = multer({ limits: { fileSize: 10e6 } })
 
 /**
  * ALl endpoints defined for the intel page.
@@ -124,33 +122,13 @@ const intelEndpoints = (app, io) => {
     }
   });
 
-  app.get(`${apiPath}/:pageId/image`, cors(corsOptions), (request, response) => {
+  app.get(`${apiPath}/:pageId/image`, cors(corsOptions), async (request, response) => {
     const pageId = request.params.pageId;
     const towerId = request.query.towerId;
-    const images = getTowerImages(pageId, towerId);
-    return response.status(200).send(images);
+    const images = await getImagesFromS3(pageId, towerId);
+
+    response.status(200).send(images);
   })
-}
-
-/** =============================================
- ** Helper functions
- ** ========================================== */
-const getTowerImages = (pageId, towerId) => {
-  const dirName = `./images/${pageId}/${towerId}`;
-  let towerImages = Array(2).fill('');
-
-  if (fs.existsSync(dirName)) {
-    const files = fs.readdirSync(dirName);
-
-    for (let i = 0; i < files.length; i++) {
-      const fullPath = path.join(dirName, files[i]);
-      const fullPathParts = fullPath.replace(/\\/g, '/').split('/');
-      const teamIndex = fullPathParts[3] - 1;
-      towerImages.splice(teamIndex, 1, fs.readFileSync(fullPath));
-    }
-  }
-
-  return { [towerId]: towerImages };
 }
 
 export default intelEndpoints;
