@@ -113,10 +113,10 @@ class CharacterData extends React.Component {
   }
 
   updateSpeedFromCalculation = (minSpeed, maxSpeed) => {
-    this.toggleSpeedCalculationDialog(false);
     if (minSpeed > 0 && maxSpeed > 0){
       this.setState({minSpeed, maxSpeed}, () => this.emitCharacterData());
     }
+    this.toggleSpeedCalculationDialog(false);
   }
 
   toggleEditCharacter(event, isEditing) {
@@ -137,7 +137,7 @@ class CharacterData extends React.Component {
           {
             this.state.isSpeedCalcVisible
               ? <SpeedCalcDialog
-                onClose={() => this.toggleSpeedCalculationDialog(false)}
+                onClose={(a, b) => this.updateSpeedFromCalculation(a, b)}
               />
               : null
           }
