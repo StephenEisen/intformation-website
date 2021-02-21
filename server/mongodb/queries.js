@@ -79,12 +79,6 @@ export async function updateCharacter(characterData) {
   );
 }
 
-// The stackoverflow masterminds say this may not be efficeint
-export async function countTotalGuilds() {
-  const result = await GuildData.find({ $where: "this.data.length >= 5" });
-  return result.length;
-}
-
 export async function findIntelPassword(pageId) {
   const intelPassword = await IntelPassword.findOne({ pageId: pageId });
   return intelPassword;
