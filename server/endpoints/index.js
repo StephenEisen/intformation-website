@@ -1,4 +1,5 @@
 import bodyParser from 'body-parser';
+import sessionEndpoints from './session-endpoints.js'
 import intelEndpoints from './intel-endpoints.js';
 import statisticsEndpoints from './statistics-endpoints.js';
 import { origin } from '../utils/constants.js';
@@ -19,6 +20,7 @@ const endpoints = (app, io) => {
   // Endpoints
   intelEndpoints(app, io);
   statisticsEndpoints(app);
+  sessionEndpoints(app, io);
 }
 
 export default endpoints;
