@@ -2,6 +2,12 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
+const ChangeLogSchema = new Schema({
+  user: String,
+  timestamp: Date,
+  content: String
+});
+
 const CharacterSchema = new Schema({
   team: Number,
   name: String,
@@ -15,10 +21,23 @@ const CharacterSchema = new Schema({
   lifesteal: Boolean
 });
 
+const CharactersUsed = new Schema({
+  name: [String],
+  wonBattle: Boolean
+});
+
 const TowerSchema = new Schema({
   location: String,
   name: String,
-  characters: [CharacterSchema]
+  characters: [CharacterSchema],
+  charactersUsed: [CharactersUsed]
+});
+
+const TowerListSchema = new Schema({
+  'Stronghold': [TowerSchema],
+  'Bronze Fortress': [TowerSchema],
+  'Silver Fortress': [TowerSchema],
+  'Dalberg Fortress': [TowerSchema]
 });
 
 const GuildDataSchema = new Schema(
@@ -27,8 +46,9 @@ const GuildDataSchema = new Schema(
       type: String,
       unique: true
     },
-    data: [TowerSchema],
-    createdDate: Date
+    createdDate: Date,
+    changelog: ChangeLogSchema,
+    towerList: TowerListSchema
   },
 );
 

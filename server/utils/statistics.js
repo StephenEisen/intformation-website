@@ -2,36 +2,53 @@ import GuildData from '../mongodb/guild-data.js'
 
 export async function getStatsData() {
   const teamList = [];
-  const guildData = await GuildData.find({ $where: "this.data.length >= 5" });
+  const guildData = await GuildData.find();
+  let totalGuildsAnalyzed = 0;
 
   guildData.forEach(guild => {
-    guild.data.forEach(data => {
-      // Get the characters for each team
-      const team1Characters = data.characters.filter(c => c.team === 1);
-      const team2Characters = data.characters.filter(c => c.team === 2);
+    const towerList = [
+      ...guild.towerList['Stronghold'],
+      ...guild.towerList['Bronze Fortress'],
+      ...guild.towerList['Silver Fortress'],
+      ...guild.towerList['Dalberg Fortress']
+    ];
 
-      if (team1Characters.length == 3 && team2Characters.length == 3) {
-        // Build the team keys using the names and a delimeter
-        const team1Key = team1Characters.map((c) => c.name).sort().join(':');
-        const team2Key = team2Characters.map((c) => c.name).sort().join(':');
-
-        // Get a new or an existing team object from the team list data
-        // If a new one is returned, it will be pushed to the list.
-        const team1Object = getTeamObject(teamList, team1Key, team1Characters);
-        const team2Object = getTeamObject(teamList, team2Key, team2Characters);
-
-        // Populate the stats per artifact for a given character in each team.
-        populateArtifactData(team1Object, team1Characters);
-        populateArtifactData(team2Object, team2Characters);
-      }
+    const towersToAnalyze = towerList.filter((tower) => {
+      const hasCharacterNames = tower.characters.length > 0 && tower.characters.every((character) => character.name);
+      return hasCharacterNames;
     });
+
+    if (towersToAnalyze && towersToAnalyze.length >= 5) {
+      totalGuildsAnalyzed++;
+
+      towerList.forEach(tower => {
+        // Get the characters for each team
+        const team1Characters = tower.characters.filter(c => c.team === 1);
+        const team2Characters = tower.characters.filter(c => c.team === 2);
+
+        if (team1Characters.length == 3 && team2Characters.length == 3) {
+          // Build the team keys using the names and a delimeter
+          const team1Key = team1Characters.map((c) => c.name).sort().join(':');
+          const team2Key = team2Characters.map((c) => c.name).sort().join(':');
+
+          // Get a new or an existing team object from the team list data
+          // If a new one is returned, it will be pushed to the list.
+          const team1Object = getTeamObject(teamList, team1Key, team1Characters);
+          const team2Object = getTeamObject(teamList, team2Key, team2Characters);
+
+          // Populate the stats per artifact for a given character in each team.
+          populateArtifactData(team1Object, team1Characters);
+          populateArtifactData(team2Object, team2Characters);
+        }
+      });
+    }
   });
 
   // Calculate the averages per artifact for each character in all the available teams.
   calculateAverages(teamList);
 
   // Return a sorted list
-  return teamList.sort((a, b) => b.pickRate - a.pickRate);
+  return { guildsAnalyzed: totalGuildsAnalyzed, teamList: teamList.sort((a, b) => b.pickRate - a.pickRate) };
 }
 
 function calculateAverages(teamList) {

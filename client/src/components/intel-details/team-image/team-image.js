@@ -1,118 +1,132 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { towerImagePost } from 'globals/api.js';
 import { socket } from 'globals/socket';
 import './team-image.css';
 
-const TeamImage = (props) => {
-  const imageBoxRef = useRef(null);
-  const inputFileRef = useRef(null);
-  const imageDialogRef = useRef(null);
-  const fullImageRef = useRef(null);
+class TeamImage extends React.Component {
+  constructor(props) {
+    super(props);
 
-  useEffect(() => {
-    socket.on("imageUploadSuccess", handleImageBuffer);
+    this.state = {
+      imageSource: '',
+      imageUploaded: false
+    };
 
-    return () => {
-      socket.off("imageUploadSuccess", handleImageBuffer);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (props.image) {
-      const blob = new Blob([Int8Array.from(props.image.data)]);
-      updateImageBox(blob, props.towerId, props.teamIndex);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.image]);
-
-  const handleImageBuffer = ({ file, towerId, teamIndex }) => {
-    const blob = new Blob([file.buffer]);
-    updateImageBox(blob, towerId, teamIndex);
+    this.imageBoxRef = React.createRef(null);
+    this.inputFileRef = React.createRef(null);
+    this.imageDialogRef = React.createRef(null);
+    this.fullImageRef = React.createRef(null);
   }
 
-  const updateImageBox = (blob, towerId, teamIndex) => {
-    if (towerId === props.towerId && teamIndex === props.teamIndex) {
-      const url = URL.createObjectURL(blob);
-      imageBoxRef.current.src = url;
-      imageBoxRef.current.style.display = 'block';
+  componentDidMount() {
+    socket.on("imageUploadSuccess", (response) => this.updateImage(response));
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.image !== prevProps.image) {
+      this.updateImage({
+        imagePath: this.props.image,
+        towerId: this.props.towerId,
+        teamIndex: this.props.teamIndex
+      });
     }
   }
 
-  const dropHandler = (e) => {
+  componentWillUnmount() {
+    socket.off("imageUploadSuccess", (response) => this.updateImage(response));
+  }
+
+  updateImage({ imagePath, towerId, teamIndex }) {
+    if (imagePath && towerId === this.props.towerId && teamIndex === this.props.teamIndex) {
+      this.imageBoxRef.current.style.display = 'block';
+      this.setState({ imageSource: imagePath, imageUploaded: true });
+    }
+  }
+
+  stopEvents(e) {
     e.preventDefault();
     e.stopPropagation();
+  }
+
+  dropHandler(e) {
+    this.stopEvents(e);
 
     if (e.dataTransfer.files && e.dataTransfer.files.length === 1) {
-      handleFile(e.dataTransfer.files[0]);
+      this.handleFile(e.dataTransfer.files[0]);
     }
   };
 
-  const defaultEventHandler = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  const handleFile = (file) => {
+  handleFile(file) {
     if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/heic') {
       if (file.size > 10e6) {
         alert("Your image is too powerful! File size cannot exceed 10MB");
         return;
       }
-      towerImagePost(file, props.pageId, props.towerId, props.teamIndex);
+      towerImagePost(file, this.props.pageId, this.props.towerId, this.props.teamIndex);
     }
   };
 
-  const onFileChange = (e) => {
+  onFileChange(e) {
     if (e.target.files.length === 1) {
-      handleFile(e.target.files[0])
+      this.handleFile(e.target.files[0])
     }
   }
 
-  const handleUploadClick = () => {
-    inputFileRef.current.click();
+  handleUploadClick() {
+    this.inputFileRef.current.click();
   }
 
-  const handleImageClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  handleImageClick(e) {
+    this.stopEvents(e);
 
-    fullImageRef.current.src = imageBoxRef.current.src;
-    fullImageRef.current.style.display = 'block';
-    imageDialogRef.current.style.display = 'block';
+    this.fullImageRef.current.src = this.imageBoxRef.current.src;
+    this.fullImageRef.current.style.display = 'block';
+    this.imageDialogRef.current.style.display = 'block';
   }
 
-  const closeModal = () => {
-    imageDialogRef.current.style.display = 'none';
+  closeModal() {
+    this.imageDialogRef.current.style.display = 'none';
   }
 
-  return (
-    <div className="team-image" draggable="true" onClick={handleUploadClick} onDrop={dropHandler} onDragOver={defaultEventHandler} onDragLeave={defaultEventHandler} onDragEnter={defaultEventHandler}>
-      <FontAwesomeIcon icon={faUpload} />Drag or click to upload image
+  render() {
+     return (
+      <div
+        className="team-image"
+        draggable="true"
+        onClick={() => this.handleUploadClick()}
+        onDrop={(e) => this.dropHandler(e)}
+        onDragOver={this.stopEvents}
+        onDragLeave={this.stopEvents}
+        onDragEnter={this.stopEvents}
+      >
+        {
+          !this.state.imageUploaded
+            ? <span><FontAwesomeIcon icon={faUpload} />Drag or click to upload image</span>
+            : null
+        }
 
-      <div className="uploaded-image">
-        <img ref={imageBoxRef} alt="" onClick={handleImageClick}></img>
-      </div>
-
-      <div ref={imageDialogRef} className="image-modal" onClick={defaultEventHandler}>
-        <span className="image-close" onClick={closeModal}>&times;</span>
-        <div className="modal-image-container">
-          <img ref={fullImageRef} className="modal-image" alt="" />
+        <div className="uploaded-image">
+          <img ref={this.imageBoxRef} src={this.state.imageSource} alt="" onClick={(e) => this.handleImageClick(e)}></img>
         </div>
-      </div>
 
-      <input
-        type="file"
-        accept=".png,.jpeg,.jpg,.heic"
-        ref={inputFileRef}
-        onChange={onFileChange}
-      />
-    </div>
-  );
-};
+        <div ref={this.imageDialogRef} className="image-modal" onClick={this.stopEvents}>
+          <span className="image-close" onClick={() => this.closeModal()}>&times;</span>
+          <div className="modal-image-container">
+            <img ref={this.fullImageRef} src={this.state.imageSource} className="modal-image" alt="" />
+          </div>
+        </div>
+
+        <input
+          type="file"
+          accept=".png,.jpeg,.jpg,.heic"
+          ref={this.inputFileRef}
+          onChange={(e) => this.onFileChange(e)}
+        />
+      </div>
+    );
+  }
+}
 
 export default TeamImage;
