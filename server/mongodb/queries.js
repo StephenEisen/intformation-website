@@ -1,5 +1,6 @@
 import GuildData from './guild-data.js';
 import IntelPassword from './intel-password.js';
+import UserAccount from './accounts.js'
 
 export async function findIntel(pageId) {
   return GuildData.findOne({ pageId });
@@ -90,4 +91,19 @@ export async function updateIntelPassword(pageId, hash) {
     password: hash
   });
   return newAuth.save();
+}
+
+export async function createOrUpdateUser(user) {
+  return UserAccount.findOneAndUpdate(
+    {
+      email: user.email
+    },
+    {
+      $set: user
+    },
+    {
+      new: true,
+      upsert: true
+    }
+  );
 }
