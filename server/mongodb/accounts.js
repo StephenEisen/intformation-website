@@ -11,7 +11,8 @@ const UserAccountSchema = new Schema({
   name: String,
   firstName: String,
   lastName: String,
-  locale: String
+  locale: String,
+  profileImg: String
 });
 
 const UserAccount = mongoose.model("useraccount", UserAccountSchema);

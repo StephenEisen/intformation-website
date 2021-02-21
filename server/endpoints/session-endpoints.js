@@ -27,7 +27,8 @@ const upsert = async (user) => {
     name: user.name,
     firstName: user.given_name,
     lastName: user.family_name,
-    locale: user.locale
+    locale: user.locale,
+    profileImg: user.picture
   });
 }
 
@@ -55,7 +56,8 @@ const sessionEndpoints = (app, io) => {
         firstName: user.firstName,
         lastName: user.lastName,
         locale: user.locale,
-        name: user.name
+        name: user.name,
+        profileImg: user.profileImg
       });
       response.status(201).send(token);
     } catch (err) {
