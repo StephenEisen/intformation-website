@@ -4,7 +4,6 @@ import { CharacterImages } from "globals/images.js";
 import './character-stats.css';
 
 class CharacterStats extends React.Component {
-
   getCharKey(characterIndex) {
     return this.props.teamData.teamKey.split(":")[characterIndex] || "Enott";
   }
@@ -70,10 +69,11 @@ class CharacterStats extends React.Component {
       const characterKey = this.getCharKey(i);
       const mostUsedArtifactName = this.getMostUsedArtifact(characterKey);
       const mostUsedArtifact = this.props.teamData[characterKey][mostUsedArtifactName];
+      const elementKey = `${this.props.teamData.teamKey}-${characterKey}`;
 
       if (Object.keys(this.props.teamData[characterKey]).length > 0){
         elements.push(
-          <div key={i} className={`${cssAnimationClasses[i]} slide-in`}>
+          <div key={elementKey} className={`${cssAnimationClasses[i]} slide-in`}>
             <div>
               <h2>Most Commonly Used Stats On: {characterKey}</h2>
               <p className="statistics-slide-up-artifact statistics-slide-stats">

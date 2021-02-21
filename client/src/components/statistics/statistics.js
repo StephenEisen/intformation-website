@@ -8,18 +8,15 @@ const Statistics = () => {
   const [teamData, setTeamData] = useState([]);
   const [selectedTeamIndex, setSelectedTeamIndex] = useState(0);
 
-  const getTotalGuilds = async () => {
-    const response = await fetch(`${webserver}/api/statistics/total-intels`);
-    const data = await response.json();
-    setTotalGuilds(data.totalGuilds);
-  };
+  useEffect(() => {
+    getData();
+  }, []);
 
   const getData = async () => {
-    const response = await fetch(
-      `${webserver}/api/statistics/most-frequently-used`
-    );
+    const response = await fetch(`${webserver}/api/statistics/most-frequently-used`);
     const data = await response.json();
-    setTeamData(data);
+    setTotalGuilds(data.guildsAnalyzed);
+    setTeamData(data.teamList);
   };
 
   const onTeamClick = (teamKey) => {
@@ -27,31 +24,26 @@ const Statistics = () => {
     setSelectedTeamIndex(teamIndex);
   }
 
-  useEffect(() => {
-    getTotalGuilds();
-    getData();
-  }, []);
-
   return (
     <div className="statistics-container">
       <h1>Total Number of Guilds Analyzed: {totalGuilds}</h1>
 
-      {teamData.length > 0 ?
-        <CharacterStats
-          hidden={false}
-          showStats={true}
-          teamData={teamData[selectedTeamIndex]}/>
-        : null}
+      {
+        teamData.length > 0
+          ? <CharacterStats hidden={false} showStats={true} teamData={teamData[selectedTeamIndex]} />
+          : null
+      }
+
       <div className="container">
-      <h3>More Defences</h3>
+        <h3>More Defences</h3>
         {teamData.length > 0 ?
           teamData.map((value, index) => (
             <CharacterStats
               key={index}
               onTeamClick={onTeamClick}
-              hidden={selectedTeamIndex===index}
+              hidden={selectedTeamIndex === index}
               showStats={false}
-              teamData={teamData[index]}/>
+              teamData={teamData[index]} />
           ))
           : null}
       </div>

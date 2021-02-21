@@ -1,13 +1,12 @@
-import fs from 'fs';
-import path from 'path';
 import cors from 'cors';
 import multer from 'multer';
 import { corsOptions } from './index.js';
+import { getImagesFromS3, uploadImageToS3 } from '../aws/s3.js';
 import * as queries from '../mongodb/queries.js';
 import * as passwords from '../utils/passwords.js';
 
 const apiPath = '/api/intel';
-const upload = multer({limits: {fileSize: 10e6}})
+const upload = multer({ limits: { fileSize: 10e6 } })
 
 /**
  * ALl endpoints defined for the intel page.
@@ -107,16 +106,15 @@ const intelEndpoints = (app, io) => {
     try {
       const pageId = request.params.pageId;
       const towerId = request.query.towerId;
-      const teamIndex = request.query.teamIndex;
+      const teamIndex = Number(request.query.teamIndex);
 
-      await fs.promises.mkdir(`./images/${pageId}/${towerId}`, { recursive: true });
-      fs.writeFileSync(`./images/${pageId}/${towerId}/${teamIndex}`, request.file.buffer);
-
-      io.sockets.to(pageId).emit('imageUploadSuccess', {
-        file: request.file,
-        towerId: towerId,
-        teamIndex: Number(teamIndex)
-      });
+      try {
+        const imagePath = await uploadImageToS3(pageId, towerId, teamIndex, request.file);
+        const imageData = { imagePath, towerId, teamIndex };
+        io.sockets.to(pageId).emit('imageUploadSuccess', imageData);
+      } catch (e) {
+        io.sockets.to(pageId).emit('imageUploadError', 'Error uploading image');
+      }
 
       response.status(204).send();
     } catch (err) {
@@ -124,33 +122,13 @@ const intelEndpoints = (app, io) => {
     }
   });
 
-  app.get(`${apiPath}/:pageId/image`, cors(corsOptions), (request, response) => {
+  app.get(`${apiPath}/:pageId/image`, cors(corsOptions), async (request, response) => {
     const pageId = request.params.pageId;
     const towerId = request.query.towerId;
-    const images = getTowerImages(pageId, towerId);
-    return response.status(200).send(images);
+    const images = await getImagesFromS3(pageId, towerId);
+
+    response.status(200).send(images);
   })
-}
-
-/** =============================================
- ** Helper functions
- ** ========================================== */
-const getTowerImages = (pageId, towerId) => {
-  const dirName = `./images/${pageId}/${towerId}`;
-  let towerImages = Array(2).fill('');
-
-  if (fs.existsSync(dirName)) {
-    const files = fs.readdirSync(dirName);
-
-    for (let i = 0; i < files.length; i++) {
-      const fullPath = path.join(dirName, files[i]);
-      const fullPathParts = fullPath.replace(/\\/g, '/').split('/');
-      const teamIndex = fullPathParts[3] - 1;
-      towerImages.splice(teamIndex, 1, fs.readFileSync(fullPath));
-    }
-  }
-
-  return { [towerId]: towerImages };
 }
 
 export default intelEndpoints;

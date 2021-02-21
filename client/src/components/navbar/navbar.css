@@ -67,7 +67,7 @@
 }
 
 .navbar-title-second {
-  color: #03dddc;
+  color: var(--teal-color);
 }
 
 .navbar-title-first:hover,
@@ -115,7 +115,7 @@
  * Mobile
  * ===================== */
 @media only screen and (max-width: 500px) {
-  .navbar-logo a {
+  .navbar-logo-text {
     display: none;
   }
 }

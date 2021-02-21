@@ -11,15 +11,6 @@ const apiPath = '/api/statistics';
  */
 const statisticsEndpoints = (app) => {
   /**
-   * Gets the total number of intels we have stored.
-   */
-  app.options(`${apiPath}/total-intels`, cors(corsOptions));
-  app.get(`${apiPath}/total-intels`, cors(corsOptions), async (request, response) => {
-    const totalGuilds = await queries.countTotalGuilds();
-    response.send({ totalGuilds: totalGuilds });
-  });
-
-  /**
    * Gets the most frequently used characters.
    */
   app.options(`${apiPath}/most-frequently-used`, cors(corsOptions));

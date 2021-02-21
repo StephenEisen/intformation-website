@@ -94,9 +94,9 @@ const IntelDetails = () => {
 
   return (
     <div>
-      { passwordForm}
-      { forbidden ? <p>Forbidden</p> : null}
-      { intel ? <TowerList pageId={id} towerList={intel.data} /> : null}
+      {passwordForm}
+      {forbidden ? <p>Forbidden</p> : null}
+      {intel ? <TowerList pageId={id} towerList={intel.towerList} /> : null}
     </div>
   )
 }

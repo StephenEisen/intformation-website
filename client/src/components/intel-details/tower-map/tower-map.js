@@ -35,31 +35,38 @@ const TowerMap = (props) => {
   }
 
   const getTowerByIndex = (index) => {
-    if (props.towerList[index]) {
-      const towerId = props.towerList[index]._id;
-      const tower = props.towerList.find((item) => item.location === currentLocation && item._id === towerId);
+    const locationTowers = props.towerList[currentLocation];
 
+    if (locationTowers && locationTowers[index]) {
+      const towerId = locationTowers[index]._id;
+      const tower = locationTowers.find((item) => item.location === currentLocation && item._id === towerId);
       return tower;
     }
   }
 
   const changeLocation = (towerLocation) => {
-    let towerId = null;
-    if (towerLocation === STRONGHOLD) {
-      const tower = props.towerList.find((tower) => tower.location === STRONGHOLD);
-      towerId = tower ? tower._id : null;
-    }
-
     setCurrentLocation(towerLocation);
-    setShowChildren(towerLocation !== STRONGHOLD && towerLocation !== ALL_TOWERS);
-    props.onTowerChange(towerId);
+
+    if (towerLocation === STRONGHOLD) {
+      const tower = props.towerList[STRONGHOLD][0];
+
+      if (tower.characters.length > 0) {
+        props.onTowerChange(towerLocation, tower._id);
+      } else {
+        setCurrentTowerIndex(0);
+        toggleAddTowerDialog(true);
+      }
+    } else {
+      setShowChildren(towerLocation !== STRONGHOLD && towerLocation !== ALL_TOWERS);
+      props.onTowerChange(towerLocation);
+    }
   }
 
   const changeTower = (index) => {
     const tower = getTowerByIndex(index);
 
     if (tower) {
-      props.onTowerChange(tower._id);
+      props.onTowerChange(currentLocation, tower._id);
     } else {
       setCurrentTowerIndex(index);
       toggleAddTowerDialog(true);

@@ -5,17 +5,20 @@ class StatsChart extends React.Component {
   constructor(props) {
     super(props);
     this.chartRef = React.createRef();
-    this.state = {
-      artifactData: this.props.artifactData,
-    };
+    this.state = { artifacts: [] };
   }
 
   componentDidMount() {
+    const sortedArtifacts = this.getSortedArtifacts();
+    this.setState({ artifacts: sortedArtifacts }, this.createChart);
+  }
+
+  createChart() {
     var ctx = this.chartRef.current.getContext("2d");
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: Object.keys(this.state.artifactData),
+        labels: this.getArtifactLabels(),
         datasets: [
           {
             yAxisID: "A",
@@ -62,16 +65,28 @@ class StatsChart extends React.Component {
     });
   }
 
-  getAverages(averageKey) {
-    const averages = [];
-    for (const key in this.state.artifactData) {
-      averages.push(this.state.artifactData[key][averageKey]);
+  getSortedArtifacts() {
+    const sortedArtifacts = [];
+
+    for (const key in this.props.artifactData) {
+      const label = key;
+      const data = this.props.artifactData[key];
+      sortedArtifacts.push({ label, data });
     }
-    return averages.sort((a, b) => b - a);
+
+    return sortedArtifacts.sort((a, b) => b.data.artifactCounter - a.data.artifactCounter);
+  }
+
+  getArtifactLabels() {
+    return this.state.artifacts.map((a) => a.label);
+  }
+
+  getAverages(averageKey) {
+    return this.state.artifacts.map((a) => a.data[averageKey]);
   }
 
   getColors(color) {
-    const numArtifacts = Object.keys(this.state.artifactData).length;
+    const numArtifacts = Object.keys(this.state.artifacts).length;
     return Array(numArtifacts).fill(color);
   }
 
