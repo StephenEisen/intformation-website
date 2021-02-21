@@ -13,18 +13,21 @@ class TowerList extends React.Component {
       filteredTower: null,
       filteredTowerId: null
     };
+
+    this.addTower = this.addTower.bind(this);
+    this.towerListUpdate = this.towerListUpdate.bind(this);
   }
 
   componentDidMount() {
-    socket.on("addTowerSuccess", (newTowerData) => this.addTower(newTowerData));
-    socket.on("updateCharacterSuccess", (towerData) => this.towerListUpdate(towerData));
-    socket.on("filterTowerSuccess", (towerData) => this.towerListUpdate(towerData));
+    socket.on("addTowerSuccess", this.addTower);
+    socket.on("updateCharacterSuccess", this.towerListUpdate);
+    socket.on("filterTowerSuccess", this.towerListUpdate);
   }
 
   componentWillUnmount() {
-    socket.off("addTowerSuccess", (newTowerData) => this.addTower(newTowerData));
-    socket.off("updateCharacterSuccess", (towerData) => this.towerListUpdate(towerData));
-    socket.off("filterTowerSuccess", (towerData) => this.towerListUpdate(towerData));
+    socket.off("addTowerSuccess", this.addTower);
+    socket.off("updateCharacterSuccess", this.towerListUpdate);
+    socket.off("filterTowerSuccess", this.towerListUpdate);
   }
 
   addTower({ towerList, towerLocation, towerId }) {

@@ -18,10 +18,12 @@ class TeamImage extends React.Component {
     this.inputFileRef = React.createRef(null);
     this.imageDialogRef = React.createRef(null);
     this.fullImageRef = React.createRef(null);
+
+    this.updateImage = this.updateImage.bind(this);
   }
 
   componentDidMount() {
-    socket.on("imageUploadSuccess", (response) => this.updateImage(response));
+    socket.on("imageUploadSuccess", this.updateImage);
   }
 
   componentDidUpdate(prevProps) {
@@ -35,12 +37,11 @@ class TeamImage extends React.Component {
   }
 
   componentWillUnmount() {
-    socket.off("imageUploadSuccess", (response) => this.updateImage(response));
+    socket.off("imageUploadSuccess", this.updateImage);
   }
 
   updateImage({ imagePath, towerId, teamIndex }) {
     if (imagePath && towerId === this.props.towerId && teamIndex === this.props.teamIndex) {
-      this.imageBoxRef.current.style.display = 'block';
       this.setState({ imageSource: imagePath, imageUploaded: true });
     }
   }
@@ -81,7 +82,6 @@ class TeamImage extends React.Component {
   handleImageClick(e) {
     this.stopEvents(e);
 
-    this.fullImageRef.current.src = this.imageBoxRef.current.src;
     this.fullImageRef.current.style.display = 'block';
     this.imageDialogRef.current.style.display = 'block';
   }
@@ -107,8 +107,8 @@ class TeamImage extends React.Component {
             : null
         }
 
-        <div className="uploaded-image">
-          <img ref={this.imageBoxRef} src={this.state.imageSource} alt="" onClick={(e) => this.handleImageClick(e)}></img>
+        <div className="uploaded-image" hidden={!this.state.imageUploaded}>
+          <img src={this.state.imageSource} alt="" onClick={(e) => this.handleImageClick(e)}></img>
         </div>
 
         <div ref={this.imageDialogRef} className="image-modal" onClick={this.stopEvents}>
