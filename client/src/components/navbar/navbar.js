@@ -3,6 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { Routes } from 'globals/routes.js';
 import logo from "assets/logo.png";
 import "./navbar.css";
+import GoogleLogin from '../login/google-login/google-login'
 
 const Navbar = () => {
   const history = useHistory();
@@ -42,6 +43,8 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-menu" onClick={() => toggleMobileNavBar()}></div>
+
+        <GoogleLogin />
 
         <ul className="navbar-links">
           <NavLink to={Routes.Intel}>
