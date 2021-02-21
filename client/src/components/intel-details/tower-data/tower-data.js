@@ -4,6 +4,7 @@ import { clone } from 'globals/utils';
 import './tower-data.css';
 import TeamImage from '../team-image/team-image.js';
 import { towerImageGet } from "globals/api.js";
+import CharactersUsed from '../characters-used/characters-used';
 const characters = require('data/characters.json');
 
 class TowerData extends React.Component {
@@ -103,12 +104,14 @@ class TowerData extends React.Component {
           <h3 className="tower-team-title">Team 1</h3>
           <div className="tower-characters">
             {characterElements.slice(0, 3)}
+            <CharactersUsed />
             <TeamImage pageId={this.props.pageId} towerId={this.props.towerData._id} teamIndex={1} image={this.getTeamImage(1)} />
           </div>
 
           <h3 className="tower-team-title">Team 2</h3>
           <div className="tower-characters">
             {characterElements.slice(3, 6)}
+            <CharactersUsed />
             <TeamImage pageId={this.props.pageId} towerId={this.props.towerData._id} teamIndex={2} image={this.getTeamImage(2)} />
           </div>
         </div>
