@@ -86,17 +86,17 @@ const SpeedCalcDialog = (props) => {
             ></input>
           </span>
 
-          <div className="add-tower-name">
+          <div className="speed-calc-checkbox">
             <label>
-            Did the target take a turn?
               <input
                 type="checkbox"
                 onChange={(e) => updateTargetTurnTaken(e.target.checked)}
               ></input>
+              Did the target take a turn?
             </label>
           </div>
-
-          <div className="add-tower-name">
+          The following fields are optional.
+          <div className="speed-calc-fields">
             <input
               type="number"
               placeholder="Did your unit get pushed back?"
@@ -104,7 +104,7 @@ const SpeedCalcDialog = (props) => {
             ></input>
           </div>
 
-          <div className="add-tower-name">
+          <div className="speed-calc-fields">
             <input
               type="number"
               placeholder="Did your unit get pushed forward?"
@@ -112,7 +112,7 @@ const SpeedCalcDialog = (props) => {
             ></input>
           </div>
 
-          <div className="add-tower-name">
+          <div className="speed-calc-fields">
             <input
               type="number"
               placeholder="Did the target get pushed forward?"
@@ -121,7 +121,7 @@ const SpeedCalcDialog = (props) => {
           </div>
 
           {/* ACTIONS */}
-          <div className="add-tower-actions">
+          <div className="speed-calc-actions">
             <button className="slide-btn-horizontal" onClick={sendSpeedData}>
               <span className="slide-btn-text">Calculate</span>
             </button>
