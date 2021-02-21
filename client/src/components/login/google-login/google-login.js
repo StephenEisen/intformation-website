@@ -33,10 +33,6 @@ const GoogleLogin = () => {
     console.error('Logout Failed:', resp)
   }
 
-  const createSession = () => {
-
-  };
-
   const { signIn } = useGoogleLogin({
     clientId: clientId,
     onSuccess: signInSuccess,
@@ -56,7 +52,7 @@ const GoogleLogin = () => {
       {
         user.email ?
         <div>
-          <img src={user.profileImg} />
+          <img src={user.profileImg} alt=''/>
           <p>{user.name} ({user.email})</p>
           <button onClick={signOut} className="center-underline-btn login-button">
             <span>
