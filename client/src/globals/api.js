@@ -1,7 +1,7 @@
 import { webserver } from './socket'
 
 export const intelGet = async (pageId) => {
-  let token = sessionStorage.getItem('authToken');
+  let token = sessionStorage.getItem('intelToken');
   token = token ? `Bearer ${token}` : ''
 
   const resp = await fetch(`${webserver}/api/intel/${pageId}`, {
@@ -55,7 +55,7 @@ export const intelAuthTokenPost = async (pageId, password) => {
   let token = '';
   if (resp.status === 201) {
     token = await resp.text();
-    sessionStorage.setItem('authToken', token);
+    sessionStorage.setItem('intelToken', token);
   }
   return token;
 }
@@ -78,3 +78,17 @@ export const towerImageGet = async (pageId, towerId) => {
   });
   return resp;
 };
+
+export const sessionPost = async (token) => {
+  const resp = await fetch(`${webserver}/api/session`, {
+    method: 'POST',
+    body: JSON.stringify({
+      token: token
+    }),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  });
+  return await resp.text();
+}

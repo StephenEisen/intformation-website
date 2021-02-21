@@ -1,28 +1,38 @@
+import { sessionPost } from 'globals/api';
 import React, { useState } from 'react';
 import { useGoogleLogin, useGoogleLogout } from 'react-google-login';
+import jwt from 'jsonwebtoken';
 
 const clientId = '724205843180-cct4ta2hobvdop43rrfn9ac28pr0pldp.apps.googleusercontent.com';
 
 const GoogleLogin = () => {
-  const [ googleUser, setGoogleUser ] = useState({});
+  const [ user, setUser ] = useState({});
 
   const signInSuccess = resp => {
-    console.log('Login Success:', resp.profileObj);
-    setGoogleUser(resp.profileObj);
+    sessionPost(resp.tokenObj)
+      .then(token => {
+        localStorage.setItem('authToken', token);
+        const decoded = jwt.decode(token);
+        setUser(decoded);
+      })
+      .catch(err => console.error(err));
   };
 
   const signInFailure = resp => {
-    console.log('Login Failed:', resp);
+    console.error('Login Failed:', resp);
   };
 
   const signOutSuccess = () => {
-    console.log('Logout Success:');
-    setGoogleUser({});
+    setUser({});
   }
 
   const signOutFailure = resp => {
-    console.log('Logout Failed:', resp)
+    console.error('Logout Failed:', resp)
   }
+
+  const createSession = () => {
+
+  };
 
   const { signIn } = useGoogleLogin({
     clientId: clientId,
@@ -41,10 +51,10 @@ const GoogleLogin = () => {
   return (
     <div>
       {
-        googleUser.email ?
+        user.email ?
         <div>
-          <img src={googleUser.imageUrl} />
-          <p>{googleUser.email}</p>
+          <img src={user.imageUrl} />
+          <p>{user.name}</p>
           <button onClick={signOut} className="button">Sign Out</button>
         </div> :
         <button onClick={signIn} className="button">
