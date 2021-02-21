@@ -54,7 +54,7 @@ const GoogleLogin = () => {
         user.email ?
         <div>
           <img src={user.imageUrl} />
-          <p>{user.name}</p>
+          <p>{user.name} ({user.email})</p>
           <button onClick={signOut} className="button">Sign Out</button>
         </div> :
         <button onClick={signIn} className="button">
