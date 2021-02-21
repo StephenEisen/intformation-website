@@ -26,6 +26,9 @@
       "last 1 safari version"
     ]
   },
+  "resolutions": {
+    "immer": "^8.0.1"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
