@@ -42,7 +42,7 @@ class CharacterStats extends React.Component {
     for (let i = 0; i < 3; i++){
       const characterKey = this.getCharKey(i);
       elements.push((
-          <div key={i} className="column">
+          <div key={i} className="character-stats-column">
             <img
               alt=""
               width="62"
@@ -103,7 +103,7 @@ class CharacterStats extends React.Component {
 
     return (
       <div>
-        <div className={`row ${this.props.showStats ? '' :  'character-stats-row'}`} onClick={() => this.openStats()}>
+        <div className={`character-stats-row ${this.props.showStats ? '' :  'character-stats-row-top'}`} onClick={() => this.openStats()}>
           {this.getCharacterImageElements()}
         </div>
         {this.props.showStats ? this.getStatsElements() : null}

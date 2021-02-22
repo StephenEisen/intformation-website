@@ -1,8 +1,8 @@
 .characters-used {
   width: 99%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   margin-top: 10px;
-  padding: 20px;
+  padding: 30px;
   transition: 0.3s ease-out all;
   background: var(--purple-color);
   box-shadow: 5px 5px 5px #000;
@@ -11,6 +11,7 @@
 .characters-used-add {
   float: right;
   color: #ca51e0;
+  margin-top: 10px;
 }
 
 .characters-used-add svg {
@@ -19,6 +20,12 @@
 
 .characters-used-container {
   margin-top: 30px;
+  border-top: 1px solid #38225a;
+  padding-top: 30px;
+}
+
+.characters-used-divider {
+  border-color: #38225a;
 }
 
 /* ========================
@@ -27,6 +34,10 @@
 .characters-used-toggle {
   width: 100%;
   cursor: pointer;
+}
+
+.characters-used-toggle svg {
+  margin-right: 10px;
 }
 
 /* ========================
@@ -40,16 +51,14 @@
 
 .characters-used-header svg {
   margin-right: 10px;
-  color: #ca3939;
-  cursor: pointer;
 }
 
 .characters-used-header .flex-1:nth-child(2) {
   text-align: right;
 }
 
-.characters-used-header .flex-1:nth-child(2) input {
-  margin-right: 5px;
+.characters-used-header .flex-1:nth-child(2) label {
+  cursor: pointer;
 }
 
 /* ========================
@@ -59,7 +68,7 @@
   margin-bottom: 20px;
 }
 
-.characters-used-items .flex-1 {
+.characters-used-items .flex-1:not(:last-child) {
   margin-right: 10px;
 }
 
@@ -67,11 +76,23 @@
  * Mobile styles
  * ===================== */
 @media only screen and (max-width: 900px) {
+  .characters-used {
+    padding: 20px;
+  }
+
   .characters-used-items {
     flex-direction: column;
   }
 
   .characters-used-items .flex-1 {
     margin-right: 0;
+  }
+
+  .characters-used-items .flex-1:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .characters-used-container {
+    margin-top: 20px;
   }
 }

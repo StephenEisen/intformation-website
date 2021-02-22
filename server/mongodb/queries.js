@@ -80,6 +80,37 @@ export async function updateCharacter(characterData) {
   );
 }
 
+export async function updateCharactersUsed(charactersUsedData) {
+  const towerLocation = charactersUsedData.towerLocation;
+  const operator = charactersUsedData.isNewRow ? '$push' : '$set';
+  const findQueryKey = `towerList.${towerLocation}._id`;
+
+  // Create the set query key depending on if a new row or not
+  let setQueryKey = `towerList.${towerLocation}.$.charactersUsed.team${charactersUsedData.team}`;
+  setQueryKey = !charactersUsedData.isNewRow ? `${setQueryKey}.${charactersUsedData.rowIndex}` : setQueryKey;
+
+  // Push or set data
+  return GuildData.findOneAndUpdate(
+    {
+      pageId: charactersUsedData.pageId,
+      [findQueryKey]: charactersUsedData.towerId
+    },
+    {
+      [operator]: {
+        [setQueryKey]: {
+          team: charactersUsedData.team,
+          characters: charactersUsedData.characters,
+          victory: charactersUsedData.victory
+        }
+      }
+    },
+    {
+      new: true,
+      upsert: true
+    }
+  );
+}
+
 export async function findIntelPassword(pageId) {
   const intelPassword = await IntelPassword.findOne({ pageId: pageId });
   return intelPassword;

@@ -35,7 +35,7 @@ const Statistics = () => {
       }
 
       <div className="container">
-        <h3>More Defences</h3>
+        <h3>More Defenses</h3>
         {teamData.length > 0 ?
           teamData.map((value, index) => (
             <CharacterStats

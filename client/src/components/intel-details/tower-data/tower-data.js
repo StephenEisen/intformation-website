@@ -90,6 +90,11 @@ class TowerData extends React.Component {
     }
   }
 
+  getCharactersUsed(teamIndex) {
+    const teamKey = `team${teamIndex}`;
+    return this.props.towerData.charactersUsed[teamKey].filter((item) => item.team === teamIndex);
+  }
+
   render() {
     const characterElements = this.getCharacterElements();
 
@@ -101,18 +106,42 @@ class TowerData extends React.Component {
         </div>
 
         <div className="tower-team">
+          {/* TEAM 1 */}
           <h3 className="tower-team-title">Team 1</h3>
           <div className="tower-characters">
             {characterElements.slice(0, 3)}
-            <CharactersUsed />
-            <TeamImage pageId={this.props.pageId} towerId={this.props.towerData._id} teamIndex={1} image={this.getTeamImage(1)} />
+            <CharactersUsed
+              pageId={this.props.pageId}
+              towerLocation={this.props.towerData.location}
+              towerId={this.props.towerData._id}
+              teamIndex={1}
+              characters={this.getCharactersUsed(1)}
+            />
+            <TeamImage
+              pageId={this.props.pageId}
+              towerId={this.props.towerData._id}
+              teamIndex={1}
+              image={this.getTeamImage(1)}
+            />
           </div>
 
+          {/* TEAM 2 */}
           <h3 className="tower-team-title">Team 2</h3>
           <div className="tower-characters">
             {characterElements.slice(3, 6)}
-            <CharactersUsed />
-            <TeamImage pageId={this.props.pageId} towerId={this.props.towerData._id} teamIndex={2} image={this.getTeamImage(2)} />
+            <CharactersUsed
+              pageId={this.props.pageId}
+              towerLocation={this.props.towerData.location}
+              towerId={this.props.towerData._id}
+              teamIndex={2}
+              characters={this.getCharactersUsed(2)}
+            />
+            <TeamImage
+              pageId={this.props.pageId}
+              towerId={this.props.towerData._id}
+              teamIndex={2}
+              image={this.getTeamImage(2)}
+            />
           </div>
         </div>
       </div>

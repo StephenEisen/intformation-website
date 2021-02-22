@@ -30,6 +30,20 @@ const intelSockets = (io, socket) => {
     const towerLocation = characterData.towerLocation;
     socket.broadcast.to(characterData.pageId).emit('updateCharacterSuccess', { towerList, towerLocation });
   });
+
+  socket.on('updateCharactersUsed', async (charactersUsedData) => {
+    await queries.updateCharactersUsed(charactersUsedData);
+
+    const characters = {
+      towerId: charactersUsedData.towerId,
+      team: charactersUsedData.team,
+      rowIndex: charactersUsedData.rowIndex,
+      victory: charactersUsedData.victory,
+      characters: charactersUsedData.characters
+    };
+
+    socket.broadcast.to(charactersUsedData.pageId).emit('updateCharactersUsedSuccess', characters);
+  });
 };
 
 /** =============================================

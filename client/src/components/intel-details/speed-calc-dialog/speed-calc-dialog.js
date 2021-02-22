@@ -86,42 +86,42 @@ const SpeedCalcDialog = (props) => {
             ></input>
           </span>
 
-          <div className="add-tower-name">
+          <div className="speed-calc-checkbox">
             <label>
-            Did the target take a turn?
               <input
                 type="checkbox"
                 onChange={(e) => updateTargetTurnTaken(e.target.checked)}
               ></input>
+              Did the target take a turn?
             </label>
           </div>
-
-          <div className="add-tower-name">
+          The following fields are optional.
+          <div className="speed-calc-fields">
             <input
               type="number"
-              placeholder="Did your unit get pushed back?"
+              placeholder="How much did your unit get pushed back?"
               onChange={(e) => updateCharacterCRPushBack(e.target.value)}
             ></input>
           </div>
 
-          <div className="add-tower-name">
+          <div className="speed-calc-fields">
             <input
               type="number"
-              placeholder="Did your unit get pushed forward?"
+              placeholder="How much did your unit get pushed forward?"
               onChange={(e) => updateCharacterCRPush(e.target.value)}
             ></input>
           </div>
 
-          <div className="add-tower-name">
+          <div className="speed-calc-fields">
             <input
               type="number"
-              placeholder="Did the target get pushed forward?"
+              placeholder="How much did target get pushed forward?"
               onChange={(e) => updateTargetCRPush(e.target.value)}
             ></input>
           </div>
 
           {/* ACTIONS */}
-          <div className="add-tower-actions">
+          <div className="speed-calc-actions">
             <button className="slide-btn-horizontal" onClick={sendSpeedData}>
               <span className="slide-btn-text">Calculate</span>
             </button>

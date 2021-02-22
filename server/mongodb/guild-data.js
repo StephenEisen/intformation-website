@@ -21,16 +21,20 @@ const CharacterSchema = new Schema({
   lifesteal: Boolean
 });
 
-const CharactersUsed = new Schema({
-  name: [String],
-  wonBattle: Boolean
+const CharactersUsedSchema = new Schema({
+  team: Number,
+  characters: [String],
+  victory: Boolean
 });
 
 const TowerSchema = new Schema({
   location: String,
   name: String,
   characters: [CharacterSchema],
-  charactersUsed: [CharactersUsed]
+  charactersUsed: {
+    team1: [CharactersUsedSchema],
+    team2: [CharactersUsedSchema]
+  }
 });
 
 const TowerListSchema = new Schema({
