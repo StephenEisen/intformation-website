@@ -54,13 +54,14 @@ class CharactersUsed extends React.Component {
     });
   }
 
-  emitCharactersUsed(rowIndex) {
+  emitCharactersUsed(rowIndex, isNewRow = false) {
     socket.emit('updateCharactersUsed', {
       pageId: this.props.pageId,
       towerLocation: this.props.towerLocation,
       towerId: this.props.towerId,
       team: this.props.teamIndex,
       rowIndex: rowIndex,
+      isNewRow: isNewRow,
       victory: this.state.victoryList[rowIndex],
       characters: this.state.selectedCharacters[rowIndex]
     });
@@ -137,7 +138,7 @@ class CharactersUsed extends React.Component {
     const selectedCharacters = this.state.selectedCharacters;
     selectedCharacters[rowIndex] = Array(3).fill(null);
 
-    this.setState({ characterOptions, selectedCharacters }, () => this.emitCharactersUsed(rowIndex));
+    this.setState({ characterOptions, selectedCharacters }, () => this.emitCharactersUsed(rowIndex, true));
   }
 
   getCharacterUsedElements() {
@@ -173,7 +174,7 @@ class CharactersUsed extends React.Component {
       <div className="characters-used">
         <div className="characters-used-toggle" onClick={() => this.toggleVisibility()}>
           <FontAwesomeIcon icon={this.state.showCharactersUsed ? faCaretDown : faCaretUp} />
-          Show used teams against enemy
+          Toggle used teams
         </div>
 
         <div className="characters-used-container" hidden={!this.state.showCharactersUsed}>
@@ -207,7 +208,7 @@ class CharactersUsed extends React.Component {
             ))
           }
 
-          <hr className="characters-used-divider" />
+          <hr className="characters-used-divider" hidden={!this.state.selectedCharacters.length > 0} />
 
           <button className="characters-used-add center-underline-btn" onClick={() => this.addCharactersRow()}>
             <span className="slide-btn-text"><FontAwesomeIcon icon={faUserPlus} />Add team</span>

@@ -51,8 +51,6 @@
 
 .characters-used-header svg {
   margin-right: 10px;
-  color: #ca3939;
-  cursor: pointer;
 }
 
 .characters-used-header .flex-1:nth-child(2) {
@@ -78,11 +76,23 @@
  * Mobile styles
  * ===================== */
 @media only screen and (max-width: 900px) {
+  .characters-used {
+    padding: 20px;
+  }
+
   .characters-used-items {
     flex-direction: column;
   }
 
   .characters-used-items .flex-1 {
     margin-right: 0;
+  }
+
+  .characters-used-items .flex-1:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .characters-used-container {
+    margin-top: 20px;
   }
 }

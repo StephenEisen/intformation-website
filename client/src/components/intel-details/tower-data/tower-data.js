@@ -91,7 +91,8 @@ class TowerData extends React.Component {
   }
 
   getCharactersUsed(teamIndex) {
-    return this.props.towerData.charactersUsed.filter((item) => item.team === teamIndex);
+    const teamKey = `team${teamIndex}`;
+    return this.props.towerData.charactersUsed[teamKey].filter((item) => item.team === teamIndex);
   }
 
   render() {

@@ -82,16 +82,21 @@ export async function updateCharacter(characterData) {
 
 export async function updateCharactersUsed(charactersUsedData) {
   const towerLocation = charactersUsedData.towerLocation;
+  const operator = charactersUsedData.isNewRow ? '$push' : '$set';
   const findQueryKey = `towerList.${towerLocation}._id`;
-  const setQueryKey = `towerList.${towerLocation}.$.charactersUsed.${charactersUsedData.rowIndex}`;
 
+  // Create the set query key depending on if a new row or not
+  let setQueryKey = `towerList.${towerLocation}.$.charactersUsed.team${charactersUsedData.team}`;
+  setQueryKey = !charactersUsedData.isNewRow ? `${setQueryKey}.${charactersUsedData.rowIndex}` : setQueryKey;
+
+  // Push or set data
   return GuildData.findOneAndUpdate(
     {
       pageId: charactersUsedData.pageId,
       [findQueryKey]: charactersUsedData.towerId
     },
     {
-      $set: {
+      [operator]: {
         [setQueryKey]: {
           team: charactersUsedData.team,
           characters: charactersUsedData.characters,
