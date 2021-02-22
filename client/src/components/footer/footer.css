@@ -21,6 +21,7 @@ footer {
 .footer-left {
   flex: 1;
   padding-left: 50px;
+  font-size: 12px;
 }
 
 .footer-middle {
@@ -108,6 +109,10 @@ footer {
 @media only screen and (max-width: 900px) {
   .footer-middle {
     text-align: left;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
   }
 }
 
