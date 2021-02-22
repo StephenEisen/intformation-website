@@ -33,7 +33,7 @@ const PaypalButton = () => {
   }
 
   return (
-    <div>
+    <div className="paypal-buttons">
       <PayPalButtons
         fundingSource={FUNDING.PAYPAL}
         style={{
