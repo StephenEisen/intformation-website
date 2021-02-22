@@ -1,5 +1,6 @@
 import React from "react";
 import monke from "assets/monke1.png";
+import PaypalButton from '../payments/paypal/paypal.js'
 import './about.css';
 
 const About = () => {
@@ -16,6 +17,8 @@ const About = () => {
           Any amount is helpful and goes to keeping the website active.
        </p>
       </div>
+
+      <PaypalButton />
     </div>
   );
 };
