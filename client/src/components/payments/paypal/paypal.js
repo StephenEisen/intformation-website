@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PayPalButtons, FUNDING } from '@paypal/react-paypal-js';
 import './paypal.css'
 
