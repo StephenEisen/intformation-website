@@ -21,7 +21,7 @@ export async function getStatsData() {
     if (towersToAnalyze && towersToAnalyze.length >= 5) {
       totalGuildsAnalyzed++;
 
-      towerList.forEach(tower => {
+      towersToAnalyze.forEach(tower => {
         // Get the characters for each team
         const team1Characters = tower.characters.filter(c => c.team === 1);
         const team2Characters = tower.characters.filter(c => c.team === 2);

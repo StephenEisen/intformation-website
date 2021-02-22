@@ -22,8 +22,9 @@ const CharacterSchema = new Schema({
 });
 
 const CharactersUsed = new Schema({
-  name: [String],
-  wonBattle: Boolean
+  team: Number,
+  characters: [String],
+  victory: Boolean
 });
 
 const TowerSchema = new Schema({

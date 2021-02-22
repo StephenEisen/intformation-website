@@ -163,6 +163,19 @@ input[type='number'] {
   border: 1px solid #2e1c44;
 }
 
+input[type=checkbox] {
+  -ms-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  padding: 10px;
+  margin-right: 8px;
+  position: relative;
+  top: -1px;
+  cursor: pointer;
+}
+
 .input-label {
   font-family: var(--audiowide-font);
   font-size: 32px;

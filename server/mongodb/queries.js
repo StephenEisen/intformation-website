@@ -80,6 +80,32 @@ export async function updateCharacter(characterData) {
   );
 }
 
+export async function updateCharactersUsed(charactersUsedData) {
+  const towerLocation = charactersUsedData.towerLocation;
+  const findQueryKey = `towerList.${towerLocation}._id`;
+  const setQueryKey = `towerList.${towerLocation}.$.charactersUsed.${charactersUsedData.rowIndex}`;
+
+  return GuildData.findOneAndUpdate(
+    {
+      pageId: charactersUsedData.pageId,
+      [findQueryKey]: charactersUsedData.towerId
+    },
+    {
+      $set: {
+        [setQueryKey]: {
+          team: charactersUsedData.team,
+          characters: charactersUsedData.characters,
+          victory: charactersUsedData.victory
+        }
+      }
+    },
+    {
+      new: true,
+      upsert: true
+    }
+  );
+}
+
 export async function findIntelPassword(pageId) {
   const intelPassword = await IntelPassword.findOne({ pageId: pageId });
   return intelPassword;
