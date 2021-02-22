@@ -99,7 +99,7 @@ const SpeedCalcDialog = (props) => {
           <div className="speed-calc-fields">
             <input
               type="number"
-              placeholder="Did your unit get pushed back?"
+              placeholder="How much did your unit get pushed back?"
               onChange={(e) => updateCharacterCRPushBack(e.target.value)}
             ></input>
           </div>
@@ -107,7 +107,7 @@ const SpeedCalcDialog = (props) => {
           <div className="speed-calc-fields">
             <input
               type="number"
-              placeholder="Did your unit get pushed forward?"
+              placeholder="How much did your unit get pushed forward?"
               onChange={(e) => updateCharacterCRPush(e.target.value)}
             ></input>
           </div>
@@ -115,7 +115,7 @@ const SpeedCalcDialog = (props) => {
           <div className="speed-calc-fields">
             <input
               type="number"
-              placeholder="Did the target get pushed forward?"
+              placeholder="How much did target get pushed forward?"
               onChange={(e) => updateTargetCRPush(e.target.value)}
             ></input>
           </div>
