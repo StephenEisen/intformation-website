@@ -27,13 +27,14 @@ class CharactersUsed extends React.Component {
     const numberOfRows = this.props.characters.length;
     const selectedCharacters = Array(numberOfRows).fill(null);
     const characterOptions = Array(numberOfRows).fill(clone(characters));
+    const victoryList = this.props.characters.map((item) => item.victory);
 
     // Set the initial selected when first loading this component
     for (let i = 0; i < numberOfRows; i++) {
       selectedCharacters.splice(i, 1, this.props.characters[i].characters);
     }
 
-    this.setState({ characterOptions, selectedCharacters }, () => {
+    this.setState({ characterOptions, selectedCharacters, victoryList}, () => {
       for (let i = 0; i < numberOfRows; i++) {
         this.updateCharacterOptions(i);
       }

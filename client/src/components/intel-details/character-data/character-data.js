@@ -261,8 +261,8 @@ class CharacterData extends React.Component {
                     onBlur={() => this.emitCharacterData()}>
                   </input>
                 </div>
-                <div className="flex-1">
-                  <button onClick={() => this.toggleSpeedCalculationDialog(true)}>Calculate</button>
+                <div className="calculate-btn">
+                  <button className="center-underline-btn" onClick={() => this.toggleSpeedCalculationDialog(true)}>Calculate Speed</button>
                 </div>
               </div>
 
