@@ -14,7 +14,7 @@ export async function getStatsData() {
     ];
 
     const towersToAnalyze = towerList.filter((tower) => {
-      const hasCharacterNames = tower.characters.length > 0 && tower.characters.every((character) => character.name);
+      const hasCharacterNames = tower.characters.length > 0 && tower.characters.every((character) => character.hasOwnProperty('name'));
       return hasCharacterNames;
     });
 

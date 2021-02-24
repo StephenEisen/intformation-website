@@ -7,20 +7,17 @@ import * as queries from '../mongodb/queries.js';
  */
 const intelSockets = (io, socket) => {
   socket.on('addTower', async (towerData) => {
-    let newTowerData = {};
+    const updatedIntel = await queries.addTower(towerData);
+    const towerLocation = towerData.towerLocation;
+    const towerList = updatedIntel.towerList;
+    const towerId = towerList[towerLocation][towerData.towerIndex]._id;
+    const newTowerData = { towerList, towerLocation, towerId };
 
     // Emit new tower only to client
-    if (towerData.towerLocation === 'Stronghold') {
-      newTowerData = await addNewTower(towerData);
-      socket.emit('addTowerSuccess', newTowerData);
-    }
-    else {
-      newTowerData = await addNewTower(towerData);
-      socket.emit('addTowerSuccess', newTowerData);
-    }
+    socket.emit('addTowerSuccess', newTowerData);
 
     // Emit updated tower list to everyone
-    io.sockets.to(towerData.pageId).emit('towerListUpdateSuccess', newTowerData.towerList);
+    io.sockets.to(towerData.pageId).emit('towerListUpdateSuccess', towerList);
   });
 
   socket.on('filterTower', async ({ pageId, towerLocation }) => {
@@ -31,8 +28,8 @@ const intelSockets = (io, socket) => {
 
   socket.on('updateCharacter', async (characterData) => {
     const updatedIntel = await queries.updateCharacter(characterData);
-    const towerList = updatedIntel.towerList[towerLocation];
     const towerLocation = characterData.towerLocation;
+    const towerList = updatedIntel.towerList[towerLocation];
     const towerData = towerList.find((tower) => tower._id.toString() === characterData.towerId);
     socket.broadcast.to(characterData.pageId).emit('updateCharacterSuccess', towerData);
   });
@@ -51,17 +48,5 @@ const intelSockets = (io, socket) => {
     socket.broadcast.to(charactersUsedData.pageId).emit('updateCharactersUsedSuccess', characters);
   });
 };
-
-/** =============================================
- ** Helper functions
- ** ========================================== */
-const addNewTower = async (towerData) => {
-  const updatedIntel = await queries.addTower(towerData);
-  const towerLocation = towerData.towerLocation;
-  const towerList = updatedIntel.towerList;
-  const towerId = towerList[towerLocation][towerData.towerIndex]._id;
-
-  return { towerList, towerLocation, towerId };
-}
 
 export default intelSockets;
