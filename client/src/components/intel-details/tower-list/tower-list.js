@@ -1,8 +1,8 @@
-import React from "react";
-import { socket } from "globals/socket.js";
-import TowerData from "../tower-data/tower-data.js";
-import TowerMap from "../tower-map/tower-map.js";
-import "./tower-list.css";
+import React from 'react';
+import { socket } from 'globals/socket.js';
+import TowerData from '../tower-data/tower-data.js';
+import TowerMap from '../tower-map/tower-map.js';
+import './tower-list.css';
 
 class TowerList extends React.Component {
   constructor(props) {
@@ -14,28 +14,33 @@ class TowerList extends React.Component {
       filteredTowerId: null
     };
 
-    this.addTower = this.addTower.bind(this);
+    this.addTowerUpdate = this.addTowerUpdate.bind(this);
     this.towerListUpdate = this.towerListUpdate.bind(this);
+    this.filterTowerUpdate = this.filterTowerUpdate.bind(this);
   }
 
   componentDidMount() {
-    socket.on("addTowerSuccess", this.addTower);
-    socket.on("updateCharacterSuccess", this.towerListUpdate);
-    socket.on("filterTowerSuccess", this.towerListUpdate);
+    socket.on('towerListUpdateSuccess', this.towerListUpdate);
+    socket.on('addTowerSuccess', this.addTowerUpdate);
+    socket.on('filterTowerSuccess', this.filterTowerUpdate);
   }
 
   componentWillUnmount() {
-    socket.off("addTowerSuccess", this.addTower);
-    socket.off("updateCharacterSuccess", this.towerListUpdate);
-    socket.off("filterTowerSuccess", this.towerListUpdate);
+    socket.off('towerListUpdateSuccess', this.towerListUpdate);
+    socket.off('addTowerSuccess', this.addTowerUpdate);
+    socket.off('filterTowerSuccess', this.filterTowerUpdate);
   }
 
-  addTower({ towerList, towerLocation, towerId }) {
+  towerListUpdate(towerList) {
+    this.setState({ towerList });
+  }
+
+  addTowerUpdate({ towerList, towerLocation, towerId }) {
     const newFilteredTower = towerList[towerLocation].find((tower) => tower._id === towerId);
     this.setState({ towerList: towerList, filteredTower: newFilteredTower, filteredTowerId: towerId });
   }
 
-  towerListUpdate({ towerList, towerLocation }) {
+  filterTowerUpdate({ towerList, towerLocation }) {
     if (towerLocation && towerLocation !== 'All') {
       const filteredTower = towerList[towerLocation].find((tower) => tower._id === this.state.filteredTowerId);
       this.setState({ filteredTower });
@@ -53,7 +58,7 @@ class TowerList extends React.Component {
      * Thus, the "towerListUpdate" is never called. This solution seems to work pretty well.
      */
     this.setState({ filteredTowerId: towerId }, () => {
-      socket.emit("filterTower", { pageId: this.props.pageId, towerLocation: towerLocation });
+      socket.emit('filterTower', { pageId: this.props.pageId, towerLocation: towerLocation });
     });
   }
 

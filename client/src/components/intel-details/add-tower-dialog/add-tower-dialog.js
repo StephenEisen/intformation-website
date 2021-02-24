@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { socket } from 'globals/socket';
 import { sanitizeInput } from 'globals/validation';
 import castle from 'assets/icons/castle2.png';
@@ -6,6 +6,11 @@ import './add-tower-dialog.css';
 
 const AddTowerDialog = (props) => {
   const [towerName, setTowerName] = useState('');
+  const towerNameInputRef = useRef(null);
+
+  useEffect(() => {
+    towerNameInputRef.current.focus();
+  }, []);
 
   const closeDialog = () => {
     setTowerName('');
@@ -24,6 +29,12 @@ const AddTowerDialog = (props) => {
 
     closeDialog();
   };
+
+  const keyPressHandler = (event) => {
+    if (event.key === 'Enter') {
+      sendTowerData();
+    }
+  }
 
   const updateTowerName = (value) => {
     setTowerName(value);
@@ -45,9 +56,11 @@ const AddTowerDialog = (props) => {
           <div className="add-tower-name">
             <h2>Tower name (optional)</h2>
             <input
+              ref={towerNameInputRef}
               type="text"
               placeholder="Tower name"
               value={towerName}
+              onKeyPress={e => keyPressHandler(e)}
               onChange={(e) => updateTowerName(e.target.value)}>
             </input>
           </div>

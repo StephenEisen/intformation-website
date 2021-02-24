@@ -1,7 +1,7 @@
 import cors from 'cors';
 import multer from 'multer';
 import { corsOptions } from './index.js';
-import { getImagesFromS3, uploadImageToS3 } from '../aws/s3.js';
+import { uploadImageToS3 } from '../aws/s3.js';
 import * as queries from '../mongodb/queries.js';
 import * as passwords from '../utils/passwords.js';
 
@@ -105,12 +105,25 @@ const intelEndpoints = (app, io) => {
   app.post(`${apiPath}/:pageId/image`, cors(corsOptions), upload.single('uploadedImage'), async (request, response) => {
     try {
       const pageId = request.params.pageId;
+      const towerLocation = request.query.towerLocation;
       const towerId = request.query.towerId;
       const teamIndex = Number(request.query.teamIndex);
 
       try {
-        const imagePath = await uploadImageToS3(pageId, towerId, teamIndex, request.file);
+        // Upload to AWS S3 bucket
+        const imagePath = await uploadImageToS3(request.file, pageId, towerId, teamIndex);
         const imageData = { imagePath, towerId, teamIndex };
+
+        // Upload image path to database
+        await queries.updateTeamImage({
+          imagePath: imageData.imagePath,
+          pageId,
+          towerLocation,
+          towerId,
+          teamIndex
+        });
+
+        // Send back information to all clients
         io.sockets.to(pageId).emit('imageUploadSuccess', imageData);
       } catch (e) {
         io.sockets.to(pageId).emit('imageUploadError', 'Error uploading image');
@@ -124,8 +137,9 @@ const intelEndpoints = (app, io) => {
 
   app.get(`${apiPath}/:pageId/image`, cors(corsOptions), async (request, response) => {
     const pageId = request.params.pageId;
+    const towerLocation = request.query.towerLocation;
     const towerId = request.query.towerId;
-    const images = await getImagesFromS3(pageId, towerId);
+    const images = await queries.getTeamImages({ pageId, towerLocation, towerId });
 
     response.status(200).send(images);
   })

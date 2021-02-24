@@ -103,8 +103,8 @@ const TowerMap = (props) => {
       const towerImage = i === 4 ? getRootTower() : defaultTower;
 
       towerChildren.push((
-        <div key={towerKey} className={`${towerKey} ${tower && tower.name ? '' : 'no-tower'}`}>
-          <img src={towerImage} alt="" onClick={() => changeTower(i)} />
+        <div key={towerKey} className={`${towerKey} ${tower && tower.name ? '' : 'no-tower'}`} onClick={() => changeTower(i)}>
+          <img src={towerImage} alt="" />
           <div className="tower-map-name">{getTowerName(i)}</div>
         </div>
       ));

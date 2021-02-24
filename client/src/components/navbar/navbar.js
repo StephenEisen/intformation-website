@@ -3,7 +3,6 @@ import { NavLink, useHistory } from "react-router-dom";
 import { Routes } from 'globals/routes.js';
 import logo from "assets/logo.png";
 import "./navbar.css";
-import GoogleLogin from '../login/google-login/google-login'
 
 const Navbar = () => {
   const history = useHistory();
@@ -35,7 +34,7 @@ const Navbar = () => {
     <section>
       <nav className={`navbar ${isNavbarOpen ? 'hamburger-open' : 'hamburger-closed'}`}>
         <div className="navbar-logo">
-          <img src={logo} alt="IntFormation" />
+          <NavLink to="/"><img src={logo} alt="IntFormation" /></NavLink>
           <div className="navbar-logo-text">
             <div className="navbar-title-first">Epic7</div>
             <div className="navbar-title-second">Intel</div>
@@ -43,8 +42,6 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-menu" onClick={() => toggleMobileNavBar()}></div>
-
-        <GoogleLogin />
 
         <ul className="navbar-links">
           <NavLink to={Routes.Intel}>

@@ -30,6 +30,7 @@ const CharactersUsedSchema = new Schema({
 const TowerSchema = new Schema({
   location: String,
   name: String,
+  images: [String],
   characters: [CharacterSchema],
   charactersUsed: {
     team1: [CharactersUsedSchema],

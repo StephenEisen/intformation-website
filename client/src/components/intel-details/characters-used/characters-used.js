@@ -194,7 +194,7 @@ class CharactersUsed extends React.Component {
                         <input
                           type="checkbox"
                           value="victory"
-                          checked={this.state.victoryList[index]}
+                          checked={this.state.victoryList[index] || false}
                           onChange={(e) => this.updateVictory(index, e.target.checked)}
                         />
                         Victory

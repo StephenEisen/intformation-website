@@ -25,7 +25,9 @@
 }
 
 .characters-used-divider {
-  border-color: #38225a;
+  height: 1px;
+  border: 0;
+  background-color: #38225a;
 }
 
 /* ========================
@@ -78,6 +80,7 @@
 @media only screen and (max-width: 900px) {
   .characters-used {
     padding: 20px;
+    width: 100% !important;
   }
 
   .characters-used-items {
@@ -94,5 +97,11 @@
 
   .characters-used-container {
     margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .characters-used {
+    width: auto;
   }
 }

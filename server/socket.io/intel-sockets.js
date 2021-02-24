@@ -7,15 +7,20 @@ import * as queries from '../mongodb/queries.js';
  */
 const intelSockets = (io, socket) => {
   socket.on('addTower', async (towerData) => {
-    // Emit to everyone and create new tower
+    let newTowerData = {};
+
+    // Emit new tower only to client
     if (towerData.towerLocation === 'Stronghold') {
-      const newTowerData = await addNewTower(towerData);
-      io.sockets.to(towerData.pageId).emit('addTowerSuccess', newTowerData);
+      newTowerData = await addNewTower(towerData);
+      socket.emit('addTowerSuccess', newTowerData);
     }
     else {
-      const newTowerData = await addNewTower(towerData);
-      io.sockets.to(towerData.pageId).emit('addTowerSuccess', newTowerData);
+      newTowerData = await addNewTower(towerData);
+      socket.emit('addTowerSuccess', newTowerData);
     }
+
+    // Emit updated tower list to everyone
+    io.sockets.to(towerData.pageId).emit('towerListUpdateSuccess', newTowerData.towerList);
   });
 
   socket.on('filterTower', async ({ pageId, towerLocation }) => {
@@ -26,9 +31,10 @@ const intelSockets = (io, socket) => {
 
   socket.on('updateCharacter', async (characterData) => {
     const updatedIntel = await queries.updateCharacter(characterData);
-    const towerList = updatedIntel.towerList;
+    const towerList = updatedIntel.towerList[towerLocation];
     const towerLocation = characterData.towerLocation;
-    socket.broadcast.to(characterData.pageId).emit('updateCharacterSuccess', { towerList, towerLocation });
+    const towerData = towerList.find((tower) => tower._id.toString() === characterData.towerId);
+    socket.broadcast.to(characterData.pageId).emit('updateCharacterSuccess', towerData);
   });
 
   socket.on('updateCharactersUsed', async (charactersUsedData) => {

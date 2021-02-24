@@ -1,10 +1,11 @@
 import React from 'react';
-import CharacterData from '../character-data/character-data';
+import { socket } from 'globals/socket';
 import { clone } from 'globals/utils';
-import './tower-data.css';
-import TeamImage from '../team-image/team-image.js';
 import { towerImageGet } from "globals/api.js";
+import CharacterData from '../character-data/character-data';
+import TeamImage from '../team-image/team-image.js';
 import CharactersUsed from '../characters-used/characters-used';
+import './tower-data.css';
 const characters = require('data/characters.json');
 
 class TowerData extends React.Component {
@@ -15,11 +16,20 @@ class TowerData extends React.Component {
       characterOptions: clone(characters),
       selectedCharacters: Array(6).fill(null),
       isEditingList: Array(6).fill(false),
+      towerData: {},
       towerImages: {}
     };
+
+    this.towerDataRef = React.createRef(null);
+
+    this.updateCharacterEvent = this.updateCharacterEvent.bind(this);
   }
 
   componentDidMount() {
+    // Watch socket events
+    socket.on("updateCharacterSuccess", this.updateCharacterEvent);
+
+    // Setup the initial selected characters on tower load
     const selectedCharacters = this.state.selectedCharacters;
 
     // Set the initial selected when first loading this component
@@ -27,15 +37,28 @@ class TowerData extends React.Component {
       selectedCharacters.splice(i, 1, this.props.towerData.characters[i].name);
     }
 
-    this.setState({ selectedCharacters });
-    this.updateCharacterOptions();
-    this.loadTowerImages();
+    // Set the state and load necessary data
+    this.setState({ towerData: this.props.towerData, selectedCharacters }, () => {
+      this.updateCharacterOptions();
+      this.loadTowerImages();
+      this.towerDataRef.current.scrollIntoView();
+    });
+  }
+
+  componentWillUnmount() {
+    socket.off("updateCharacterSuccess", this.updateCharacterEvent);
   }
 
   async loadTowerImages() {
-    const reponse = await towerImageGet(this.props.pageId, this.props.towerData._id);
+    const reponse = await towerImageGet(this.props.pageId, this.state.towerData.location, this.state.towerData._id);
     const images = await reponse.json();
     this.setState({ towerImages: images });
+  }
+
+  updateCharacterEvent(towerData) {
+    if (towerData._id === this.props.towerData._id) {
+      this.setState({ towerData });
+    }
   }
 
   updateCharacterOptions = (selectedOption, characterIndex) => {
@@ -64,11 +87,11 @@ class TowerData extends React.Component {
     for (let i = 0; i < 6; i++) {
       elements.push((
         <CharacterData
-          key={this.props.towerData.characters[i]._id}
-          character={this.props.towerData.characters[i]}
+          key={this.state.towerData.characters[i]._id}
+          character={this.state.towerData.characters[i]}
           options={this.state.characterOptions}
           pageId={this.props.pageId}
-          towerData={this.props.towerData}
+          towerData={this.state.towerData}
           teamIndex={i <= 2 ? 1 : 2}
           characterIndex={i}
           isEditing={this.state.isEditingList[i]}
@@ -84,25 +107,31 @@ class TowerData extends React.Component {
   getTeamImage(teamIndex) {
     const towerImages = this.state.towerImages;
 
-    if (towerImages && towerImages[this.props.towerData._id]) {
+    if (towerImages && towerImages[this.state.towerData._id]) {
       const index = teamIndex - 1 >= 0 ? teamIndex - 1 : 0;
-      return towerImages[this.props.towerData._id][index].imagePath;
+      return towerImages[this.state.towerData._id][index];
     }
   }
 
   getCharactersUsed(teamIndex) {
     const teamKey = `team${teamIndex}`;
-    return this.props.towerData.charactersUsed[teamKey].filter((item) => item.team === teamIndex);
+    return this.state.towerData.charactersUsed[teamKey].filter((item) => item.team === teamIndex);
   }
 
   render() {
+    // Show nothing if tower data state isn't defined yet
+    if (Object.keys(this.state.towerData).length === 0) {
+      return null;
+    }
+
+    // Show the tower information
     const characterElements = this.getCharacterElements();
 
     return (
-      <div className="tower-data container">
+      <div ref={this.towerDataRef} className="tower-data container">
         <div className="tower-header">
-          <span className="tower-name">{this.props.towerData.name}</span>
-          <span className="tower-location">{this.props.towerData.location}</span>
+          <span className="tower-name">{this.state.towerData.name}</span>
+          <span className="tower-location">{this.state.towerData.location}</span>
         </div>
 
         <div className="tower-team">
@@ -112,14 +141,15 @@ class TowerData extends React.Component {
             {characterElements.slice(0, 3)}
             <CharactersUsed
               pageId={this.props.pageId}
-              towerLocation={this.props.towerData.location}
-              towerId={this.props.towerData._id}
+              towerLocation={this.state.towerData.location}
+              towerId={this.state.towerData._id}
               teamIndex={1}
               characters={this.getCharactersUsed(1)}
             />
             <TeamImage
               pageId={this.props.pageId}
-              towerId={this.props.towerData._id}
+              towerLocation={this.state.towerData.location}
+              towerId={this.state.towerData._id}
               teamIndex={1}
               image={this.getTeamImage(1)}
             />
@@ -131,14 +161,15 @@ class TowerData extends React.Component {
             {characterElements.slice(3, 6)}
             <CharactersUsed
               pageId={this.props.pageId}
-              towerLocation={this.props.towerData.location}
-              towerId={this.props.towerData._id}
+              towerLocation={this.state.towerData.location}
+              towerId={this.state.towerData._id}
               teamIndex={2}
               characters={this.getCharactersUsed(2)}
             />
             <TeamImage
               pageId={this.props.pageId}
-              towerId={this.props.towerData._id}
+              towerLocation={this.state.towerData.location}
+              towerId={this.state.towerData._id}
               teamIndex={2}
               image={this.getTeamImage(2)}
             />

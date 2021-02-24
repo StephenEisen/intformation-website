@@ -61,19 +61,19 @@ export const intelAuthTokenPost = async (pageId, password) => {
 }
 
 // This is for uploading team images
-export const towerImagePost = async (file, pageId, towerId, teamIndex) => {
+export const towerImagePost = async (file, pageId, towerLocation, towerId, teamIndex) => {
   let formData = new FormData();
   formData.append("uploadedImage", file);
 
-  const resp = await fetch(`${webserver}/api/intel/${pageId}/image?towerId=${towerId}&teamIndex=${teamIndex}`, {
+  const resp = await fetch(`${webserver}/api/intel/${pageId}/image?towerLocation=${towerLocation}&towerId=${towerId}&teamIndex=${teamIndex}`, {
     method: 'POST',
     body: formData
   });
   return resp;
 };
 
-export const towerImageGet = async (pageId, towerId) => {
-  const resp = await fetch(`${webserver}/api/intel/${pageId}/image?towerId=${towerId}`, {
+export const towerImageGet = async (pageId, towerLocation, towerId) => {
+  const resp = await fetch(`${webserver}/api/intel/${pageId}/image?towerLocation=${towerLocation}&towerId=${towerId}`, {
     method: 'GET'
   });
   return resp;

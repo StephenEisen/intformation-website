@@ -65,7 +65,8 @@ class TeamImage extends React.Component {
         alert("Your image is too powerful! File size cannot exceed 10MB");
         return;
       }
-      towerImagePost(file, this.props.pageId, this.props.towerId, this.props.teamIndex);
+
+      towerImagePost(file, this.props.pageId, this.props.towerLocation, this.props.towerId, this.props.teamIndex);
     }
   };
 
@@ -91,7 +92,7 @@ class TeamImage extends React.Component {
   }
 
   render() {
-     return (
+    return (
       <div
         className="team-image"
         draggable="true"

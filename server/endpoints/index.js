@@ -1,4 +1,4 @@
-import bodyParser from 'body-parser';
+import express from 'express';
 import sessionEndpoints from './session-endpoints.js'
 import intelEndpoints from './intel-endpoints.js';
 import statisticsEndpoints from './statistics-endpoints.js';
@@ -14,8 +14,8 @@ export const corsOptions = { origin: origin, optionsSuccessStatus: 200 };
  */
 const endpoints = (app, io) => {
   // Middlewares
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json())
+  app.use(express.urlencoded({ extended: false }));
+  app.use(express.json());
 
   // Endpoints
   intelEndpoints(app, io);

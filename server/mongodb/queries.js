@@ -7,14 +7,20 @@ export async function findIntel(pageId) {
 }
 
 export async function createIntel() {
+  const initialData = {
+    images: Array(2).fill(''),
+    characters: [],
+    charactersUsed: {}
+  };
+
   const newData = new GuildData({
     pageId: Math.random().toString(36).slice(2),
     createdDate: new Date(),
     towerList: {
-      'Stronghold': {},
-      'Bronze Fortress': Array(9).fill({}),
-      'Silver Fortress': Array(9).fill({}),
-      'Dalberg Fortress': Array(9).fill({})
+      'Stronghold': Array(1).fill(initialData),
+      'Bronze Fortress': Array(9).fill(initialData),
+      'Silver Fortress': Array(9).fill(initialData),
+      'Dalberg Fortress': Array(9).fill(initialData)
     }
   });
   return newData.save();
@@ -109,6 +115,40 @@ export async function updateCharactersUsed(charactersUsedData) {
       upsert: true
     }
   );
+}
+
+export async function updateTeamImage(towerData) {
+  const findQueryKey = `towerList.${towerData.towerLocation}._id`;
+  const setQueryKey = `towerList.${towerData.towerLocation}.$.images.${towerData.teamIndex - 1}`;
+
+  return GuildData.findOneAndUpdate(
+    {
+      pageId: towerData.pageId,
+      [findQueryKey]: towerData.towerId
+    },
+    {
+      $set: {
+        [setQueryKey]: towerData.imagePath
+      }
+    },
+    {
+      new: true,
+      upsert: true
+    }
+  );
+}
+
+export async function getTeamImages(towerData) {
+  const findQueryKey = `towerList.${towerData.towerLocation}._id`;
+
+  const intelData = await GuildData.findOne({
+    pageId: towerData.pageId,
+    [findQueryKey]: towerData.towerId
+  });
+
+  const towerList = intelData.towerList[towerData.towerLocation];
+  const tower = towerList.find((tower) => tower._id.toString() === towerData.towerId);
+  return { [towerData.towerId]: tower.images };
 }
 
 export async function findIntelPassword(pageId) {
