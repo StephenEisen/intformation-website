@@ -1,6 +1,9 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { socket } from 'globals/socket';
-import { clone } from 'globals/utils';
+import { clone, isEmptyString } from 'globals/utils';
+import { sanitizeInput } from 'globals/validation';
 import { towerImageGet } from "globals/api.js";
 import CharacterData from '../character-data/character-data';
 import TeamImage from '../team-image/team-image.js';
@@ -17,16 +20,21 @@ class TowerData extends React.Component {
       selectedCharacters: Array(6).fill(null),
       isEditingList: Array(6).fill(false),
       towerData: {},
-      towerImages: {}
+      towerImages: {},
+      previousTowerName: props.towerData.name,
+      isEditingTowerName: false
     };
 
     this.towerDataRef = React.createRef(null);
+    this.towerNameRef = React.createRef(null);
 
+    this.updateTowerNameEvent = this.updateTowerNameEvent.bind(this);
     this.updateCharacterEvent = this.updateCharacterEvent.bind(this);
   }
 
   componentDidMount() {
     // Watch socket events
+    socket.on("updateTowerNameSuccess", this.updateTowerNameEvent);
     socket.on("updateCharacterSuccess", this.updateCharacterEvent);
 
     // Setup the initial selected characters on tower load
@@ -46,6 +54,7 @@ class TowerData extends React.Component {
   }
 
   componentWillUnmount() {
+    socket.off("updateTowerNameSuccess", this.updateTowerNameEvent);
     socket.off("updateCharacterSuccess", this.updateCharacterEvent);
   }
 
@@ -58,6 +67,12 @@ class TowerData extends React.Component {
   updateCharacterEvent(towerData) {
     if (towerData._id === this.props.towerData._id) {
       this.setState({ towerData });
+    }
+  }
+
+  updateTowerNameEvent(towerData) {
+    if (towerData.towerId === this.props.towerData._id) {
+      this.updateTowerName(towerData.towerName);
     }
   }
 
@@ -75,10 +90,39 @@ class TowerData extends React.Component {
     this.setState({ characterOptions, selectedCharacters });
   }
 
-  updateIsEditing(isEditing, characterIndex) {
+  updateIsEditingCharacter(isEditing, characterIndex) {
     const isEditingList = Array(6).fill(false);
     isEditingList.splice(characterIndex, 1, isEditing);
     this.setState({ isEditingList });
+  }
+
+  updateIsEditingTowerName() {
+    this.setState({ isEditingTowerName: true }, () => this.towerNameRef.current.focus());
+  }
+
+  updateTowerName(value) {
+    const towerData = this.state.towerData;
+    towerData.name = value.length > 9 ? value.slice(0, 9) : value;
+    this.setState({ towerData });
+  }
+
+  emitTowerName() {
+    const towerData = this.state.towerData;
+    towerData.name = sanitizeInput(towerData.name);
+    towerData.name = isEmptyString(towerData.name) ? this.state.previousTowerName : towerData.name;
+
+    if (towerData.name !== this.state.previousTowerName) {
+      socket.emit('updateTowerName', {
+        pageId: this.props.pageId,
+        towerLocation: towerData.location,
+        towerId: towerData._id,
+        towerName: towerData.name
+      });
+
+      this.setState({ towerData, previousTowerName: towerData.name });
+    }
+
+    this.setState({ isEditingTowerName: false });
   }
 
   getCharacterElements() {
@@ -95,7 +139,7 @@ class TowerData extends React.Component {
           teamIndex={i <= 2 ? 1 : 2}
           characterIndex={i}
           isEditing={this.state.isEditingList[i]}
-          editChange={(value) => this.updateIsEditing(value, i)}
+          editChange={(value) => this.updateIsEditingCharacter(value, i)}
           selectionChange={(option) => this.updateCharacterOptions(option, i)}
         />
       ));
@@ -130,7 +174,20 @@ class TowerData extends React.Component {
     return (
       <div ref={this.towerDataRef} className="tower-data container">
         <div className="tower-header">
-          <span className="tower-name">{this.state.towerData.name}</span>
+          {/* TOWER NAME */}
+          <span className="tower-name" onClick={() => this.updateIsEditingTowerName()} hidden={this.state.isEditingTowerName}>{this.state.towerData.name}</span>
+          <span className="tower-name" hidden={!this.state.isEditingTowerName}>
+            <FontAwesomeIcon icon={faEdit} />
+            <input
+              ref={this.towerNameRef}
+              type="text"
+              value={this.state.towerData.name}
+              onChange={(e) => this.updateTowerName(e.target.value)}
+              onBlur={() => this.emitTowerName()}
+            />
+          </span>
+
+          {/* TOWER LOCATION */}
           <span className="tower-location">{this.state.towerData.location}</span>
         </div>
 

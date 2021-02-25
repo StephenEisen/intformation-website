@@ -53,6 +53,27 @@ export async function addTower(towerData) {
   );
 }
 
+export async function updateTowerName(towerData) {
+  const towerLocation = towerData.towerLocation;
+  const findQueryKey = `towerList.${towerLocation}._id`;
+  const setQueryKey = `towerList.${towerLocation}.$.name`;
+
+  return GuildData.findOneAndUpdate(
+    {
+      pageId: towerData.pageId,
+      [findQueryKey]: towerData.towerId
+    },
+    {
+      $set: {
+        [setQueryKey]: towerData.towerName
+      }
+    },
+    {
+      new: true
+    }
+  );
+}
+
 export async function updateCharacter(characterData) {
   const towerLocation = characterData.towerLocation;
   const findQueryKey = `towerList.${towerLocation}._id`;

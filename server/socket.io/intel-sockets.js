@@ -26,6 +26,16 @@ const intelSockets = (io, socket) => {
     socket.emit('filterTowerSuccess', { towerList, towerLocation });
   });
 
+  socket.on('updateTowerName', async (towerData) => {
+    const updatedIntel = await queries.updateTowerName(towerData);
+    const towerList = updatedIntel.towerList;
+    const newTowerData = { towerId: towerData.towerId, towerName: towerData.towerName };
+    socket.broadcast.to(towerData.pageId).emit('updateTowerNameSuccess', newTowerData);
+
+    // Emit updated tower list to everyone
+    io.sockets.to(towerData.pageId).emit('towerListUpdateSuccess', towerList);
+  });
+
   socket.on('updateCharacter', async (characterData) => {
     const updatedIntel = await queries.updateCharacter(characterData);
     const towerLocation = characterData.towerLocation;
