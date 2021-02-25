@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { towerImagePost } from 'globals/api.js';
 import { socket } from 'globals/socket';
+import LoadingIndicator from 'components/common/loading-indicator/loading-indicator.js';
 import './team-image.css';
 
 class TeamImage extends React.Component {
@@ -11,7 +12,8 @@ class TeamImage extends React.Component {
 
     this.state = {
       imageSource: '',
-      imageUploaded: false
+      imageUploaded: false,
+      isLoading: false
     };
 
     this.imageBoxRef = React.createRef(null);
@@ -42,7 +44,7 @@ class TeamImage extends React.Component {
 
   updateImage({ imagePath, towerId, teamIndex }) {
     if (imagePath && towerId === this.props.towerId && teamIndex === this.props.teamIndex) {
-      this.setState({ imageSource: imagePath, imageUploaded: true });
+      this.setState({ imageSource: imagePath, imageUploaded: true, isLoading: false });
     }
   }
 
@@ -66,6 +68,7 @@ class TeamImage extends React.Component {
         return;
       }
 
+      this.setState({ isLoading: true });
       towerImagePost(file, this.props.pageId, this.props.towerLocation, this.props.towerId, this.props.teamIndex);
     }
   };
@@ -125,6 +128,8 @@ class TeamImage extends React.Component {
           ref={this.inputFileRef}
           onChange={(e) => this.onFileChange(e)}
         />
+
+        <LoadingIndicator visible={this.state.isLoading} />
       </div>
     );
   }
