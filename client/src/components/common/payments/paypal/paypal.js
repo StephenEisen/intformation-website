@@ -2,7 +2,6 @@ import React from 'react';
 import { PayPalButtons, FUNDING } from '@paypal/react-paypal-js';
 import './paypal.css'
 
-
 const PaypalButton = () => {
 
   const onCreateOrder = (data, actions) => {
@@ -25,7 +24,7 @@ const PaypalButton = () => {
   }
 
   const onCancel = (data, actions) => {
-    
+
   }
 
   const onError = (data, actions) => {
@@ -37,16 +36,16 @@ const PaypalButton = () => {
       <PayPalButtons
         fundingSource={FUNDING.PAYPAL}
         style={{
-          layout:  'vertical',
-          color:   'gold',
-          shape:   'pill',
-          label:   'paypal',
+          layout: 'vertical',
+          color: 'gold',
+          shape: 'pill',
+          label: 'paypal',
           branding: true
         }}
         createOrder={onCreateOrder}
         onApprove={onApprove}
         onCancel={onCancel}
-        onError={onError}/>
+        onError={onError} />
     </div>
   );
 };
