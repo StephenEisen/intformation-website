@@ -34,7 +34,7 @@ class CharactersUsed extends React.Component {
       selectedCharacters.splice(i, 1, this.props.characters[i].characters);
     }
 
-    this.setState({ characterOptions, selectedCharacters, victoryList}, () => {
+    this.setState({ characterOptions, selectedCharacters, victoryList }, () => {
       for (let i = 0; i < numberOfRows; i++) {
         this.updateCharacterOptions(i);
       }
