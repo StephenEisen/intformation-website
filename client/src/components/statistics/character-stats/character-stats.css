@@ -25,6 +25,53 @@
   width: 100px;
 }
 
+.character-stats.characters-used {
+  padding: 0 !important;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+}
+
+.character-stats .characters-used-header {
+  text-align: center;
+}
+
+.winrate-bar {
+  position: relative;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.winrate-bar div {
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.winrate-bar span {
+  display: block;
+  height: 30px;
+  position: relative;
+  background: #d73444;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+}
+
+.characters-used {
+  text-align: left;
+
+}
+
+.characters-used-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  text-align: center;
+  padding: 15px 0;
+}
+
 /* Clear floats after image containers */
 .first-most-used,
 .third-most-used {

@@ -102,7 +102,7 @@ class TowerData extends React.Component {
 
   updateTowerName(value) {
     const towerData = this.state.towerData;
-    towerData.name = value.length > 9 ? value.slice(0, 9) : value;
+    towerData.name = value.length > 16 ? value.slice(0, 16) : value;
     this.setState({ towerData });
   }
 
@@ -175,9 +175,9 @@ class TowerData extends React.Component {
       <div ref={this.towerDataRef} className="tower-data container">
         <div className="tower-header">
           {/* TOWER NAME */}
-          <span className="tower-name" onClick={() => this.updateIsEditingTowerName()} hidden={this.state.isEditingTowerName}>{this.state.towerData.name}</span>
+          <FontAwesomeIcon className="tower-name-icon" onClick={() => this.updateIsEditingTowerName()} icon={faEdit} />
+          <span className="tower-name"  hidden={this.state.isEditingTowerName}>{this.state.towerData.name}</span>
           <span className="tower-name" hidden={!this.state.isEditingTowerName}>
-            <FontAwesomeIcon icon={faEdit} />
             <input
               ref={this.towerNameRef}
               type="text"

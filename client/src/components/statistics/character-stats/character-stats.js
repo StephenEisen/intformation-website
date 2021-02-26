@@ -1,7 +1,7 @@
 import React from "react";
 import StatsChart from "../stats-chart/stats-chart.js";
 import { CharacterImages } from "globals/images.js";
-import './character-stats.css';
+import "./character-stats.css";
 
 class CharacterStats extends React.Component {
   getCharKey(characterIndex) {
@@ -29,32 +29,69 @@ class CharacterStats extends React.Component {
     return artifactName;
   }
 
-  openStats(){
-    if (this.props.onTeamClick){
-      this.setState({isStatsOpen: true})
+  openStats() {
+    if (this.props.onTeamClick) {
+      this.setState({ isStatsOpen: true });
       this.props.onTeamClick(this.props.teamData.teamKey);
     }
   }
 
-  getCharacterImageElements(){
+  getCharacterImageElements() {
     const elements = [];
 
-    for (let i = 0; i < 3; i++){
+    for (let i = 0; i < 3; i++) {
       const characterKey = this.getCharKey(i);
-      elements.push((
-          <div key={i} className="character-stats-column">
-            <img
-              alt=""
-              width="62"
-              height="62"
-              src={CharacterImages[characterKey]}
-            />
-            <p>{characterKey}</p>
-          </div>
-      ));
+      elements.push(
+        <div key={i} className="character-stats-column">
+          <img
+            alt=""
+            width="62"
+            height="62"
+            src={CharacterImages[characterKey]}
+          />
+          <p>{characterKey}</p>
+        </div>
+      );
     }
 
     return elements;
+  }
+
+  getUsedTeamsElements() {
+    let element;
+    const charactersUsed = this.props.teamData.charactersUsed;
+
+    if (charactersUsed.length > 0) {
+      element = (
+        <div className="character-stats characters-used container">
+          <div className="characters-used-header">
+            <h2>
+              Common teams used against:
+            </h2>
+            <span>
+              {this.props.teamData.teamKey.replace(/:/g, ", ")}
+            </span>
+          </div>
+          <div className="characters-used-grid">
+            <span>Team</span>
+            <span>Winrate</span>
+          </div>
+          {charactersUsed.map((team) => (
+            <div key={team.teamKey}>
+              <div className="characters-used-grid">
+                <span>{team.teamKey.replace(/:/g, ", ")}</span>
+                <div className="winrate-bar">
+                  <div>{team.winrate}%</div>
+                  <span style={{ width: team.winrate + "%" }}> </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    return element;
   }
 
   getStatsElements() {
@@ -71,9 +108,12 @@ class CharacterStats extends React.Component {
       const mostUsedArtifact = this.props.teamData[characterKey][mostUsedArtifactName];
       const elementKey = `${this.props.teamData.teamKey}-${characterKey}`;
 
-      if (Object.keys(this.props.teamData[characterKey]).length > 0){
+      if (Object.keys(this.props.teamData[characterKey]).length > 0) {
         elements.push(
-          <div key={elementKey} className={`${cssAnimationClasses[i]} slide-in`}>
+          <div
+            key={elementKey}
+            className={`${cssAnimationClasses[i]} slide-in`}
+          >
             <div>
               <h2>Most Commonly Used Stats On: {characterKey}</h2>
               <p className="statistics-slide-up-artifact statistics-slide-stats">
@@ -87,26 +127,33 @@ class CharacterStats extends React.Component {
               </p>
             </div>
             <div>
-              <StatsChart artifactData={this.props.teamData[characterKey]}/>
+              <StatsChart artifactData={this.props.teamData[characterKey]} />
             </div>
           </div>
         );
       }
     }
+
     return elements;
   }
 
   render() {
-    if (this.props.hidden){
+    if (this.props.hidden) {
       return null;
     }
 
     return (
       <div>
-        <div className={`character-stats-row ${this.props.showStats ? '' :  'character-stats-row-top'}`} onClick={() => this.openStats()}>
+        <div
+          className={`character-stats-row ${
+            this.props.showStats ? "" : "character-stats-row-top"
+          }`}
+          onClick={() => this.openStats()}
+        >
           {this.getCharacterImageElements()}
         </div>
         {this.props.showStats ? this.getStatsElements() : null}
+        {this.props.showStats ? this.getUsedTeamsElements() : null}
       </div>
     );
   }

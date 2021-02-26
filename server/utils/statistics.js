@@ -14,7 +14,7 @@ export async function getStatsData() {
     ];
 
     const towersToAnalyze = towerList.filter((tower) => {
-      const hasCharacterNames = tower.characters.length > 0 && tower.characters.every((character) => character.hasOwnProperty('name'));
+      const hasCharacterNames = tower.characters.length > 0 && tower.characters.every((character) => character.name);
       return hasCharacterNames;
     });
 
@@ -39,6 +39,9 @@ export async function getStatsData() {
           // Populate the stats per artifact for a given character in each team.
           populateArtifactData(team1Object, team1Characters);
           populateArtifactData(team2Object, team2Characters);
+
+          populateUsedTeams(team1Object, tower, "team1")
+          populateUsedTeams(team2Object, tower, "team2")
         }
       });
     }
@@ -46,9 +49,41 @@ export async function getStatsData() {
 
   // Calculate the averages per artifact for each character in all the available teams.
   calculateAverages(teamList);
+  calculateWinRates(teamList);
 
   // Return a sorted list
   return { guildsAnalyzed: totalGuildsAnalyzed, teamList: teamList.sort((a, b) => b.pickRate - a.pickRate) };
+}
+
+function calculateWinRates(teamList){
+  teamList.forEach((teamData) => {
+    const charactersUsedList = teamData.charactersUsed;
+    charactersUsedList.forEach((charactersUsed) => {
+      const victories = charactersUsed.victory.filter((c) => c === true).length;
+      const winrate =  (victories / charactersUsed.victory.length) * 100;
+      charactersUsed.winrate = Number(winrate).toFixed(0);
+      delete charactersUsed.victory;
+    })
+  });
+
+}
+
+function populateUsedTeams(teamObject, tower, teamIndex) {
+  const usedCharacters = teamObject.charactersUsed;
+  const usedList = tower.charactersUsed[teamIndex]
+
+  for (let i = 0; i < usedList.length; i++){
+    if (usedList[i].characters.filter((c) => c != null).length === 3){
+      const characters = usedList[i].characters.sort().join(":");
+      let usedCharacterIndex = usedCharacters.findIndex((item) => item.teamKey === characters)
+
+      if (usedCharacterIndex < 0){
+        usedCharacters.push({teamKey: characters, victory: []});
+        usedCharacterIndex = usedCharacters.length - 1;
+      }
+      usedCharacters[usedCharacterIndex].victory.push(usedList[i].victory || false);
+    }
+  }
 }
 
 function calculateAverages(teamList) {
@@ -56,7 +91,7 @@ function calculateAverages(teamList) {
     const teamDataKeyList = Object.keys(teamData);
 
     teamDataKeyList.forEach((dataKey) => {
-      if (typeof teamData[dataKey] !== 'string' && Object.keys(teamData[dataKey]).length > 0) {
+      if (dataKey !== 'charactersUsed' && typeof teamData[dataKey] !== 'string' && Object.keys(teamData[dataKey]).length > 0) {
         const artifactKeyList = Object.keys(teamData[dataKey]);
 
         artifactKeyList.forEach((artifactKey) => {
@@ -114,6 +149,7 @@ function getTeamObject(teamList, teamKey, teamCharacters) {
       [teamCharacters[0].name]: {},
       [teamCharacters[1].name]: {},
       [teamCharacters[2].name]: {},
+      charactersUsed: []
     };
     teamList.push(teamObject);
   }

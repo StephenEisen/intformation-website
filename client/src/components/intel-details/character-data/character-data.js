@@ -262,7 +262,9 @@ class CharacterData extends React.Component {
                   </input>
                 </div>
                 <div className="calculate-btn">
-                  <button className="center-underline-btn" onClick={() => this.toggleSpeedCalculationDialog(true)}>Calculate Speed</button>
+                  <button className="slide-btn-horizontal" onClick={() => this.toggleSpeedCalculationDialog(true)}>
+                    <span className="slide-btn-text">Calculate Speed</span>
+                  </button>
                 </div>
               </div>
 

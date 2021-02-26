@@ -15,7 +15,6 @@
   flex: 1;
   text-align: left;
   font-weight: 800;
-  cursor: text;
 }
 
 .tower-name input {
@@ -28,13 +27,14 @@
   max-width: 200px;
 }
 
-.tower-name svg {
+.tower-name-icon {
   position: relative;
-  top: -3px;
+  top: 4px;
   margin-right: 5px;
   width: 18px;
   height: 18px;
   color: var(--teal-color);
+  cursor: pointer;
 }
 
 .tower-location {
@@ -76,7 +76,7 @@
 
 @media only screen and (max-width: 900px) {
   .tower-header {
-    display: grid;
+    display: block;
   }
 
   .tower-name,
@@ -87,15 +87,16 @@
 
   .tower-location {
     margin-bottom: 10px;
+    display:block;
+  }
+
+  .tower-name-icon {
+    top: -2px;
   }
 
   .tower-name input {
     text-align: center !important;
     border-bottom: 1px solid var(--teal-color) !important;
-  }
-
-  .tower-name svg {
-    display: none;
   }
 
   .tower-data.container {
