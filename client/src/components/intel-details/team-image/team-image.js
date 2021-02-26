@@ -129,7 +129,7 @@ class TeamImage extends React.Component {
           onChange={(e) => this.onFileChange(e)}
         />
 
-        <LoadingIndicator visible={this.state.isLoading} />
+        <LoadingIndicator visible={this.state.isLoading} size="small" />
       </div>
     );
   }

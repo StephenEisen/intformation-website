@@ -6,6 +6,8 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.9);
   margin: 0 auto;
+  pointer-events: none;
+  cursor: default;
 }
 
 .loading-contents {
@@ -17,13 +19,21 @@
 }
 
 .loading-circle {
-  width: 70px;
-  height: 70px;
   margin: 0 auto;
   border-radius: 50%;
   border: 3px solid transparent;
   border-top-color: #9370DB;
   animation: spin 2s linear infinite;
+}
+
+.loading-circle.default {
+  width: 70px;
+  height: 70px;
+}
+
+.loading-circle.small {
+  width: 40px;
+  height: 40px;
 }
 
 .loading-circle:before {
@@ -79,15 +89,5 @@
     -webkit-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
-  }
-}
-
-/* ========================
- * Mobile
- * ===================== */
-@media only screen and (max-width: 900px) {
-  .loading-circle {
-    width: 40px;
-    height: 40px;
   }
 }
