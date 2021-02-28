@@ -108,10 +108,29 @@
 .character-buffs {
   text-align: left;
   margin-bottom: 20px;
+  display: flex;
 }
 
-.character-buffs label {
+.character-buffs h2 {
+  display: none;
+}
+
+.character-buffs .character-buffs-inputs {
+  flex: 2;
+}
+
+.character-buffs .character-buffs-inputs label {
   margin-right: 20px;
+}
+
+.character-buffs .calculate-btn {
+  flex: 1;
+  text-align: right;
+}
+
+.character-buffs .calculate-btn svg {
+  margin-right: 5px;
+  color: var(--teal-color);
 }
 
 .character-stats-inputs div:not(:nth-child(3)) {
@@ -134,26 +153,74 @@
   box-sizing: border-box;
 }
 
-.calculate-btn {
-  flex: 0;
-  padding-left: 20px;
-}
-
 /* ========================
  * Mobile styles
  * ===================== */
- @media only screen and (max-width: 500px) {
-   .character-stats-inputs {
-     flex-wrap: wrap;
-   }
-   .calculate-btn {
-     flex-basis: 100%;
-     text-align: center;
-     margin-top: 10px;
-     margin-bottom: 10px;
-     padding-left: 0;
-   }
- }
+@media only screen and (max-width: 365px) {
+  .character-buffs label {
+    display: block;
+    margin-right: 0;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .character-buffs .character-buffs-inputs {
+    padding-bottom: 18px !important;
+  }
+
+  .character-buffs .character-buffs-inputs label input[id^="counter"] {
+    margin-left: -3px;
+  }
+
+  .character-buffs .character-buffs-inputs label input[id^="immunity"] {
+    margin-left: -15px;
+  }
+}
+
+@media only screen and (max-width: 525px) {
+  .character-buffs {
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+  }
+
+  .character-buffs .fieldset {
+    position: relative;
+    border: 1px solid #ddd;
+    padding: 1rem;
+  }
+
+  .character-buffs .fieldset h2 {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1;
+    margin: -9px 0 0 -0.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .character-buffs .character-buffs-inputs {
+    border: 1px solid #2e1c44;
+    padding-top: 25px;
+    padding-bottom: 20px;
+    flex: unset;
+  }
+
+  .character-buffs .character-buffs-inputs label:nth-child(4) {
+    margin-right: 0;
+  }
+
+  .character-buffs .calculate-btn {
+    flex: unset;
+    margin-top: 20px;
+    border: 1px solid #2e1c44;
+    padding: 20px;
+    padding-bottom: 14px;
+    text-align: center;
+  }
+}
 
 @media only screen and (max-width: 900px) {
   .character-data-container {

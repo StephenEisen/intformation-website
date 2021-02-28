@@ -23,7 +23,7 @@ export const isEmptyString = (str) => {
  * @param {string} towerLocation
  * @param {number} towerIndex
  */
-export const updateUrl = (history, pageId, towerLocation, towerIndex) => {
+export const updateIntelPath = (history, pageId, towerLocation, towerIndex) => {
   let path = `${Routes.Intel}/${pageId}`;
 
   if (towerLocation && TowerLocations.includes(towerLocation)) {

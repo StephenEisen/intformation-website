@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { socket } from 'globals/socket.js';
-import { updateUrl } from 'globals/utils.js';
+import { updateIntelPath } from 'globals/utils.js';
 import { PathToTowerLocation, TowerLocations } from 'globals/constants.js';
 import TowerData from '../tower-data/tower-data.js';
 import TowerMap from '../tower-map/tower-map.js';
@@ -64,18 +64,18 @@ class TowerList extends React.Component {
 
       if (!defaultTowerIndex && defaultTowerLocation === TowerLocations[0] && towers[0].name != null) {
         // Check if no index is given in the path and the location is stronghold.
-        updateUrl(this.props.history, this.props.pageId, defaultTowerLocation);
+        updateIntelPath(this.props.history, this.props.pageId, defaultTowerLocation);
         this.setState({ filteredTower: towers[0], defaultTowerLocation });
       } else if (defaultTowerIndex != null && towers[defaultTowerIndex] && towers[defaultTowerIndex].name != null) {
         // Check if there's an index in the path and that index is valid
         this.setState({ filteredTower: towers[defaultTowerIndex], defaultTowerLocation });
       } else if (defaultTowerLocation) {
         // When the index is invalid, remove index from the URL.
-        updateUrl(this.props.history, this.props.pageId, defaultTowerLocation);
+        updateIntelPath(this.props.history, this.props.pageId, defaultTowerLocation);
         this.setState({ defaultTowerLocation });
       }
     } else if (defaultTowerLocation) {
-      updateUrl(this.props.history, this.props.pageId);
+      updateIntelPath(this.props.history, this.props.pageId);
     }
   }
 

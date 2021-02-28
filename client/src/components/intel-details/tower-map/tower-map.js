@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { updateUrl } from 'globals/utils.js';
+import { updateIntelPath } from 'globals/utils.js';
 import AddTowerDialog from "../add-tower-dialog/add-tower-dialog.js";
 import stronghold from 'assets/towers/stronghold.png';
 import bronzeTower from 'assets/towers/bronze.png';
@@ -55,7 +55,7 @@ const TowerMap = (props) => {
   }
 
   const changeLocation = (towerLocation) => {
-    updateUrl(history, props.pageId, towerLocation);
+    updateIntelPath(history, props.pageId, towerLocation);
     setCurrentLocation(towerLocation);
 
     if (towerLocation === STRONGHOLD) {
@@ -77,7 +77,7 @@ const TowerMap = (props) => {
     const tower = getTowerByIndex(index);
 
     if (tower) {
-      updateUrl(history, props.pageId, currentLocation, index);
+      updateIntelPath(history, props.pageId, currentLocation, index);
       props.onTowerChange(currentLocation, tower._id);
     } else {
       setCurrentTowerIndex(index);

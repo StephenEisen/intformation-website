@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { socket } from 'globals/socket';
 import { CharacterImages } from 'globals/images';
 import { clone } from 'globals/utils';
@@ -109,12 +109,12 @@ class CharacterData extends React.Component {
   }
 
   toggleSpeedCalculationDialog = (isVisible) => {
-    this.setState({isSpeedCalcVisible: isVisible});
+    this.setState({ isSpeedCalcVisible: isVisible });
   }
 
   updateSpeedFromCalculation = (minSpeed, maxSpeed) => {
-    if (minSpeed > 0 && maxSpeed > 0){
-      this.setState({minSpeed, maxSpeed}, () => this.emitCharacterData());
+    if (minSpeed > 0 && maxSpeed > 0) {
+      this.setState({ minSpeed, maxSpeed }, () => this.emitCharacterData());
     }
     this.toggleSpeedCalculationDialog(false);
   }
@@ -204,29 +204,45 @@ class CharacterData extends React.Component {
 
               {/* CHARACTER BUFFS */}
               <div className="character-buffs">
-                <input
-                  type="checkbox"
-                  id={`counter-t${this.props.towerIndex}-c${this.props.characterIndex}`}
-                  value="counter"
-                  checked={this.state.counter}
-                  onChange={(e) => this.updateBuff(e)} />
-                <label htmlFor={`counter-t${this.props.towerIndex}-c${this.props.characterIndex}`}> Counter</label>
+                <div className="character-buffs-inputs fieldset">
+                  <h2>Character Buffs</h2>
+                  <label>
+                    <input
+                      type="checkbox"
+                      id={`counter-t${this.props.towerIndex}-c${this.props.characterIndex}`}
+                      value="counter"
+                      checked={this.state.counter}
+                      onChange={(e) => this.updateBuff(e)}
+                    /> Counter
+                </label>
 
-                <input
-                  type="checkbox"
-                  id={`lifesteal-t${this.props.towerIndex}-c${this.props.characterIndex}`}
-                  value="lifesteal"
-                  checked={this.state.lifesteal}
-                  onChange={(e) => this.updateBuff(e)} />
-                <label htmlFor={`lifesteal-t${this.props.towerIndex}-c${this.props.characterIndex}`}> Lifesteal</label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      id={`lifesteal-t${this.props.towerIndex}-c${this.props.characterIndex}`}
+                      value="lifesteal"
+                      checked={this.state.lifesteal}
+                      onChange={(e) => this.updateBuff(e)}
+                    /> Lifesteal
+                </label>
 
-                <input
-                  type="checkbox"
-                  id={`immunity-t${this.props.towerIndex}-c${this.props.characterIndex}`}
-                  value="immunity"
-                  checked={this.state.immunity}
-                  onChange={(e) => this.updateBuff(e)} />
-                <label htmlFor={`immunity-t${this.props.towerIndex}-c${this.props.characterIndex}`}> Immunity</label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      id={`immunity-t${this.props.towerIndex}-c${this.props.characterIndex}`}
+                      value="immunity"
+                      checked={this.state.immunity}
+                      onChange={(e) => this.updateBuff(e)}
+                    /> Immunity
+                </label>
+                </div>
+
+                <div className="calculate-btn fieldset">
+                  <h2>Tools</h2>
+                  <button className="underline-btn" onClick={() => this.toggleSpeedCalculationDialog(true)}>
+                    <FontAwesomeIcon icon={faCalculator} /> Calculate Speed
+                  </button>
+                </div>
               </div>
 
               {/* CHARACTER INPUTS */}
@@ -260,11 +276,6 @@ class CharacterData extends React.Component {
                     onChange={(e) => this.updateCharacterData('maxSpeed', e.target.value)}
                     onBlur={() => this.emitCharacterData()}>
                   </input>
-                </div>
-                <div className="calculate-btn">
-                  <button className="slide-btn-horizontal" onClick={() => this.toggleSpeedCalculationDialog(true)}>
-                    <span className="slide-btn-text">Calculate Speed</span>
-                  </button>
                 </div>
               </div>
 

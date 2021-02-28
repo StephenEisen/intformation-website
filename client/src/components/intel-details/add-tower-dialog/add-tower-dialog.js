@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { socket } from 'globals/socket';
 import { sanitizeInput } from 'globals/validation';
-import { updateUrl } from 'globals/utils';
+import { updateIntelPath } from 'globals/utils';
 import castle from 'assets/icons/castle2.png';
 import './add-tower-dialog.css';
 
@@ -30,7 +30,7 @@ const AddTowerDialog = (props) => {
       towerName: sanitizedTowerName
     });
 
-    updateUrl(history, props.pageId, props.towerLocation, props.towerIndex);
+    updateIntelPath(history, props.pageId, props.towerLocation, props.towerIndex);
     closeDialog();
   };
 

@@ -91,7 +91,7 @@
 }
 
 /* =============================
- * Underline effect button
+ * Center underline effect button
  * =========================== */
 .center-underline-btn {
   -webkit-backface-visibility: hidden;
@@ -134,9 +134,47 @@
   width: 100%;
 }
 
-/* ========================
+/* =============================
+ * Underline effect button
+ * =========================== */
+.underline-btn {
+  outline: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #fff;
+  transition: all 0.25s linear;
+  color: #fff;
+  cursor: pointer;
+  padding: 0 2px 5px 2px;
+  position: relative;
+  top: -3px;
+}
+
+.underline-btn:hover {
+  color: var(--teal-color);
+}
+
+.underline-btn:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--teal-color);
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  transform-origin: center;
+  transform: scale(0);
+  transition: 0.25s linear;
+}
+
+.underline-btn:hover:before {
+  transform: scale(1);
+}
+
+/* =============================
  * Input box styles
- * ===================== */
+ * =========================== */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
