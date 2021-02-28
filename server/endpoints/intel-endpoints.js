@@ -1,7 +1,7 @@
 import cors from 'cors';
 import multer from 'multer';
 import { corsOptions } from './index.js';
-import { uploadImageToS3 } from '../aws/s3.js';
+import { uploadImageToS3, getImagesFromS3 } from '../aws/s3.js';
 import * as queries from '../mongodb/queries.js';
 import * as passwords from '../utils/passwords.js';
 
@@ -105,7 +105,6 @@ const intelEndpoints = (app, io) => {
   app.post(`${apiPath}/:pageId/image`, cors(corsOptions), upload.single('uploadedImage'), async (request, response) => {
     try {
       const pageId = request.params.pageId;
-      const towerLocation = request.query.towerLocation;
       const towerId = request.query.towerId;
       const teamIndex = Number(request.query.teamIndex);
 
@@ -114,14 +113,9 @@ const intelEndpoints = (app, io) => {
         const imagePath = await uploadImageToS3(request.file, pageId, towerId, teamIndex);
         const imageData = { imagePath, towerId, teamIndex };
 
-        // Upload image path to database
-        await queries.updateTeamImage({
-          imagePath: imageData.imagePath,
-          pageId,
-          towerLocation,
-          towerId,
-          teamIndex
-        });
+        // Upload image path to database (TODO: Add back in if we can sync deleting images from S3 and our database)
+        // const towerLocation = request.query.towerLocation;
+        // await queries.updateTeamImage({ imagePath: imageData.imagePath, pageId, towerLocation, towerId, teamIndex });
 
         // Send back information to all clients
         io.sockets.to(pageId).emit('imageUploadSuccess', imageData);
@@ -137,9 +131,12 @@ const intelEndpoints = (app, io) => {
 
   app.get(`${apiPath}/:pageId/image`, cors(corsOptions), async (request, response) => {
     const pageId = request.params.pageId;
-    const towerLocation = request.query.towerLocation;
     const towerId = request.query.towerId;
-    const images = await queries.getTeamImages({ pageId, towerLocation, towerId });
+    const images = await getImagesFromS3(pageId, towerId);
+
+    // Retrieve image path from database (TODO: Add back in if we can sync deleting images from S3 and our database)
+    // const towerLocation = request.query.towerLocation;
+    // const images = await queries.getTeamImages({ pageId, towerLocation, towerId });
 
     response.status(200).send(images);
   })
