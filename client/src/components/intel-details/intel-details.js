@@ -3,13 +3,13 @@ import { useParams, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { socket } from 'globals/socket.js';
-import { Routes } from 'globals/routes';
+import { Routes } from 'globals/constants.js';
 import { intelAuthTokenPost, intelGet, intelPasswordPost } from 'globals/api';
 import TowerList from './tower-list/tower-list';
 import './intel-details.css';
 
 const IntelDetails = () => {
-  const { id } = useParams();
+  const { pageId, towerLocation, towerIndex } = useParams();
   const history = useHistory();
   const [intel, setIntel] = useState(null);
   const [password, setPassword] = useState('');
@@ -21,7 +21,7 @@ const IntelDetails = () => {
 
   const handlePasswordSubmit = (event) => {
     if (forbidden) {
-      intelAuthTokenPost(id, password)
+      intelAuthTokenPost(pageId, password)
         .then(token => {
           loadIntel();
           setForbidden(false);
@@ -30,7 +30,7 @@ const IntelDetails = () => {
 
       setPassword('');
     } else {
-      intelPasswordPost(id, password).catch((err) => console.error('Error', err));
+      intelPasswordPost(pageId, password).catch((err) => console.error('Error', err));
       setPassword('');
     }
     event.preventDefault();
@@ -38,21 +38,21 @@ const IntelDetails = () => {
 
   const localStoragePushIntel = () => {
     const recents = JSON.parse(localStorage.getItem('recentIntels')) || [];
-    const filtered = recents.filter(el => el !== id);
-    filtered.unshift(id);
+    const filtered = recents.filter(el => el !== pageId);
+    filtered.unshift(pageId);
     const updated = filtered.slice(0, 10);
     localStorage.setItem('recentIntels', JSON.stringify(updated));
   }
 
   const loadIntel = async () => {
     try {
-      const response = await intelGet(id);
+      const response = await intelGet(pageId);
 
       if (response.ok) {
         const intel = await response.json();
         setIntel(intel);
         localStoragePushIntel();
-        socket.emit('joinRoom', id);
+        socket.emit('joinRoom', pageId);
       } else if (response.status === 403) {
         setForbidden(true);
       } else {
@@ -67,7 +67,7 @@ const IntelDetails = () => {
     loadIntel();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [pageId]);
 
   // I'm just being lazy and reusing this form for both password set and
   // password entry. I'm sure Mo can design a nicer UX here
@@ -96,7 +96,17 @@ const IntelDetails = () => {
     <div>
       {passwordForm}
       {forbidden ? <p>Forbidden</p> : null}
-      {intel ? <TowerList pageId={id} towerList={intel.towerList} /> : null}
+
+      {
+        intel
+          ? <TowerList
+              pageId={pageId}
+              towerList={intel.towerList}
+              towerLocation={towerLocation}
+              towerIndex={towerIndex}
+            />
+          : null
+      }
     </div>
   )
 }

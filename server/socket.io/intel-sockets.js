@@ -42,10 +42,13 @@ const intelSockets = (io, socket) => {
     const towerList = updatedIntel.towerList[towerLocation];
     const towerData = towerList.find((tower) => tower._id.toString() === characterData.towerId);
     socket.broadcast.to(characterData.pageId).emit('updateCharacterSuccess', towerData);
+
+    // Emit updated tower list so the back and forward button work correctly
+    socket.emit('towerListUpdateSuccess', updatedIntel.towerList);
   });
 
   socket.on('updateCharactersUsed', async (charactersUsedData) => {
-    await queries.updateCharactersUsed(charactersUsedData);
+    const updatedIntel = await queries.updateCharactersUsed(charactersUsedData);
 
     const characters = {
       towerId: charactersUsedData.towerId,
@@ -56,6 +59,9 @@ const intelSockets = (io, socket) => {
     };
 
     socket.broadcast.to(charactersUsedData.pageId).emit('updateCharactersUsedSuccess', characters);
+
+    // Emit updated tower list so the back and forward button work correctly
+    socket.emit('towerListUpdateSuccess', updatedIntel.towerList);
   });
 };
 

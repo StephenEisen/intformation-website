@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { Routes } from "globals/routes.js";
+import { Routes } from "globals/constants.js";
 import Navbar from "components/navbar/navbar";
 import Footer from "components/footer/footer";
 import Intel from "components/intel/intel";
@@ -21,7 +21,7 @@ function App() {
           <Switch location={location}>
             <Route exact path="/"><Redirect to={Routes.Intel} /></Route>
             <Route exact path={Routes.Intel} component={Intel} />
-            <Route exact path={Routes.IntelID} component={IntelDetails} />
+            <Route exact path={Routes.IntelDetails} component={IntelDetails} />
             <Route exact path={Routes.Statistics} component={Statistics} />
             <Route exact path={Routes.About} component={About} />
           </Switch>

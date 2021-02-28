@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import { Routes } from 'globals/routes.js';
+import { Routes } from 'globals/constants.js';
 import logo from "assets/logo.png";
 import "./navbar.css";
 

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { updateUrl } from 'globals/utils.js';
 import AddTowerDialog from "../add-tower-dialog/add-tower-dialog.js";
 import stronghold from 'assets/towers/stronghold.png';
 import bronzeTower from 'assets/towers/bronze.png';
@@ -25,10 +27,18 @@ const towerLocations = {
 
 // Component
 const TowerMap = (props) => {
+  const history = useHistory();
   const [currentLocation, setCurrentLocation] = useState(null);
   const [currentTowerIndex, setCurrentTowerIndex] = useState(null);
   const [showChildren, setShowChildren] = useState(false);
   const [addTowerDialogVisible, setAddTowerDialogVisible] = useState(false);
+
+  useEffect(() => {
+    if (props.defaultLocation) {
+      setCurrentLocation(props.defaultLocation);
+      setShowChildren(props.defaultLocation !== STRONGHOLD && props.defaultLocation !== ALL_TOWERS);
+    }
+  }, [props.defaultLocation]);
 
   const toggleAddTowerDialog = (isVisible) => {
     setAddTowerDialogVisible(isVisible);
@@ -45,6 +55,7 @@ const TowerMap = (props) => {
   }
 
   const changeLocation = (towerLocation) => {
+    updateUrl(history, props.pageId, towerLocation);
     setCurrentLocation(towerLocation);
 
     if (towerLocation === STRONGHOLD) {
@@ -66,6 +77,7 @@ const TowerMap = (props) => {
     const tower = getTowerByIndex(index);
 
     if (tower) {
+      updateUrl(history, props.pageId, currentLocation, index);
       props.onTowerChange(currentLocation, tower._id);
     } else {
       setCurrentTowerIndex(index);
