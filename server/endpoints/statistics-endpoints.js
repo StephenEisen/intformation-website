@@ -1,7 +1,6 @@
 import cors from 'cors';
 import { corsOptions } from './index.js';
-import * as queries from '../mongodb/queries.js';
-import {getStatsData} from '../utils/statistics.js';
+import { getStatsData } from '../utils/statistics.js';
 
 const apiPath = '/api/statistics';
 
@@ -17,9 +16,10 @@ const statisticsEndpoints = (app) => {
   app.get(`${apiPath}/most-frequently-used`, cors(corsOptions), async (request, response) => {
     try {
       const mostUsed = await getStatsData();
-      response.send(mostUsed);
+      response.status(200).send(mostUsed);
     } catch (err) {
-      console.log(err);
+      request.log.error('500: Server error on retrieving statistics', err);
+      response.status(500).send({});
     }
   });
 }

@@ -23,6 +23,7 @@ const intelEndpoints = (app, io) => {
       const newIntel = await queries.createIntel();
       response.status(201).send(newIntel);
     } catch (err) {
+      request.log.error('500: Intel creation failed', err);
       response.status(500).send('Intel creation failed');
     }
   });
@@ -58,8 +59,8 @@ const intelEndpoints = (app, io) => {
       }
 
     } catch (err) {
-      console.error(err);
-      response.status(500).send('Server error');
+      request.log.error('500: Server error on intel retrieval', err);
+      response.status(500).send();
     }
   });
 
@@ -72,7 +73,8 @@ const intelEndpoints = (app, io) => {
       await passwords.updatePassword(request.body);
       response.status(204).send();
     } catch (err) {
-      response.status(500).send('Server error');
+      request.log.error('500: Server error on update password', err);
+      response.status(500).send();
     }
   });
 
@@ -88,10 +90,12 @@ const intelEndpoints = (app, io) => {
         const token = await passwords.generateToken(request.params.pageId);
         response.status(201).send(token);
       } else {
-        response.status(403).send('Forbidden');
+        request.log.error('403: Forbidden due to invalid token');
+        response.status(403).send();
       }
     } catch (err) {
-      response.status(500).send('Server error');
+      request.log.error('500: Server error on token verification', err);
+      response.status(500).send();
     }
   });
 
@@ -108,38 +112,43 @@ const intelEndpoints = (app, io) => {
       const towerId = request.query.towerId;
       const teamIndex = Number(request.query.teamIndex);
 
-      try {
-        // Upload to AWS S3 bucket
-        const imagePath = await uploadImageToS3(request.file, pageId, towerId, teamIndex);
-        const imageData = { imagePath, towerId, teamIndex };
+      // Upload to AWS S3 bucket
+      const imagePath = await uploadImageToS3(request.file, pageId, towerId, teamIndex);
+      const imageData = { imagePath, towerId, teamIndex };
 
-        // Upload image path to database (TODO: Add back in if we can sync deleting images from S3 and our database)
-        // const towerLocation = request.query.towerLocation;
-        // await queries.updateTeamImage({ imagePath: imageData.imagePath, pageId, towerLocation, towerId, teamIndex });
+      // Upload image path to database (TODO: Add back in if we can sync deleting images from S3 and our database)
+      // const towerLocation = request.query.towerLocation;
+      // await queries.updateTeamImage({ imagePath: imageData.imagePath, pageId, towerLocation, towerId, teamIndex });
 
-        // Send back information to all clients
-        io.sockets.to(pageId).emit('imageUploadSuccess', imageData);
-      } catch (e) {
-        io.sockets.to(pageId).emit('imageUploadError', 'Error uploading image');
-      }
+      // Send back information to all clients
+      io.sockets.to(pageId).emit('imageUploadSuccess', imageData);
 
       response.status(204).send();
+
     } catch (err) {
-      console.log(err)
+      io.sockets.to(pageId).emit('imageUploadError', 'Error uploading image');
+      request.log.error('500: Server error on image upload', err);
+      response.status(500).send();
     }
   });
 
   app.get(`${apiPath}/:pageId/image`, cors(corsOptions), async (request, response) => {
-    const pageId = request.params.pageId;
-    const towerId = request.query.towerId;
-    const images = await getImagesFromS3(pageId, towerId);
+    try {
+      const pageId = request.params.pageId;
+      const towerId = request.query.towerId;
+      const images = await getImagesFromS3(pageId, towerId);
 
-    // Retrieve image path from database (TODO: Add back in if we can sync deleting images from S3 and our database)
-    // const towerLocation = request.query.towerLocation;
-    // const images = await queries.getTeamImages({ pageId, towerLocation, towerId });
+      // Retrieve image path from database (TODO: Add back in if we can sync deleting images from S3 and our database)
+      // const towerLocation = request.query.towerLocation;
+      // const images = await queries.getTeamImages({ pageId, towerLocation, towerId });
 
-    response.status(200).send(images);
-  })
+      response.status(200).send(images);
+
+    } catch (err) {
+      request.log.error('500: Server error on image upload', err);
+      response.status(500).send({});
+    }
+  });
 }
 
 export default intelEndpoints;

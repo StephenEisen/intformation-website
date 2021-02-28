@@ -15,6 +15,7 @@ class TowerList extends React.Component {
       towerList: props.towerList,
       filteredTower: null,
       filteredTowerId: null,
+      towerMapKey: 0,
       defaultTowerLocation: null
     };
 
@@ -72,10 +73,11 @@ class TowerList extends React.Component {
       } else if (defaultTowerLocation) {
         // When the index is invalid, remove index from the URL.
         updateIntelPath(this.props.history, this.props.pageId, defaultTowerLocation);
-        this.setState({ defaultTowerLocation });
+        this.setState({ filteredTower: null, defaultTowerLocation });
       }
-    } else if (defaultTowerLocation) {
+    } else {
       updateIntelPath(this.props.history, this.props.pageId);
+      this.setState({ defaultTowerLocation: 'All', towerMapKey: Math.random() });
     }
   }
 
@@ -115,6 +117,7 @@ class TowerList extends React.Component {
       <section className="tower-list">
         {/* TOWER MAP */}
         <TowerMap
+          key={this.state.towerMapKey}
           pageId={this.props.pageId}
           towerList={this.state.towerList}
           defaultLocation={this.state.defaultTowerLocation}

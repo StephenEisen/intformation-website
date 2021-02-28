@@ -2,7 +2,6 @@ import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import { corsOptions } from './index.js';
 import { OAuth2Client } from 'google-auth-library';
-import UserAccount from '../mongodb/accounts.js';
 import { createOrUpdateUser } from '../mongodb/queries.js';
 
 const apiPath = '/api/session';
@@ -61,7 +60,7 @@ const sessionEndpoints = (app, io) => {
       });
       response.status(201).send(token);
     } catch (err) {
-      console.error(err);
+      request.log.error('500: Server error on session creation', err);
       response.status(500).send();
     }
   });

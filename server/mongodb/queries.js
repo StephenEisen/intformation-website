@@ -1,6 +1,6 @@
 import GuildData from './guild-data.js';
 import IntelPassword from './intel-password.js';
-import UserAccount from './accounts.js'
+import UserAccount from './user-account.js'
 
 export async function findIntel(pageId) {
   return GuildData.findOne({ pageId });
