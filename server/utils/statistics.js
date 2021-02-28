@@ -96,8 +96,10 @@ function calculateAverages(teamList) {
 
         artifactKeyList.forEach((artifactKey) => {
           const artifactObject = teamData[dataKey][artifactKey];
-          artifactObject.hpAverage = Number(artifactObject.hpAverage / artifactObject.hpCounter).toFixed(0);
-          artifactObject.speedAverage = Number(artifactObject.speedAverage / artifactObject.speedCounter).toFixed(0);
+          const hpAverage = Number(artifactObject.hpAverage / artifactObject.hpCounter).toFixed(0);
+          const speedAverage = Number(artifactObject.speedAverage / artifactObject.speedCounter).toFixed(0);
+          artifactObject.hpAverage = isNaN(hpAverage) ? 'N/A' : hpAverage;
+          artifactObject.speedAverage = isNaN(speedAverage) ? 'N/A' : speedAverage;
         });
       }
     });

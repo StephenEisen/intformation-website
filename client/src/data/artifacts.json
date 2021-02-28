@@ -1,5 +1,10 @@
 [
   {
+    "value": "Unknown Artifact",
+    "class": "Any",
+    "label": "Unknown Artifact"
+  },
+  {
     "value": "A little Queen's Huge Crown",
     "class": "Warrior",
     "label": "A little Queen's Huge Crown"
