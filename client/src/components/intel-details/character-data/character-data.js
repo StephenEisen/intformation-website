@@ -196,6 +196,7 @@ class CharacterData extends React.Component {
                     className="select-dropdown"
                     placeholder="Artifact"
                     options={this.artifactList}
+                    defaultValue={this.artifactList[0]}
                     value={this.getSelectedArtifact()}
                     onChange={(e) => this.updateCharacterArtifact(e.value)}
                   />
