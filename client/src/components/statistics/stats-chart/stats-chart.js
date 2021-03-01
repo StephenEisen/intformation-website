@@ -74,7 +74,7 @@ class StatsChart extends React.Component {
       sortedArtifacts.push({ label, data });
     }
 
-    return sortedArtifacts.sort((a, b) => b.data.artifactCounter - a.data.artifactCounter);
+    return sortedArtifacts.sort((a, b) => b.data.artifactCounter - a.data.artifactCounter).slice(0, 4);
   }
 
   getArtifactLabels() {

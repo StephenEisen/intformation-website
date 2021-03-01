@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { webserver } from "globals/socket.js";
 import "./statistics.css";
 import CharacterStats from "./character-stats/character-stats.js";
+import LoadingIndicator from 'components/common/loading-indicator/loading-indicator.js';
 
 const Statistics = () => {
   const [totalGuilds, setTotalGuilds] = useState(0);
   const [teamData, setTeamData] = useState([]);
   const [selectedTeamIndex, setSelectedTeamIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getData();
@@ -17,6 +19,7 @@ const Statistics = () => {
     const data = await response.json();
     setTotalGuilds(data.guildsAnalyzed);
     setTeamData(data.teamList);
+    setIsLoading(false);
   };
 
   const onTeamClick = (teamKey) => {
@@ -26,6 +29,8 @@ const Statistics = () => {
 
   return (
     <div className="statistics-container">
+      <LoadingIndicator visible={isLoading} type="full"/>
+
       <h1>Total Number of Guilds Analyzed: {totalGuilds}</h1>
 
       {

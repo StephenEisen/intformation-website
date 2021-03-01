@@ -1,5 +1,4 @@
 .loading-indicator {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -8,6 +7,16 @@
   margin: 0 auto;
   pointer-events: none;
   cursor: default;
+  overflow: hidden;
+  z-index: 99;
+}
+
+.loading-indicator.full {
+  position: fixed;
+}
+
+.loading-indicator.partial {
+  position: absolute;
 }
 
 .loading-contents {

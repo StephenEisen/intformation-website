@@ -13,9 +13,10 @@ const LoadingIndicator = (props) => {
   }
 
   const cirlceSize = !props.size ? 'default' : props.size;
+  const loadingType = !props.type ? 'full' : props.type;
 
   return (
-    <div className="loading-indicator">
+    <div className={`loading-indicator ${loadingType}`}>
       <div className="loading-contents">
         <div className={`loading-circle ${cirlceSize}`}></div>
       </div>
