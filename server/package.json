@@ -4,18 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "cross-env IS_DEV=false ORIGIN=https://epic7.gg node server.js",
-    "dev": "cross-env IS_DEV=true ORIGIN=http://localhost:3000 nodemon server.js"
+    "start": "cross-env IS_DEV=false ORIGIN=https://epic7.gg LOG_LEVEL=error LOG_LOCATION=/opt/logs/server.log node server.js",
+    "dev": "cross-env IS_DEV=true ORIGIN=http://localhost:3000 LOG_LEVEL=info LOG_LOCATION=./server.log nodemon server.js"
   },
   "dependencies": {
     "aws-sdk": "^2.846.0",
     "bcrypt": "^5.0.0",
     "express": "^4.17.1",
+    "express-pino-logger": "^6.0.0",
     "google-auth-library": "^7.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "5.11.15",
     "mongoose-sanitize": "^1.1.0",
     "multer": "^1.4.2",
+    "pino": "^6.11.1",
     "socket.io": "^3.0.5"
   },
   "devDependencies": {
