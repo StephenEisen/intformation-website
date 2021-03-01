@@ -5,6 +5,7 @@ import { sanitizeInput } from 'globals/validation';
 import { updateIntelPath } from 'globals/utils';
 import castle from 'assets/icons/castle2.png';
 import './add-tower-dialog.css';
+import { TowerLocations } from 'globals/constants';
 
 const AddTowerDialog = (props) => {
   const history = useHistory();
@@ -30,7 +31,12 @@ const AddTowerDialog = (props) => {
       towerName: sanitizedTowerName
     });
 
-    updateIntelPath(history, props.pageId, props.towerLocation, props.towerIndex);
+    if (props.towerLocation === TowerLocations[0]) {
+      updateIntelPath(history, props.pageId, props.towerLocation);
+    } else {
+      updateIntelPath(history, props.pageId, props.towerLocation, props.towerIndex);
+    }
+
     closeDialog();
   };
 

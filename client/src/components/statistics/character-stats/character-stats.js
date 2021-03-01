@@ -73,9 +73,9 @@ class CharacterStats extends React.Component {
               </span>
             </div>
             <div className="characters-used-grid">
-            <span>Team</span>
-            <span>Winrate</span>
-          </div>
+              <span className="column-title">Team</span>
+              <span className="column-title">Winrate</span>
+            </div>
           {charactersUsed.map((team, teamIndex) => (
             <div key={team.teamKey}>
               <div className="characters-used-grid">
