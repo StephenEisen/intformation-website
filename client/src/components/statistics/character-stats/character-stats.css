@@ -68,6 +68,18 @@
   padding: 15px 0;
 }
 
+.characters-used-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center !important;
+  padding: 0 40px;
+  max-width: 200px;
+}
+
+.characters-used-column {
+  padding: 0;
+}
+
 /* Clear floats after image containers */
 .first-most-used,
 .third-most-used {

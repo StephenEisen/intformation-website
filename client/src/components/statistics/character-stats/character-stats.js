@@ -57,29 +57,38 @@ class CharacterStats extends React.Component {
     return elements;
   }
 
-  getUsedTeamsElements() {
+  getUsedTeamElements(){
     let element;
     const charactersUsed = this.props.teamData.charactersUsed;
 
-    if (charactersUsed.length > 0) {
-      element = (
-        <div className="character-stats characters-used container">
-          <div className="characters-used-header">
-            <h2>
-              Common teams used against:
-            </h2>
-            <span>
-              {this.props.teamData.teamKey.replace(/:/g, ", ")}
-            </span>
-          </div>
-          <div className="characters-used-grid">
+    if (charactersUsed.length > 0){
+        element = (
+          <div className="character-stats characters-used container">
+            <div className="characters-used-header">
+              <h2>
+                Common teams used against:
+              </h2>
+              <span>
+                {this.props.teamData.teamKey.replace(/:/g, ", ")}
+              </span>
+            </div>
+            <div className="characters-used-grid">
             <span>Team</span>
             <span>Winrate</span>
           </div>
-          {charactersUsed.map((team) => (
+          {charactersUsed.map((team, teamIndex) => (
             <div key={team.teamKey}>
               <div className="characters-used-grid">
-                <span>{team.teamKey.replace(/:/g, ", ")}</span>
+                <div className="characters-used-row">
+                {charactersUsed[teamIndex].teamKey.split(":").map((char) => (
+                  <div className="characters-used-column" key={char}>
+                    <div>
+                      <img alt="" width="62" height="62" src={CharacterImages[char]}/>
+                    </div>
+                    {char}
+                  </div>
+                ))}
+                </div>
                 <div className="winrate-bar">
                   <div>{team.winrate}%</div>
                   <span style={{ width: team.winrate + "%" }}> </span>
@@ -87,10 +96,8 @@ class CharacterStats extends React.Component {
               </div>
             </div>
           ))}
-        </div>
-      );
-    }
-
+          </div>)
+      }
     return element;
   }
 
@@ -145,15 +152,12 @@ class CharacterStats extends React.Component {
     return (
       <div>
         <div
-          className={`character-stats-row ${
-            this.props.showStats ? "" : "character-stats-row-top"
-          }`}
-          onClick={() => this.openStats()}
-        >
+          className={`character-stats-row ${this.props.showStats ? "" : "character-stats-row-top"}`}
+          onClick={() => this.openStats()}>
           {this.getCharacterImageElements()}
         </div>
         {this.props.showStats ? this.getStatsElements() : null}
-        {this.props.showStats ? this.getUsedTeamsElements() : null}
+        {this.props.showStats ? this.getUsedTeamElements() : null}
       </div>
     );
   }
