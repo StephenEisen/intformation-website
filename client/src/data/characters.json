@@ -70,6 +70,13 @@
     "photo": "assets/characters/Ambitious Tywin.png"
   },
   {
+    "class": "Mage",
+    "element": "Light",
+    "value": "Angel of Light Angelica",
+    "label": "Angel of Light Angelica",
+    "photo": "assets/characters/Angel of Light Angelica.png"
+  },
+  {
     "class": "Soul Weaver",
     "element": "Ice",
     "value": "Angelic Montmorancy",
@@ -232,6 +239,13 @@
   },
   {
     "class": "Ranger",
+    "element": "Fire",
+    "value": "Bomb Model Kanna",
+    "label": "Bomb Model Kanna",
+    "photo": "assets/characters/Bomb Model Kanna.png"
+  },
+  {
+    "class": "Ranger",
     "element": "Dark",
     "value": "Briar Witch Iseria",
     "label": "Briar Witch Iseria",
@@ -243,6 +257,13 @@
     "value": "Butcher Corps Inquisitor",
     "label": "Butcher Corps Inquisitor",
     "photo": "assets/characters/Butcher Corps Inquisitor.png"
+  },
+  {
+    "class": "Warrior",
+    "element": "Light",
+    "value": "Camilla",
+    "label": "Camilla",
+    "photo": "assets/characters/Camilla.png"
   },
   {
     "class": "Warrior",
@@ -371,6 +392,13 @@
     "photo": "assets/characters/Choux.png"
   },
   {
+    "class": "Knight",
+    "element": "Earth",
+    "value": "Christy",
+    "label": "Christy",
+    "photo": "assets/characters/Christy.png"
+  },
+  {
     "class": "Warrior",
     "element": "Dark",
     "value": "Church of Ilryos Axe",
@@ -390,6 +418,13 @@
     "value": "Clarissa",
     "label": "Clarissa",
     "photo": "assets/characters/Clarissa.png"
+  },
+  {
+    "class": "Thief",
+    "element": "Dark",
+    "value": "Closer Charles",
+    "label": "Closer Charles",
+    "photo": "assets/characters/Closer Charles.png"
   },
   {
     "class": "Thief",
@@ -448,6 +483,13 @@
     "photo": "assets/characters/Desert Jewel Basar.png"
   },
   {
+    "class": "Warrior",
+    "element": "Dark",
+    "value": "Designer Lilibet",
+    "label": "Designer Lilibet",
+    "photo": "assets/characters/Designer Lilibet.png"
+  },
+  {
     "class": "Soul Weaver",
     "element": "Earth",
     "value": "Destina",
@@ -504,6 +546,13 @@
     "photo": "assets/characters/Eaton.png"
   },
   {
+    "class": "Mage",
+    "element": "Ice",
+    "value": "Eda",
+    "label": "Eda",
+    "photo": "assets/characters/Eda.png"
+  },
+  {
     "class": "Soul Weaver",
     "element": "Ice",
     "value": "Elena",
@@ -523,6 +572,13 @@
     "value": "Elson",
     "label": "Elson",
     "photo": "assets/characters/Elson.png"
+  },
+  {
+    "class": "Soul Weaver",
+    "element": "Ice",
+    "value": "Emilia",
+    "label": "Emilia",
+    "photo": "assets/characters/Emilia.png"
   },
   {
     "class": "Warrior",
@@ -623,6 +679,13 @@
     "photo": "assets/characters/Godmother.png"
   },
   {
+    "class": "Warrior",
+    "element": "Dark",
+    "value": "Great Chief Khawana",
+    "label": "Great Chief Khawana",
+    "photo": "assets/characters/Great Chief Khawana.png"
+  },
+  {
     "class": "Mage",
     "element": "Light",
     "value": "Guider Aither",
@@ -658,6 +721,13 @@
     "photo": "assets/characters/Hazel.png"
   },
   {
+    "class": "Knight",
+    "element": "Ice",
+    "value": "Helen",
+    "label": "Helen",
+    "photo": "assets/characters/Helen.png"
+  },
+  {
     "class": "Warrior",
     "element": "Earth",
     "value": "Helga",
@@ -684,6 +754,20 @@
     "value": "Ian",
     "label": "Ian",
     "photo": "assets/characters/Ian.png"
+  },
+  {
+    "class": "Knight",
+    "element": "Fire",
+    "value": "Ilynav",
+    "label": "Ilynav",
+    "photo": "assets/characters/Ilynav.png"
+  },
+  {
+    "class": "Warrior",
+    "element": "Dark",
+    "value": "Inferno Khawazu",
+    "label": "Inferno Khawazu",
+    "photo": "assets/characters/Inferno Khawazu.png"
   },
   {
     "class": "Ranger",
@@ -882,6 +966,13 @@
     "photo": "assets/characters/Lots.png"
   },
   {
+    "class": "Soul Weaver",
+    "element": "Earth",
+    "value": "Lucy",
+    "label": "Lucy",
+    "photo": "assets/characters/Lucy.png"
+  },
+  {
     "class": "Mage",
     "element": "Earth",
     "value": "Ludwig",
@@ -936,6 +1027,20 @@
     "value": "Maya",
     "label": "Maya",
     "photo": "assets/characters/Maya.png"
+  },
+  {
+    "class": "Warrior",
+    "element": "Dark",
+    "value": "Mediator Kawerik",
+    "label": "Mediator Kawerik",
+    "photo": "assets/characters/Mediator Kawerik.png"
+  },
+  {
+    "class": "Warrior",
+    "element": "Fire",
+    "value": "Melany",
+    "label": "Melany",
+    "photo": "assets/characters/Melany.png"
   },
   {
     "class": "Mage",
@@ -994,6 +1099,13 @@
     "photo": "assets/characters/Mucacha.png"
   },
   {
+    "class": "Ranger",
+    "element": "Ice",
+    "value": "Muse Rima",
+    "label": "Muse Rima",
+    "photo": "assets/characters/Muse Rima.png"
+  },
+  {
     "class": "Warrior",
     "element": "Earth",
     "value": "Mui",
@@ -1036,6 +1148,13 @@
     "photo": "assets/characters/Pearlhorizon.png"
   },
   {
+    "class": "Thief",
+    "element": "Dark",
+    "value": "Penelope",
+    "label": "Penelope",
+    "photo": "assets/characters/Penelope.png"
+  },
+  {
     "class": "Mage",
     "element": "Fire",
     "value": "Politis",
@@ -1057,6 +1176,13 @@
     "photo": "assets/characters/Pyllis.png"
   },
   {
+    "class": "Mage",
+    "element": "Earth",
+    "value": "Ram",
+    "label": "Ram",
+    "photo": "assets/characters/Ram.png"
+  },
+  {
     "class": "Knight",
     "element": "Fire",
     "value": "Ras",
@@ -1076,6 +1202,13 @@
     "value": "Ray",
     "label": "Ray",
     "photo": "assets/characters/Ray.png"
+  },
+  {
+    "class": "Warrior",
+    "element": "Ice",
+    "value": "Rem",
+    "label": "Rem",
+    "photo": "assets/characters/Rem.png"
   },
   {
     "class": "Thief",
@@ -1190,6 +1323,13 @@
     "photo": "assets/characters/Seaside Bellona.png"
   },
   {
+    "class": "Knight",
+    "element": "Earth",
+    "value": "Senya",
+    "label": "Senya",
+    "photo": "assets/characters/Senya.png"
+  },
+  {
     "class": "Mage",
     "element": "Fire",
     "value": "Serila",
@@ -1253,6 +1393,13 @@
     "photo": "assets/characters/Sol Badguy.png"
   },
   {
+    "class": "Mage",
+    "element": "Light",
+    "value": "Solitaria of the Snow",
+    "label": "Solitaria of the Snow",
+    "photo": "assets/characters/Solitaria of the Snow.png"
+  },
+  {
     "class": "Soul Weaver",
     "element": "Light",
     "value": "Sonia",
@@ -1272,6 +1419,20 @@
     "value": "Specter Tenebria",
     "label": "Specter Tenebria",
     "photo": "assets/characters/Specter Tenebria.png"
+  },
+  {
+    "class": "Warrior",
+    "element": "Dark",
+    "value": "Straze",
+    "label": "Straze",
+    "photo": "assets/characters/Straze.png"
+  },
+  {
+    "class": "Ranger",
+    "element": "Fire",
+    "value": "Summertime Iseria",
+    "label": "Summertime Iseria",
+    "photo": "assets/characters/Summertime Iseria.png"
   },
   {
     "class": "Thief",

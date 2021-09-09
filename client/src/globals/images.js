@@ -8,6 +8,7 @@ import Alencia from 'assets/characters/Alencia.png';
 import Alexa from 'assets/characters/Alexa.png';
 import AllRounderWanda from 'assets/characters/All-Rounder Wanda.png';
 import AmbitiousTywin from 'assets/characters/Ambitious Tywin.png';
+import AngelofLightAngelica from 'assets/characters/Angel of Light Angelica.png';
 import AngelicMontmorancy from 'assets/characters/Angelic Montmorancy.png';
 import Angelica from 'assets/characters/Angelica.png';
 import ApocalypseRavi from 'assets/characters/Apocalypse Ravi.png';
@@ -31,8 +32,10 @@ import BenevolentRomann from 'assets/characters/Benevolent Romann.png';
 import BlazeDingo from 'assets/characters/Blaze Dingo.png';
 import BloodBladeKarin from 'assets/characters/Blood Blade Karin.png';
 import BloodMoonHaste from 'assets/characters/Blood Moon Haste.png';
+import BombModelKanna from 'assets/characters/Bomb Model Kanna.png';
 import BriarWitchIseria from 'assets/characters/Briar Witch Iseria.png';
 import ButcherCorpsInquisitor from 'assets/characters/Butcher Corps Inquisitor.png';
+import Camilla from 'assets/characters/Camilla.png';
 import CaptainRikoris from 'assets/characters/Captain Rikoris.png';
 import Carmainerose from 'assets/characters/Carmainerose.png';
 import Carrot from 'assets/characters/Carrot.png';
@@ -51,9 +54,11 @@ import Charles from 'assets/characters/Charles.png';
 import Charlotte from 'assets/characters/Charlotte.png';
 import Chloe from 'assets/characters/Chloe.png';
 import Choux from 'assets/characters/Choux.png';
+import Christy from 'assets/characters/Christy.png';
 import ChurchofIlryosAxe from 'assets/characters/Church of Ilryos Axe.png';
 import Cidd from 'assets/characters/Cidd.png';
 import Clarissa from 'assets/characters/Clarissa.png';
+import CloserCharles from 'assets/characters/Closer Charles.png';
 import Coli from 'assets/characters/Coli.png';
 import CommanderLorina from 'assets/characters/Commander Lorina.png';
 import Corvus from 'assets/characters/Corvus.png';
@@ -62,6 +67,7 @@ import CrimsonArmin from 'assets/characters/Crimson Armin.png';
 import Crozet from 'assets/characters/Crozet.png';
 import DarkCorvus from 'assets/characters/Dark Corvus.png';
 import DesertJewelBasar from 'assets/characters/Desert Jewel Basar.png';
+import DesignerLilibet from 'assets/characters/Designer Lilibet.png';
 import Destina from 'assets/characters/Destina.png';
 import Diene from 'assets/characters/Diene.png';
 import Dingo from 'assets/characters/Dingo.png';
@@ -70,9 +76,11 @@ import DollMakerPearlhorizon from 'assets/characters/Doll Maker Pearlhorizon.png
 import Dominiel from 'assets/characters/Dominiel.png';
 import Doris from 'assets/characters/Doris.png';
 import Eaton from 'assets/characters/Eaton.png';
+import Eda from 'assets/characters/Eda.png';
 import Elena from 'assets/characters/Elena.png';
 import ElpheltValentine from 'assets/characters/Elphelt Valentine.png';
 import Elson from 'assets/characters/Elson.png';
+import Emilia from 'assets/characters/Emilia.png';
 import Enott from 'assets/characters/Enott.png';
 import Ervalen from 'assets/characters/Ervalen.png';
 import FairytaleTenebria from 'assets/characters/Fairytale Tenebria.png';
@@ -87,15 +95,19 @@ import GeneralPurrgis from 'assets/characters/General Purrgis.png';
 import Glenn from 'assets/characters/Glenn.png';
 import Gloomyrain from 'assets/characters/Gloomyrain.png';
 import Godmother from 'assets/characters/Godmother.png';
+import GreatChiefKhawana from 'assets/characters/Great Chief Khawana.png';
 import GuiderAither from 'assets/characters/Guider Aither.png';
 import Gunther from 'assets/characters/Gunther.png';
 import Haste from 'assets/characters/Haste.png';
 import Hataan from 'assets/characters/Hataan.png';
 import Hazel from 'assets/characters/Hazel.png';
+import Helen from 'assets/characters/Helen.png';
 import Helga from 'assets/characters/Helga.png';
 import HolidayYufine from 'assets/characters/Holiday Yufine.png';
 import Hurado from 'assets/characters/Hurado.png';
 import Ian from 'assets/characters/Ian.png';
+import Ilynav from 'assets/characters/Ilynav.png';
+import InfernoKhawazu from 'assets/characters/Inferno Khawazu.png';
 import Iseria from 'assets/characters/Iseria.png';
 import Jecht from 'assets/characters/Jecht.png';
 import Jena from 'assets/characters/Jena.png';
@@ -124,6 +136,7 @@ import Lilibet from 'assets/characters/Lilibet.png';
 import LittleQueenCharlotte from 'assets/characters/Little Queen Charlotte.png';
 import Lorina from 'assets/characters/Lorina.png';
 import Lots from 'assets/characters/Lots.png';
+import Lucy from 'assets/characters/Lucy.png';
 import Ludwig from 'assets/characters/Ludwig.png';
 import Luluca from 'assets/characters/Luluca.png';
 import Luna from 'assets/characters/Luna.png';
@@ -132,6 +145,8 @@ import MaidChloe from 'assets/characters/Maid Chloe.png';
 import MartialArtistKen from 'assets/characters/Martial Artist Ken.png';
 import MascotHazel from 'assets/characters/Mascot Hazel.png';
 import Maya from 'assets/characters/Maya.png';
+import MediatorKawerik from 'assets/characters/Mediator Kawerik.png';
+import Melany from 'assets/characters/Melany.png';
 import Melissa from 'assets/characters/Melissa.png';
 import Mercedes from 'assets/characters/Mercedes.png';
 import MercenaryHelga from 'assets/characters/Mercenary Helga.png';
@@ -140,18 +155,22 @@ import Mistychain from 'assets/characters/Mistychain.png';
 import Montmorancy from 'assets/characters/Montmorancy.png';
 import Mort from 'assets/characters/Mort.png';
 import Mucacha from 'assets/characters/Mucacha.png';
+import MuseRima from 'assets/characters/Muse Rima.png';
 import Mui from 'assets/characters/Mui.png';
 import Nemunas from 'assets/characters/Nemunas.png';
 import OperatorSigret from 'assets/characters/Operator Sigret.png';
 import Otillie from 'assets/characters/Otillie.png';
 import Pavel from 'assets/characters/Pavel.png';
 import Pearlhorizon from 'assets/characters/Pearlhorizon.png';
+import Penelope from 'assets/characters/Penelope.png';
 import Politis from 'assets/characters/Politis.png';
 import Purrgis from 'assets/characters/Purrgis.png';
 import Pyllis from 'assets/characters/Pyllis.png';
+import Ram from 'assets/characters/Ram.png';
 import Ras from 'assets/characters/Ras.png';
 import Ravi from 'assets/characters/Ravi.png';
 import Ray from 'assets/characters/Ray.png';
+import Rem from 'assets/characters/Rem.png';
 import RemnantViolet from 'assets/characters/Remnant Violet.png';
 import Requiemroar from 'assets/characters/Requiemroar.png';
 import ResearcherCarrot from 'assets/characters/Researcher Carrot.png';
@@ -168,6 +187,7 @@ import RueleofLight from 'assets/characters/Ruele of Light.png';
 import SageBaalandSezan from 'assets/characters/Sage Baal and Sezan.png';
 import Schuri from 'assets/characters/Schuri.png';
 import SeasideBellona from 'assets/characters/Seaside Bellona.png';
+import Senya from 'assets/characters/Senya.png';
 import Serila from 'assets/characters/Serila.png';
 import Sez from 'assets/characters/Sez.png';
 import ShadowRose from 'assets/characters/Shadow Rose.png';
@@ -177,9 +197,12 @@ import Silk from 'assets/characters/Silk.png';
 import SilverBladeAramintha from 'assets/characters/Silver Blade Aramintha.png';
 import SinfulAngelica from 'assets/characters/Sinful Angelica.png';
 import SolBadguy from 'assets/characters/Sol Badguy.png';
+import SolitariaoftheSnow from 'assets/characters/Solitaria of the Snow.png';
 import Sonia from 'assets/characters/Sonia.png';
 import SpecimenSez from 'assets/characters/Specimen Sez.png';
 import SpecterTenebria from 'assets/characters/Specter Tenebria.png';
+import Straze from 'assets/characters/Straze.png';
+import SummertimeIseria from 'assets/characters/Summertime Iseria.png';
 import Surin from 'assets/characters/Surin.png';
 import Sven from 'assets/characters/Sven.png';
 import Tamarinne from 'assets/characters/Tamarinne.png';
@@ -214,6 +237,7 @@ export const CharacterImages = {
   'Alexa': Alexa,
   'All-Rounder Wanda': AllRounderWanda,
   'Ambitious Tywin': AmbitiousTywin,
+  'Angel of Light Angelica': AngelofLightAngelica,
   'Angelic Montmorancy': AngelicMontmorancy,
   'Angelica': Angelica,
   'Apocalypse Ravi': ApocalypseRavi,
@@ -237,8 +261,10 @@ export const CharacterImages = {
   'Blaze Dingo': BlazeDingo,
   'Blood Blade Karin': BloodBladeKarin,
   'Blood Moon Haste': BloodMoonHaste,
+  'Bomb Model Kanna': BombModelKanna,
   'Briar Witch Iseria': BriarWitchIseria,
   'Butcher Corps Inquisitor': ButcherCorpsInquisitor,
+  'Camilla': Camilla,
   'Captain Rikoris': CaptainRikoris,
   'Carmainerose': Carmainerose,
   'Carrot': Carrot,
@@ -257,9 +283,11 @@ export const CharacterImages = {
   'Charlotte': Charlotte,
   'Chloe': Chloe,
   'Choux': Choux,
+  'Christy': Christy,
   'Church of Ilryos Axe': ChurchofIlryosAxe,
   'Cidd': Cidd,
   'Clarissa': Clarissa,
+  'Closer Charles': CloserCharles,
   'Coli': Coli,
   'Commander Lorina': CommanderLorina,
   'Corvus': Corvus,
@@ -268,6 +296,7 @@ export const CharacterImages = {
   'Crozet': Crozet,
   'Dark Corvus': DarkCorvus,
   'Desert Jewel Basar': DesertJewelBasar,
+  'Designer Lilibet': DesignerLilibet,
   'Destina': Destina,
   'Diene': Diene,
   'Dingo': Dingo,
@@ -276,9 +305,11 @@ export const CharacterImages = {
   'Dominiel': Dominiel,
   'Doris': Doris,
   'Eaton': Eaton,
+  'Eda': Eda,
   'Elena': Elena,
   'Elphelt Valentine': ElpheltValentine,
   'Elson': Elson,
+  'Emilia': Emilia,
   'Enott': Enott,
   'Ervalen': Ervalen,
   'Fairytale Tenebria': FairytaleTenebria,
@@ -293,15 +324,19 @@ export const CharacterImages = {
   'Glenn': Glenn,
   'Gloomyrain': Gloomyrain,
   'Godmother': Godmother,
+  'Great Chief Khawana': GreatChiefKhawana,
   'Guider Aither': GuiderAither,
   'Gunther': Gunther,
   'Haste': Haste,
   'Hataan': Hataan,
   'Hazel': Hazel,
+  'Helen': Helen,
   'Helga': Helga,
   'Holiday Yufine': HolidayYufine,
   'Hurado': Hurado,
   'Ian': Ian,
+  'Ilynav': Ilynav,
+  'Inferno Khawazu': InfernoKhawazu,
   'Iseria': Iseria,
   'Jecht': Jecht,
   'Jena': Jena,
@@ -330,6 +365,7 @@ export const CharacterImages = {
   'Little Queen Charlotte': LittleQueenCharlotte,
   'Lorina': Lorina,
   'Lots': Lots,
+  'Lucy': Lucy,
   'Ludwig': Ludwig,
   'Luluca': Luluca,
   'Luna': Luna,
@@ -338,6 +374,8 @@ export const CharacterImages = {
   'Martial Artist Ken': MartialArtistKen,
   'Mascot Hazel': MascotHazel,
   'Maya': Maya,
+  'Mediator Kawerik': MediatorKawerik,
+  'Melany': Melany,
   'Melissa': Melissa,
   'Mercedes': Mercedes,
   'Mercenary Helga': MercenaryHelga,
@@ -346,18 +384,22 @@ export const CharacterImages = {
   'Montmorancy': Montmorancy,
   'Mort': Mort,
   'Mucacha': Mucacha,
+  'Muse Rima': MuseRima,
   'Mui': Mui,
   'Nemunas': Nemunas,
   'Operator Sigret': OperatorSigret,
   'Otillie': Otillie,
   'Pavel': Pavel,
   'Pearlhorizon': Pearlhorizon,
+  'Penelope': Penelope,
   'Politis': Politis,
   'Purrgis': Purrgis,
   'Pyllis': Pyllis,
+  'Ram': Ram,
   'Ras': Ras,
   'Ravi': Ravi,
   'Ray': Ray,
+  'Rem': Rem,
   'Remnant Violet': RemnantViolet,
   'Requiemroar': Requiemroar,
   'Researcher Carrot': ResearcherCarrot,
@@ -374,6 +416,7 @@ export const CharacterImages = {
   'Sage Baal and Sezan': SageBaalandSezan,
   'Schuri': Schuri,
   'Seaside Bellona': SeasideBellona,
+  'Senya': Senya,
   'Serila': Serila,
   'Sez': Sez,
   'Shadow Rose': ShadowRose,
@@ -383,9 +426,12 @@ export const CharacterImages = {
   'Silver Blade Aramintha': SilverBladeAramintha,
   'Sinful Angelica': SinfulAngelica,
   'Sol Badguy': SolBadguy,
+  'Solitaria of the Snow': SolitariaoftheSnow,
   'Sonia': Sonia,
   'Specimen Sez': SpecimenSez,
   'Specter Tenebria': SpecterTenebria,
+  'Straze': Straze,
+  'Summertime Iseria': SummertimeIseria,
   'Surin': Surin,
   'Sven': Sven,
   'Tamarinne': Tamarinne,
