@@ -30,6 +30,11 @@
     "label": "Adamant Shield"
   },
   {
+    "value": "Air-to-Surface Missile: MISHA",
+    "class": "Ranger",
+    "label": "Air-to-Surface Missile: MISHA"
+  },
+  {
     "value": "Alabastron",
     "class": "Theif",
     "label": "Alabastron"
@@ -88,6 +93,11 @@
     "value": "Aurius",
     "class": "Knight",
     "label": "Aurius"
+  },
+  {
+    "value": "Azure Comet",
+    "class": "Warrior",
+    "label": "Azure Comet"
   },
   {
     "value": "Barthez's Orbuculum",
@@ -160,9 +170,9 @@
     "label": "Chatty"
   },
   {
-    "value": "Circle Fantasia",
+    "value": "Circus Fantasia",
     "class": "Warrior",
-    "label": "Circle Fantasia"
+    "label": "Circus Fantasia"
   },
   {
     "value": "Cradle of Life",
@@ -350,6 +360,16 @@
     "label": "Grail of Blood"
   },
   {
+    "value": "Guardian Ice Crystals",
+    "class": "Soul Weaver",
+    "label": "Guardian Ice Crystals"
+  },
+  {
+    "value": "Guide to a Decision",
+    "class": "Any",
+    "label": "Guide to a Decision"
+  },
+  {
     "value": "Guiding Light",
     "class": "Ranger",
     "label": "Guiding Light"
@@ -405,6 +425,11 @@
     "label": "Kal'adra"
   },
   {
+    "value": "Knowledge Seed",
+    "class": "Mage",
+    "label": "Knowledge Seed"
+  },
+  {
     "value": "Labyrinth Cube",
     "class": "Any",
     "label": "Labyrinth Cube"
@@ -423,6 +448,11 @@
     "value": "Magaraha's Tome",
     "class": "Soul Weaver",
     "label": "Magaraha's Tome"
+  },
+  {
+    "value": "Magic for Friends",
+    "class": "Mage",
+    "label": "Magic for Friends"
   },
   {
     "value": "Manica of Control",
@@ -575,6 +605,11 @@
     "label": "Sepulcrum"
   },
   {
+    "value": "Severed Horn Wand",
+    "class": "Mage",
+    "label": "Severed Horn Wand"
+  },
+  {
     "value": "Shepherd of the Hollow",
     "class": "Thief",
     "label": "Shepherd of the Hollow"
@@ -615,6 +650,11 @@
     "label": "Song of Stars"
   },
   {
+    "value": "Spear of a New Dawn",
+    "class": "knight",
+    "label": "Spear of a New Dawn"
+  },
+  {
     "value": "Spirit's Breath",
     "class": "Mage",
     "label": "Spirit's Breath"
@@ -628,6 +668,11 @@
     "value": "Staff of Wisdom",
     "class": "Any",
     "label": "Staff of Wisdom"
+  },
+  {
+    "value": "Star of the Deep Sea",
+    "class": "Ranger",
+    "label": "Star of the Deep Sea"
   },
   {
     "value": "Steadfast Gatekeeper",
@@ -710,6 +755,11 @@
     "label": "Touch of Rekos"
   },
   {
+    "value": "Twilight Calamity",
+    "class": "Mage",
+    "label": "Twilight Calamity"
+  },
+  {
     "value": "Uberius's Tooth",
     "class": "Warrior",
     "label": "Uberius's Tooth"
@@ -753,6 +803,11 @@
     "value": "Wind Rider",
     "class": "Thief",
     "label": "Wind Rider"
+  },
+  {
+    "value": "Wings of Light and Shadow",
+    "class": "Knight",
+    "label": "Wings of Light and Shadow"
   },
   {
     "value": "Wondrous Potion Vial",
