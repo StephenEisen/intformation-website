@@ -28,6 +28,7 @@ import Basar from 'assets/characters/Basar.png';
 import Bask from 'assets/characters/Bask.png';
 import Batisse from 'assets/characters/Batisse.png';
 import Bellona from 'assets/characters/Bellona.png';
+import Belian from 'assets/characters/Belian.png';
 import BenevolentRomann from 'assets/characters/Benevolent Romann.png';
 import BlazeDingo from 'assets/characters/Blaze Dingo.png';
 import BloodBladeKarin from 'assets/characters/Blood Blade Karin.png';
@@ -150,6 +151,7 @@ import Melany from 'assets/characters/Melany.png';
 import Melissa from 'assets/characters/Melissa.png';
 import Mercedes from 'assets/characters/Mercedes.png';
 import MercenaryHelga from 'assets/characters/Mercenary Helga.png';
+import Milim from 'assets/characters/Milim.png';
 import Mirsa from 'assets/characters/Mirsa.png';
 import Mistychain from 'assets/characters/Mistychain.png';
 import Montmorancy from 'assets/characters/Montmorancy.png';
@@ -167,6 +169,7 @@ import Politis from 'assets/characters/Politis.png';
 import Purrgis from 'assets/characters/Purrgis.png';
 import Pyllis from 'assets/characters/Pyllis.png';
 import Ram from 'assets/characters/Ram.png';
+import Ran from 'assets/characters/Ran.png';
 import Ras from 'assets/characters/Ras.png';
 import Ravi from 'assets/characters/Ravi.png';
 import Ray from 'assets/characters/Ray.png';
@@ -177,6 +180,7 @@ import ResearcherCarrot from 'assets/characters/Researcher Carrot.png';
 import RighteousThiefRoozid from 'assets/characters/Righteous Thief Roozid.png';
 import Rikoris from 'assets/characters/Rikoris.png';
 import Rima from 'assets/characters/Rima.png';
+import Rimuru from 'assets/characters/Rimuru.png';
 import Rin from 'assets/characters/Rin.png';
 import RoamingWarriorLeo from 'assets/characters/Roaming Warrior Leo.png';
 import Roana from 'assets/characters/Roana.png';
@@ -192,6 +196,7 @@ import Serila from 'assets/characters/Serila.png';
 import Sez from 'assets/characters/Sez.png';
 import ShadowRose from 'assets/characters/Shadow Rose.png';
 import ShootingStarAchates from 'assets/characters/Shooting Star Achates.png';
+import Shuna from 'assets/characters/Shuna.png';
 import Sigret from 'assets/characters/Sigret.png';
 import Silk from 'assets/characters/Silk.png';
 import SilverBladeAramintha from 'assets/characters/Silver Blade Aramintha.png';
@@ -201,6 +206,7 @@ import SolitariaoftheSnow from 'assets/characters/Solitaria of the Snow.png';
 import Sonia from 'assets/characters/Sonia.png';
 import SpecimenSez from 'assets/characters/Specimen Sez.png';
 import SpecterTenebria from 'assets/characters/Specter Tenebria.png';
+import SpiritEyeCeline from 'assets/characters/Spirit Eye Celine.png';
 import Straze from 'assets/characters/Straze.png';
 import SummertimeIseria from 'assets/characters/Summertime Iseria.png';
 import Surin from 'assets/characters/Surin.png';
@@ -222,6 +228,7 @@ import WandererSilk from 'assets/characters/Wanderer Silk.png';
 import WatcherSchuri from 'assets/characters/Watcher Schuri.png';
 import Yufine from 'assets/characters/Yufine.png';
 import Yuna from 'assets/characters/Yuna.png';
+import Zahhak from 'assets/characters/Zahhak.png';
 import ZealotCarmainerose from 'assets/characters/Zealot Carmainerose.png';
 import Zeno from 'assets/characters/Zeno.png';
 import Zerato from 'assets/characters/Zerato.png';
@@ -257,6 +264,7 @@ export const CharacterImages = {
   'Bask': Bask,
   'Batisse': Batisse,
   'Bellona': Bellona,
+  'Belian': Belian,
   'Benevolent Romann': BenevolentRomann,
   'Blaze Dingo': BlazeDingo,
   'Blood Blade Karin': BloodBladeKarin,
@@ -379,6 +387,7 @@ export const CharacterImages = {
   'Melissa': Melissa,
   'Mercedes': Mercedes,
   'Mercenary Helga': MercenaryHelga,
+  'Milim': Milim,
   'Mirsa': Mirsa,
   'Mistychain': Mistychain,
   'Montmorancy': Montmorancy,
@@ -396,6 +405,7 @@ export const CharacterImages = {
   'Purrgis': Purrgis,
   'Pyllis': Pyllis,
   'Ram': Ram,
+  'Ran': Ran,
   'Ras': Ras,
   'Ravi': Ravi,
   'Ray': Ray,
@@ -406,6 +416,7 @@ export const CharacterImages = {
   'Righteous Thief Roozid': RighteousThiefRoozid,
   'Rikoris': Rikoris,
   'Rima': Rima,
+  'Rimuru': Rimuru,
   'Rin': Rin,
   'Roaming Warrior Leo': RoamingWarriorLeo,
   'Roana': Roana,
@@ -421,6 +432,7 @@ export const CharacterImages = {
   'Sez': Sez,
   'Shadow Rose': ShadowRose,
   'Shooting Star Achates': ShootingStarAchates,
+  'Shuna': Shuna,
   'Sigret': Sigret,
   'Silk': Silk,
   'Silver Blade Aramintha': SilverBladeAramintha,
@@ -430,6 +442,7 @@ export const CharacterImages = {
   'Sonia': Sonia,
   'Specimen Sez': SpecimenSez,
   'Specter Tenebria': SpecterTenebria,
+  'Spirit Eye Celine': SpiritEyeCeline,
   'Straze': Straze,
   'Summertime Iseria': SummertimeIseria,
   'Surin': Surin,
@@ -451,6 +464,7 @@ export const CharacterImages = {
   'Watcher Schuri': WatcherSchuri,
   'Yufine': Yufine,
   'Yuna': Yuna,
+  'Zahhak': Zahhak,
   'Zealot Carmainerose': ZealotCarmainerose,
   'Zeno': Zeno,
   'Zerato': Zerato,

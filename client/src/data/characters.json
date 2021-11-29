@@ -203,6 +203,13 @@
     "photo": "assets/characters/Batisse.png"
   },
   {
+    "class": "Knight",
+    "element": "Light",
+    "value": "Belian",
+    "label": "Belian",
+    "photo": "assets/characters/Belian.png"
+  },
+  {
     "class": "Ranger",
     "element": "Earth",
     "value": "Bellona",
@@ -1064,6 +1071,13 @@
     "photo": "assets/characters/Mercenary Helga.png"
   },
   {
+    "class": "Mage",
+    "element": "Fire",
+    "value": "Milim",
+    "label": "Milim",
+    "photo": "assets/characters/Milim.png"
+  },
+  {
     "class": "Thief",
     "element": "Light",
     "value": "Mirsa",
@@ -1183,6 +1197,13 @@
     "photo": "assets/characters/Ram.png"
   },
   {
+    "class": "Thief",
+    "element": "Ice",
+    "value": "Ran",
+    "label": "Ran",
+    "photo": "assets/characters/Ran.png"
+  },
+  {
     "class": "Knight",
     "element": "Fire",
     "value": "Ras",
@@ -1251,6 +1272,13 @@
     "value": "Rima",
     "label": "Rima",
     "photo": "assets/characters/Rima.png"
+  },
+  {
+    "class": "Warrior",
+    "element": "Earth",
+    "value": "Rimuru",
+    "label": "Rimuru",
+    "photo": "assets/characters/Rimuru.png"
   },
   {
     "class": "Soul Weaver",
@@ -1358,6 +1386,13 @@
     "photo": "assets/characters/Shooting Star Achates.png"
   },
   {
+    "class": "Soul Weaver",
+    "element": "Fire",
+    "value": "Shuna",
+    "label": "Shuna",
+    "photo": "assets/characters/Shuna.png"
+  },
+  {
     "class": "Warrior",
     "element": "Ice",
     "value": "Sigret",
@@ -1419,6 +1454,13 @@
     "value": "Specter Tenebria",
     "label": "Specter Tenebria",
     "photo": "assets/characters/Specter Tenebria.png"
+  },
+  {
+    "class": "Thief",
+    "element": "Light",
+    "value": "Spirit Eye Celine",
+    "label": "Spirit Eye Celine",
+    "photo": "assets/characters/Spirit Eye Celine.png"
   },
   {
     "class": "Warrior",
@@ -1566,6 +1608,13 @@
     "value": "Yuna",
     "label": "Yuna",
     "photo": "assets/characters/Yuna.png"
+  },
+  {
+    "class": "Warrior",
+    "element": "Earth",
+    "value": "Zahhak",
+    "label": "Zahhak",
+    "photo": "assets/characters/Zahhak.png"
   },
   {
     "class": "Mage",

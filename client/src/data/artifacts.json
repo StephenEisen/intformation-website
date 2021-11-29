@@ -75,6 +75,11 @@
     "label": "Andre's Crossbow"
   },
   {
+    "value": "Anti-Magic Mask",
+    "class": "Warrior",
+    "label": "Anti-Magic Mask"
+  },
+  {
     "value": "Aqua Rose",
     "class": "Any",
     "label": "Aqua Rose"
@@ -535,6 +540,11 @@
     "label": "Prophetic Candlestick"
   },
   {
+    "value": "Pure White Trust",
+    "class": "Warrior",
+    "label": "Pure White Trust"
+  },
+  {
     "value": "Radiant Forever",
     "class": "Mage",
     "label": "Radiant Forever"
@@ -715,6 +725,11 @@
     "label": "Sword of the Sun"
   },
   {
+    "value": "Sword of Winter Shadow",
+    "class": "Thief",
+    "label": "Sword of Winter Shadow"
+  },
+  {
     "value": "Tagehel's Ancient Book",
     "class": "Mage",
     "label": "Tagehel's Ancient Book"
@@ -773,6 +788,11 @@
     "value": "Unseen Observer",
     "class": "Ranger",
     "label": "Unseen Observer"
+  },
+  {
+    "value": "Upgraded Dragon Knuckles",
+    "class": "Mage",
+    "label": "Upgraded Dragon Knuckles"
   },
   {
     "value": "Venus Orb",
