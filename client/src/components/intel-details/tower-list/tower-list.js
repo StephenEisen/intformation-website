@@ -73,7 +73,7 @@ class TowerList extends React.Component {
       } else {
         // When the index is invalid, remove index from the URL.
         updateIntelPath(this.props.history, this.props.pageId);
-        this.setState({ filteredTower:null, defaultTowerLocation: 'All', towerMapKey: Math.random() });
+        this.setState({ filteredTower: null, defaultTowerLocation: 'All', towerMapKey: Math.random() });
       }
     } else {
       updateIntelPath(this.props.history, this.props.pageId);

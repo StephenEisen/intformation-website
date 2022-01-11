@@ -2,12 +2,10 @@
   overflow-x: hidden;
 }
 
-
-
 @media only screen and (max-width: 460px) {
   .statistics-container .container {
     padding-left: 0 !important;
     padding-right: 0 !important;
-    font-size: 14px  !important;
+    font-size: 14px !important;
   }
 }
