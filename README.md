@@ -6,9 +6,10 @@
 
 - Download and install mongoDB v7.0
   - Make sure environment variables are setup correctly
-  - Create a the direction C:/data/db
+  - Create a directory C:/data/db
   - Open your terminal and run mongod
   - Open a second terminal and run mongosh
+    - after type 'use intel'
 
 - Run server: `npm run dev`
 - Run client: `npm run start`
