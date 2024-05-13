@@ -2,8 +2,16 @@
 
 # INT Formation
 
-- Run client: `npm run start`
+- After cloning, run 'npm install' on both server and client
+
+- Download and install mongoDB v7.0
+  - Make sure environment variables are setup correctly
+  - Open your terminal and run mongod
+  - Open a second terminal and run mongosh
+
 - Run server: `npm run dev`
+- Run client: `npm run start`
+
 
 
 ![image](https://github.com/StephenEisen/intformation-website/assets/9820981/37807ca9-4382-48b7-be53-1bbba51a2274)
